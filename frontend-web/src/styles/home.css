@@ -1,15 +1,37 @@
 
-.dashboard {
+.home {
   background-color: rgb(250, 250, 250);
   height: 100%;
 }
 
+.homeContainer {
+  margin-top: 5%;
+}
+
+#feedContainer {
+  margin-left: 10%;
+}
+
 #shareContainer {
-  background-color: white;
   width: 18rem !important;
-  margin-top: 10%;
+  border-radius: 5%;
 }
 
 #shareForm {
   width: 100%;
+}
+
+.postContainer {
+  background-color: white;
+  width: 30rem;
+  margin-bottom: 5%;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.postImage {
+  width: 50%;
+  height: 50%;
 }

@@ -2,8 +2,9 @@ import React from "react";
 import Navbar from "../Navbar/Navbar";
 import '../../styles/home.css';
 import ShareForm from "./ShareForm";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import '../../styles/home.css';
+import Feed from "./Feed";
 
 export default function Home(props) {
   const userLinks = {
@@ -13,12 +14,17 @@ export default function Home(props) {
     "settings": "Settings"
   }
   return (
-    <div className='dashboard'>
+    <div className='home'>
       <Navbar links={userLinks} />
-      <Container>
-        <div id="shareContainer">
-          <ShareForm />
-        </div>
+      <Container className='homeContainer'>
+        <Row>
+          <div id="shareContainer">
+            <ShareForm />
+          </div>
+          <div id="feedContainer">
+            <Feed />
+          </div>
+        </Row>
       </Container>
     </div>
   );
