@@ -1,0 +1,100 @@
+body {
+    background-color: #1BEE9A;
+}
+
+
+#leftSide {
+    width: 50vw;
+    display: inline-block;
+    float: left;
+}
+#rightSide {
+    width: 50%;
+    display: inline-block;
+}
+
+#welcomeText {
+    padding-left: 10vw;
+}
+
+.welcomeTitle {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 96px;
+    line-height: 112px;
+}
+
+.welcomeSubTitle {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 42px;
+}
+
+#blob {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 50vw;
+}
+
+#threeCharacters {
+    position: absolute;
+    bottom: 8vw;
+    left: 25vw;
+    width: 25vw;
+}
+
+#loginCard {
+    display: inline-block;
+    background: #FFFFFF;
+    border: 5px solid #229631;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+}
+
+form {
+    padding: 20px;
+}
+
+input {
+    border: 0px;
+    margin: 10px;
+    padding: 10px;
+    width: 30vw;
+}
+
+input[type=submit] {
+    background: #00AF91;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+    padding: 10px;
+
+    color: #FFFFFF;
+}
+
+input[type=text], input[type=password] {
+    background: #F9F9F9;
+    box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    font-size: 24px;
+    line-height: 28px;
+}
+
+#createAccBtn {
+    background: #31D747;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 15px;
+
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+
+    color: #FFFFFF;
+}
