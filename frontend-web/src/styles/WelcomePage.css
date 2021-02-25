@@ -4,6 +4,9 @@ html {
 
 body {
     /*background-color: #1BEE9A;*/
+}
+
+#background {
     height: 100%;
     background: rgb(27,238,154);
     background: linear-gradient(165deg, rgba(27,238,154,1) 48%, rgba(28,218,193,1) 100%);

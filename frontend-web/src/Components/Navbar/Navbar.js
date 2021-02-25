@@ -1,10 +1,27 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import styles from "./Navbar.css";
+import "../../styles/Navbar.css";
 
 import { FaBars } from "react-icons/fa";
 
 export default function Navbar(props) {
+  const links = props.links;
+
+  const getLinks = () => {
+    const navLinks = Object.entries(links).map(link => {
+      return (
+        <NavLink key={link[0]} to={link[0]} className="linkDefault" activeClassName="linkActive">
+          {link[1]}
+        </NavLink>
+      )
+    })
+    return (
+      <div className="navBlock">
+        {navLinks}
+      </div>
+    )
+  }
+
   return (
     <>
       <nav className="main">
@@ -12,20 +29,7 @@ export default function Navbar(props) {
           <h1>SpendR</h1>
         </NavLink>
         <FaBars className="faBars" />
-        <div className="navBlock">
-          <NavLink to="" className="linkDefault" activeClassName="linkActive">
-            About
-          </NavLink>
-          <NavLink to="" className="linkDefault" activeClassName="linkActive">
-            services
-          </NavLink>
-          <NavLink to="" className="linkDefault" activeClassName="linkActive">
-            Contact
-          </NavLink>
-          <NavLink to="" className="linkDefault" activeClassName="linkActive">
-            Sign Up
-          </NavLink>
-        </div>
+        {getLinks()}
       </nav>
     </>
   );

@@ -1,6 +1,6 @@
-import './WelcomePage.css';
-import blob from '../assets/blob.svg';
-import threeCharacters from '../assets/3characters.svg'
+import '../../styles/WelcomePage.css';
+import blob from '../../assets/blob.svg';
+import threeCharacters from '../../assets/3characters.svg'
 
 function WelcomePage() {
   return (
