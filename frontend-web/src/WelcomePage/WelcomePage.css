@@ -27,14 +27,13 @@ body {
 
 .welcomeTitle {
     font-weight: bold;
-    font-size: 11vmin;
+    font-size: max(60px, 11vmin);
 }
 
 .welcomeSubTitle {
-    padding-top: 1vmin;
     padding-left: 5px;
     font-weight: 500;
-    font-size: 4vmin;
+    font-size: max(28px, 4vmin);
 }
 
 #blob {
