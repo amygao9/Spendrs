@@ -6,6 +6,8 @@ import history from "./config/History";
 import WelcomePage from "./Components/WelcomePage/WelcomePage";
 import Navbar from "./Components/Navbar/Navbar";
 import Home from "./Components/Dashboard/Home";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 function App() {
   const siteLinks = {
