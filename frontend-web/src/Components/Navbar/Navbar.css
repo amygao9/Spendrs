@@ -1,0 +1,53 @@
+nav.main {
+  background: rgb(255, 255, 255);
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 50px;
+  padding-right: 50px;
+  z-index: 10;
+}
+
+.linkDefault {
+  color: #000;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  cursor: pointer;
+}
+
+.linkActive {
+  color: rgb(51, 176, 214);
+}
+
+.faBars {
+  display: none;
+  color: rgb(0, 0, 0);
+}
+
+@media only screen and (max-width: 768px) {
+  .faBars {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 75%);
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+}
+
+.navBlock {
+  display: flex;
+  align-items: center;
+  margin-right: -24px;
+  white-space: nowrap;
+}
+
+@media only screen and (max-width: 768px) {
+  .navBlock {
+    display: none;
+  }
+}
