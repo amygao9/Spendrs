@@ -45,7 +45,6 @@ body {
     bottom: -60vmin;
     left: -20vmin;
     height:100vmin;
-    z-index: -2;
 }
 
 #threeCharacters {
@@ -53,7 +52,6 @@ body {
     bottom: 8vmin;
     left: 50vmin;
     width: 40vmin;
-    z-index: -1;
 }
 
 #loginCard {
@@ -76,7 +74,7 @@ form {
     width: 400px;
 }
 
-input {
+.inputBox {
     border: 0px;
     margin: 12px;
     padding: 12px;

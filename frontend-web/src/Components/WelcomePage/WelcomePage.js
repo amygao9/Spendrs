@@ -1,4 +1,4 @@
-import '../../styles/WelcomePage.css';
+import '../../styles/welcome.css';
 import blob from '../../assets/blob.svg';
 import threeCharacters from '../../assets/3characters.svg'
 
@@ -25,9 +25,9 @@ function WelcomePage() {
       <div id={'rightSide'}>
         <div id={'loginCard'}>
           <form>
-            <input type="text" name="username" placeholder={"Username"}></input>
-            <input type="password" name="password" placeholder={"Password"}></input>
-            <input type={"submit"} id={"loginBtn"} value={"Log In"}/>
+            <input className="inputBox" type="text" name="username" placeholder={"Username"}></input>
+            <input className="inputBox" type="password" name="password" placeholder={"Password"}></input>
+            <input className="inputBox" type={"submit"} id={"loginBtn"} value={"Log In"}/>
           </form>
           <button id={"createAccBtn"}>Create New Account</button>
         </div>
