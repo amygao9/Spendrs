@@ -1,50 +1,56 @@
-body {
-    background-color: #1BEE9A;
+html {
+    height:100%
 }
 
+body {
+    /*background-color: #1BEE9A;*/
+    height: 100%;
+    background: rgb(27,238,154);
+    background: linear-gradient(165deg, rgba(27,238,154,1) 48%, rgba(28,218,193,1) 100%);
+}
 
 #leftSide {
-    width: 50vw;
+    /*width: 52vw;*/
     display: inline-block;
     float: left;
 }
 #rightSide {
-    width: 50%;
-    display: inline-block;
+    text-align: center;
+    align-content: center;
+    align-items: center;
 }
 
 #welcomeText {
-    padding-left: 10vw;
+    padding-left: 5vw;
+    padding-top: 8vmin;
 }
 
 .welcomeTitle {
-    font-family: Roboto;
-    font-style: normal;
     font-weight: bold;
-    font-size: 96px;
-    line-height: 112px;
+    font-size: 11vmin;
 }
 
 .welcomeSubTitle {
-    font-family: Roboto;
-    font-style: normal;
+    padding-top: 1vmin;
+    padding-left: 5px;
     font-weight: 500;
-    font-size: 36px;
-    line-height: 42px;
+    font-size: 4vmin;
 }
 
 #blob {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    width: 50vw;
+    position: fixed;
+    bottom: -60vmin;
+    left: -20vmin;
+    height:100vmin;
+    z-index: -2;
 }
 
 #threeCharacters {
-    position: absolute;
-    bottom: 8vw;
-    left: 25vw;
-    width: 25vw;
+    position: fixed;
+    bottom: 8vmin;
+    left: 50vmin;
+    width: 40vmin;
+    z-index: -1;
 }
 
 #loginCard {
@@ -52,27 +58,34 @@ body {
     background: #FFFFFF;
     border: 5px solid #229631;
     box-sizing: border-box;
-    box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 20vh;
+    margin-bottom: 10vw;
+
+    align-content: center;
+    text-align: center;
 }
 
 form {
-    padding: 20px;
+    width: 400px;
 }
 
 input {
     border: 0px;
-    margin: 10px;
-    padding: 10px;
-    width: 30vw;
+    margin: 12px;
+    padding: 12px;
+    width: 300px;
 }
 
 input[type=submit] {
     background: #00AF91;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 24px;
     line-height: 35px;
     padding: 10px;
 
@@ -81,19 +94,20 @@ input[type=submit] {
 
 input[type=text], input[type=password] {
     background: #F9F9F9;
-    box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    font-size: 24px;
-    line-height: 28px;
+    font-size: 20px;
+    line-height: 20px;
 }
 
 #createAccBtn {
     background: #31D747;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
-
+    border: 0px;
+    padding: 10px 30px 10px 30px;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 24px;
     line-height: 35px;
 
     color: #FFFFFF;

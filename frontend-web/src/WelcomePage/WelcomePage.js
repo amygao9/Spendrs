@@ -8,7 +8,7 @@ function WelcomePage() {
       <div id={"leftSide"}>
         <div id={"welcomeText"}>
           <h1 className="welcomeTitle">
-            Welcome to Spendr
+            Welcome&nbsp;to<br/>Spendr
           </h1>
           <h3 className="welcomeSubTitle">
             Track your spendings <br/>
