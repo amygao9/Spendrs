@@ -6,7 +6,7 @@ import { Container, Row } from "react-bootstrap";
 import '../../styles/home.css';
 import Feed from "./Feed";
 
-export default function Home(props) {
+function Home(props) {
   const userLinks = {
     "dashboard": "Feed",
     "analytics": "Analytics",
@@ -29,3 +29,5 @@ export default function Home(props) {
     </div>
   );
 }
+
+export default Home;

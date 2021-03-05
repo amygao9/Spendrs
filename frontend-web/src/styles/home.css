@@ -31,6 +31,15 @@
   font-weight: bold;
 }
 
+.grey {
+  color: grey;
+}
+
+.edit {
+  cursor: pointer;
+  color: blue;
+}
+
 .postImage {
   width: 50%;
   height: 50%;

@@ -8,6 +8,7 @@ import Navbar from "./Components/Navbar/Navbar";
 import Home from "./Components/Dashboard/Home";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import Profile from "./Components/Profile/Profile";
 
 function App() {
   const siteLinks = {
@@ -20,9 +21,10 @@ function App() {
     <Router history={history}>
       <div className="app">
         <Switch>
-          <Route exact path="/" component={WelcomePage} />
           <Route exact path="/navbar/" component={() => (<Navbar links={siteLinks} />)} />
           <Route exact path="/dashboard" component={Home} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/" component={WelcomePage} />
         </Switch>
       </div>
     </Router>
