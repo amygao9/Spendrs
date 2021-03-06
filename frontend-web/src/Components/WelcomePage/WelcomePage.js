@@ -1,8 +1,14 @@
+import React, { useState } from 'react';
 import '../../styles/welcome.css';
 import blob from '../../assets/blob.svg';
 import threeCharacters from '../../assets/3characters.svg'
-
+import RegistrationModal from './Registration'
 function WelcomePage() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <div id={"background"}>
       <div id={"leftSide"}>
@@ -29,7 +35,8 @@ function WelcomePage() {
             <input className="inputBox" type="password" name="password" placeholder={"Password"}></input>
             <input className="inputBox" type={"submit"} id={"loginBtn"} value={"Log In"}/>
           </form>
-          <button id={"createAccBtn"}>Create New Account</button>
+          <button id={"createAccBtn"} onClick={handleShow}>Create New Account</button>
+          <RegistrationModal handleClose = {handleClose} show = {show}/>
         </div>
       </div>
     </div>
