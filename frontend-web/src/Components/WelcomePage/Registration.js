@@ -19,7 +19,7 @@ function RegistrationModal(props) {
                 <input className="inputBox" type={"submit"} id={"createAccBtn"} value={"Create Account"}/>
             </form>
         </Modal.Body>
-        </Modal>
+    </Modal>
       
     );
   }
