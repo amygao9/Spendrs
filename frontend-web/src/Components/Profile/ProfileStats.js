@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Navbar from "../Navbar/Navbar";
 import '../../styles/home.css';
 import '../../styles/profile.css';
 import { Col, Container, Row } from "react-bootstrap";

@@ -5,14 +5,9 @@ import ShareForm from "./ShareForm";
 import { Container, Row } from "react-bootstrap";
 import '../../styles/home.css';
 import Feed from "./Feed";
+import { userLinks } from "../../constants";
 
 function Home(props) {
-  const userLinks = {
-    "dashboard": "Feed",
-    "analytics": "Analytics",
-    "profile": "Profile",
-    "settings": "Settings"
-  }
   return (
     <div className='home'>
       <Navbar links={userLinks} />

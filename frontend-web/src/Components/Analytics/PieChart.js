@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../Navbar/Navbar";
 import '../../styles/home.css';
 import '../../styles/analytics.css';
 import { PieChart } from "react-minimal-pie-chart";
@@ -9,7 +8,7 @@ const colors = ['#E38627', '#C13C37', '#4B33FF ', '#6A2135', '#3FFF9C', '#3FFFEE
 function SpendingPieGraph(props) {
   const stats = props.stats;
   const [pieStatistics, setPieStatistics] = useState([]);
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState(undefined);
   const [hovered, setHovered] = useState(undefined);
   const lineWidth = 60;
 

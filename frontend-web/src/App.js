@@ -6,10 +6,12 @@ import history from "./config/History";
 import WelcomePage from "./Components/WelcomePage/WelcomePage";
 import Navbar from "./Components/Navbar/Navbar";
 import Home from "./Components/Dashboard/Home";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
 import Profile from "./Components/Profile/Profile";
 import Analytics from "./Components/Analytics/Analytics";
+import Settings from "./Components/Settings/Settings";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 function App() {
   const siteLinks = {
@@ -26,6 +28,7 @@ function App() {
           <Route exact path="/dashboard" component={Home} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/analytics" component={Analytics} />
+          <Route exact path="/settings" component={Settings} />
           <Route exact path="/" component={WelcomePage} />
         </Switch>
       </div>
