@@ -8,7 +8,7 @@ import { FaAudioDescription } from "react-icons/fa";
 function ProfileInfo() {
   const [username, setUsername] = useState("alexshih2018");
   const [updatedUsername, setUpdatedUsername] = useState(username);
-  const [description, setDescription] = useState("My name is IU. I am totally not a catfish account.");
+  const [description, setDescription] = useState("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam urna metus, feugiat eget aliquet sit amet, rhoncus consequat diam.");
   const [updatedDescription, setUpdatedDescription] = useState(description);
 
   const [showEditUsername, setShowEditUsername] = useState(false);
