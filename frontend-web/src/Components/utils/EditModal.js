@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import '../../styles/home.css';
 import '../../styles/profile.css';
 import { Row, Modal, Button } from "react-bootstrap";
 
-function EditModal({show, handleClose}) {
+function EditModal({name, input, show, handleClose, value, onChange}) {
+
   return (
     <div>
       <Modal show={show} onHide={handleClose} animation={true}>
@@ -11,15 +12,17 @@ function EditModal({show, handleClose}) {
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <input>
-          
-          </input>
+          {name}
+          { 
+            input === "input" ? <input value={value} onChange={onChange} />
+            : <textarea value={value} onChange={onChange} />
+          }
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={() => handleClose(false)}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={() => handleClose(true)}>
             Save Changes
           </Button>
         </Modal.Footer>
