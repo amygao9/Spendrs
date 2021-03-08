@@ -6,3 +6,7 @@
 .seriesContainer {
   margin-top: 50px;
 }
+
+.chartContainer {
+  display: inline-block;
+}

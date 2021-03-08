@@ -5,6 +5,7 @@ import { userLinks } from "../../constants";
 import SpendingPieGraph from "./PieChart";
 import TimeSeriesGraph from "./TimeSeries";
 import Summary from "./Summary";
+import { Container } from "react-bootstrap";
 
 const stats = {
   "budget": 300,
@@ -18,9 +19,11 @@ function Analytics(props) {
   return (
     <div className='home'>
       <Navbar links={userLinks} />
-      <Summary stats={stats} />
-      <SpendingPieGraph stats={stats.spendingCategories} />
-      <TimeSeriesGraph stats={stats.monthTimeSeries} />
+      <Container>
+        <Summary stats={stats} />
+        <SpendingPieGraph stats={stats.spendingCategories} />
+        <TimeSeriesGraph stats={stats.monthTimeSeries} />
+      </Container>
     </div>
   );
 }

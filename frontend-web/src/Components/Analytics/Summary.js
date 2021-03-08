@@ -8,7 +8,7 @@ function Summary(props) {
   return (
     <div className='summaryContainer'>
       <h2>Summary</h2>
-      <div>This month you have spent {stats.monthSpending}.</div>
+      <div>This month you have spent ${(Math.round(stats.monthSpending * 100) / 100).toFixed(2)}.</div>
     </div>
   );
 }

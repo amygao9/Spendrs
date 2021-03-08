@@ -38,19 +38,21 @@ function TimeSeriesGraph(props) {
       <h2>
         Your Spending Over The Past Month
       </h2>
-      <ChartContainer timeRange={series.range()} format="%b %d">
-        <ChartRow height="150">
-            <YAxis
-                id="price"
-                label="Price ($)"
-                min={series.min()} max={series.max()}
-                width="60" format="$,.2f"/>
-            <Charts>
-                <LineChart axis="price" series={series}/>
-                <Baseline axis="price" value={series.avg()} label="Avg"/>
-            </Charts>
-        </ChartRow>
-    </ChartContainer>
+      <div className="chartContainer">
+        <ChartContainer timeRange={series.range()} format="%b %d">
+          <ChartRow height="150">
+              <YAxis
+                  id="price"
+                  label="Price ($)"
+                  min={series.min()} max={series.max()}
+                  width="60" format="$,.2f"/>
+              <Charts>
+                  <LineChart axis="price" series={series}/>
+                  <Baseline axis="price" value={series.avg()} label="Avg"/>
+              </Charts>
+          </ChartRow>
+        </ChartContainer>
+      </div>
     </div>
 
   );
