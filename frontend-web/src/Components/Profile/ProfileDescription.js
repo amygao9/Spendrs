@@ -11,8 +11,8 @@ function ProfileDescription(props) {
   const profilePicture = "https://www.allkpop.com/upload/2020/04/content/091439/1586457559-9490h64e069pk776ou0b.jpg";
 
   return (
-    <div className="profileContainer">
-      <img src={profilePicture} className="profilePicture"/>
+    <div className="profileContainer shadowMedium">
+      <img src={profilePicture} alt="Profile Picture" className="profilePicture shadowSmall"/>
       <div>
         <Container>
           <ProfileStats />

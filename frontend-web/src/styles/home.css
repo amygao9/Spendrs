@@ -32,6 +32,12 @@ body, html {
   margin-bottom: 5%;
 }
 
+.postImage {
+  width: 50%;
+  height: 50%;
+}
+
+/*Global classes im not sure where to put this*/
 .bold {
   font-weight: bold;
 }
@@ -45,7 +51,14 @@ body, html {
   color: blue;
 }
 
-.postImage {
-  width: 50%;
-  height: 50%;
+.shadowSmall {
+  box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.05);
+}
+
+.shadowMedium {
+  box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.1);
+}
+
+.shadowLarge {
+  box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.2);
 }
