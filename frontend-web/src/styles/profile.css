@@ -1,0 +1,43 @@
+
+.profileContainer {
+  border-style: solid;
+  border-radius: 5%;
+  border-color: black;
+  width: 40%;
+  min-height: 200px;
+  margin: auto;
+  margin-top: 8%;
+}
+
+.profilePicture {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  left: 400px;
+  top: 135px;
+}
+
+.profileStatsContainer {
+  margin-top: 20px;
+}
+
+.profileStatsNumber {
+	font-weight: bold;
+}
+
+.profileName {
+  margin-right: 10px;
+}
+
+.infoContainer {
+  margin-left: 20px;
+}
+
+.descriptionContainer {
+  margin-top: 10px;
+}
+
+.nameContainer {
+  margin-top: 50px;
+}
