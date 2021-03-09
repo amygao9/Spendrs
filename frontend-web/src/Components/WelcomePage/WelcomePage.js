@@ -17,9 +17,12 @@ function WelcomePage() {
   const history = useHistory();
 
   function onSubmit(data) {
+    console.log(data);
     if (data["username"] == "user" & data["password"] == "user") {
-      console.log(data);
       history.push('/dashboard')
+    }
+    else if (data["username"] == "admin" & data["password"] == "admin") {
+      history.push('/admin')
     }
   }
   return (

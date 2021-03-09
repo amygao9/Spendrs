@@ -1,6 +1,6 @@
 
 import {Modal, Button} from "react-bootstrap";
-
+import { Link, Redirect, useHistory } from 'react-router-dom';
 function RegistrationModal(props) {
   
     return (
@@ -16,7 +16,10 @@ function RegistrationModal(props) {
                 <input className="inputBox" type="text" name="email" placeholder={"Email"}></input>
                 <input className="inputBox" type="text" name="username" placeholder={"Username"}></input>
                 <input className="inputBox" type="password" name="password" placeholder={"Password"}></input>
-                <input className="inputBox" type={"submit"} id={"createAccBtn"} value={"Create Account"}/>
+                <Link to="/dashboard">
+                    <input className="inputBox" type={"submit"} id={"createAccBtn"} value={"Create Account"}/>
+                </Link>
+                
             </form>
         </Modal.Body>
     </Modal>

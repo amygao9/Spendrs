@@ -9,7 +9,7 @@ import Home from "./Components/Dashboard/Home";
 import Profile from "./Components/Profile/Profile";
 import Analytics from "./Components/Analytics/Analytics";
 import Settings from "./Components/Settings/Settings";
-
+import Admin from "./Components/Admin/Admin";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -29,6 +29,7 @@ function App() {
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/analytics" component={Analytics} />
           <Route exact path="/settings" component={Settings} />
+          <Route exact path="/admin" component={Admin} />
           <Route exact path="/" component={WelcomePage} />
         </Switch>
       </div>

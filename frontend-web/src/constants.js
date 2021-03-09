@@ -5,3 +5,7 @@ export const userLinks = {
   "profile": "Profile",
   "settings": "Settings"
 }
+
+export const adminLinks = {
+  "settings": "Settings"
+}

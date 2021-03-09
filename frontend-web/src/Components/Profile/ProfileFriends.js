@@ -17,9 +17,6 @@ function ProfileFriends(props) {
         <Modal.Body>
         <ListGroup>
             {getList()}
-            {/* <ListGroup.Item>
-                Amy Gao
-            </ListGroup.Item> */}
         </ListGroup>
         </Modal.Body>
       </Modal>
