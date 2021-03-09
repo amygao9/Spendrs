@@ -1,43 +1,33 @@
 import * as React from "react";
 import '../../styles/admin.css';
-import { adminLinks } from "../../constants";
+import { adminLinks, users } from "../../constants";
 import Navbar from "../Navbar/Navbar";
 import User from "./User";
 import { ListGroup } from "react-bootstrap";
+import { Redirect, useHistory } from 'react-router-dom';
 function Admin() {
-    let data = [
-        {
-            firstname: "Alex",
-            lastname: "Shih",
-            username: "alexshih2018",
-            email: "alexshih@gmail.com",
-            register_date: "2021/03/05"
-        },
-        {
-            firstname: "Jacky",
-            lastname: "Yang",
-            username: "yangjac",
-            email: "jackyyang@gmail.com",
-            register_date: "2021/03/06"
-        }
-
-    ]
-    const [users, setUsers] = React.useState(data);
+    const [userList, setUsers] = React.useState(Object.values(users));
     function handleDelete(username) {
         console.log(username);
-        const newList = users.filter((user) => user.username !== username);
+        const newList = userList.filter((user) => user.username !== username);
  
         setUsers(newList);
     }
+    
+    function handleClick(username) {
+        console.log(username);
+
+    }
     const getUsers = () => {
-        return users.map(user => {
-          return <User user = {user} handleDelete = {handleDelete}/>
+        console.log(userList)
+        return userList.map(user => {
+          return <User user = {user} handleDelete = {handleDelete} handleClick = {handleClick}/>
         })
       }
     return (
-        <div class =  "admin">
+        <div className =  "admin">
             <Navbar links={adminLinks} />
-            <div class = "userContainer">
+            <div className = "userContainer">
                 <h3>Registered Users</h3>
                 <ListGroup>
                     {getUsers()}

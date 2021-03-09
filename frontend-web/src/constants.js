@@ -121,7 +121,9 @@ export const users = {
     description: "Hi! My name is Alex and I am a third year computer science specialist. I like playing volleyball and board games! :)",
     followers: ["kungpaoamygao", "yackyyang69"],
     following: ["kungpaoamygao", "rayisnotlame"],
-    posts: 2
+    posts: 2,
+    email: "alexshih@gmail.com",
+    register_date: "2021/03/05"
   },
   kungpaoamygao: {
     id: 2,
@@ -131,7 +133,9 @@ export const users = {
     description: "Yoyoyoyo! I am Amy Gao and I love Kung Pao chicken!",
     followers: ["alexshih2018", "yackyyang69"],
     following: ["alexshih2018", "rayisnotlame"],
-    posts: 19
+    posts: 19,
+    email: "gao@gmail.com",
+    register_date: "2021/03/05"
   },
   yackyyang69: {
     id: 3,
@@ -141,7 +145,9 @@ export const users = {
     description: "My name is Yacky Yang and I love my girlfriend Yuxin :^) no cap",
     followers: ["alexshih2018"],
     following: ["kungpaoamygao", "rayisnotlame"],
-    posts: 3
+    posts: 3,
+    email: "yackyyang@gmail.com",
+    register_date: "2021/03/05"
   },
   rayisnotlame: {
     id: 4,
@@ -151,6 +157,8 @@ export const users = {
     description: "I am Ray and I have super high self esteem because I go to Harvard of the North! I am not lame!",
     followers: ["kungpaoamygao", "yackyyang69"],
     following: ["kungpaoamygao", "alexshih2018", "yackyyang69"],
-    posts: 1
+    posts: 1,
+    email: "raypenguin@gmail.com",
+    register_date: "2021/03/05"
   },
 }
