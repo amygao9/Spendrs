@@ -45,7 +45,7 @@ function TimeSeriesGraph(props) {
   return (
     <div className="seriesContainer spendrCard shadowMedium">
       <h2>
-        Your Spending Over The Past Month {graphWidth}
+        Your Spending Over The Past Month
       </h2>
       <div className="chartContainer" ref = { parentRef }>
         <ChartContainer timeRange={series.range()}
