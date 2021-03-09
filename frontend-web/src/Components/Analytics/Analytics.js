@@ -20,9 +20,15 @@ function Analytics(props) {
     <div className='home'>
       <Navbar links={userLinks} />
       <Container>
-        <Summary stats={stats} />
-        <SpendingPieGraph stats={stats.spendingCategories} />
-        <TimeSeriesGraph stats={stats.monthTimeSeries} />
+        <div class={"flexContainer"}>  {/*this class will allow mobile responsiveness*/}
+          <div className={"flexCol"}>
+            <Summary stats={stats} />
+            <TimeSeriesGraph stats={stats.monthTimeSeries} />
+          </div>
+          <div class={"flexCol"}>
+            <SpendingPieGraph stats={stats.spendingCategories} />
+          </div>
+        </div>
       </Container>
     </div>
   );

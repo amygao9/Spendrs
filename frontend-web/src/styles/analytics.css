@@ -1,16 +1,36 @@
 
 .pieContainer {
-  height: 300px;
+  /*height: 300px;*/
   padding: 20px;
-  width: 600px;
+  /*width: 500px;*/
 }
 
 .seriesContainer {
-  margin-top: 50px;
   padding: 20px;
-  width: 600px;
 }
 
 .chartContainer {
-  display: inline-block;
+}
+
+.summaryContainer {
+  padding: 20px;
+  margin-bottom: 40px;
+}
+
+.flexContainer {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  transition: width 1s;
+}
+
+.flexCol {
+  padding: 20px;
+}
+
+@media (max-width: 800px) {
+  .flexContainer {
+    flex-direction: column;
+    transition: 1s;
+  }
 }

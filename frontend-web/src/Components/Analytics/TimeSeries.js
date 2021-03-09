@@ -9,7 +9,7 @@ import {
   LineChart,
   Baseline
 } from "react-timeseries-charts";
-import { TimeSeries } from "pondjs";
+import { TimeSeries, TimeRangeEvent, TimeRange } from "pondjs";
 
 const convertTimeEvent = (data) => {
   const events = data.map(dataPoint => {
@@ -39,13 +39,13 @@ function TimeSeriesGraph(props) {
         Your Spending Over The Past Month
       </h2>
       <div className="chartContainer">
-        <ChartContainer timeRange={series.range()} format="%b %d">
-          <ChartRow height="150">
+        <ChartContainer timeRange={series.range()} format="%b %d" width="500">
+          <ChartRow height="200">
               <YAxis
                   id="price"
                   label="Price ($)"
                   min={series.min()} max={series.max()}
-                  width="60" format="$,.2f"/>
+                  format="$,.2f"/>
               <Charts>
                   <LineChart axis="price" series={series}/>
                   <Baseline axis="price" value={series.avg()} label="Avg"/>

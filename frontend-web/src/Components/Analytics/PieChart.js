@@ -60,8 +60,8 @@ function SpendingPieGraph(props) {
         label={({ dataEntry }) => getLabel(dataEntry)}
         labelPosition={100 - lineWidth / 2}
         labelStyle={{
-          fill: '#000',
-          opacity: 0.75,
+          fill: '#fff',
+          opacity: 0.9,
           pointerEvents: 'none',
         }}
         onClick={(_, index) => {
