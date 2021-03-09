@@ -13,12 +13,10 @@ function ProfileDescription(props) {
   return (
     <div className="profileContainer shadowMedium">
       <img src={profilePicture} alt="Profile Picture" className="profilePicture shadowSmall"/>
-      <div>
-        <Container>
-          <ProfileStats />
-          <ProfileInfo />
-        </Container>
-      </div>
+      <Container>
+        <ProfileStats />
+        <ProfileInfo />
+      </Container>
     </div>
   );
 }

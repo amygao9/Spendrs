@@ -17,8 +17,6 @@ function ProfileStats() {
 
   return (
       <Row className="profileStatsContainer">
-        <Col></Col>
-        <Col></Col>
         <Col>
           <div className="profileStatsNumber">2</div>
           <div>Posts</div>
@@ -35,6 +33,7 @@ function ProfileStats() {
         </Col>
         <ProfileFriends data = {followers} handleclose = {closeFollowers} show = {showFollowers}/>
         <ProfileFriends data = {following} handleclose = {closeFollowings} show = {showFollowings}/>
+
       </Row>
   );
 }

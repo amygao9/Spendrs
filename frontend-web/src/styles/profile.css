@@ -1,11 +1,11 @@
-
 .profileContainer {
   background: #FFFFFF;
   border-radius: 10px;
-  width: 40%;
+  width: calc(350px + 10vw);
   min-height: 200px;
-  margin: auto;
-  margin-top: 8%;
+  margin: calc(50px + 8vh) auto auto;
+  position: relative;
+  padding: 20px;
 }
 
 .profilePicture {
@@ -13,16 +13,25 @@
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  left: 400px;
-  top: 135px;
+  top: -50px;
+
 }
 
 .profileStatsContainer {
-  margin-top: 20px;
+  padding-top: 10px;
+  text-align: center;
+  color: grey;
+  float: right;
+}
+
+.profileStatsContainer > .col {
+  padding-left: calc(5px + 1vw);
+  padding-right: 0;
 }
 
 .profileStatsNumber {
 	font-weight: bold;
+    line-height: 15px;
 }
 
 .profileName {
@@ -36,7 +45,7 @@
 }
 
 .infoContainer {
-  margin-left: 20px;
+  padding-top: 40px;
 
 }
 
