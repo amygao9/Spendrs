@@ -22,7 +22,7 @@ function SpendingPieGraph(props) {
       };
     });
     setPieStatistics(newStats);
-  }, [])
+  }, [stats])
 
   const data = pieStatistics.map((entry, i) => {
     if (hovered === i) {

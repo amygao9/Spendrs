@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import * as React from "react";
 import '../../styles/welcome.css';
 import blob from '../../assets/blob.svg';
 import threeCharacters from '../../assets/3characters.svg'
 import RegistrationModal from './Registration'
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 
 function WelcomePage() {
@@ -18,10 +18,10 @@ function WelcomePage() {
 
   function onSubmit(data) {
     console.log(data);
-    if (data["username"] == "user" & data["password"] == "user") {
+    if (data["username"] === "user" & data["password"] === "user") {
       history.push('/dashboard')
     }
-    else if (data["username"] == "admin" & data["password"] == "admin") {
+    else if (data["username"] === "admin" & data["password"] === "admin") {
       history.push('/admin')
     }
   }
@@ -40,8 +40,8 @@ function WelcomePage() {
       </div>
 
       <div>
-        <img src={blob} id={'blob'}/>
-        <img src={threeCharacters} id={'threeCharacters'}/>
+        <img src={blob} id={'blob'} alt="Background blob"/>
+        <img src={threeCharacters} id={'threeCharacters'} alt="Three people"/>
       </div>
 
       <div id={'rightSide'}>

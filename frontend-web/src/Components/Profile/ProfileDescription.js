@@ -1,8 +1,7 @@
 import React from "react";
-import Navbar from "../Navbar/Navbar";
 import '../../styles/home.css';
 import '../../styles/profile.css';
-import { Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import ProfileStats from "./ProfileStats";
 import ProfileInfo from "./ProfileInfo";
 
@@ -12,7 +11,7 @@ function ProfileDescription(props) {
 
   return (
     <div className="profileContainer shadowMedium">
-      <img src={profilePicture} alt="Profile Picture" className="profilePicture shadowSmall"/>
+      <img src={profilePicture} alt="Profile" className="profilePicture shadowSmall"/>
       <Container>
         <ProfileStats />
         <ProfileInfo />

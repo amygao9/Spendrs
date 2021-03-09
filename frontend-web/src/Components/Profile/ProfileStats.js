@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import '../../styles/home.css';
 import '../../styles/profile.css';
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import ProfileFriends from './ProfileFriends';
 
 function ProfileStats() {

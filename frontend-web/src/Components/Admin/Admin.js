@@ -3,7 +3,7 @@ import '../../styles/admin.css';
 import { adminLinks } from "../../constants";
 import Navbar from "../Navbar/Navbar";
 import User from "./User";
-import {Modal, ListGroup, Image} from "react-bootstrap";
+import { ListGroup } from "react-bootstrap";
 function Admin() {
     let data = [
         {

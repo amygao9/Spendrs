@@ -3,7 +3,6 @@ import '../../styles/home.css';
 import '../../styles/profile.css';
 import { Row } from "react-bootstrap";
 import EditModal from "../utils/EditModal";
-import { FaAudioDescription } from "react-icons/fa";
 
 function ProfileInfo() {
   const [username, setUsername] = useState("alexshih2018");

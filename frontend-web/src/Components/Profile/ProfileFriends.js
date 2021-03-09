@@ -1,5 +1,5 @@
 import React from "react";
-import {Modal, ListGroup, Image} from "react-bootstrap";
+import { Modal, ListGroup } from "react-bootstrap";
 
 function ProfileFriends(props) { 
     

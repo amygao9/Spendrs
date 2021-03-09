@@ -1,6 +1,6 @@
 
-import {Modal, Button} from "react-bootstrap";
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { Modal } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 function RegistrationModal(props) {
   
     return (

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import '../../styles/home.css';
 import '../../styles/profile.css';
-import { Row, Modal, Button } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 
 function EditModal({name, input, show, handleClose, value, onChange}) {
 

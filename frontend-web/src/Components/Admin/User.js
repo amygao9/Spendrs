@@ -1,12 +1,8 @@
 import * as React from "react";
 import '../../styles/admin.css';
-import { adminLinks } from "../../constants";
-import Navbar from "../Navbar/Navbar";
-import {Modal, ListGroup, Image, Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 function User(props) {
     const user = props.user
-
-    
 
     return (
         
