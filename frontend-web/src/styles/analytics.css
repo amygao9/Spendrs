@@ -28,7 +28,7 @@
   padding: 20px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
   .flexContainer {
     flex-direction: column;
     transition: 1s;

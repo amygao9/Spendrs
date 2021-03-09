@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useRef, useState} from "react";
 import '../../styles/home.css';
 import '../../styles/analytics.css';
 import {
@@ -32,20 +32,34 @@ const convertToTimeSeries = (data) => {
 function TimeSeriesGraph(props) {
   const stats = props.stats;
   const series = convertToTimeSeries(stats);
+  const parentRef   = useRef(null);
+  const childrenRef = useRef(null);
+  const [graphWidth, setGraphWidth] = useState(500);
+
+  useEffect ( () => {
+    if(parentRef.current){
+      setGraphWidth(parentRef.current.offsetWidth)
+    }
+  }, [parentRef]);
 
   return (
     <div className="seriesContainer spendrCard shadowMedium">
       <h2>
-        Your Spending Over The Past Month
+        Your Spending Over The Past Month {graphWidth}
       </h2>
-      <div className="chartContainer">
-        <ChartContainer timeRange={series.range()} format="%b %d" width="500">
+      <div className="chartContainer" ref = { parentRef }>
+        <ChartContainer timeRange={series.range()}
+                        format="%b %d"
+                        timeAxisAngledLabels={window.innerWidth <= 500}
+                        timeAxisHeight={65}
+                        width={graphWidth}>
           <ChartRow height="200">
               <YAxis
                   id="price"
                   label="Price ($)"
                   min={series.min()} max={series.max()}
-                  format="$,.2f"/>
+                  format="$,.2f"
+                  width="50"/>
               <Charts>
                   <LineChart axis="price" series={series}/>
                   <Baseline axis="price" value={series.avg()} label="Avg"/>
