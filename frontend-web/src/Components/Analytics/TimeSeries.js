@@ -34,7 +34,7 @@ function TimeSeriesGraph(props) {
   const series = convertToTimeSeries(stats);
 
   return (
-    <div className="seriesContainer">
+    <div className="seriesContainer spendrCard shadowMedium">
       <h2>
         Your Spending Over The Past Month
       </h2>

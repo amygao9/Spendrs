@@ -1,10 +1,14 @@
 
 .pieContainer {
   height: 300px;
+  padding: 20px;
+  width: 600px;
 }
 
 .seriesContainer {
   margin-top: 50px;
+  padding: 20px;
+  width: 600px;
 }
 
 .chartContainer {

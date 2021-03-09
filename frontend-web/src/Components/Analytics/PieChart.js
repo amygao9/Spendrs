@@ -40,7 +40,7 @@ function SpendingPieGraph(props) {
   }
 
   return (
-    <div className="pieContainer">
+    <div className="pieContainer spendrCard shadowMedium">
       <h2>
         Your Overall Spending
       </h2>
@@ -49,6 +49,7 @@ function SpendingPieGraph(props) {
           fontFamily:
             '"Nunito Sans", -apple-system, Helvetica, Arial, sans-serif',
           fontSize: '4px',
+          color: "white"
         }}
         data={data}
         radius={PieChart.defaultProps.radius - 6}
