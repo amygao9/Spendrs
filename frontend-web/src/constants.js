@@ -111,3 +111,46 @@ export const postData = [
     comments: []
   },
 ]
+
+export const users = {
+  alexshih2018: {
+    id: 1,
+    profilePicture: "https://www.allkpop.com/upload/2020/04/content/091439/1586457559-9490h64e069pk776ou0b.jpg",
+    username: "alexshih2018",
+    name: "Alex Shih",
+    description: "Hi! My name is Alex and I am a third year computer science specialist. I like playing volleyball and board games! :)",
+    followers: ["kungpaoamygao", "yackyyang69"],
+    following: ["kungpaoamygao", "rayisnotlame"],
+    posts: 2
+  },
+  kungpaoamygao: {
+    id: 2,
+    profilePicture: "https://rasamalaysia.com/wp-content/uploads/2019/03/kung-pao-chicken-thumb.jpg",
+    username: "kungpaoamygao",
+    name: "Amy Gao",
+    description: "Yoyoyoyo! I am Amy Gao and I love Kung Pao chicken!",
+    followers: ["alexshih2018", "yackyyang69"],
+    following: ["alexshih2018", "rayisnotlame"],
+    posts: 19
+  },
+  yackyyang69: {
+    id: 3,
+    profilePicture: "https://i.pinimg.com/474x/bc/bb/07/bcbb0771218094c32809d1e6e22a6444.jpg",
+    username: "yackyyang69",
+    name: "Yacky Yang",
+    description: "My name is Yacky Yang and I love my girlfriend Yuxin :^) no cap",
+    followers: ["alexshih2018"],
+    following: ["kungpaoamygao", "rayisnotlame"],
+    posts: 3
+  },
+  rayisnotlame: {
+    id: 4,
+    profilePicture: "https://www.morrishospital.org/wp-content/uploads/2018/12/penguin2_2.jpg",
+    username: "rayisnotlame",
+    name: "Ray Penguin",
+    description: "I am Ray and I have super high self esteem because I go to Harvard of the North! I am not lame!",
+    followers: ["kungpaoamygao", "yackyyang69"],
+    following: ["kungpaoamygao", "alexshih2018", "yackyyang69"],
+    posts: 1
+  },
+}

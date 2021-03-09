@@ -1,11 +1,17 @@
 import React from "react";
 import { Modal, ListGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-function ProfileFriends(props) { 
+function ProfileFriends(props) {
     
     const getList = () => {
-        return props.data.map(user => {
-          return <ListGroup.Item>{user}</ListGroup.Item>
+        return props.data.map((user, index) => {
+
+          return <ListGroup.Item key={index}>
+            <Link to={`/profile/${user}`}>
+              {user}
+            </Link>
+          </ListGroup.Item>
         })
       }
 
