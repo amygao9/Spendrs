@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../Navbar/Navbar";
 import '../../styles/home.css';
 import ProfileDescription from "./ProfileDescription";
+import ProfilePosts from "./ProfilePosts";
 import { userLinks, users } from "../../constants";
 
 function Profile() {
@@ -14,6 +15,7 @@ function Profile() {
     <div className='home'>
       <Navbar links={userLinks} />
       <ProfileDescription editable={editable} user={user}/>
+      <ProfilePosts editable={editable} user={user} />
     </div>
   );
 }

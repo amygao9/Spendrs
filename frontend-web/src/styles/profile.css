@@ -58,3 +58,14 @@
   margin-top: 50px;
   align-items: center;
 }
+
+.profilePosts {
+  background: #FFFFFF;
+  border-radius: 10px;
+  width: calc(350px + 10vw);
+  min-height: 200px;
+  margin: 2vw auto auto;
+  margin-left: auto;
+  position: relative;
+  padding: 20px;
+}
