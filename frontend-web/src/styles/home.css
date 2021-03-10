@@ -5,6 +5,7 @@ html {
 
 .home {
   background-color: rgb(243, 243, 243);
+  min-height: 100%;
 }
 
 .homeContainer {
