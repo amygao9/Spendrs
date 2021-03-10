@@ -9,9 +9,17 @@ export default function Feed() {
   const getFeedPosts = () => {
     return postData.map((post) => {
       return (
-        <LazyLoad height={200}>
-          <Post key={post.id} post={post} />
-          <Comments key={post.id} />
+        <LazyLoad height={200} style={{ marginBottom: "30px" }}>
+          <div
+            style={{
+              width: "30rem",
+              backgroundColor: "white",
+              borderRadius: "10px",
+            }}
+          >
+            <Post key={post.id} post={post} />
+            <Comments key={post.id} />
+          </div>
         </LazyLoad>
       );
     });
