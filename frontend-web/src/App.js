@@ -4,7 +4,6 @@ import { Router, Switch, Route } from "react-router-dom";
 import history from "./config/History";
 
 import WelcomePage from "./Components/WelcomePage/WelcomePage";
-import Navbar from "./Components/Navbar/Navbar";
 import Home from "./Components/Dashboard/Home";
 import Profile from "./Components/Profile/Profile";
 import Analytics from "./Components/Analytics/Analytics";
@@ -14,12 +13,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
-  const siteLinks = {
-    "about": "About",
-    "services": "Services",
-    "contact": "Contact",
-    "signup": "Sign Up"
-  }
   return (
     <Router history={history}>
       <div className="app">

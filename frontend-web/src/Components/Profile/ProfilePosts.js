@@ -7,11 +7,10 @@ function ProfilePosts({ editable, user }) {
   
   const getFeedPosts = () => {
     let userPosts = []
-    console.log(postData)
     
     for (var post in postData) {
       
-      if (postData[post].userName == user.name) {
+      if (postData[post].userName === user.name) {
         console.log(postData[post])
         userPosts.push(postData[post])
       }

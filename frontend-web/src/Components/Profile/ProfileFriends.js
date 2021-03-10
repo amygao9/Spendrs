@@ -6,7 +6,6 @@ function ProfileFriends(props) {
     
     const getList = () => {
         return props.data.map((user, index) => {
-
           return <ListGroup.Item key={index}>
             <Link to={`/profile/${user}`}>
               {user}

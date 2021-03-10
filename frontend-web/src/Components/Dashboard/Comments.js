@@ -12,7 +12,7 @@ const like = (
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
   >
-    <rect width="76" height="76" fill="url(#pattern0)" fill-opacity="0.5" />
+    <rect width="76" height="76" fill="url(#pattern0)" fillOpacity="0.5" />
     <defs>
       <pattern
         id="pattern0"
@@ -43,8 +43,8 @@ const share = (
     <path
       d="M17.8705 1.08961L17.8706 1.08965L27.8395 10.5886C28.0536 10.7927 28.0534 11.2074 27.8395 11.4113C27.8395 11.4113 27.8395 11.4113 27.8395 11.4113L17.8705 20.9113L17.8705 20.9113C17.8018 20.9768 17.7462 20.994 17.7092 20.9989C17.6671 21.0046 17.6141 20.9983 17.5559 20.9693C17.446 20.9145 17.3125 20.772 17.3125 20.5V15.0053V13.9893L16.2966 14.0054C14.0656 14.0408 12.0963 14.2201 10.4406 14.6332C8.78457 15.0465 7.37644 15.71 6.34146 16.7619C4.21448 18.9238 4.04416 22.2849 5.34822 26.8868L5.34822 26.8868C5.35595 26.9141 5.35663 26.9317 5.35628 26.9411C5.35592 26.9507 5.35424 26.9575 5.35232 26.9627C5.34897 26.9718 5.34272 26.9814 5.33433 26.9893C3.06064 25.1581 1 21.6322 1 18.1453C1 15.8928 1.42664 14.1534 2.15094 12.8009C2.87195 11.4546 3.91739 10.4362 5.24638 9.66501C7.94936 8.09641 11.8021 7.56129 16.3251 7.50415L17.3125 7.49168V6.50423V1.50093C17.3125 1.22987 17.4458 1.08676 17.5562 1.03162C17.6144 1.00253 17.6673 0.996301 17.7092 1.00187C17.7459 1.00675 17.8015 1.02383 17.8705 1.08961Z"
       stroke="black"
-      stroke-opacity="0.5"
-      stroke-width="2"
+      strokeOpacity="0.5"
+      strokeWidth="2"
     />
   </svg>
 );
@@ -53,7 +53,7 @@ function Comment(props) {
   return (
     <div className="commentContainer">
       <div className="imageContainer">
-        <img className="profileImage" src={props.profile} />
+        <img className="profileImage" alt="profile" src={props.profile} />
       </div>
       <div className="textContainer">
         <span className="commentName"> {props.name} </span>
@@ -93,13 +93,13 @@ function Comments(props) {
         <div className="svgContainer">{share}</div>
       </div>
       <div className="commentsContainer">
-        {comments.map((comment) => (
-          <Comment {...comment} />
+        {comments.map((comment, index) => (
+          <Comment key={index} {...comment} />
         ))}
       </div>
       <div className="commentsInputContainer">
         <div className="imageContainer">
-          <img className="profileImage" src={userProfile} />
+          <img className="profileImage" alt="profile" src={userProfile} />
         </div>
         <input
           placeholder="write your comment"
@@ -108,7 +108,7 @@ function Comments(props) {
             setInput(e.target.value);
           }}
           onKeyDown={(e) => {
-            if (e.key == "Enter" && input != "") {
+            if (e.key === "Enter" && input !== "") {
               setInput("");
               setComments([
                 ...comments,
