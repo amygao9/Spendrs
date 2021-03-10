@@ -6,14 +6,20 @@ function ProfileFriends(props) {
     
     const getList = () => {
         return props.data.map((user, index) => {
-          return <ListGroup.Item key={index}>
-            <Link to={`/profile/${user}`}>
-              {user}
-            </Link>
-          </ListGroup.Item>
+          if (props.isAdmin) {
+            return  <ListGroup.Item key={index}>
+                      {user}
+                  </ListGroup.Item>
+          }
+          else {
+            return  <ListGroup.Item key={index}>
+                    <Link to={`/profile/${user}`}>
+                      {user}
+                    </Link>
+                  </ListGroup.Item>
+          }
         })
       }
-
     return (
         <Modal show={props.show} onHide={props.handleclose} className = "modalContainer">
         <Modal.Header closeButton>

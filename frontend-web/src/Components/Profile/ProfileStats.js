@@ -4,7 +4,7 @@ import '../../styles/profile.css';
 import { Col, Row } from "react-bootstrap";
 import ProfileFriends from './ProfileFriends';
 
-function ProfileStats({ user }) {
+function ProfileStats({ user, isAdmin }) {
   const [followers] = useState(user["followers"])
   const [following] = useState(user["following"])
   const [showFollowers, setShowFollowers] = useState(false);
@@ -29,8 +29,8 @@ function ProfileStats({ user }) {
           <div className="profileStatsNumber">{following.length}</div>
           <div>Following</div>
         </Col>
-        <ProfileFriends data = {followers} handleclose = {closeFollowers} show = {showFollowers}/>
-        <ProfileFriends data = {following} handleclose = {closeFollowings} show = {showFollowings}/>
+        <ProfileFriends isAdmin = {isAdmin} data = {followers} handleclose = {closeFollowers} show = {showFollowers}/>
+        <ProfileFriends isAdmin = {isAdmin} data = {following} handleclose = {closeFollowings} show = {showFollowings}/>
       </Row>
   );
 }
