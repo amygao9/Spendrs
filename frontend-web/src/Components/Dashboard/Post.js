@@ -26,7 +26,6 @@ export default function Post(props) {
       <div>
         <TimeAgo timestamp={post.timestamp}/>
       </div>
-      {/*<a href={post.link}> Link </a> <br/>*/}
       <ReactTinyLink
         cardSize="medium"
         showGraphic={true}
