@@ -1,16 +1,14 @@
 import React from "react";
 import '../../styles/home.css';
-import '../../styles/graphics.css'
-import TimeAgo from "../utils/TimeAgo";
+import '../../styles/graphics.css';
 import { ReactTinyLink } from 'react-tiny-link';
 
 export default function Post(props) {
   const {post} = props;
-  const image = post.image ? post.image : "https://buildvirtual.net/wp-content/plugins/penci-soledad-amp/assets/images/no-thumb.jpg";
 
   return (
     <div className="postContainer fadeIn">
-      <div style={{height: "45px"}}>
+      <div>
         <img
           className="profileImage"
           style={{position: "absolute"}}
@@ -23,9 +21,16 @@ export default function Post(props) {
           <span className="bold"> {post.itemName}</span> <br/>
         </div>
       </div>
-      <div>
-        <TimeAgo timestamp={post.timestamp}/>
-      </div>
+      {post.image ?
+        <div className={"postImageCard"}>
+          <p className={"postImageText"}> Attached Photo: </p>
+          <div className={"center"}>
+            <img className="postImage" alt="post" src={post.image}></img>
+          </div>
+        </div> : <></>
+      }
+      {/*for tinylink to work, users need to visit https://cors-anywhere.herokuapp.com/ and click*/}
+      {/*"request temporary acceess to the demo server"*/}
       <ReactTinyLink
         cardSize="medium"
         showGraphic={true}
@@ -33,12 +38,6 @@ export default function Post(props) {
         minLine={1}
         url={post.link}
       />
-      <div className={"postImageCard"}>
-        <p className={"postImageText"}> Attached Photo: </p>
-        <div className={"center"}>
-          <img className="postImage" alt="post" src={image}></img>
-        </div>
-      </div>
       <div className={"postCaption"}>{post.caption}</div>
     </div>
   )

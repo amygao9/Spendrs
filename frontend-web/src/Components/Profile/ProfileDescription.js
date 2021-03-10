@@ -5,13 +5,13 @@ import { Container } from "react-bootstrap";
 import ProfileStats from "./ProfileStats";
 import ProfileInfo from "./ProfileInfo";
 
-function ProfileDescription({ editable, user }) {
+function ProfileDescription({ editable, user, isAdmin }) {
 
   return (
     <div className="profileContainer shadowMedium">
       <img src={user["profilePicture"]} alt="Profile" className="profilePicture shadowSmall"/>
       <Container>
-        <ProfileStats user={user} />
+        <ProfileStats user={user} isAdmin = {isAdmin}/>
         <ProfileInfo editable={editable} user={user} />
       </Container>
     </div>

@@ -8,7 +8,7 @@ function UserModal(props) {
     const editable = path === '/profile';
     return (
         <Modal className = "userModal shadowMedium" show={props.show} onHide={props.handleClose}>
-                <ProfileDescription editable={editable} user={user}/>
+            <ProfileDescription isAdmin = {true} editable={editable} user={user}/>
         </Modal>
     
     );
