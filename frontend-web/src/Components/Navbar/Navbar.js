@@ -77,7 +77,7 @@ export default function Navbar(props) {
               }}
             />
           )}
-          <label>
+          <label className = "searchBar">
             <input id="navText" type="text" placeholder="Search" />
           </label>
           {getLinks()}

@@ -93,11 +93,11 @@ nav.main {
   border: 0;
 }
 
-label {
+.searchBar {
   position: relative;
 }
 
-label:before {
+.searchBar:before {
   content: "";
   position: absolute;
   left: 25px;
