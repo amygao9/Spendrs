@@ -1,8 +1,8 @@
 export const userLinks = {
-  dashboard: "Feed",
-  analytics: "Analytics",
-  profile: "Profile",
-  settings: "Settings",
+  "/dashboard": "Feed",
+  "/analytics": "Analytics",
+  "/profile": "Profile",
+  "/settings": "Settings",
 };
 
 export const adminLinks = {
