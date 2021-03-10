@@ -23,9 +23,9 @@ export default function Post(props) {
           <span className="bold"> {post.itemName}</span> <br/>
         </div>
       </div>
-      <div>
-        <TimeAgo timestamp={post.timestamp}/>
-      </div>
+      {/*<div>*/}
+      {/*  <TimeAgo timestamp={post.timestamp}/>*/}
+      {/*</div>*/}
       {/*<a href={post.link}> Link </a> <br/>*/}
       <ReactTinyLink
         cardSize="medium"

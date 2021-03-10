@@ -10,7 +10,7 @@ export default function Feed({ postData, user }) {
     return postData.map((post, index) => {
       return (
         <LazyLoad height={200} style={{ marginBottom: "30px" }} key={index}>
-
+          <TimeAgo timestamp={post.timestamp}/>
           <div class={"feedItemContainer spendrCard shadowMedium"}>
             <Post post={post} />
             <Comments post={post} user={user} key={post.id} />
