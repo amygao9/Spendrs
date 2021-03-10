@@ -41,9 +41,10 @@ html, body, #app, #app>div {
 
 .postHeader {
   display: block;
-  float: left;
   margin-left: 55px;
   margin-top: 5px;
+  padding-bottom: 5px;
+  min-height: 45px;
 }
 
 .postTime {
