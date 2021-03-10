@@ -11,7 +11,7 @@ function ProfilePosts({ editable, user }) {
     
     for (var post in postData) {
       
-      if (postData[post].userName == user.name) {
+      if (postData[post].userName === user.name) {
         console.log(postData[post])
         userPosts.push(postData[post])
       }

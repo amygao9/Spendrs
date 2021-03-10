@@ -4,7 +4,6 @@ import { adminLinks, users } from "../../constants";
 import Navbar from "../Navbar/Navbar";
 import User from "./User";
 import { ListGroup } from "react-bootstrap";
-import { Redirect, useHistory } from 'react-router-dom';
 function Admin() {
     const [userList, setUsers] = React.useState(Object.values(users));
     function handleDelete(username) {

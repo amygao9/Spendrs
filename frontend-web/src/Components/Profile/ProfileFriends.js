@@ -16,7 +16,7 @@ function ProfileFriends(props) {
       }
 
     return (
-        <Modal show={props.show} onHide={props.handleclose}>
+        <Modal show={props.show} onHide={props.handleclose} className = "modalContainer">
         <Modal.Header closeButton>
           <Modal.Title>Followers</Modal.Title>
         </Modal.Header>
