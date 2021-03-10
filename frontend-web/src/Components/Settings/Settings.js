@@ -3,7 +3,7 @@ import Navbar from "../Navbar/Navbar";
 import '../../styles/settings.css';
 import '../../styles/home.css';
 import { userLinks, users } from "../../constants";
-import { ButtonGroup, ToggleButton} from "react-bootstrap";
+import { Button, ButtonGroup, Row, ToggleButton} from "react-bootstrap";
 import { Link } from 'react-router-dom';
 function Settings() {
   let user = users["alexshih2018"]
@@ -17,17 +17,18 @@ function Settings() {
   return (
     <div>
       <div className='settingsContainer'>
-      <Navbar links={userLinks} />
-      <h3 className = "headers"> Profile Information</h3>
-      <div id = "users" className="list-group-item shadowSmall">
-                <Link to={`/profile`}>
-                    <h5 className="mb-">{user.name}</h5>
-                </Link>
-                <p className="mb-1">Username: @{user.username}</p>
-                <p className="mb-1">Email: {user.email}</p>
-                <p className="mb-1">Date Registered: {user.register_date}</p>
-                {/* <Button onClick={() => props.handleDelete(user.username)} className="btn-default" id = "deleteButton"> Delete user</Button> */}
+        <Navbar links={userLinks} />
+        <h3 className = "headers"> Profile Information</h3>
+        <div id = "users" className="list-group-item shadowSmall">
+                  <Link to={`/profile`}>
+                      <h5 className="mb-">{user.name}</h5>
+                  </Link>
+                  <p className="mb-1">Username: @{user.username}</p>
+                  <p className="mb-1">Email: {user.email}</p>
+                  <p className="mb-1">Date Registered: {user.register_date}</p>
+                  {/* <Button onClick={() => props.handleDelete(user.username)} className="btn-default" id = "deleteButton"> Delete user</Button> */}
         </div>
+
         <h3 className = "headers">Preferences</h3>
         <div className="list-group-item shadowSmall">
           <h5> Post Privacy </h5>
@@ -48,7 +49,19 @@ function Settings() {
                 </ToggleButton>
               ))}
             </ButtonGroup>
-          
+        </div>
+
+        <h3 className = "headers">Account</h3>
+        <div className="list-group-item shadowSmall">
+          <div className="settingsInfoContainer">
+            <span> Reset Password </span> 
+            <Button className="settingsButton" variant="outline-info"> Reset </Button>
+          </div>
+
+          <div className="settingsInfoContainer">
+            <span> Delete Account </span> 
+            <Button className="settingsButton" variant="outline-danger">Delete</Button> <br></br>
+          </div>
         </div>
       </div>
     </div>
