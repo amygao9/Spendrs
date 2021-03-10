@@ -12,7 +12,7 @@ export const adminLinks = {
 export const postData = [
   {
     id: 0,
-    timestamp: "11:50PM",
+    timestamp: Date.now() - 500000,
     userName: "Ray Peng",
     price: 13.99,
     itemName: "Gaming Mouse Pad",
@@ -33,7 +33,7 @@ export const postData = [
   },
   {
     id: 1,
-    timestamp: "11:59PM",
+    timestamp: 1615357148258,
     userName: "Jacky Yang",
     price: 269.99,
     itemName: "Sailor Moon Body Pillow",
@@ -53,7 +53,7 @@ export const postData = [
   },
   {
     id: 2,
-    timestamp: "3:19PM",
+    timestamp: 1615352148258,
     userName: "Amy Gao",
     price: 98.99,
     itemName: "LULU Lemon Pants Blue",
@@ -75,7 +75,7 @@ export const postData = [
   },
   {
     id: 3,
-    timestamp: "3:19PM",
+    timestamp: 1615332148258,
     userName: "Amy Gao",
     price: 129.99,
     itemName: "LULU Lemon Pants Black",
@@ -90,7 +90,7 @@ export const postData = [
   },
   {
     id: 4,
-    timestamp: "5:55PM",
+    timestamp: 1615322148258,
     userName: "Alex Shih",
     price: 54.99,
     itemName: "IU Poster",
@@ -104,7 +104,7 @@ export const postData = [
   },
   {
     id: 5,
-    timestamp: "3:19PM",
+    timestamp: 1615252148258,
     userName: "Yulin Zhou",
     price: 10200.5,
     itemName: "",

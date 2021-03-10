@@ -43,7 +43,8 @@ function Home(props) {
       link: link,
       image: "",
       caption: desc,
-      links: [],
+      likes: [],
+      shares: [],
       comments: []
     }
 
