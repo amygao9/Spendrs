@@ -32,6 +32,17 @@ export default function ShareForm({ addPost, updateData, name, link, price, desc
           </Form.Group>
 
           <Form.Group>
+            <Form.Label>Category</Form.Label>
+            <Form.Control as="select">
+              <option>food</option>
+              <option>misc</option>
+              <option>tech</option>
+              <option>games</option>
+              <option>valorant skins</option>
+            </Form.Control>
+          </Form.Group>
+
+          <Form.Group>
             <Form.File
               className="position-relative"
               name="file"
@@ -39,6 +50,7 @@ export default function ShareForm({ addPost, updateData, name, link, price, desc
               feedbackTooltip
             />
           </Form.Group>
+
           <Button variant="primary" type="submit" onClick={(e) => addPost(e)}>
             Post!
           </Button>

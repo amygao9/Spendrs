@@ -100,7 +100,7 @@ export const postData = [
     price: 54.99,
     itemName: "IU Poster",
     link:
-      "https://www.ebay.com/itm/007-IU-Lee-Ji-eun-Korean-Idol-Singer-Girl-Hot-Kpop-Star-36-x24-Poster/352976137251?hash=item522f046c23:g:4l4AAOSwkkxeTMB7",
+      "https://www.ebay.com/itm/IU-LOVE-POEM-UNFOLD-POSTER/193883423100?hash=item2d245a417c:g:FEkAAOSw46JgILwd",
     image: "https://i.ebayimg.com/images/g/4l4AAOSwkkxeTMB7/s-l400.jpg",
     caption: "can someone please get this for me",
     likes: ["yuxinzhou", "raypeng2000", "ashih2018"],
