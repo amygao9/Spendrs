@@ -16,7 +16,7 @@ function ProfilePosts({ editable, user }) {
       }
     }
     return userPosts.map((post) => {
-      return <LazyLoad height={200}>
+      return <LazyLoad key={user} height={200}>
           <Post key={post.id} post={post} />
       </LazyLoad>
     })

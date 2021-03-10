@@ -8,9 +8,13 @@
     margin-left: 10%;
     margin-right: 10%;
 }
-
+.userModal {
+    margin-top: 5%;
+    width:1000px;
+}
 #users {
     font-size: 15px;
+    justify-content: space-between;
 }
 #deleteButton {
     background: #00AF91;
@@ -23,4 +27,8 @@
 }
 #deleteButton:hover{
     opacity: 80%;
+}
+
+#userInfo{
+    width: 90%;
 }

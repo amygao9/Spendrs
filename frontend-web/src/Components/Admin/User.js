@@ -1,20 +1,34 @@
 import * as React from "react";
 import '../../styles/admin.css';
-import { Button } from "react-bootstrap";
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Button, Container } from "react-bootstrap";
+import UserModal from "./UserModal";
 function User(props) {
     const user = props.user
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return (
-            <div id = "users" className="list-group-item d-flex justify-content-between align-items-center">
-                <Link to={`/profile/${user.username}`}>
-                    <h5 className="mb-">{user.name}</h5>
-                </Link>
-                <p className="mb-1">{user.username}</p>
-                <p className="mb-1">{user.email}</p>
-                <p className="mb-1">{user.register_date}</p>
-                <Button onClick={() => props.handleDelete(user.username)} className="btn-default" id = "deleteButton"> Delete user</Button>
+        <Container>
+            <div id = "users" className="list-group-item d-flex  align-items-center" >
+                <div id = "userInfo" onClick={handleShow} >
+                    <h5  className="mb-1">{user.name}</h5>
+                    <p className="mb-1">{user.username}</p>
+                    <p className="mb-1">{user.email}</p>
+                    <p className="mb-1">{user.register_date}</p>
+                </div>
+                <div>
+                    <Button onClick={handleShow} className="btn-default" id = "deleteButton"> View Profile</Button>
+                    <Button onClick={() => props.handleDelete(user.username)} className="btn-default" id = "deleteButton"> Delete user</Button>
+                </div>
+                
             </div>
+            <UserModal handleClose = {handleClose} show = {show} user = {user}/>
+
+        </Container>
+            
         
         
     );

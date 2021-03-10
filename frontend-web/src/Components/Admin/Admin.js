@@ -21,7 +21,7 @@ function Admin() {
     const getUsers = () => {
         console.log(userList)
         return userList.map(user => {
-          return <User user = {user} handleDelete = {handleDelete} handleClick = {handleClick}/>
+          return <User key = {user.userName} user = {user} handleDelete = {handleDelete} handleClick = {handleClick}/>
         })
       }
     return (
