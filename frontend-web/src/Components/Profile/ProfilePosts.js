@@ -7,7 +7,6 @@ function ProfilePosts({ editable, user }) {
   
   const getFeedPosts = () => {
     let userPosts = []
-    console.log(postData)
     
     for (var post in postData) {
       

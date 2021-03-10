@@ -9,7 +9,7 @@ import {
   LineChart,
   Baseline
 } from "react-timeseries-charts";
-import { TimeSeries, TimeRangeEvent, TimeRange } from "pondjs";
+import { TimeSeries } from "pondjs";
 
 const convertTimeEvent = (data) => {
   const events = data.map(dataPoint => {
@@ -32,8 +32,7 @@ const convertToTimeSeries = (data) => {
 function TimeSeriesGraph(props) {
   const stats = props.stats;
   const series = convertToTimeSeries(stats);
-  const parentRef   = useRef(null);
-  const childrenRef = useRef(null);
+  const parentRef = useRef(null);
   const [graphWidth, setGraphWidth] = useState(500);
 
   useEffect ( () => {

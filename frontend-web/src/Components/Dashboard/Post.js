@@ -4,7 +4,7 @@ import '../../styles/graphics.css'
 
 export default function Post(props) {
   const { post } = props;
-  console.log('post :>> ', post);
+  const image = post.image ? post.image : "https://buildvirtual.net/wp-content/plugins/penci-soledad-amp/assets/images/no-thumb.jpg";
 
   return (
     <div className="postContainer fadeIn">
@@ -12,7 +12,7 @@ export default function Post(props) {
       <span className="bold"> ${post.price}</span> on a 
       <span className="bold"> {post.itemName}</span> <br/>
       <a href={post.link}> Link </a> <br/>
-      <img className="postImage" alt="post" src={post.image}></img>
+      <img className="postImage" alt="post" src={image}></img>
       <div>{post.caption}</div>
     </div>
   )

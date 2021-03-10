@@ -9,7 +9,7 @@ function Profile() {
   const path = window.location.pathname;
   const editable = path === '/profile';
   let user = path.substring(path.lastIndexOf('/') + 1);
-  user = user != 'profile' ? users[user] : users['alexshih2018'];
+  user = user !== 'profile' ? users[user] : users['alexshih2018'];
 
   return (
     <div className='home'>

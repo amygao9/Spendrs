@@ -5,8 +5,8 @@ import { Col, Row } from "react-bootstrap";
 import ProfileFriends from './ProfileFriends';
 
 function ProfileStats({ user }) {
-  const [followers, setFollowers] = useState(user["followers"])
-  const [following, setFollowing] = useState(user["following"])
+  const [followers] = useState(user["followers"])
+  const [following] = useState(user["following"])
   const [showFollowers, setShowFollowers] = useState(false);
   const closeFollowers = () => setShowFollowers(false);
   const openFollowers = () => setShowFollowers(true);

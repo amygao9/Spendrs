@@ -1,15 +1,14 @@
 import React from "react";
 import LazyLoad from "react-lazyload";
-import { postData } from "../../constants";
 import "../../styles/home.css";
 import Post from "./Post";
 import Comments from "./Comments";
 
-export default function Feed() {
+export default function Feed({ postData }) {
   const getFeedPosts = () => {
-    return postData.map((post) => {
+    return postData.map((post, index) => {
       return (
-        <LazyLoad height={200} style={{ marginBottom: "30px" }}>
+        <LazyLoad height={200} style={{ marginBottom: "30px" }} key={index}>
           <div
             style={{
               width: "30rem",
@@ -17,7 +16,7 @@ export default function Feed() {
               borderRadius: "10px",
             }}
           >
-            <Post key={post.id} post={post} />
+            <Post post={post} />
             <Comments post={post} key={post.id} />
           </div>
         </LazyLoad>
