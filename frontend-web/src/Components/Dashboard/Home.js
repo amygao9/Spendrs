@@ -5,7 +5,7 @@ import ShareForm from "./ShareForm";
 import { Container, Row } from "react-bootstrap";
 import "../../styles/home.css";
 import Feed from "./Feed";
-import { postData, userLinks } from "../../constants";
+import { postData, userLinks, users } from "../../constants";
 
 function Home(props) {
   const [posts, setPosts] = useState(postData);
@@ -24,13 +24,13 @@ function Home(props) {
     } else if (type === "desc") {
       setDesc(e.target.value);
     }
-  }
+  };
 
   const addPost = (e) => {
     e.preventDefault();
 
     if (name === "") {
-      alert("Name can't be blank.")
+      alert("Name can't be blank.");
       return;
     }
 
@@ -45,17 +45,17 @@ function Home(props) {
       caption: desc,
       likes: [],
       shares: [],
-      comments: []
-    }
+      comments: [],
+    };
 
     setName("");
     setLink("");
     setPrice(0);
     setDesc("");
-    setPosts([newPost, ...posts])
+    setPosts([newPost, ...posts]);
 
     alert("Post created!");
-  }
+  };
 
   return (
     <div className="home">
@@ -63,7 +63,7 @@ function Home(props) {
       <Container className="homeContainer">
         <Row>
           <div id="shareContainer">
-            <ShareForm 
+            <ShareForm
               addPost={(e) => addPost(e)}
               updateData={(e, type) => updateData(e, type)}
               name={name}
@@ -73,7 +73,8 @@ function Home(props) {
             />
           </div>
           <div id="feedContainer">
-            <Feed postData={posts} />
+            {/* we need to feed in the user we are logged in as */}
+            <Feed postData={posts} user={users["alexshih2018"]} />
           </div>
         </Row>
       </Container>

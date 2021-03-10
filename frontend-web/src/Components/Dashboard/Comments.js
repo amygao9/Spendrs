@@ -50,7 +50,6 @@ const share = (
 );
 
 function Comment(props) {
-  console.log(props.profile, props.comment, props.userName);
   return (
     <div className="commentContainer">
       <div className="imageContainer">
@@ -71,7 +70,7 @@ function Comment(props) {
 function Comments(props) {
   let tempStatus = "";
   if (props.post) {
-    if (props.post.likes.length == 1) {
+    if (props.post.likes.length === 1) {
       tempStatus = props.post.likes[0] + " liked this.";
     } else if (props.post.likes.length > 1) {
       tempStatus =
@@ -81,15 +80,12 @@ function Comments(props) {
         " others liked this. ";
     }
 
-    if (props.post.shares.length != 0) {
+    if (props.post.shares.length !== 0) {
       tempStatus += props.post.shares.length + " people shared this.";
     }
   }
 
   const status = tempStatus || "alexshihh20 and 12 others liked this. 2 shared";
-
-  const userProfile =
-    props.userProfile || "https://cdn.frankerfacez.com/emoticon/336471/4";
 
   // either this should be passed in by parents or this could be an api call
   const tempComments = props.post.comments || [
@@ -102,7 +98,11 @@ function Comments(props) {
     },
   ];
 
-  console.log(tempComments);
+  const user = props.user.name || "Alex Shih";
+
+  const userProfile =
+    props.user.profilePicture ||
+    "https://www.allkpop.com/upload/2020/04/content/091439/1586457559-9490h64e069pk776ou0b.jpg";
 
   const [input, setInput] = useState("");
 
@@ -136,9 +136,8 @@ function Comments(props) {
               setComments([
                 ...comments,
                 {
-                  profilePicture:
-                    "https://cdn.frankerfacez.com/emoticon/336471/4",
-                  userName: "SwiggitySwog",
+                  profilePicture: userProfile,
+                  userName: user,
                   comment: input,
                 },
               ]);

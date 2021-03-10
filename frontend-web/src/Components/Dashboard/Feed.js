@@ -4,7 +4,7 @@ import "../../styles/home.css";
 import Post from "./Post";
 import Comments from "./Comments";
 
-export default function Feed({ postData }) {
+export default function Feed({ postData, user }) {
   const getFeedPosts = () => {
     return postData.map((post, index) => {
       return (
@@ -17,7 +17,7 @@ export default function Feed({ postData }) {
             }}
           >
             <Post post={post} />
-            <Comments post={post} key={post.id} />
+            <Comments post={post} user={user} key={post.id} />
           </div>
         </LazyLoad>
       );
