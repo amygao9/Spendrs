@@ -50,36 +50,55 @@ const share = (
 );
 
 function Comment(props) {
+  console.log(props.profile, props.comment, props.userName);
   return (
     <div className="commentContainer">
       <div className="imageContainer">
-        <img className="profileImage" src={props.profile} />
+        <img className="profileImage" src={props.profilePicture} />
       </div>
       <div className="textContainer">
-        <span className="commentName"> {props.name} </span>
-        <div>{props.content}</div>
+        <span className="commentName"> {props.userName} </span>
+        <div className="commentTextContainer">{props.comment}</div>
       </div>
     </div>
   );
 }
 
 function Comments(props) {
-  const likeStatus =
-    props.likeStatus || "alexshihh20 and 12 others liked this. 2 shared";
+  let tempStatus = "";
+  if (props.post) {
+    if (props.post.likes.length == 1) {
+      tempStatus = props.post.likes[0] + " liked this.";
+    } else if (props.post.likes.length > 1) {
+      tempStatus =
+        props.post.likes[0] +
+        " and " +
+        (props.post.likes.length - 1) +
+        " others liked this. ";
+    }
+
+    if (props.post.shares.length != 0) {
+      tempStatus += props.post.shares.length + " people shared this.";
+    }
+  }
+
+  const status = tempStatus || "alexshihh20 and 12 others liked this. 2 shared";
 
   const userProfile =
     props.userProfile || "https://cdn.frankerfacez.com/emoticon/336471/4";
 
   // either this should be passed in by parents or this could be an api call
-  const tempComments = props.comments || [
+  const tempComments = props.post.comments || [
     {
       profile: "https://cdn.frankerfacez.com/emoticon/336471/4",
-      name: "alex shih",
-      content: `Somebody once told me the world is gonna roll me I ain't the sharpest
+      userName: "alex shih",
+      comment: `Somebody once told me the world is gonna roll me I ain't the sharpest
       tool in the shed She was looking kind of dumb with her finger and her
       thumb In the shape of an "L" on her forehead`,
     },
   ];
+
+  console.log(tempComments);
 
   const [input, setInput] = useState("");
 
@@ -87,7 +106,7 @@ function Comments(props) {
 
   return (
     <div className="mainContainer fadeIn">
-      <div className="likesContainer">{likeStatus}</div>
+      <div className="likesContainer">{status}</div>
       <div className="likesButtonContainer">
         <div className="svgContainer">{like}</div>
         <div className="svgContainer">{share}</div>
@@ -113,9 +132,10 @@ function Comments(props) {
               setComments([
                 ...comments,
                 {
-                  profile: "https://cdn.frankerfacez.com/emoticon/336471/4",
-                  name: "alex shih",
-                  content: input,
+                  profilePicture:
+                    "https://cdn.frankerfacez.com/emoticon/336471/4",
+                  userName: "SwiggitySwog",
+                  comment: input,
                 },
               ]);
             }

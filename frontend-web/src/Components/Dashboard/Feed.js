@@ -18,7 +18,7 @@ export default function Feed() {
             }}
           >
             <Post key={post.id} post={post} />
-            <Comments key={post.id} />
+            <Comments post={post} key={post.id} />
           </div>
         </LazyLoad>
       );
