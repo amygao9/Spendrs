@@ -30,7 +30,8 @@ Admin user: username: admin, password: admin
 **Dashboard/Feed**
  - http://localhost:3000/dashboard
  - Users can see their own posts about their spendings, as well as posts made by people they follow. Currently, they can comment on each others posts and like/share posts as well. 
- - We have also included the UI to input data to create a new post.
+ - We have also included the UI to input data to create a new post. This currently works if you try to create a post.
+ - We also have a comment system where you can see the comments made by other users as well as make comments yourself. 
 
 **Analytics**
  - http://localhost:3000/analytics
@@ -38,7 +39,8 @@ Admin user: username: admin, password: admin
 
 **Profile**
  - http://localhost:3000/profile for your own profile or http://localhost:3000/profile/kungpaoamygao for another user's profile
- - Spndr users can view have their own user profile, with the option to add a display photo and have their name public to all users. They can edit their bio and username through the profile tab. In addition, users can view their followers/following and access their friends' profiles as well.
+ - Spndr users can view have their own user profile with all of the user's posts, with the option to add a display photo. They can edit their bio and username through the profile tab. In addition, users can view their followers/following and access their friends' profiles as well.
+- By clicking on the followers/following, there are direct links to other member's profiles. 
 
 **Settings**
  - http://localhost:3000/settings
@@ -59,3 +61,7 @@ Admin user: username: admin, password: admin
 - React Timeseries Charts, React Minimal Pie Chart
     - Used for the graphs displayed on the analytics page.
 
+## Notes:
+- for tinylink to work in our app, users need to visit https://cors-anywhere.herokuapp.com/ and click "request temporary acceess to the demo server". 
+  - This will be fixed in Phase 2 when we have our own backend runinng.
+- Data is currently hardcoded, with most of it in the constants.js file.

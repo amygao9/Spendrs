@@ -31,13 +31,13 @@ export default function Post(props) {
       }
       {/*for tinylink to work, users need to visit https://cors-anywhere.herokuapp.com/ and click*/}
       {/*"request temporary acceess to the demo server"*/}
-      <ReactTinyLink
+      { post.link && <ReactTinyLink
         cardSize="medium"
         showGraphic={true}
         maxLine={2}
         minLine={1}
         url={post.link}
-      />
+      />}
       <div className={"postCaption"}>{post.caption}</div>
     </div>
   )
