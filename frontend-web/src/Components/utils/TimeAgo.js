@@ -61,6 +61,6 @@ export default class TimeAgo extends Component {
 
     render() {
         const {datetime, string} = this.state;
-        return <time dateTime={datetime}>{string}</time>;
+        return <time className={'postTime'} dateTime={datetime}>{string}</time>;
     }
 }
