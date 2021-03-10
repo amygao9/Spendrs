@@ -50,10 +50,10 @@ function SpendingPieGraph(props) {
   
   return (
     <div>
-      <h2>
-        Your Spending Distribution
-      </h2>
       <div className="pieContainer spendrCard shadowMedium" data-tip="" data-for="chart">
+        <h2>
+          Your Spending Distribution
+        </h2>
         <PieChart
           style={{
             fontFamily:
