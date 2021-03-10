@@ -1,0 +1,75 @@
+.mainContainer {
+  border-top: 3px solid rgb(228, 228, 228);
+  border-bottom: none;
+}
+
+.likesContainer {
+  padding: 1px;
+  color: lightgrey;
+}
+
+.imageContainer {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: rgb(209, 209, 209);
+}
+
+.profileImage {
+  width: 45px;
+  height: 45px;
+}
+
+.likesButtonContainer {
+  display: flex;
+}
+
+/* both css below are different one is comments one is comment */
+.commentsContainer {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.commentContainer {
+  display: flex;
+  margin-top: 10px;
+}
+
+.textContainer {
+  display: table;
+  margin-left: 2%;
+  background-color: rgb(238, 238, 238);
+  border-radius: 1rem;
+  padding: 5px;
+}
+
+.commentName {
+  color: grey;
+}
+
+.commentsInputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #81ec8f;
+  padding: 10px;
+}
+
+.commentsInputContainer > input {
+  margin-left: 5%;
+  height: 40px;
+  width: 80%;
+  border: 1px solid lightgray;
+  border-radius: 0.5rem;
+}
+
+.commentsInputContainer > input:focus {
+  outline: none;
+}
+
+/* this is for svg should prob be bubbled out later */
+.svgContainer {
+  margin: 10px;
+}
