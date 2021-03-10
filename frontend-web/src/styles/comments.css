@@ -1,11 +1,14 @@
 .mainContainer {
-  border-top: 3px solid rgb(228, 228, 228);
   border-bottom: none;
-  width: 30rem;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .likesContainer {
-  padding: 1px;
+  border-top: 3px solid rgb(228, 228, 228);
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 5px;
   color: lightgrey;
 }
 
@@ -57,6 +60,8 @@
   justify-content: center;
   background: #81ec8f;
   padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .commentsInputContainer > input {
