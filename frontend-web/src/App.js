@@ -24,7 +24,6 @@ function App() {
     <Router history={history}>
       <div className="app">
         <Switch>
-          <Route exact path="/navbar" component={() => (<Navbar links={siteLinks} />)} />
           <Route exact path="/dashboard" component={Home} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/profile/:username" render={() => <Profile key={Math.random()}/>} />

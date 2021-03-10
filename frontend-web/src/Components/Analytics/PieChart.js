@@ -60,11 +60,11 @@ function SpendingPieGraph(props) {
         label={({ dataEntry }) => getLabel(dataEntry)}
         labelPosition={100 - lineWidth / 2}
         labelStyle={{
-          fill: '#fff',
+          fill: '#000',
           opacity: 0.9,
           pointerEvents: 'none',
         }}
-        onClick={(_, index) => {
+        onClick={(data, index) => {
           setSelected(index === selected ? undefined : index);
         }}
         onMouseOver={(_, index) => {

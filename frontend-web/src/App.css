@@ -4,10 +4,6 @@ body {
   font-family: 'Roboto', sans-serif !important;
 }
 
-.app {
-  height: 100%;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
