@@ -26,16 +26,52 @@ html, body, #app, #app>div {
   width: 100%;
 }
 
+.feedItemContainer {
+  width: 30rem;
+  padding: 10px;
+  borderRadius: 10px;
+}
+
 .postContainer {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  background-color: white;
+  font-size: 18px;
   margin-bottom: 5%;
+}
+
+.postHeader {
+  display: block;
+  float: left;
+  margin-left: 55px;
+  margin-top: 5px;
+}
+
+.postTime {
+  color: grey;
+  font-size: 14px;
 }
 
 .postImage {
   width: 50%;
   height: 50%;
+}
+
+.postImageCard {
+  margin-top: 10px;
+  background-color: #f6f6f6;
+  border-radius: 10px;
+}
+
+.postImageText {
+  color: grey;
+  font-size: 12px;
+  position: absolute;
+}
+
+.postCaption {
+  font-size: 20px;
+  font-weight: 500;
+  padding: 10px;
 }
 
 /*Global classes im not sure where to put this*/
@@ -78,4 +114,8 @@ html, body, #app, #app>div {
 
 .clickable {
   cursor: pointer;
+}
+
+.center {
+  text-align: center;
 }

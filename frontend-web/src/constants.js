@@ -1,8 +1,8 @@
 export const userLinks = {
-  dashboard: "Feed",
-  analytics: "Analytics",
-  profile: "Profile",
-  settings: "Settings",
+  "/dashboard": "Feed",
+  "/analytics": "Analytics",
+  "/profile": "Profile",
+  "/settings": "Settings",
 };
 
 export const adminLinks = {
@@ -14,6 +14,7 @@ export const postData = [
     id: 0,
     timestamp: Date.now() - 500000,
     userName: "Ray Peng",
+    userProfilePic: "https://www.morrishospital.org/wp-content/uploads/2018/12/penguin2_2.jpg",
     price: 13.99,
     itemName: "Gaming Mouse Pad",
     link:
@@ -35,6 +36,7 @@ export const postData = [
     id: 1,
     timestamp: 1615357148258,
     userName: "Jacky Yang",
+    userProfilePic: "https://i.pinimg.com/474x/bc/bb/07/bcbb0771218094c32809d1e6e22a6444.jpg",
     price: 269.99,
     itemName: "Sailor Moon Body Pillow",
     link:
@@ -55,6 +57,7 @@ export const postData = [
     id: 2,
     timestamp: 1615352148258,
     userName: "Amy Gao",
+    userProfilePic: "https://rasamalaysia.com/wp-content/uploads/2019/03/kung-pao-chicken-thumb.jpg",
     price: 98.99,
     itemName: "LULU Lemon Pants Blue",
     link:
@@ -77,6 +80,7 @@ export const postData = [
     id: 3,
     timestamp: 1615332148258,
     userName: "Amy Gao",
+    userProfilePic: "https://rasamalaysia.com/wp-content/uploads/2019/03/kung-pao-chicken-thumb.jpg",
     price: 129.99,
     itemName: "LULU Lemon Pants Black",
     link:
@@ -92,6 +96,7 @@ export const postData = [
     id: 4,
     timestamp: 1615322148258,
     userName: "Alex Shih",
+    userProfilePic: "https://www.allkpop.com/upload/2020/04/content/091439/1586457559-9490h64e069pk776ou0b.jpg",
     price: 54.99,
     itemName: "IU Poster",
     link:
@@ -106,6 +111,7 @@ export const postData = [
     id: 5,
     timestamp: 1615252148258,
     userName: "Yulin Zhou",
+    userProfilePic: "https://cdn.frankerfacez.com/emoticon/336471/4",
     price: 10200.5,
     itemName: "",
     link:
