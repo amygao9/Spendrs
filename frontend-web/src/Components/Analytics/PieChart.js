@@ -3,7 +3,7 @@ import '../../styles/home.css';
 import '../../styles/analytics.css';
 import { PieChart } from "react-minimal-pie-chart";
 
-const colors = ['#E38627', '#C13C37', '#4B33FF ', '#6A2135', '#3FFF9C', '#3FFFEE', '#DF3FFF', '#FFB6B6', '#6A2135', '#FF3F96']
+const colors = ['#ffe6b3', '#ffb3d1', '#b3ecff ', '#99ff99', '#ffff99', '#99ffcc', '#ff99e6', '#FFB6B6', '#6A2135', '#FF3F96']
 
 function SpendingPieGraph(props) {
   const stats = props.stats;
@@ -42,7 +42,7 @@ function SpendingPieGraph(props) {
   return (
     <div className="pieContainer spendrCard shadowMedium">
       <h2>
-        Your Overall Spending
+        Your Spending Distribution
       </h2>
       <PieChart
         style={{
@@ -65,6 +65,8 @@ function SpendingPieGraph(props) {
           pointerEvents: 'none',
         }}
         onClick={(data, index) => {
+          console.log('stats :>> ', stats);
+          console.log('pieStatistics[index] :>> ', pieStatistics[index]);
           setSelected(index === selected ? undefined : index);
         }}
         onMouseOver={(_, index) => {

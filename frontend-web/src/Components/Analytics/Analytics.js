@@ -10,9 +10,9 @@ import { Container } from "react-bootstrap";
 const stats = {
   "budget": 300,
   "daySpending": 21.5,
-  "monthSpending": 125.5,
-  "spendingCategories": {"food": 469, "misc": 397, "tech": 1260, "games": 220, "valorant skins": 45},
-  "monthTimeSeries": [["2021-03-01", 50], ["2021-03-04", 10], ["2021-03-09", 3], ["2021-03-12", 18], ["2021-03-20", 34], ["2021-03-21", 7]]
+  "monthSpending": 465.49,
+  "spendingCategories": {"food": 245.49, "misc": 28, "tech": 104, "games": 33, "valorant skins": 55},
+  "monthTimeSeries": [["2021-03-01", 85.49], ["2021-03-04", 37], ["2021-03-09", 7], ["2021-03-12", 104], ["2021-03-20", 34], ["2021-03-21", 198]]
 }
 
 function Analytics(props) {
@@ -20,7 +20,7 @@ function Analytics(props) {
     <div className='home'>
       <Navbar links={userLinks} />
       <Container>
-        <div class={"flexContainer"}>  {/*this class will allow mobile responsiveness*/}
+        <div className={"flexContainer"}>  {/*this class will allow mobile responsiveness*/}
           <div className={"flexCol"}>
             <Summary stats={stats} />
             <TimeSeriesGraph stats={stats.monthTimeSeries} />
