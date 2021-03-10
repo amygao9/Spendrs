@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../styles/comments.css";
+import "../../styles/graphics.css";
 
 // we should prob move the svgs else where lmao
 const like = (
@@ -85,7 +86,7 @@ function Comments(props) {
   const [comments, setComments] = useState(tempComments);
 
   return (
-    <div className="mainContainer">
+    <div className="mainContainer fadeIn">
       <div className="likesContainer">{likeStatus}</div>
       <div className="likesButtonContainer">
         <div className="svgContainer">{like}</div>
