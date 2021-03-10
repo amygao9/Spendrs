@@ -62,25 +62,28 @@ export default function Navbar(props) {
   };
 
   return (
-    <div className="fixed">
-      <nav className="main">
-        <NavLink to="" className="title">
-          <h1>SpendR</h1>
-        </NavLink>
-        {!open && (
-          <FaBars
-            className="faBars"
-            onClick={() => {
-              setOpen(!open);
-            }}
-          />
-        )}
-        <label>
-          <input id="navText" type="text" placeholder="Search" />
-        </label>
-        {getLinks()}
-        {getSlide()}
-      </nav>
-    </div>
+    <>
+      <nav className="main"></nav>
+      <div className="fixed">
+        <nav className="main">
+          <NavLink to="" className="title">
+            <h1>SpendR</h1>
+          </NavLink>
+          {!open && (
+            <FaBars
+              className="faBars"
+              onClick={() => {
+                setOpen(!open);
+              }}
+            />
+          )}
+          <label>
+            <input id="navText" type="text" placeholder="Search" />
+          </label>
+          {getLinks()}
+          {getSlide()}
+        </nav>
+      </div>
+    </>
   );
 }
