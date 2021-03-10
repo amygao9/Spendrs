@@ -4,9 +4,11 @@
 
 ## Frontend-web
 
-navigate to the frontend-web folder
+navigate to the frontend-web folder 
 
-run `npm start` to get the development server going
+run `npm install` to install packages and dependencies 
+
+run `npm start` to get the development server going 
 
 ## Backend
 
@@ -35,3 +37,5 @@ The settings page displays account information and allows the user to make their
 
 **Admin View**
 The admin view allows the admin to view user profiles, their account information as well as delete users accounts from the site.
+
+## Third Party Libraries
