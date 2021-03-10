@@ -9,3 +9,11 @@
 .preferencesContainer {
     background-color: white;
 }
+
+.settingsInfoContainer {
+    margin-bottom: 2px;
+}
+
+.settingsButton {
+    font-size: smaller !important;
+}
