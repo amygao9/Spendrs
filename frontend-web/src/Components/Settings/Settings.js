@@ -15,11 +15,11 @@ function Settings() {
     { name: 'Public', value: '3' },
   ];
   return (
-    <div className = "home">
+    <div>
       <div className='settingsContainer'>
       <Navbar links={userLinks} />
       <h3 className = "headers"> Profile Information</h3>
-      <div id = "users" className="list-group-item">
+      <div id = "users" className="list-group-item shadowSmall">
                 <Link to={`/profile`}>
                     <h5 className="mb-">{user.name}</h5>
                 </Link>
@@ -29,7 +29,7 @@ function Settings() {
                 {/* <Button onClick={() => props.handleDelete(user.username)} className="btn-default" id = "deleteButton"> Delete user</Button> */}
         </div>
         <h3 className = "headers">Preferences</h3>
-        <div className="list-group-item">
+        <div className="list-group-item shadowSmall">
           <h5> Post Privacy </h5>
           <h7> Who can see your posts: </h7>
             <ButtonGroup toggle className = "selectionButtons">
