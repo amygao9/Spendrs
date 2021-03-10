@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "../../styles/comments.css";
 
 // we should prob move the svgs else where lmao
@@ -69,7 +69,8 @@ function Comments(props) {
   const userProfile =
     props.userProfile || "https://cdn.frankerfacez.com/emoticon/336471/4";
 
-  const comments = props.comments || [
+  // either this should be passed in by parents or this could be an api call
+  const tempComments = props.comments || [
     {
       profile: "https://cdn.frankerfacez.com/emoticon/336471/4",
       name: "alex shih",
@@ -78,6 +79,10 @@ function Comments(props) {
       thumb In the shape of an "L" on her forehead`,
     },
   ];
+
+  const [input, setInput] = useState("");
+
+  const [comments, setComments] = useState(tempComments);
 
   return (
     <div className="mainContainer">
@@ -95,7 +100,26 @@ function Comments(props) {
         <div className="imageContainer">
           <img className="profileImage" src={userProfile} />
         </div>
-        <input placeholder="write your comment" />
+        <input
+          placeholder="write your comment"
+          value={input}
+          onChange={(e) => {
+            setInput(e.target.value);
+          }}
+          onKeyDown={(e) => {
+            if (e.key == "Enter" && input != "") {
+              setInput("");
+              setComments([
+                ...comments,
+                {
+                  profile: "https://cdn.frankerfacez.com/emoticon/336471/4",
+                  name: "alex shih",
+                  content: input,
+                },
+              ]);
+            }
+          }}
+        />
       </div>
     </div>
   );
