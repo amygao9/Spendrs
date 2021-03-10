@@ -158,3 +158,11 @@ label:before {
   right: -500px;
   transition: right 300ms ease-in;
 }
+
+.fixed {
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  right: 0px;
+  z-index: 6969;
+}

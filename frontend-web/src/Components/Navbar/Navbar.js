@@ -62,7 +62,7 @@ export default function Navbar(props) {
   };
 
   return (
-    <>
+    <div className="fixed">
       <nav className="main">
         <NavLink to="" className="title">
           <h1>SpendR</h1>
@@ -81,6 +81,6 @@ export default function Navbar(props) {
         {getLinks()}
         {getSlide()}
       </nav>
-    </>
+    </div>
   );
 }
