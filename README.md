@@ -60,6 +60,8 @@ Admin user: username: admin, password: admin
     - Used to lazyload posts in the dashboard so they are not all loaded from the first load.
 - React Timeseries Charts, React Minimal Pie Chart
     - Used for the graphs displayed on the analytics page.
+- React-Hook-Form
+    - Used for login credential validation
 
 ## Notes:
 - for tinylink to work in our app, users need to visit https://cors-anywhere.herokuapp.com/ and click "request temporary acceess to the demo server". 
