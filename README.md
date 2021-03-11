@@ -12,6 +12,8 @@
 
 - navigate to http://localhost:3000/ to checkout Spndr!
 
+- Login with the credentials username: user, password: user for the user view and username: admin, password: admin for the admin view!
+
 ## Backend
 
  - To be completed in Phase 2
