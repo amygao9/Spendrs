@@ -24,6 +24,9 @@ function WelcomePage() {
     else if (data["username"] === "admin" & data["password"] === "admin") {
       history.push('/admin')
     }
+    else {
+      alert("Wrong username or password. Please try again.")
+    }
   }
   return (
     <div id={"background"}>
