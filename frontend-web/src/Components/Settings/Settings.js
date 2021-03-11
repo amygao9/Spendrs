@@ -3,7 +3,7 @@ import Navbar from "../Navbar/Navbar";
 import '../../styles/settings.css';
 import '../../styles/home.css';
 import { userLinks, users } from "../../constants";
-import { Button, ButtonGroup, Row, ToggleButton} from "react-bootstrap";
+import { Button, ButtonGroup, ToggleButton} from "react-bootstrap";
 import { Link } from 'react-router-dom';
 function Settings() {
   let user = users["alexshih2018"]
@@ -32,7 +32,7 @@ function Settings() {
         <h3 className = "headers">Preferences</h3>
         <div className="list-group-item shadowSmall">
           <h5> Post Privacy </h5>
-          <h7> Who can see your posts: </h7>
+          <span> Who can see your posts: </span>
             <ButtonGroup toggle className = "selectionButtons">
               {radios.map((radio, idx) => (
                 <ToggleButton
