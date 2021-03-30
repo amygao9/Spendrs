@@ -17,6 +17,9 @@ app.use("/", home);
 const users = require("./routes/users");
 app.use("/api/users", users);
 
+const posts = require("./routes/posts");
+app.use("/api/posts", posts);
+
 const helloWorld = require("./routes/helloWorld");
 app.use("/helloWorld", helloWorld);
 

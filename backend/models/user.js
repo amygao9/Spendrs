@@ -14,12 +14,21 @@ const userSchema = new mongoose.Schema({
     required: [true, "Email can't be blank"],
     // match: [/\S+@\S+\.\S+/, 'Email invalid']
   },
+	username: {
+    type: String,
+    required: [true, "Username can't be blank"],
+    unique: true
+  },
 	password: {
 		type: String,
 		required: [true, "Password can't be blank"],
 		minlegth: 1,
 		trim: true
 	},
+  posts: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Post"
+  }],
   image: String,
   description: String
 });
