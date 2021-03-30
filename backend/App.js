@@ -10,15 +10,17 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, "build")));
 
+
+const { authenticateToken } = require("./middlewares/auth");
 // to simply display home page could be used to deploy react web page later
 const home = require("./routes/home");
 app.use("/", home);
 
 const users = require("./routes/users");
-app.use("/api/users", users);
+app.use("/api/users", authenticateToken, users);
 
 const posts = require("./routes/posts");
-app.use("/api/posts", posts);
+app.use("/api/posts", authenticateToken, posts);
 
 const helloWorld = require("./routes/helloWorld");
 app.use("/helloWorld", helloWorld);
