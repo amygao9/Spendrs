@@ -10,8 +10,8 @@ router.get("/all", async (req, res) => {
   return users;
 });
 
-router.get("/:id", authenticateToken, async (req, res) => {
-  const user = await User.findById(req.params.id);
+router.get("/", authenticateToken, async (req, res) => {
+  const user = await User.findById(req.user.id);
   res.send(user);
 });
 

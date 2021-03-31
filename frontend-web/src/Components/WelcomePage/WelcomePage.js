@@ -7,9 +7,11 @@ import RegistrationModal from './Registration';
 import { useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import { apiLogin } from '../../axios/home';
+import { useDispatch } from 'react-redux';
 
 function WelcomePage() {
   const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -20,11 +22,12 @@ function WelcomePage() {
   async function onSubmit(data) {
     console.log(data);
     if (data["username"] === "admin" & data["password"] === "admin") {
-      history.push('/admin')
+      history.push('/admin');
     }
     const result = await apiLogin(data.username, data.password);
     if (result == 'user') {
       history.push("/dashboard");
+      dispatch({ type: 'LOGIN'});
     }
   }
 

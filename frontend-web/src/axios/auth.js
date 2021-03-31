@@ -6,7 +6,7 @@ const client = axios.create()
 // Interceptors take 2 parameters:
 // Axios calls the first function if the request succeeds
 // Axios calls the second function if the request fails
-client.interceptors.response.use(
+client.interceptors.request.use(
   config => {
     const jwt = Cookies.get("jwt");
     if (jwt) {

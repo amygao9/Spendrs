@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import "../../styles/home.css";
 import ShareForm from "./ShareForm";
@@ -6,6 +6,7 @@ import { Container, Row } from "react-bootstrap";
 import "../../styles/home.css";
 import Feed from "./Feed";
 import { postData, userLinks, users } from "../../constants";
+import { getUserInfo } from "../../axios/user";
 
 function Home(props) {
   const [posts, setPosts] = useState(postData);
@@ -13,6 +14,11 @@ function Home(props) {
   const [link, setLink] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState(0);
+
+  useEffect(async () => {
+    const data = await getUserInfo();
+    console.log('data :>> ', data);
+  }, [])
 
   const updateData = (e, type) => {
     if (type === "name") {

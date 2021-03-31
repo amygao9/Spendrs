@@ -3,9 +3,12 @@ import { Modal } from "react-bootstrap";
 import { useState } from "react";
 import { apiSignup } from "../../axios/home";
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 
 function RegistrationModal(props) {
+  const dispatch = useDispatch();
+
   const history = useHistory();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -16,6 +19,7 @@ function RegistrationModal(props) {
     e.preventDefault();
     await apiSignup(name, email, username, password);
     history.push("/dashboard");
+    dispatch({ type: 'LOGIN' });
   }
 
   return (

@@ -4,8 +4,13 @@ import '../../styles/settings.css';
 import '../../styles/home.css';
 import { userLinks, users } from "../../constants";
 import { Button, ButtonGroup, ToggleButton} from "react-bootstrap";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { useDispatch } from "react-redux";
+
 function Settings() {
+  const dispatch = useDispatch();
+  const history = useHistory();
   let user = users["alexshih2018"]
   const [radioValue, setRadioValue] = useState('1');
 
@@ -14,6 +19,13 @@ function Settings() {
     { name: 'Friends Only', value: '2' },
     { name: 'Public', value: '3' },
   ];
+
+  const logout = () => {
+    Cookies.remove('jwt');
+    dispatch({ type: 'LOGOUT' });
+    history.push("/");
+  }
+
   return (
     <div>
       <div className='settingsContainer'>
@@ -63,6 +75,7 @@ function Settings() {
             <Button className="settingsButton" variant="outline-danger">Delete</Button> <br></br>
           </div>
         </div>
+        <Button className="settingsButton" variant="outline-info" onClick={() => logout()}>LOGOUT</Button>
       </div>
     </div>
     

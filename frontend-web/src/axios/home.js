@@ -13,6 +13,8 @@ export const apiLogin = async (username, password) => {
       throw 'Unable to login';
     }
 
+    console.log('user.data.jwt :>> ', user.data.jwt);
+
     Cookies.set('jwt', user.data.jwt);
     return user.data.admin ? "admin" : "user";
   } catch (err) {
