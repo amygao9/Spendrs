@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
 	username: {
     type: String,
     required: [true, "Username can't be blank"],
-    unique: true
+    // unique: true
   },
 	password: {
 		type: String,

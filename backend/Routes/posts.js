@@ -3,7 +3,7 @@ const { Post } = require("../models/post");
 const { User } = require("../models/user");
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/all", async (req, res) => {
   const users = await Post.find();
   res.send(users);
   return users;

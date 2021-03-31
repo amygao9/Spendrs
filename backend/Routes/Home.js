@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
 
 router.post("/api/login", async(req, res) => {
   try {
-    console.log('req.body.usernamee :>> ', req.body.username);
+    console.log('req.body.username :>> ', req.body.username);
     const user = await User.findOne({ username: req.body.username });
     if (!user) {
       res.status(404);
@@ -31,6 +31,8 @@ router.post("/api/login", async(req, res) => {
 });
 
 router.post("/api/signup", async (req, res) => {
+  console.log(req.body);
+  console.log("ASDFASDFASDFASD");
   const user = new User({
     name: req.body.name,
     username: req.body.username,
@@ -40,6 +42,7 @@ router.post("/api/signup", async (req, res) => {
 
   try {
     const newUser = await user.save();
+    console.log('newUser :>> ', newUser);
     const jwt = getJWT(newUser._id);
     res.json({ msg: "Account succesfully created!", jwt: jwt, id: newUser._id });
   } catch (err) {

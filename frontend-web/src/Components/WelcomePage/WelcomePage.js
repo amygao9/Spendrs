@@ -3,9 +3,10 @@ import * as React from "react";
 import '../../styles/welcome.css';
 import blob from '../../assets/blob.svg';
 import threeCharacters from '../../assets/3characters.svg'
-import RegistrationModal from './Registration'
+import RegistrationModal from './Registration';
 import { useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form"
+import { apiLogin } from '../../axios/home';
 
 function WelcomePage() {
   const [show, setShow] = useState(false);
@@ -16,18 +17,17 @@ function WelcomePage() {
   const { register, handleSubmit } = useForm();
   const history = useHistory();
 
-  function onSubmit(data) {
+  async function onSubmit(data) {
     console.log(data);
-    if (data["username"] === "user" & data["password"] === "user") {
-      history.push('/dashboard')
-    }
-    else if (data["username"] === "admin" & data["password"] === "admin") {
+    if (data["username"] === "admin" & data["password"] === "admin") {
       history.push('/admin')
     }
-    else {
-      alert("Wrong username or password. Please try again.")
+    const result = await apiLogin(data.username, data.password);
+    if (result == 'user') {
+      history.push("/dashboard");
     }
   }
+
   return (
     <div id={"background"}>
       <div id={"leftSide"}>
