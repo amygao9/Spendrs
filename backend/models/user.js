@@ -10,19 +10,19 @@ const userSchema = new mongoose.Schema({
 	},
 	email: {
     type: String,
-    lowercase: true,
     required: [true, "Email can't be blank"],
+    unique: true
     // match: [/\S+@\S+\.\S+/, 'Email invalid']
   },
 	username: {
     type: String,
     required: [true, "Username can't be blank"],
-    // unique: true
+    unique: true
   },
 	password: {
 		type: String,
 		required: [true, "Password can't be blank"],
-		minlegth: 1,
+		minlength: 1,
 		trim: true
 	},
   posts: [{
