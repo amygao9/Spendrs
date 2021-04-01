@@ -29,14 +29,14 @@ export default function Post(props) {
           </div>
         </div> : <></>
       }
-      {/*for tinylink to work, users need to visit https://cors-anywhere.herokuapp.com/ and click*/}
-      {/*"request temporary acceess to the demo server"*/}
+
       { post.link && <ReactTinyLink
         cardSize="medium"
         showGraphic={true}
         maxLine={2}
         minLine={1}
         url={post.link}
+        proxyUrl={"https://thingproxy.freeboard.io/fetch"}  // This proxy may break in the future.
       />}
       <div className={"postCaption"}>{post.caption}</div>
     </div>
