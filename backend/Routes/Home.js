@@ -57,7 +57,7 @@ router.post("/api/signup", async (req, res) => {
   if (req.body.password.length > 0 && req.body.passwordStrength < 2) errors += "Password cannot be too short or weak.\n";
 
   // report the error, without the trailing \n
-  if (errors) return res.status(400).send(errors)
+  if (errors) return res.status(400).json({ err: errors });
 
   const user = new User({
     name: req.body.name,
@@ -73,7 +73,7 @@ router.post("/api/signup", async (req, res) => {
     res.json({ msg: "Account successfully created!", jwt: jwt, id: newUser._id });
   } catch (err) {
     console.log('signup err :>> ', err);
-    res.status(400).send("Error creating account.");
+    res.status(400).json({ err: "Error creating account." });
   }
 });
 

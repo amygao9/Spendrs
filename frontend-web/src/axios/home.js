@@ -41,7 +41,8 @@ export const apiSignup = async (name, email, username, password, passwordStrengt
 
     Cookies.set('jwt', user.data.jwt);
   } catch (err) {
-    throw err.response.data; // throw the response body
+    console.log(err.response.data.err)
+    throw err.response.data.err; // throw the response body
   }
 }
 
