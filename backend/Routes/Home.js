@@ -39,15 +39,25 @@ router.post("/api/signup", async (req, res) => {
   // Validate req body
   let errors = "";
 
+  // fields exists
+  if (req.body.name.length < 1) errors += "Name field cannot be empty.\n"
+  if (req.body.email.length < 1) errors += "Email field cannot be empty.\n"
+  if (req.body.username.length < 1) errors += "Username field cannot be empty.\n"
+  if (req.body.password.length < 1) errors += "Password field cannot be empty.\n"
+
   // email uniqueness
   const sameEmail = await User.findOne({ email: req.body.email });
   if (sameEmail) errors += "Email already exists.\n";
 
   // username uniqueness
   const sameUsername = await User.findOne({ username: req.body.username });
-  if (sameUsername) errors += "Username already exists.";
+  if (sameUsername) errors += "Username already exists.\n";
 
-  if (errors) return res.status(400).send(errors)  // if there was an error, we stop here. yeet.
+  // password strength
+  if (req.body.password.length > 0 && req.body.passwordStrength < 2) errors += "Password cannot be too short or weak.\n";
+
+  // report the error, without the trailing \n
+  if (errors) return res.status(400).send(errors)
 
   const user = new User({
     name: req.body.name,

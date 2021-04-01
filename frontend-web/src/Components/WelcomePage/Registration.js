@@ -4,6 +4,7 @@ import { useState } from "react";
 import { apiSignup } from "../../axios/home";
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import PasswordStrengthBar from 'react-password-strength-bar';
 
 
 function RegistrationModal(props) {
@@ -14,34 +15,62 @@ function RegistrationModal(props) {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("")
-  
+  const [passwordStrength, setStrength] = useState(0)
+
+  // Used to indicate to users about errors
+  const [nameError, setNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [errorMessage, setErrorMessage] = useState("")
+
+  function resetErrors() {
+    setNameError("");
+    setEmailError("");
+    setUsernameError("");
+    setPasswordError("");
+    setErrorMessage("");
+  }
+
+  function setErrors(err) {
+    setErrorMessage(err);
+    if (err.includes("Name")) setNameError("redErrorBorder")
+    if (err.includes("Email")) setEmailError("redErrorBorder")
+    if (err.includes("Username")) setUsernameError("redErrorBorder")
+    if (err.includes("Password")) setPasswordError("redErrorBorder")
+
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    resetErrors();
+
     try{
-      const response = await apiSignup(name, email, username, password);
+      const response = await apiSignup(name, email, username, password, passwordStrength);
       console.log(response);
       history.push("/dashboard");
       dispatch({ type: 'LOGIN' });
     } catch (err) {
-      setError(err);
+      setErrors(err);
     }
   }
 
   return (
-    <Modal show={props.show} onHide={props.handleClose}>
+    <Modal show={props.show} onHide={props.handleClose} id={"registrationModal"}>
       <Modal.Header closeButton>
         <Modal.Title>Create New Account</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p className={"redErrorText"}>{error}</p>
+        <p className={"redErrorText"}>{errorMessage}</p>
         <form onSubmit={e => { handleSubmit(e) }}>
-          <input className="inputBox" type="text" name="name" value={name} onChange={e =>setName(e.target.value)} placeholder={"Name"}></input>
-          <input className="inputBox" type="text" name="email" value={email} onChange={e =>setEmail(e.target.value)} placeholder={"Email"}></input>
-          <input className="inputBox" type="text" name="username" value={username} onChange={e =>setUsername(e.target.value)} placeholder={"Username"}></input>
-          <input className="inputBox" type="password" name="password" value={password} onChange={e =>setPassword(e.target.value)} placeholder={"Password"}></input>
+          <input className={"inputBox " + nameError} type="text" name="name" value={name} onChange={e => setName(e.target.value)} placeholder={"Name"}/>
+          <input className={"inputBox " + emailError} type="text" name="email" value={email} onChange={e => setEmail(e.target.value)} placeholder={"Email"}/>
+          <input className={"inputBox " + usernameError} type="text" name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder={"Username"}/>
+          <input className={"inputBox " + passwordError} type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder={"Password"}/>
+          <PasswordStrengthBar password={password} style={{width: '300px', margin: 'auto'}} onChangeScore={setStrength}/>
           <input type="submit" id="createAccBtn" value="Create Account" />
         </form>
+
        </Modal.Body>
     </Modal>
   );

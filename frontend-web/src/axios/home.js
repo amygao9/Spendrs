@@ -23,13 +23,14 @@ export const apiLogin = async (username, password) => {
   }
 }
 
-export const apiSignup = async (name, email, username, password) => {
+export const apiSignup = async (name, email, username, password, passwordStrength) => {
   try {
     const user = await axios.post(BASE_URL + '/api/signup', {
         name,
         email,
         username,
         password,
+        passwordStrength
     });
 
     if (!user || user.status != 200 || typeof(user.data) == "string") {

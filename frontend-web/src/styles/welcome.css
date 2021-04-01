@@ -130,7 +130,7 @@ input[type=text], input[type=password] {
     line-height: 20px;
 }
 
-#createAccBtn {
+#createAccBtn, #openRegistrationModal {
     background: #31D747;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
@@ -139,10 +139,25 @@ input[type=text], input[type=password] {
     font-weight: bold;
     font-size: 24px;
     line-height: 35px;
+    /*margin-top: 20px;*/
 
     color: #FFFFFF;
 }
 
+#createAccBtn {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .redErrorText {
     color: red;
+    white-space: pre-line;
+}
+
+.redErrorBorder {
+    border: 1px solid red;
+}
+
+#registrationModal {
+    text-align: center;
 }

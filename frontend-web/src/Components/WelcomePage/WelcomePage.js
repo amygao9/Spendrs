@@ -52,7 +52,7 @@ function WelcomePage() {
             <input ref ={register} className="inputBox" type="password" name="password" placeholder={"Password"}></input>
             <input className="inputBox" type={"submit"} id={"loginBtn"} value={"Log In"}/>
           </form>
-          <button id={"createAccBtn"} onClick={handleShow}>Create New Account</button>
+          <button id={"openRegistrationModal"} onClick={handleShow}>Create New Account</button>
           <RegistrationModal handleClose = {handleClose} show = {show}/>
         </div>
       </div>
