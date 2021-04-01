@@ -14,12 +14,18 @@ function RegistrationModal(props) {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("")
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await apiSignup(name, email, username, password);
-    history.push("/dashboard");
-    dispatch({ type: 'LOGIN' });
+    try{
+      const response = await apiSignup(name, email, username, password);
+      console.log(response);
+      history.push("/dashboard");
+      dispatch({ type: 'LOGIN' });
+    } catch (err) {
+      setError(err);
+    }
   }
 
   return (
@@ -28,6 +34,7 @@ function RegistrationModal(props) {
         <Modal.Title>Create New Account</Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        <p className={"redErrorText"}>{error}</p>
         <form onSubmit={e => { handleSubmit(e) }}>
           <input className="inputBox" type="text" name="name" value={name} onChange={e =>setName(e.target.value)} placeholder={"Name"}></input>
           <input className="inputBox" type="text" name="email" value={email} onChange={e =>setEmail(e.target.value)} placeholder={"Email"}></input>

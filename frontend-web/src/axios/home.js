@@ -40,8 +40,7 @@ export const apiSignup = async (name, email, username, password) => {
 
     Cookies.set('jwt', user.data.jwt);
   } catch (err) {
-    console.log(err);
-    throw err;
+    throw err.response.data; // throw the response body
   }
 }
 

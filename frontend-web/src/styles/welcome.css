@@ -142,3 +142,7 @@ input[type=text], input[type=password] {
 
     color: #FFFFFF;
 }
+
+.redErrorText {
+    color: red;
+}
