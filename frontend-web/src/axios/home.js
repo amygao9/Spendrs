@@ -18,8 +18,8 @@ export const apiLogin = async (username, password) => {
     Cookies.set('jwt', user.data.jwt);
     return user.data.admin ? "admin" : "user";
   } catch (err) {
-    console.log('err :>> ', err);
-    throw err;
+    console.log('err :>> ', err.response.data.err);
+    throw err.response.data.err;
   }
 }
 

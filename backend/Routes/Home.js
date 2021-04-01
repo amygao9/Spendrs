@@ -15,10 +15,7 @@ router.post("/api/login", async(req, res) => {
   try {
     console.log('req.body.username :>> ', req.body.username);
     const user = await User.findOne({ username: req.body.username });
-    if (!user) {
-      res.status(404);
-      return res.json({ err: "Invalid username." });
-    }
+    if (!user) return res.status(404).json({ err: "Invalid username." });
     const valid = await user.isValidPassword(req.body.password);
     if (valid) {
       const jwt = getJWT(user._id);
@@ -29,8 +26,7 @@ router.post("/api/login", async(req, res) => {
     }
   } catch (err) {
     console.log('err :>> ', err);
-    res.status(400);
-    res.json(err);
+    res.status(400).json(err);
   }
 });
 

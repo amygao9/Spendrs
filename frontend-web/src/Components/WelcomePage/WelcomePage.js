@@ -11,6 +11,8 @@ import { useDispatch } from 'react-redux';
 
 function WelcomePage() {
   const [show, setShow] = useState(false);
+  const [loginError, setLoginError] = useState("");
+
   const dispatch = useDispatch();
 
   const handleClose = () => setShow(false);
@@ -24,10 +26,14 @@ function WelcomePage() {
     if (data["username"] === "admin" & data["password"] === "admin") {
       history.push('/admin');
     }
-    const result = await apiLogin(data.username, data.password);
-    if (result == 'user') {
-      history.push("/dashboard");
-      dispatch({ type: 'LOGIN'});
+    try {
+      const result = await apiLogin(data.username, data.password);
+      if (result == 'user') {
+        history.push("/dashboard");
+        dispatch({ type: 'LOGIN'});
+      }
+    } catch(err) {
+      setLoginError(err)
     }
   }
 
@@ -48,8 +54,9 @@ function WelcomePage() {
       <div id={'rightSide'}>
         <div id={'loginCard'}>
           <form id={"loginForm"} onSubmit={handleSubmit(onSubmit)}>
-            <input ref ={register} className="inputBox" type="text" name="username" placeholder={"Username"}></input>
-            <input ref ={register} className="inputBox" type="password" name="password" placeholder={"Password"}></input>
+            <input ref ={register} className="inputBox" type="text" name="username" placeholder={"Username"}/>
+            <input ref ={register} className="inputBox" type="password" name="password" placeholder={"Password"}/>
+            <p className={"redErrorText"}>{loginError}</p>
             <input className="inputBox" type={"submit"} id={"loginBtn"} value={"Log In"}/>
           </form>
           <button id={"openRegistrationModal"} onClick={handleShow}>Create New Account</button>
