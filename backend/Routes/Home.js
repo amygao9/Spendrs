@@ -7,6 +7,10 @@ router.get("/", async (req, res) => {
   res.sendFile(path.join("..", __dirname, "build", "index.html"));
 });
 
+/*
+  Expects req body {username: "", password: ""}
+  Return a response msg, jwt, and user id
+ */
 router.post("/api/login", async(req, res) => {
   try {
     console.log('req.body.username :>> ', req.body.username);
@@ -31,8 +35,20 @@ router.post("/api/login", async(req, res) => {
 });
 
 router.post("/api/signup", async (req, res) => {
-  console.log(req.body);
-  console.log("ASDFASDFASDFASD");
+
+  // Validate req body
+  let errors = "";
+
+  // email uniqueness
+  const sameEmail = await User.findOne({ email: req.body.email });
+  if (sameEmail) errors += "Email already exists.\n";
+
+  // username uniqueness
+  const sameUsername = await User.findOne({ username: req.body.username });
+  if (sameUsername) errors += "Username already exists.";
+
+  if (errors) return res.status(400).send(errors)  // if there was an error, we stop here. yeet.
+
   const user = new User({
     name: req.body.name,
     username: req.body.username,
@@ -44,11 +60,10 @@ router.post("/api/signup", async (req, res) => {
     const newUser = await user.save();
     console.log('newUser :>> ', newUser);
     const jwt = getJWT(newUser._id);
-    res.json({ msg: "Account succesfully created!", jwt: jwt, id: newUser._id });
+    res.json({ msg: "Account successfully created!", jwt: jwt, id: newUser._id });
   } catch (err) {
-    console.log('err :>> ', err);
-    req.status(400);
-    res.json({ err: "Error creating account." })
+    console.log('signup err :>> ', err);
+    res.status(400).send("Error creating account.");
   }
 });
 
