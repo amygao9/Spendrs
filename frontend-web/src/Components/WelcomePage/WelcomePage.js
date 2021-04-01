@@ -32,7 +32,7 @@ function WelcomePage() {
   }
 
   return (
-    <div id={"background"}>
+    <div id={"welcomeBackground"}>
       <div id={"leftSide"}>
         <div id={"welcomeText"}>
           <h1 className="welcomeTitle">
@@ -45,14 +45,9 @@ function WelcomePage() {
         </div>
       </div>
 
-      <div>
-        <img src={blob} id={'blob'} alt="Background blob"/>
-        <img src={threeCharacters} id={'threeCharacters'} alt="Three people"/>
-      </div>
-
       <div id={'rightSide'}>
         <div id={'loginCard'}>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form id={"loginForm"} onSubmit={handleSubmit(onSubmit)}>
             <input ref ={register} className="inputBox" type="text" name="username" placeholder={"Username"}></input>
             <input ref ={register} className="inputBox" type="password" name="password" placeholder={"Password"}></input>
             <input className="inputBox" type={"submit"} id={"loginBtn"} value={"Log In"}/>
@@ -60,6 +55,11 @@ function WelcomePage() {
           <button id={"createAccBtn"} onClick={handleShow}>Create New Account</button>
           <RegistrationModal handleClose = {handleClose} show = {show}/>
         </div>
+      </div>
+
+      <div id={'bottomArt'}>
+        <img src={blob} id={'blob'} alt="Background blob"/>
+        <img src={threeCharacters} id={'threeCharacters'} alt="Three people"/>
       </div>
     </div>
   );

@@ -7,22 +7,47 @@ body {
     height: 100%;
 }
 
-#background {
+#welcomeBackground {
     height: 100%;
     min-height: 100vh;
     background: rgb(27,238,154);
     background: linear-gradient(165deg, rgba(27,238,154,1) 48%, rgba(28,218,193,1) 100%);
+    display: grid;
+    grid-template:
+                'title title login'
+                'art art art';
+    overflow: hidden;
 }
 
+
 #leftSide {
-    /*width: 52vw;*/
-    display: inline-block;
-    float: left;
+    grid-area: title;
 }
+
 #rightSide {
-    text-align: center;
-    align-content: center;
-    align-items: center;
+    grid-area: login;
+    padding-top: 20vh;
+    z-index: 1;
+}
+
+@media only screen and (max-width: 800px) {
+    #welcomeBackground {
+        grid-template:
+                'title'
+                'login'
+                'art';
+        grid-template-rows: auto auto 40vmin;
+    }
+    #rightSide {
+        text-align: center;
+        padding-top: 5vh;
+    }
+}
+
+#bottomArt {
+    grid-area: art;
+    position: relative;
+    /*overflow-y: hidden;*/
 }
 
 #welcomeText {
@@ -42,18 +67,21 @@ body {
 }
 
 #blob {
-    position: fixed;
-    bottom: -60vmin;
-    left: -20vmin;
-    height:100vmin;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height:40vmin;
+    /*z-index: -1;*/
 }
 
 #threeCharacters {
-    position: fixed;
+    position: absolute;
     bottom: 8vmin;
     left: 50vmin;
     width: 40vmin;
+    /*z-index: -1;*/
 }
+
 
 #loginCard {
     display: inline-block;
@@ -64,15 +92,15 @@ body {
     border-radius: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
-    margin-top: 20vh;
+    /*margin-top: 20vh;*/
     margin-bottom: 10vw;
 
     align-content: center;
     text-align: center;
 }
 
-form {
-    width: 400px;
+#loginForm {
+    max-width: 400px;
 }
 
 .inputBox {
