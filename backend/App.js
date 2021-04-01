@@ -2,13 +2,11 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const path = require("path");
-const cookieParser = require("cookie-parser");
 app.use(cors());
 
 // so we can read json
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
-app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "build")));
 
 
