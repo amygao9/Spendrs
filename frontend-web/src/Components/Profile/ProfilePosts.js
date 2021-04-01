@@ -3,14 +3,15 @@ import LazyLoad from 'react-lazyload';
 import '../../styles/profile.css';
 import { postData } from "../../constants";
 import Post from "../Dashboard/Post";
+
+
 function ProfilePosts({ editable, user }) {
-  
   const getFeedPosts = () => {
     let userPosts = []
     
     for (var post in postData) {
       
-      if (postData[post].userName === user.name) {
+      if (postData[post].userName === user?.name) {
         console.log(postData[post])
         userPosts.push(postData[post])
       }
