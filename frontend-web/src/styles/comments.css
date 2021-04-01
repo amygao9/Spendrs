@@ -30,6 +30,11 @@
   display: flex;
 }
 
+.likesButtonContainer path {
+  stroke: grey;
+  fill: grey;
+}
+
 /* both css below are different one is comments one is comment */
 .commentsContainer {
   margin-top: 20px;

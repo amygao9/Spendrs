@@ -72,6 +72,7 @@ function Comments(props) {
         <UseAnimations
           animation={heart}
           size={40}
+          // strokeColor={"inherit"}
           reverse={true}
           onClick={() => {
             console.log("send API register like")
