@@ -15,12 +15,20 @@ router.get("/:userId", async (req, res) => {
   res.send(posts);
 });
 
-// creates a new post for a user
+// creates a new post for a user.
+// req body must look like this:
+//     itemName: string,
+//     itemLink: string [optional],
+//     itemCategory: string [optional],
+//     attachedImage: string [optional],
+//     description: string [optional],
+//     price: int
 router.post("/:userId", async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(req.params.userId);
+    req.body.user = user
+    // console.log(req.body)
     const post = new Post(req.body);
-    post.user = user;
     const createdPost = await post.save();
     user.posts.push(createdPost);
     await user.save()

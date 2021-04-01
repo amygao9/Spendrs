@@ -3,13 +3,19 @@ const mongoose = require("mongoose");
 const postSchema = new mongoose.Schema({
   user: {
     type:  mongoose.Schema.Types.ObjectId,
-    ref: "User"
+    ref: "User",
+    required: [true, "Post must have a user"]
   },
-  item: {
+  itemName: {
     type: String,
-    required: [true, "Item can't be blank"],
+    required: [true, "Item can't be blank"]
   },
-  image: String,
+  itemLink: String,
+  itemCategory: {
+    type: String,
+    default: 'misc'
+  },
+  attachedImage: String,
   description: String,
   price: {
     type: Number,
