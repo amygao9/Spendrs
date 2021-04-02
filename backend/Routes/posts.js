@@ -11,8 +11,8 @@ router.get("/all", async (req, res) => {
 
 // Gets all posts of a user
 // THIS IS NOT SECURE AND SHOULD BE REMOVED AFTER DEBUGGING
-router.get("/:userId", async (req, res) => {
-  const posts = await Post.find({ user: req.params.userId });
+router.get("/", async (req, res) => {
+  const posts = await Post.find({ user: req.user.id });
   res.send(posts);
 });
 
@@ -26,7 +26,7 @@ router.get("/:userId", async (req, res) => {
 //     price: int
 router.post("/", async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(req.user);
+    const user = await User.findByIdAndUpdate(req.user.id);
     req.body.user = user
     // console.log(req.body)
     const post = new Post(req.body);
