@@ -13,7 +13,7 @@ function Comment(props) {
         <img
           className="profileImage"
           alt="profile"
-          src={props.profilePicture}
+          src={props.image}
         />
       </div>
       <div className="textContainer">
@@ -24,28 +24,28 @@ function Comment(props) {
   );
 }
 
-function Comments(props) {
+function Comments({post, user}) {
   let tempStatus = "";
-  if (props.post) {
-    if (props.post.likes.length === 1) {
-      tempStatus = props.post.likes[0] + " liked this.";
-    } else if (props.post.likes.length > 1) {
+  if (post) {
+    if (post.likes.length === 1) {
+      tempStatus = post.likes[0] + " liked this.";
+    } else if (post.likes.length > 1) {
       tempStatus =
-        props.post.likes[0] +
+        post.likes[0] +
         " and " +
-        (props.post.likes.length - 1) +
+        (post.likes.length - 1) +
         " others liked this. ";
     }
 
-    if (props.post.shares.length !== 0) {
-      tempStatus += props.post.shares.length + " people shared this.";
+    if (post.shares.length !== 0) {
+      tempStatus += post.shares.length + " people shared this.";
     }
   }
 
   const status = tempStatus || "alexshihh20 and 12 others liked this. 2 shared";
 
   // either this should be passed in by parents or this could be an api call
-  const tempComments = props.post.comments || [
+  const tempComments = post.comments || [
     {
       profile: "https://cdn.frankerfacez.com/emoticon/336471/4",
       userName: "alex shih",
@@ -55,11 +55,9 @@ function Comments(props) {
     },
   ];
 
-  const user = props.user.name || "Alex Shih";
+  const defaultAvatar = "https://mystickermania.com/cdn/stickers/memes/shut-up-and-take-my-money-meme.png"
 
-  const userProfile =
-    props.user.profilePicture ||
-    "https://www.allkpop.com/upload/2020/04/content/091439/1586457559-9490h64e069pk776ou0b.jpg";
+  const userProfile = user.image || defaultAvatar;
 
   const [input, setInput] = useState("");
 
@@ -76,7 +74,7 @@ function Comments(props) {
           reverse={true}
           onClick={() => {
             console.log("send API register like")
-            props.post.likes.push("ashih2018")
+            post.likes.push("ashih2018")
           }
           }
 

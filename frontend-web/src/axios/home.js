@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie'
-import { BASE_URL } from '../base_url';
+import {BASE_URL} from '../base_url';
 
 export const apiLogin = async (username, password) => {
   try {
@@ -45,5 +45,4 @@ export const apiSignup = async (name, email, username, password, passwordStrengt
     throw err.response.data.err; // throw the response body
   }
 }
-
 

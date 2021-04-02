@@ -18,6 +18,8 @@ function Profile() {
       setUser(data)
       setLoaded(true);
       console.log(user)
+    }).catch(err => {
+      console.log("err: " + err)
     })
     // console.log("useeffect")
     // const path = window.location.pathname;
