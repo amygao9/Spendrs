@@ -106,4 +106,15 @@ router.post("/unfollow", async (req, res) => {
   }
 });
 
+router.get("/findUser", async (req, res) => {
+  try {
+    const users = await User.find({
+      username: { $regex: `.*${req.body.username}.*` },
+    }).limit(3);
+    res.send(users);
+  } catch (err) {
+    res.status(500).send({ err: err });
+  }
+});
+
 module.exports = router;
