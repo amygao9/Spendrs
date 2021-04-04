@@ -1,5 +1,5 @@
 const express = require("express");
-const { User } = require("../models/user");
+const { User } = require("../Database/Models/user");
 const { getJWT } = require("../utils/auth");
 const router = express.Router();
 
@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
   Expects req body {username: "", password: ""}
   Return a response msg, jwt, and user id
  */
-router.post("/api/login", async(req, res) => {
+router.post("/api/login", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
     if (!user) return res.status(404).json({ err: "Invalid username." });
@@ -20,25 +20,26 @@ router.post("/api/login", async(req, res) => {
       const jwt = getJWT(user._id);
       res.json({ msg: "Login successful!", jwt: jwt, id: user._id });
     } else {
-      res.status(404)
+      res.status(404);
       res.json({ err: "Invalid password." });
     }
   } catch (err) {
-    console.log('err :>> ', err);
+    console.log("err :>> ", err);
     res.status(400).json(err);
   }
 });
 
 router.post("/api/signup", async (req, res) => {
-
   // Validate req body
   let errors = "";
 
   // fields exists
-  if (req.body.name.length < 1) errors += "Name field cannot be empty.\n"
-  if (req.body.email.length < 1) errors += "Email field cannot be empty.\n"
-  if (req.body.username.length < 1) errors += "Username field cannot be empty.\n"
-  if (req.body.password.length < 1) errors += "Password field cannot be empty.\n"
+  if (req.body.name.length < 1) errors += "Name field cannot be empty.\n";
+  if (req.body.email.length < 1) errors += "Email field cannot be empty.\n";
+  if (req.body.username.length < 1)
+    errors += "Username field cannot be empty.\n";
+  if (req.body.password.length < 1)
+    errors += "Password field cannot be empty.\n";
 
   // email uniqueness
   const sameEmail = await User.findOne({ email: req.body.email });
@@ -49,7 +50,8 @@ router.post("/api/signup", async (req, res) => {
   if (sameUsername) errors += "Username already exists.\n";
 
   // password strength
-  if (req.body.password.length > 0 && req.body.passwordStrength < 2) errors += "Password cannot be too short or weak.\n";
+  if (req.body.password.length > 0 && req.body.passwordStrength < 2)
+    errors += "Password cannot be too short or weak.\n";
 
   // report the error, without the trailing \n
   if (errors) return res.status(400).json({ err: errors });
@@ -58,16 +60,20 @@ router.post("/api/signup", async (req, res) => {
     name: req.body.name,
     username: req.body.username,
     password: req.body.password,
-    email: req.body.email
+    email: req.body.email,
   });
 
   try {
     const newUser = await user.save();
-    console.log('newUser :>> ', newUser);
+    console.log("newUser :>> ", newUser);
     const jwt = getJWT(newUser._id);
-    res.json({ msg: "Account successfully created!", jwt: jwt, id: newUser._id });
+    res.json({
+      msg: "Account successfully created!",
+      jwt: jwt,
+      id: newUser._id,
+    });
   } catch (err) {
-    console.log('signup err :>> ', err);
+    console.log("signup err :>> ", err);
     res.status(400).json({ err: "Error creating account." });
   }
 });
