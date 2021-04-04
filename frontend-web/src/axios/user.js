@@ -1,5 +1,6 @@
 import { BASE_URL } from '../base_url';
 import client from './auth';
+import axios from "axios";
 
 export const getUserInfo = async () => {
   try {
@@ -17,3 +18,12 @@ export const getUserInfo = async () => {
     // throw err;
   }
 };
+
+export const uploadProfilePic = async (picture) => {
+  try {
+    await axios.post(BASE_URL + '/api/users/upload/profile_picture', picture);
+    console.log("success!")
+  } catch (err) {
+    console.log(err);
+  }
+}
