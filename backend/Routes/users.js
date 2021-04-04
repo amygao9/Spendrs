@@ -43,7 +43,10 @@ router.post("/upload/profile_pic", authenticateToken, multipartMiddleware, async
         req.files.image.path, // req.files contains uploaded files
         function (result) {
 
-          // Create a new image using the Image mongoose model
+          // If user had a previous image, remove it from the cloudinary server
+          if (user.image && user.image.id) cloudinary.uploader.destroy(user.image.id)
+
+          // Create a new image sub-document
           user.image = {
             id: result.public_id, // image id on cloudinary server
             url: result.url, // image url on cloudinary server

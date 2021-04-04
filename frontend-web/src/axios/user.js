@@ -1,6 +1,5 @@
 import { BASE_URL } from '../base_url';
 import client from './auth';
-import axios from "axios";
 
 export const getUserInfo = async () => {
   try {
