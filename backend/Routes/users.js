@@ -61,4 +61,49 @@ router.post("/upload/profile_pic", multipartMiddleware, async (req, res) => {
   }
 });
 
+router.post("/follow", multipartMiddleware, async (req, res) => {
+  try {
+    const users = await User.find({ _id: { $in: [req.body.id, req.user.id] } });
+
+    if (users.length != 2) {
+      res.status(400).send("user you want to follow does not exist");
+    }
+
+    const following = users[0].id == req.body.id ? users[0] : users[1];
+    const follower = users[0].id == req.body.id ? users[1] : users[0];
+
+    if (follower.following.includes(req.body.id)) {
+      res.status(400).send("User is already followed");
+      return;
+    }
+
+    follower.following.push(following.id);
+    following.followers.push(follower.id);
+
+    await follower.save();
+    await following.save();
+
+    res.send(follower);
+  } catch (err) {
+    res.status(500).send({ err: err });
+  }
+});
+
+router.post("/unfollow", multipartMiddleware, async (req, res) => {
+  try {
+    const follow_status = await User.updateOne(
+      { _id: req.body.id },
+      { $pullAll: { followers: [req.user.id] } }
+    );
+    const following_status = await User.updateOne(
+      { _id: req.user.id },
+      { $pullAll: { following: [req.body.id] } }
+    );
+
+    res.send("Successfully unfollowed");
+  } catch (err) {
+    res.status(500).send({ err: err });
+  }
+});
+
 module.exports = router;
