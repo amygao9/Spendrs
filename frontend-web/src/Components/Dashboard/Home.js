@@ -53,6 +53,7 @@ function Home(props) {
       return;
     }
 
+    // below is for hard-coded data phase 1 and can be deleted once we fully transition to API
     const newPost = {
       id: Math.floor(Math.random() * 100000000000),
       timestamp: new Date(),
@@ -73,38 +74,22 @@ function Home(props) {
     setDesc("");
     setPosts([newPost, ...posts]);
 
-    // post api stuff
-    const post = {
-      itemName: name,
-      itemLink: link,
-      itemCategory: "",
-      attachedImage: file,
-      description: desc,
-      price: price
-    }
-    const postJSON = JSON.stringify(post);
-    const blob = new Blob([postJSON], {
-      type: 'application/json'
-    });
+    // Phase 2 api stuff
     const form = new FormData()
     console.log(file)
     form.append("file", file)
-    // form.append("json", postJSON)
     form.append("itemName", name)
     form.append("itemLink", link)
     form.append("itemCategory", "")
     form.append("description", desc)
     form.append("price", price)
 
-
-    console.log(form)
     try{
       await apiPost(form);
+      alert("Post created!");
     } catch (err) {
       console.log(err);
     }
-
-    alert("Post created!");
   };
   if (!loaded) return (<div className="home"> <Navbar links={userLinks} /> </div>)
 

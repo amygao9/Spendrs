@@ -72,33 +72,4 @@ router.post("/", multipartMiddleware, async (req, res) => {
   }
 });
 
-// router.post("/:postId/attach_image", authenticateToken, multipartMiddleware, async (req, res) => {
-//
-//   try {
-//     const user = await Post.findById(req.postId);
-//     console.log(req.files)
-//
-//     // Use uploader.upload API to upload image to cloudinary server.
-//     cloudinary.uploader.upload(
-//       req.files.image.path, // req.files contains uploaded files
-//       function (result) {
-//
-//         // If user had a previous image, remove it from the cloudinary server
-//         if (user.image && user.image.id) cloudinary.uploader.destroy(user.image.id)
-//
-//         // Create a new image sub-document
-//         user.image = {
-//           id: result.public_id, // image id on cloudinary server
-//           url: result.url, // image url on cloudinary server
-//         };
-//
-//         user.save().then(result => {
-//           res.send(result)
-//         })
-//       });
-//   } catch (err) {
-//     res.status(500).send({err: err})
-//   }
-// });
-
 module.exports = router;
