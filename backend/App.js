@@ -20,6 +20,9 @@ app.use("/api/users", authenticateToken, users);
 const posts = require("./routes/posts");
 app.use("/api/posts", authenticateToken, posts);
 
+const feed = require("./routes/Feed");
+app.use("/api/feed", authenticateToken, feed);
+
 const helloWorld = require("./routes/helloWorld");
 app.use("/helloWorld", helloWorld);
 

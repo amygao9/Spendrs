@@ -61,7 +61,7 @@ router.post("/upload/profile_pic", multipartMiddleware, async (req, res) => {
   }
 });
 
-router.post("/follow", multipartMiddleware, async (req, res) => {
+router.post("/follow", async (req, res) => {
   try {
     const users = await User.find({ _id: { $in: [req.body.id, req.user.id] } });
 
@@ -89,7 +89,7 @@ router.post("/follow", multipartMiddleware, async (req, res) => {
   }
 });
 
-router.post("/unfollow", multipartMiddleware, async (req, res) => {
+router.post("/unfollow", async (req, res) => {
   try {
     const follow_status = await User.updateOne(
       { _id: req.body.id },
