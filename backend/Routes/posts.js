@@ -64,6 +64,8 @@ router.post("/", multipartMiddleware, async (req, res) => {
           res.send(createdPost);
         }
       );
+    } else {
+      res.status(400).send("user did not provide a picture");
     }
   } catch (err) {
     console.log("err :>> ", err);
