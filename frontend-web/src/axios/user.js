@@ -19,9 +19,10 @@ export const getUserInfo = async () => {
   }
 };
 
-export const uploadProfilePic = async (picture) => {
+export const uploadProfilePic = async (form) => {
   try {
-    await axios.post(BASE_URL + '/api/users/upload/profile_picture', picture);
+    const picture = new FormData(form)
+    await client.post(BASE_URL + '/api/users/upload/profile_pic', picture);
     console.log("success!")
   } catch (err) {
     console.log(err);

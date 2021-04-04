@@ -13,7 +13,7 @@ function Comment(props) {
         <img
           className="profileImage"
           alt="profile"
-          src={props.image}
+          src={props.image.url}
         />
       </div>
       <div className="textContainer">

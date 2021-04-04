@@ -33,7 +33,7 @@ router.get("/", authenticateToken, async (req, res) => {
 
 });
 
-app.post("/upload/profile_pic", authenticateToken, multipartMiddleware, async (req, res) => {
+router.post("/upload/profile_pic", authenticateToken, multipartMiddleware, async (req, res) => {
 
     try {
       const user = await User.findById(req.user.id);
