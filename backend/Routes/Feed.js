@@ -42,7 +42,7 @@ router.get("/newsfeed", async (req, res) => {
       })
       .limit(limit);
 
-    res.send(posts);
+    res.send({ date: posts[posts.length - 1].createdAt, posts });
   } catch (err) {
     res.status(500).send({ err: err });
   }
