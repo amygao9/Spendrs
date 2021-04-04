@@ -27,7 +27,7 @@ router.get("/newsfeed", async (req, res) => {
       return;
     }
 
-    console.log(timeStamp.toISOString());
+    // console.log(timeStamp.toISOString());
 
     const limit = req.body.num === undefined ? 50 : req.body.num;
 
@@ -35,12 +35,17 @@ router.get("/newsfeed", async (req, res) => {
 
     const posts = await Post.find({
       user: { $in: user.following },
-      createdAt: { $gte: timeStamp },
+      createdAt: { $lt: timeStamp.toISOString() },
     })
       .sort({
-        createdAt: 1,
+        createdAt: -1,
       })
       .limit(limit);
+
+    if (posts.length == 0) {
+      res.send({ date: timeStamp, posts: [] });
+      return;
+    }
 
     res.send({ date: posts[posts.length - 1].createdAt, posts });
   } catch (err) {
