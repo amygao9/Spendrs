@@ -28,7 +28,10 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Post"
   }],
-  image: String,
+  image: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Image"
+  },
   description: String,
   followers: [{
     type: mongoose.Schema.Types.ObjectId,
