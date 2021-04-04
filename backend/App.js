@@ -9,11 +9,10 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "build")));
 
-
 const { authenticateToken } = require("./middlewares/auth");
 // to simply display home page could be used to deploy react web page later
 const home = require("./routes/home");
-app.use("/", home);
+app.use("/api", home);
 
 const users = require("./routes/users");
 app.use("/api/users", authenticateToken, users);

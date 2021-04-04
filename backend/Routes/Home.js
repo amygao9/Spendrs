@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
   Expects req body {username: "", password: ""}
   Return a response msg, jwt, and user id
  */
-router.post("/api/login", async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
     if (!user) return res.status(404).json({ err: "Invalid username." });
@@ -29,7 +29,7 @@ router.post("/api/login", async (req, res) => {
   }
 });
 
-router.post("/api/signup", async (req, res) => {
+router.post("/signup", async (req, res) => {
   // Validate req body
   let errors = "";
 
