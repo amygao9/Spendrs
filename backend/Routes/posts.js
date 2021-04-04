@@ -44,7 +44,7 @@ router.post("/", multipartMiddleware, async (req, res) => {
     const file = req.files.file;
     const body = req.body;
     console.log(file, body);
-    body.user = user;
+    body.user = user.id;
     // console.log(req.body)
 
     // If body includes attachedImage file, parse it to an image sub-document first
