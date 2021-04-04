@@ -5,6 +5,7 @@ import { Button, Container } from "react-bootstrap";
 import UserModal from "./UserModal";
 function User(props) {
     const user = props.user
+    console.log('user :>> ', user);
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);

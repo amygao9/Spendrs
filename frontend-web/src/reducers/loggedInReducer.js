@@ -6,22 +6,22 @@ const initialState = {
 const loggedInReducer = (state = initialState, action) => {
   switch (action.type) {
     case "LOGIN":
+      console.log("LOGGING IN");
+      console.log('state :>> ', state);
       return {
         ...state,
         loggedIn: true
       }
 
     case "LOGOUT":
+      console.log('state :>> ', state);
       return {
         ...state,
-        loggedIn: false
+        loggedIn: false,
       }
 
     default:
-      return {
-        ...state,
-        loggedIn: false
-      }
+      return state;
   }
 }
 

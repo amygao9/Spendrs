@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 function Settings() {
   const dispatch = useDispatch();
   const history = useHistory();
-  let user = users["alexshih2018"]
+  let user = users["Alex Shih"]
   const [radioValue, setRadioValue] = useState('1');
 
   const radios = [
@@ -23,6 +23,7 @@ function Settings() {
   const logout = () => {
     Cookies.remove('jwt');
     dispatch({ type: 'LOGOUT' });
+    dispatch({ type: "CLEAR_USER_STATUS" });
     history.push("/");
   }
 

@@ -16,7 +16,11 @@ import './App.css';
 import { getUserStatus } from "./reducers/userStatusReducer";
 
 function App() {
-  const loggedIn = useSelector(state => state.loggedIn.loggedIn);
+  const loggedIn = useSelector(state => {
+    console.log('state :>> ', state);
+    return state.loggedIn.loggedIn
+  });
+  console.log('loggedIn :>> ', loggedIn);
   const userStatus = useSelector(state => state.userStatus);
   console.log('userStatus :>> ', userStatus);
   const [jwt, setJWT] = useState(undefined);
@@ -31,7 +35,7 @@ function App() {
     let jwt = Cookies.get('jwt');
     if (jwt && jwt !== undefined) {
       setJWT(jwt);
-      dispatch({ type: 'LOGIN' });
+      dispatch({ type: 'LOGIN'});
     } else {
       logout();
     }
@@ -39,7 +43,9 @@ function App() {
 
   function logout() {
     Cookies.remove('jwt');
-    dispatch({ type: 'LOGOUT' }); // sets global user state to logged out with Redux
+    dispatch({ type: 'LOGOUT' });
+    dispatch({ type: "CLEAR_USER_STATUS" });
+    history.push("/");
   }
 
 
