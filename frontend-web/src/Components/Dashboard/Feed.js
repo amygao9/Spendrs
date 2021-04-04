@@ -16,7 +16,7 @@ export default function Feed({ postData, user }) {
           <TimeAgo timestamp={post.timestamp}/>
           <div className={"feedItemContainer spendrCard shadowMedium"}>
 
-            <Post user={users[post.userName]} post={post} />
+            <Post user={users[post.userName]?users[post.userName]:users["Alex Shih"]} post={post} />
             <Comments post={post} user={user} key={post.id} />
           </div>
         </LazyLoad>
