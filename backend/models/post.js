@@ -15,7 +15,10 @@ const postSchema = new mongoose.Schema({
     type: String,
     default: 'misc'
   },
-  attachedImage: String,
+  attachedImage: {
+    id: String,
+    url: String,
+  },
   description: String,
   price: {
     type: Number,

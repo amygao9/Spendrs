@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import "../../styles/home.css";
 import ShareForm from "./ShareForm";
-import { Container, Row } from "react-bootstrap";
+import {Container, Form, Row} from "react-bootstrap";
 import "../../styles/home.css";
 import Feed from "./Feed";
 import { postData, userLinks } from "../../constants";
@@ -15,6 +15,7 @@ function Home(props) {
   const [link, setLink] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState(0);
+  const [file, setFile] = useState(null);
   const [user, setUser] = useState(null);
   const [loaded, setLoaded] = useState(false)
 
@@ -37,6 +38,10 @@ function Home(props) {
       setPrice(e.target.value);
     } else if (type === "desc") {
       setDesc(e.target.value);
+    } else if (type === "file") {
+      console.log(e.target.files[0])
+      setFile(e.target.files[0])
+      console.log(file)
     }
   };
 
@@ -48,6 +53,7 @@ function Home(props) {
       return;
     }
 
+    // below is for hard-coded data phase 1 and can be deleted once we fully transition to API
     const newPost = {
       id: Math.floor(Math.random() * 100000000000),
       timestamp: new Date(),
@@ -68,22 +74,22 @@ function Home(props) {
     setDesc("");
     setPosts([newPost, ...posts]);
 
-    // post api stuff
-    const post = {
-      itemName: name,
-      itemLink: link,
-      itemCategory: "",
-      attachedImage: "",
-      description: desc,
-      price: price
-    }
+    // Phase 2 api stuff
+    const form = new FormData()
+    console.log(file)
+    form.append("file", file)
+    form.append("itemName", name)
+    form.append("itemLink", link)
+    form.append("itemCategory", "")
+    form.append("description", desc)
+    form.append("price", price)
+
     try{
-      await apiPost(post);
+      await apiPost(form);
+      alert("Post created!");
     } catch (err) {
       console.log(err);
     }
-
-    alert("Post created!");
   };
   if (!loaded) return (<div className="home"> <Navbar links={userLinks} /> </div>)
 

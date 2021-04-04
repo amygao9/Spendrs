@@ -47,6 +47,7 @@ export default function ShareForm({ addPost, updateData, name, link, price, desc
               className="position-relative"
               name="file"
               label="File"
+              onChange={(e) => updateData(e, "file")}
               feedbackTooltip
             />
           </Form.Group>

@@ -13,7 +13,7 @@ export default function Post({user, post}) {
           className="profileImage"
           style={{position: "absolute"}}
           alt="profile"
-          src={user.image? user.image : defaultAvatar}
+          src={user.image? user.image.url : defaultAvatar}
         />
         <div className={"postHeader"}>
           <span className="bold"> {user.username}</span> spent
@@ -25,7 +25,7 @@ export default function Post({user, post}) {
         <div className={"postImageCard"}>
           <p className={"postImageText"}> Attached Photo: </p>
           <div className={"center"}>
-            <img className="postImage" alt="post" src={post.attachedImage}/>
+            <img className="postImage" alt="post" src={post.attachedImage.url}/>
           </div>
         </div> : <></>
       }
