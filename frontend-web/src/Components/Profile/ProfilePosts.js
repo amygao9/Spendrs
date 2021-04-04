@@ -3,7 +3,6 @@ import LazyLoad from 'react-lazyload';
 import '../../styles/profile.css';
 import Post from "../Dashboard/Post";
 import {apiGetAllUserPosts} from "../../axios/posts";
-import {getUserInfo} from "../../axios/user";
 
 
 function ProfilePosts({ editable, user }) {

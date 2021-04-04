@@ -27,7 +27,6 @@ function SpendingPieGraph(props) {
   }, [stats])
 
   const data = pieStatistics.map((entry, i) => {
-    console.log('entry :>> ', entry);
     if (hovered === i) {
       return {
         ...entry,

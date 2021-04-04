@@ -3,7 +3,7 @@ import Navbar from "../Navbar/Navbar";
 import '../../styles/home.css';
 import ProfileDescription from "./ProfileDescription";
 import ProfilePosts from "./ProfilePosts";
-import { userLinks, users } from "../../constants";
+import { userLinks } from "../../constants";
 import { getUserInfo } from "../../axios/user";
 
 
@@ -14,14 +14,11 @@ function Profile() {
 
   useEffect( () => {  // Changed to non-async func, async gives React warning.
     getUserInfo().then((data) => {
-      console.log('data :>> ', data);
       setUser(data)
       setLoaded(true);
-      console.log(user)
     }).catch(err => {
       console.log("err: " + err)
     })
-    // console.log("useeffect")
     // const path = window.location.pathname;
     // setEditable(path === '/profile');
     // let usertemp = path.substring(path.lastIndexOf('/') + 1);

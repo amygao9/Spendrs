@@ -8,7 +8,6 @@ import { ListGroup } from "react-bootstrap";
 function Admin() {
     const [userList, setUsers] = React.useState(Object.values(users));
     function handleDelete(username) {
-        console.log(username);
         const newList = userList.filter((user) => user.username !== username);
  
         setUsers(newList);
@@ -16,7 +15,6 @@ function Admin() {
     
     function handleClick(username) {
         console.log(username);
-
     }
     const getUsers = () => {
         console.log(userList)

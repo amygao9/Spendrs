@@ -22,13 +22,12 @@ function WelcomePage() {
   const history = useHistory();
 
   async function onSubmit(data) {
-    console.log(data);
     if (data["username"] === "admin" & data["password"] === "admin") {
       history.push('/admin');
     }
     try {
       const result = await apiLogin(data.username, data.password);
-      if (result == 'user') {
+      if (result === 'user') {
         history.push("/dashboard");
         dispatch({ type: 'LOGIN'});
       }

@@ -13,7 +13,6 @@ router.get("/", async (req, res) => {
  */
 router.post("/api/login", async(req, res) => {
   try {
-    console.log('req.body.username :>> ', req.body.username);
     const user = await User.findOne({ username: req.body.username });
     if (!user) return res.status(404).json({ err: "Invalid username." });
     const valid = await user.isValidPassword(req.body.password);

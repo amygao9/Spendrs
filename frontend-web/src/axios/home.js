@@ -7,13 +7,11 @@ export const apiLogin = async (username, password) => {
     const user = await axios.post(BASE_URL + '/api/login', {
       username, password
     })
-    console.log('user :>> ', user);
 
-    if (!user || user.status != 200) {
-      throw 'Unable to login';
+    if (!user || user.status !== 200) {
+      throw Error('Unable to login');
     }
 
-    console.log('user.data.jwt :>> ', user.data.jwt);
 
     Cookies.set('jwt', user.data.jwt);
     return user.data.admin ? "admin" : "user";
@@ -33,11 +31,9 @@ export const apiSignup = async (name, email, username, password, passwordStrengt
         passwordStrength
     });
 
-    if (!user || user.status != 200 || typeof(user.data) == "string") {
-        throw 'Could not create new user.';
+    if (!user || user.status !== 200 || typeof(user.data) == "string") {
+        throw Error('Could not create new user.');
     }
-
-    console.log('user :>> ', user);
 
     Cookies.set('jwt', user.data.jwt);
   } catch (err) {

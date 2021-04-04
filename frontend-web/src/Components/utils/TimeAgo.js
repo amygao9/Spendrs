@@ -51,7 +51,7 @@ export default class TimeAgo extends Component {
         this.setDateTime(this.props);
     }
 
-    componentWillReceiveProps(props) {
+    componentDidUpdate(props) {
         this.setDateTime(props);
     }
 

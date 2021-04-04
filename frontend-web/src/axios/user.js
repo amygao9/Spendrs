@@ -5,9 +5,9 @@ export const getUserInfo = async () => {
   try {
     const user = await client.get(BASE_URL + '/api/users');
 
-    if (!user || user.status != 200 || typeof(user.data) == "string") {
+    if (!user || user.status !== 200 || typeof(user.data) == "string") {
       console.log(user)
-      throw 'Error: User received from API but not correctly formatted';
+      throw Error('Error: User received from API but not correctly formatted');
     }
 
     return user.data;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Router, Switch, Route } from "react-router-dom";
 
 import history from "./config/History";
@@ -16,37 +16,34 @@ import './App.css';
 import { getUserStatus } from "./reducers/userStatusReducer";
 
 function App() {
-  const loggedIn = useSelector(state => {
-    console.log('state :>> ', state);
-    return state.loggedIn.loggedIn
-  });
-  console.log('loggedIn :>> ', loggedIn);
+  const loggedIn = useSelector(state => state.loggedIn.loggedIn);
   const userStatus = useSelector(state => state.userStatus);
   console.log('userStatus :>> ', userStatus);
-  const [jwt, setJWT] = useState(undefined);
   const dispatch = useDispatch();
   
   useEffect(() => {
+    const logout = () => {
+      Cookies.remove('jwt');
+      dispatch({ type: 'LOGOUT' });
+      dispatch({ type: "CLEAR_USER_STATUS" });
+      history.push("/");
+    }
+
+    const authenticate = () => {
+      let jwt = Cookies.get('jwt');
+      if (jwt && jwt !== undefined) {
+        // setJWT(jwt);
+        dispatch({ type: 'LOGIN'});
+      } else {
+        logout();
+      }
+    }
+
     authenticate();
     dispatch(getUserStatus);
   }, []);
 
-  const authenticate = () => {
-    let jwt = Cookies.get('jwt');
-    if (jwt && jwt !== undefined) {
-      setJWT(jwt);
-      dispatch({ type: 'LOGIN'});
-    } else {
-      logout();
-    }
-  }
 
-  function logout() {
-    Cookies.remove('jwt');
-    dispatch({ type: 'LOGOUT' });
-    dispatch({ type: "CLEAR_USER_STATUS" });
-    history.push("/");
-  }
 
 
   return (

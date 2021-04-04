@@ -5,10 +5,8 @@ import ShareForm from "./ShareForm";
 import { Container, Row } from "react-bootstrap";
 import "../../styles/home.css";
 import Feed from "./Feed";
-import { postData, userLinks, users } from "../../constants";
+import { postData, userLinks } from "../../constants";
 import { getUserInfo } from "../../axios/user";
-import { getUserStatus } from "../../reducers/userStatusReducer";
-import {apiSignup} from "../../axios/home";
 import {apiPost} from "../../axios/posts";
 
 function Home(props) {
@@ -23,10 +21,8 @@ function Home(props) {
 
   useEffect(() => {  // Changed to non-async func, async gives React warning.
     getUserInfo().then((data) => {
-      console.log('data :>> ', data);
       setUser(data)
       setLoaded(true);
-      console.log(user)
     }).catch(err => {
       console.log("err: " + err)
     })
@@ -82,8 +78,7 @@ function Home(props) {
       price: price
     }
     try{
-      const response = await apiPost(post);
-      console.log(response);
+      await apiPost(post);
     } catch (err) {
       console.log(err);
     }

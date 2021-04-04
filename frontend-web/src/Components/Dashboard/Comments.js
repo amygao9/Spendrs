@@ -73,7 +73,6 @@ function Comments({post, user}) {
           // strokeColor={"inherit"}
           reverse={true}
           onClick={() => {
-            console.log("send API register like")
             post.likes.push("ashih2018")
           }
           }
