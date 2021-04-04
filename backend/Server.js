@@ -1,9 +1,10 @@
-const app = require("./App.js");
-const db = require("./Database/Database.js");
+const app = require("./app.js");
+const db = require("./database/database.js");
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
+
 db.connect();
 let PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

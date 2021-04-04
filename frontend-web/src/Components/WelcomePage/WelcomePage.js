@@ -3,12 +3,17 @@ import * as React from "react";
 import '../../styles/welcome.css';
 import blob from '../../assets/blob.svg';
 import threeCharacters from '../../assets/3characters.svg'
-import RegistrationModal from './Registration'
+import RegistrationModal from './Registration';
 import { useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form"
+import { apiLogin } from '../../axios/home';
+import { useDispatch } from 'react-redux';
 
 function WelcomePage() {
   const [show, setShow] = useState(false);
+  const [loginError, setLoginError] = useState("");
+
+  const dispatch = useDispatch();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -16,20 +21,23 @@ function WelcomePage() {
   const { register, handleSubmit } = useForm();
   const history = useHistory();
 
-  function onSubmit(data) {
-    console.log(data);
-    if (data["username"] === "user" & data["password"] === "user") {
-      history.push('/dashboard')
+  async function onSubmit(data) {
+    if (data["username"] === "admin" & data["password"] === "admin") {
+      history.push('/admin');
     }
-    else if (data["username"] === "admin" & data["password"] === "admin") {
-      history.push('/admin')
-    }
-    else {
-      alert("Wrong username or password. Please try again.")
+    try {
+      const result = await apiLogin(data.username, data.password);
+      if (result === 'user') {
+        history.push("/dashboard");
+        dispatch({ type: 'LOGIN'});
+      }
+    } catch(err) {
+      setLoginError(err)
     }
   }
+
   return (
-    <div id={"background"}>
+    <div id={"welcomeBackground"}>
       <div id={"leftSide"}>
         <div id={"welcomeText"}>
           <h1 className="welcomeTitle">
@@ -42,21 +50,22 @@ function WelcomePage() {
         </div>
       </div>
 
-      <div>
-        <img src={blob} id={'blob'} alt="Background blob"/>
-        <img src={threeCharacters} id={'threeCharacters'} alt="Three people"/>
-      </div>
-
       <div id={'rightSide'}>
         <div id={'loginCard'}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input ref ={register} className="inputBox" type="text" name="username" placeholder={"Username"}></input>
-            <input ref ={register} className="inputBox" type="password" name="password" placeholder={"Password"}></input>
+          <form id={"loginForm"} onSubmit={handleSubmit(onSubmit)}>
+            <input ref ={register} className="inputBox" type="text" name="username" placeholder={"Username"}/>
+            <input ref ={register} className="inputBox" type="password" name="password" placeholder={"Password"}/>
+            <p className={"redErrorText"}>{loginError}</p>
             <input className="inputBox" type={"submit"} id={"loginBtn"} value={"Log In"}/>
           </form>
-          <button id={"createAccBtn"} onClick={handleShow}>Create New Account</button>
+          <button id={"openRegistrationModal"} onClick={handleShow}>Create New Account</button>
           <RegistrationModal handleClose = {handleClose} show = {show}/>
         </div>
+      </div>
+
+      <div id={'bottomArt'}>
+        <img src={blob} id={'blob'} alt="Background blob"/>
+        <img src={threeCharacters} id={'threeCharacters'} alt="Three people"/>
       </div>
     </div>
   );

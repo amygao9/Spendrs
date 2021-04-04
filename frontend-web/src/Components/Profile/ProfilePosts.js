@@ -1,23 +1,28 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import LazyLoad from 'react-lazyload';
 import '../../styles/profile.css';
-import { postData } from "../../constants";
 import Post from "../Dashboard/Post";
+import {apiGetAllUserPosts} from "../../axios/posts";
+
+
 function ProfilePosts({ editable, user }) {
-  
+
+  const [posts, setPosts] = useState([])
+
+  useEffect( () => {
+    apiGetAllUserPosts().then((data) => {
+      console.log('data :>> ', data);
+      setPosts(data)
+    }).catch(err => {
+      console.log("err: " + err)
+    })
+  }, [])
+
   const getFeedPosts = () => {
-    let userPosts = []
-    
-    for (var post in postData) {
-      
-      if (postData[post].userName === user.name) {
-        console.log(postData[post])
-        userPosts.push(postData[post])
-      }
-    }
-    return userPosts.map((post) => {
+    return posts.map((post) => {
+      console.log("post" + post)
       return <LazyLoad key={user} height={200}>
-          <Post key={post.id} post={post} />
+          <Post key={post.id} user={user} post={post}/>
       </LazyLoad>
     })
   }

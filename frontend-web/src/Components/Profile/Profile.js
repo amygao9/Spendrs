@@ -1,19 +1,40 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Navbar from "../Navbar/Navbar";
 import '../../styles/home.css';
 import ProfileDescription from "./ProfileDescription";
 import ProfilePosts from "./ProfilePosts";
-import { userLinks, users } from "../../constants";
+import { userLinks } from "../../constants";
+import { getUserInfo } from "../../axios/user";
+
 
 function Profile() {
-  const path = window.location.pathname;
-  const editable = path === '/profile';
-  let user = path.substring(path.lastIndexOf('/') + 1);
-  if (user !== 'profile' && users[user]) {
-    user = users[user];
-  }
-  else {
-    user = users['alexshih2018'];
+  const [user, setUser] = useState(null);
+  const [editable, setEditable] = useState(true);
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect( () => {  // Changed to non-async func, async gives React warning.
+    getUserInfo().then((data) => {
+      setUser(data)
+      setLoaded(true);
+    }).catch(err => {
+      console.log("err: " + err)
+    })
+    // const path = window.location.pathname;
+    // setEditable(path === '/profile');
+    // let usertemp = path.substring(path.lastIndexOf('/') + 1);
+    // if (usertemp !== 'profile' && users[user]) {
+    //   setUser(users[user]);
+    // }
+    // else {
+    //   setUser(users['alexshih2018'])
+    // }
+
+  }, [])
+
+
+
+  if (!loaded) {
+    return (<div className='home'> <Navbar links={userLinks} /> </div>)
   }
 
   return (

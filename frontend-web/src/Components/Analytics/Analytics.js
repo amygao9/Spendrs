@@ -25,7 +25,7 @@ function Analytics(props) {
             <Summary stats={stats} />
             <TimeSeriesGraph stats={stats.monthTimeSeries} />
           </div>
-          <div class={"flexCol"}>
+          <div className={"flexCol"}>
             <SpendingPieGraph stats={stats.spendingCategories} />
           </div>
         </div>

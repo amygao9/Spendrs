@@ -5,7 +5,6 @@ import { Row } from "react-bootstrap";
 import EditModal from "../utils/EditModal";
 
 function ProfileInfo({ editable, user }) {
-  console.log('user :>> ', user);
   const [username, setUsername] = useState(user["username"]);
   const [updatedUsername, setUpdatedUsername] = useState(username);
   const [description, setDescription] = useState(user["description"]);

@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import "../../styles/home.css";
 import ShareForm from "./ShareForm";
 import { Container, Row } from "react-bootstrap";
 import "../../styles/home.css";
 import Feed from "./Feed";
-import { postData, userLinks, users } from "../../constants";
+import { postData, userLinks } from "../../constants";
+import { getUserInfo } from "../../axios/user";
+import {apiPost} from "../../axios/posts";
 
 function Home(props) {
   const [posts, setPosts] = useState(postData);
@@ -13,6 +15,18 @@ function Home(props) {
   const [link, setLink] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState(0);
+  const [user, setUser] = useState(null);
+  const [loaded, setLoaded] = useState(false)
+
+
+  useEffect(() => {  // Changed to non-async func, async gives React warning.
+    getUserInfo().then((data) => {
+      setUser(data)
+      setLoaded(true);
+    }).catch(err => {
+      console.log("err: " + err)
+    })
+  }, [])
 
   const updateData = (e, type) => {
     if (type === "name") {
@@ -26,7 +40,7 @@ function Home(props) {
     }
   };
 
-  const addPost = (e) => {
+  const addPost = async (e) => {
     e.preventDefault();
 
     if (name === "") {
@@ -54,8 +68,24 @@ function Home(props) {
     setDesc("");
     setPosts([newPost, ...posts]);
 
+    // post api stuff
+    const post = {
+      itemName: name,
+      itemLink: link,
+      itemCategory: "",
+      attachedImage: "",
+      description: desc,
+      price: price
+    }
+    try{
+      await apiPost(post);
+    } catch (err) {
+      console.log(err);
+    }
+
     alert("Post created!");
   };
+  if (!loaded) return (<div className="home"> <Navbar links={userLinks} /> </div>)
 
   return (
     <div className="home">
@@ -74,7 +104,7 @@ function Home(props) {
           </div>
           <div id="feedContainer">
             {/* we need to feed in the user we are logged in as */}
-            <Feed postData={posts} user={users["alexshih2018"]} />
+            <Feed postData={posts} user={user} />
           </div>
         </Row>
       </Container>
