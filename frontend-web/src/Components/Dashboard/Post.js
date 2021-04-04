@@ -25,7 +25,7 @@ export default function Post({user, post}) {
         <div className={"postImageCard"}>
           <p className={"postImageText"}> Attached Photo: </p>
           <div className={"center"}>
-            <img className="postImage" alt="post" src={post.attachedImage}/>
+            <img className="postImage" alt="post" src={post.attachedImage.url}/>
           </div>
         </div> : <></>
       }

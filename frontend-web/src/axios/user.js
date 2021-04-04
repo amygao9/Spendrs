@@ -21,6 +21,7 @@ export const getUserInfo = async () => {
 export const uploadProfilePic = async (form) => {
   try {
     const picture = new FormData(form)
+    console.log(form)
     await client.post(BASE_URL + '/api/users/upload/profile_pic', picture);
     console.log("success!")
   } catch (err) {

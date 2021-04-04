@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import "../../styles/home.css";
 import ShareForm from "./ShareForm";
-import { Container, Row } from "react-bootstrap";
+import {Container, Form, Row} from "react-bootstrap";
 import "../../styles/home.css";
 import Feed from "./Feed";
 import { postData, userLinks } from "../../constants";
@@ -15,6 +15,7 @@ function Home(props) {
   const [link, setLink] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState(0);
+  const [file, setFile] = useState(null);
   const [user, setUser] = useState(null);
   const [loaded, setLoaded] = useState(false)
 
@@ -37,6 +38,10 @@ function Home(props) {
       setPrice(e.target.value);
     } else if (type === "desc") {
       setDesc(e.target.value);
+    } else if (type === "file") {
+      console.log(e.target.files[0])
+      setFile(e.target.files[0])
+      console.log(file)
     }
   };
 
@@ -73,12 +78,28 @@ function Home(props) {
       itemName: name,
       itemLink: link,
       itemCategory: "",
-      attachedImage: "",
+      attachedImage: file,
       description: desc,
       price: price
     }
+    const postJSON = JSON.stringify(post);
+    const blob = new Blob([postJSON], {
+      type: 'application/json'
+    });
+    const form = new FormData()
+    console.log(file)
+    form.append("file", file)
+    // form.append("json", postJSON)
+    form.append("itemName", name)
+    form.append("itemLink", link)
+    form.append("itemCategory", "")
+    form.append("description", desc)
+    form.append("price", price)
+
+
+    console.log(form)
     try{
-      await apiPost(post);
+      await apiPost(form);
     } catch (err) {
       console.log(err);
     }

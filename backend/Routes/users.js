@@ -23,7 +23,7 @@ router.get("/all", async (req, res) => {
   return users;
 });
 
-router.get("/", authenticateToken, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
     res.send(user);
@@ -33,10 +33,11 @@ router.get("/", authenticateToken, async (req, res) => {
 
 });
 
-router.post("/upload/profile_pic", authenticateToken, multipartMiddleware, async (req, res) => {
+router.post("/upload/profile_pic", multipartMiddleware, async (req, res) => {
 
     try {
       const user = await User.findById(req.user.id);
+      console.log(req.files)
 
       // Use uploader.upload API to upload image to cloudinary server.
       cloudinary.uploader.upload(
