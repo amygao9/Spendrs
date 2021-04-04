@@ -11,8 +11,13 @@ router.get("/all", async (req, res) => {
 });
 
 router.get("/", authenticateToken, async (req, res) => {
-  const user = await User.findById(req.user.id);
-  res.send(user);
+  try {
+    const user = await User.findById(req.user.id);
+    res.send(user);
+  } catch (err) {
+    console.log(err)
+  }
+
 });
 
 

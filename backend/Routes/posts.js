@@ -10,8 +10,9 @@ router.get("/all", async (req, res) => {
 });
 
 // Gets all posts of a user
-router.get("/:userId", async (req, res) => {
-  const posts = await Post.find({ user: req.params.userId });
+// THIS IS NOT SECURE AND SHOULD BE REMOVED AFTER DEBUGGING
+router.get("/", async (req, res) => {
+  const posts = await Post.find({ user: req.user.id });
   res.send(posts);
 });
 
@@ -23,9 +24,9 @@ router.get("/:userId", async (req, res) => {
 //     attachedImage: string [optional],
 //     description: string [optional],
 //     price: int
-router.post("/:userId", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(req.params.userId);
+    const user = await User.findByIdAndUpdate(req.user.id);
     req.body.user = user
     // console.log(req.body)
     const post = new Post(req.body);

@@ -8,7 +8,8 @@ import Feed from "./Feed";
 import { postData, userLinks, users } from "../../constants";
 import { getUserInfo } from "../../axios/user";
 import { getUserStatus } from "../../reducers/userStatusReducer";
-
+import {apiSignup} from "../../axios/home";
+import {apiPost} from "../../axios/posts";
 
 function Home(props) {
   const [posts, setPosts] = useState(postData);
@@ -16,11 +17,19 @@ function Home(props) {
   const [link, setLink] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState(0);
-  // const dispatch = useDispatch();
+  const [user, setUser] = useState(null);
+  const [loaded, setLoaded] = useState(false)
 
-  useEffect(async () => {
-    // const data = await getUserInfo();
-    // console.log('data :>> ', data);
+
+  useEffect(() => {  // Changed to non-async func, async gives React warning.
+    getUserInfo().then((data) => {
+      console.log('data :>> ', data);
+      setUser(data)
+      setLoaded(true);
+      console.log(user)
+    }).catch(err => {
+      console.log("err: " + err)
+    })
   }, [])
 
   const updateData = (e, type) => {
@@ -35,7 +44,7 @@ function Home(props) {
     }
   };
 
-  const addPost = (e) => {
+  const addPost = async (e) => {
     e.preventDefault();
 
     if (name === "") {
@@ -63,8 +72,25 @@ function Home(props) {
     setDesc("");
     setPosts([newPost, ...posts]);
 
+    // post api stuff
+    const post = {
+      itemName: name,
+      itemLink: link,
+      itemCategory: "",
+      attachedImage: "",
+      description: desc,
+      price: price
+    }
+    try{
+      const response = await apiPost(post);
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
+
     alert("Post created!");
   };
+  if (!loaded) return (<div className="home"> <Navbar links={userLinks} /> </div>)
 
   return (
     <div className="home">
@@ -83,7 +109,7 @@ function Home(props) {
           </div>
           <div id="feedContainer">
             {/* we need to feed in the user we are logged in as */}
-            <Feed postData={posts} user={users["alexshih2018"]} />
+            <Feed postData={posts} user={user} />
           </div>
         </Row>
       </Container>

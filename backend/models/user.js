@@ -29,7 +29,16 @@ const userSchema = new mongoose.Schema({
     ref: "Post"
   }],
   image: String,
-  description: String
+  description: String,
+  followers: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  }],
+  following: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  }],
+  register_date: Date
 });
 
 userSchema.pre("save", async function() {

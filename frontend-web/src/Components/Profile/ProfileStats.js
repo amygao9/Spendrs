@@ -5,8 +5,9 @@ import { Col, Row } from "react-bootstrap";
 import ProfileFriends from './ProfileFriends';
 
 function ProfileStats({ user, isAdmin }) {
-  const [followers] = useState(user["followers"])
-  const [following] = useState(user["following"])
+  const [followers] = useState(user.followers)
+  const [following] = useState(user.following)
+  const [posts] = useState(user.posts)
   const [showFollowers, setShowFollowers] = useState(false);
   const closeFollowers = () => setShowFollowers(false);
   const openFollowers = () => setShowFollowers(true);
@@ -18,7 +19,7 @@ function ProfileStats({ user, isAdmin }) {
   return (
       <Row className="profileStatsContainer">
         <Col>
-          <div className="profileStatsNumber">{user["posts"]}</div>
+          <div className="profileStatsNumber">{posts.length}</div>
           <div>Posts</div>
         </Col>
         <Col onClick={openFollowers} className="clickable">
