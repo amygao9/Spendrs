@@ -44,10 +44,10 @@ app.post("/upload/profile_pic", authenticateToken, multipartMiddleware, async (r
         function (result) {
 
           // Create a new image using the Image mongoose model
-          user.image = new Image({
+          user.image = {
             id: result.public_id, // image id on cloudinary server
             url: result.url, // image url on cloudinary server
-          });
+          };
 
           user.save().then(result => {
             res.send(result)

@@ -16,8 +16,8 @@ const postSchema = new mongoose.Schema({
     default: 'misc'
   },
   attachedImage: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Image"
+    id: String,
+    url: String,
   },
   description: String,
   price: {

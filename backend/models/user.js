@@ -29,8 +29,8 @@ const userSchema = new mongoose.Schema({
     ref: "Post"
   }],
   image: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Image"
+    id: String,
+    url: String,
   },
   description: String,
   followers: [{
