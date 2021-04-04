@@ -13,15 +13,19 @@ import Cookies from 'js-cookie'
 import { useSelector, useDispatch } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import { getUserStatus } from "./reducers/userStatusReducer";
 
 function App() {
-  const loggedIn = useSelector(state => state.userStatus);
+  const loggedIn = useSelector(state => state.loggedIn.loggedIn);
+  const userStatus = useSelector(state => state.userStatus);
+  console.log('userStatus :>> ', userStatus);
   const [jwt, setJWT] = useState(undefined);
   const dispatch = useDispatch();
   
   useEffect(() => {
     authenticate();
-  });
+    dispatch(getUserStatus);
+  }, []);
 
   const authenticate = () => {
     let jwt = Cookies.get('jwt');

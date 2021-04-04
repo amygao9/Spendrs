@@ -24,7 +24,7 @@ client.interceptors.response.use(
   err => {
     if (err.response && err.response.status === 401) {
       Cookies.remove("jwt");
-      throw new Error("auth invalid")
+      throw new Error("auth invalid");
     } else {
       throw err;
     }

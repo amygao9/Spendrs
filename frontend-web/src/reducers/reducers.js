@@ -1,9 +1,11 @@
   
 import { combineReducers } from 'redux';
 
-import userStatusReducer from './userStatusReducers';
+import loggedInReducer from './loggedInReducer';
+import userStatusReducer from './userStatusReducer';
 
 const rootReducer = combineReducers({
+    loggedIn: loggedInReducer,
     userStatus: userStatusReducer
 });
 

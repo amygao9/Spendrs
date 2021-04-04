@@ -7,6 +7,8 @@ import "../../styles/home.css";
 import Feed from "./Feed";
 import { postData, userLinks, users } from "../../constants";
 import { getUserInfo } from "../../axios/user";
+import { getUserStatus } from "../../reducers/userStatusReducer";
+
 
 function Home(props) {
   const [posts, setPosts] = useState(postData);
@@ -14,10 +16,11 @@ function Home(props) {
   const [link, setLink] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState(0);
+  // const dispatch = useDispatch();
 
   useEffect(async () => {
-    const data = await getUserInfo();
-    console.log('data :>> ', data);
+    // const data = await getUserInfo();
+    // console.log('data :>> ', data);
   }, [])
 
   const updateData = (e, type) => {

@@ -12,6 +12,7 @@ export const getUserInfo = async () => {
     return user.data;
   } catch (err) {
     console.log(err);
-    throw err;
+    alert("Error loading user data!")
+    // throw err;
   }
 };
