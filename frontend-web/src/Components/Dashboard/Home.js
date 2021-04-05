@@ -9,23 +9,23 @@ import { postData, userLinks } from "../../constants";
 import { getUserInfo } from "../../axios/user";
 import {apiPost} from "../../axios/posts";
 import { useSelector, useDispatch } from 'react-redux';
-import { getFeed } from '../../reducers/feedReducer';
+import { getFeed, createPost } from '../../reducers/postsReducer';
 
 function Home(props) {
   // const [posts, setPosts] = useSelector(state => state.feedData.posts);
   const [posts, setPosts] = useState(postData);
-  // const posts = useSelector(state => state.feedData)
-  // console.log('feed :>> ', feed);
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState(0);
   const [file, setFile] = useState(null);
-  // const [user, setUser] = useSelector(state => state.userData);
-  const [loaded, setLoaded] = useState(false)
+  const [loaded, setLoaded] = useState(false);
+
   const user = useSelector(state => state.userData);
+  const feed = useSelector(state => state.postsData.feedPosts);
+  console.log('feed :>> ', feed);
+
   const dispatch = useDispatch();
-  console.log('posts :>> ', posts);
 
 
   useEffect(() => {  // Changed to non-async func, async gives React warning.
@@ -84,11 +84,9 @@ function Home(props) {
     setLink("");
     setPrice(0);
     setDesc("");
-    setPosts([newPost, ...posts]);
 
     // Phase 2 api stuff
     const form = new FormData()
-    console.log(file)
     form.append("file", file)
     form.append("itemName", name)
     form.append("itemLink", link)
@@ -97,7 +95,7 @@ function Home(props) {
     form.append("price", price)
 
     try{
-      await apiPost(form);
+      await dispatch(createPost(form));
       alert("Post created!");
     } catch (err) {
       console.log(err);
