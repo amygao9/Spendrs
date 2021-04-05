@@ -8,7 +8,7 @@ import Feed from "./Feed";
 import { postData, userLinks } from "../../constants";
 import { getUserInfo } from "../../axios/user";
 import {apiPost} from "../../axios/posts";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, connect } from 'react-redux';
 import { getInitialFeed, createPost } from '../../reducers/postsReducer';
 
 function Home(props) {
@@ -24,8 +24,8 @@ function Home(props) {
   const user = useSelector(state => state.userData);
   // const feed = useSelector(state => state.postsData.feedPosts);
   // console.log('feed :>> ', feed);
-
-  const posts = useSelector(state => state.postsData.feedPosts);
+  console.log('props :>> ', props);
+  const posts = props.posts;
 
   const dispatch = useDispatch();
 
@@ -129,4 +129,9 @@ function Home(props) {
   );
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+  console.log('state :>> ', state);
+  return { posts: state.postsData.feedPosts };
+}
+
+export default connect(mapStateToProps)(Home);

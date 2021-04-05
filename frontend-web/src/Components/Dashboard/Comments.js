@@ -5,10 +5,10 @@ import UseAnimations from 'react-useanimations';
 import heart from 'react-useanimations/lib/heart'
 import {FaShare} from 'react-icons/fa';
 import { useDispatch } from "react-redux";
+import { likePost } from "../../reducers/postsReducer";
 
 
 function Comment(props) {
-  console.log('props :>> ', props);
   return (
     <div className="commentContainer">
       {/* <div className="imageContainer">
@@ -27,7 +27,6 @@ function Comment(props) {
 }
 
 function Comments({post, user}) {
-  console.log('post :>> ', post);
   let status = "";
   if (post) {
     if (post.likes.length === 1) {
@@ -68,7 +67,7 @@ function Comments({post, user}) {
           // strokeColor={"inherit"}
           reverse={true}
           onClick={() => {
-            post.likes.push("ashih2018")
+            dispatch(likePost(post._id));
           }}
 
         />

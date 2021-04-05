@@ -17,7 +17,6 @@ export const getTimeAgoString = (timestamp) => {
                 ? 's'
                 : ''} ago`;
         };
-    console.log('elapsed :>> ', elapsed);
     if (elapsed < MINUTE) {
         return getElapsedString(SECOND, 'second');
     }

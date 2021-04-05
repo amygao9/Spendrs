@@ -17,7 +17,6 @@ export default function userDataReducer(state = initialState, action) {
 export async function getUserData(dispatch, getState) {
   try {
     const state = getState();
-    console.log('state :>> ', state);
     const result = await client.get(BASE_URL + '/api/users');
     dispatch({ type: "GET_USER_STATUS", payload: result.data });
     return result;

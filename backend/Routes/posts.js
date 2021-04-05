@@ -84,13 +84,13 @@ router.post("/", multipartMiddleware, async (req, res) => {
 
 router.put("/like", async (req, res) => {
   try {
-    const user = req.user.id;
+    const user = await User.findById(req.user.id);
     const post = await Post.findById(req.body.post);
-    const likeIndex = post.likes.indexOf(user);
+    const likeIndex = post.likes.indexOf(user.username);
     if (likeIndex > -1) {
       post.likes.splice(likeIndex, 1);
     } else {
-      post.likes.push(user);
+      post.likes.push(user.username);
     }
     await post.save();
     res.send(post);
