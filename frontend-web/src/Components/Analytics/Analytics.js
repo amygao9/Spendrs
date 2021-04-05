@@ -35,7 +35,9 @@ function Analytics() {
         let month_spent = 0
         for (var post in data) {
           purchases.push([data[post].updatedAt.slice(0,10), data[post].price])
-          data[post].itemCategory = "misc"
+          if (data[post].itemCategory == "") {
+            data[post].itemCategory = "misc"
+          }
           if (cat[data[post].itemCategory]) {
             cat[data[post].itemCategory] += data[post].price
           }
