@@ -4,18 +4,20 @@ import "../../styles/graphics.css";
 import UseAnimations from 'react-useanimations';
 import heart from 'react-useanimations/lib/heart'
 import {FaShare} from 'react-icons/fa';
+import { useDispatch } from "react-redux";
 
 
 function Comment(props) {
+  console.log('props :>> ', props);
   return (
     <div className="commentContainer">
-      <div className="imageContainer">
+      {/* <div className="imageContainer">
         <img
           className="profileImage"
           alt="profile"
           src={props.image.url}
         />
-      </div>
+      </div> */}
       <div className="textContainer">
         <span className="commentName"> {props.userName} </span>
         <div className="commentTextContainer">{props.comment}</div>
@@ -25,24 +27,17 @@ function Comment(props) {
 }
 
 function Comments({post, user}) {
-  let tempStatus = "";
+  console.log('post :>> ', post);
+  let status = "";
   if (post) {
     if (post.likes.length === 1) {
-      tempStatus = post.likes[0] + " liked this.";
+      status = post.likes[0] + " liked this.";
     } else if (post.likes.length > 1) {
-      tempStatus =
-        post.likes[0] +
-        " and " +
-        (post.likes.length - 1) +
-        " others liked this. ";
-    }
-
-    if (post.shares.length !== 0) {
-      tempStatus += post.shares.length + " people shared this.";
+      status = post.likes[0] + " and " + (post.likes.length - 1) + " others liked this. ";
     }
   }
 
-  const status = tempStatus || "alexshihh20 and 12 others liked this. 2 shared";
+  const dispatch = useDispatch();
 
   // either this should be passed in by parents or this could be an api call
   const tempComments = post.comments || [
@@ -74,8 +69,7 @@ function Comments({post, user}) {
           reverse={true}
           onClick={() => {
             post.likes.push("ashih2018")
-          }
-          }
+          }}
 
         />
         <button style={{background: "transparent", borderWidth: "0"}}>

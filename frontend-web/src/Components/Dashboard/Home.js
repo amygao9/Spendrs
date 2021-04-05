@@ -9,11 +9,11 @@ import { postData, userLinks } from "../../constants";
 import { getUserInfo } from "../../axios/user";
 import {apiPost} from "../../axios/posts";
 import { useSelector, useDispatch } from 'react-redux';
-import { getFeed, createPost } from '../../reducers/postsReducer';
+import { getInitialFeed, createPost } from '../../reducers/postsReducer';
 
 function Home(props) {
   // const [posts, setPosts] = useSelector(state => state.feedData.posts);
-  const [posts, setPosts] = useState(postData);
+  // const [posts, setPosts] = useState(postData);
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
   const [desc, setDesc] = useState("");
@@ -22,8 +22,10 @@ function Home(props) {
   const [loaded, setLoaded] = useState(false);
 
   const user = useSelector(state => state.userData);
-  const feed = useSelector(state => state.postsData.feedPosts);
-  console.log('feed :>> ', feed);
+  // const feed = useSelector(state => state.postsData.feedPosts);
+  // console.log('feed :>> ', feed);
+
+  const posts = useSelector(state => state.postsData.feedPosts);
 
   const dispatch = useDispatch();
 
@@ -36,7 +38,7 @@ function Home(props) {
     // }).catch(err => {
     //   console.log("err: " + err)
     // });
-    dispatch(getFeed);
+    dispatch(getInitialFeed);
     setLoaded(true);
   }, [])
 

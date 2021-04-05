@@ -16,10 +16,10 @@ function Analytics() {
   const [loaded, setLoaded] = useState(false)
   const stats = {
     "budget": 300,
-  "daySpending": 21.5,
-  "monthSpending": 465.49,
-  "spendingCategories": {"food": 245.49, "misc": 28, "tech": 104, "games": 33, "valorant skins": 55},
-  "monthTimeSeries": [["2021-04-05", 50], ["2021-04-05", 37]]
+    "daySpending": 21.5,
+    "monthSpending": 465.49,
+    "spendingCategories": {"food": 245.49, "misc": 28, "tech": 104, "games": 33, "valorant skins": 55},
+    "monthTimeSeries": [["2021-04-05", 50], ["2021-04-05", 37]]
   }
   let date = new Date();
   let currentMonth = (date.getMonth() + 1).toString().padStart(2,0);

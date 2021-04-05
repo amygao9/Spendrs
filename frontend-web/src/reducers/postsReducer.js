@@ -25,7 +25,7 @@ const postsReducer = (state = initialState, action) => {
   }
 }
 
-export async function getFeed(dispatch, getState) {
+export async function getInitialFeed(dispatch, getState) {
   try {
     const state = getState();
     const { feedPosts, date } = state.postsData;
@@ -38,6 +38,26 @@ export async function getFeed(dispatch, getState) {
     });
 
     // const newPosts = feedPosts.concat(result.data.posts);
+    dispatch({ type: "UPDATE_FEED", payload: { feedPosts: result.data.posts } });
+    dispatch({ type: "UPDATE_DATE", payload: { date: result.data.date } });
+  } catch (err) {
+    console.log('err :>> ', err);
+  }
+}
+
+export async function fetchFeedContent(dispatch, getState) {
+  try {
+    const state = getState();
+    const { feedPosts, date } = state.postsData;
+
+    const result = await client.get(BASE_URL + '/api/feed/newsfeed', {
+      params: {
+        num: 5,
+        date: date
+      }
+    });
+
+    const newPosts = feedPosts.concat(result.data.posts);
     dispatch({ type: "UPDATE_FEED", payload: { feedPosts: result.data.posts } });
     dispatch({ type: "UPDATE_DATE", payload: { date: result.data.date } });
   } catch (err) {

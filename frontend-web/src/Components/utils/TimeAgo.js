@@ -17,6 +17,7 @@ export const getTimeAgoString = (timestamp) => {
                 ? 's'
                 : ''} ago`;
         };
+    console.log('elapsed :>> ', elapsed);
     if (elapsed < MINUTE) {
         return getElapsedString(SECOND, 'second');
     }
@@ -44,7 +45,7 @@ export default class TimeAgo extends Component {
 
     setDateTime = ({timestamp}) => {
         const date = new Date(timestamp);
-        this.setState({datetime: date.toISOString(), string: getTimeAgoString(timestamp)});
+        this.setState({datetime: date.toISOString(), string: getTimeAgoString(date)});
     };
 
     componentDidMount() {

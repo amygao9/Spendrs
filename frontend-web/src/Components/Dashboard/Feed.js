@@ -11,7 +11,7 @@ export default function Feed({ postData, user }) {
     return postData.map((post, index) => {
       return (
         <LazyLoad height={200} style={{ marginBottom: "30px" }} key={index}>
-          <TimeAgo timestamp={post.timestamp}/>
+          <TimeAgo timestamp={post.createdAt}/>
           <div className={"feedItemContainer spendrCard shadowMedium"}>
 
             <Post user={users[post.userName]?users[post.userName]:users["Alex Shih"]} post={post} />
