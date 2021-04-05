@@ -4,6 +4,7 @@ import { useState } from "react";
 import { apiSignup } from "../../axios/home";
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { signup } from '../../reducers/loggedInReducer';
 import PasswordStrengthBar from 'react-password-strength-bar';
 
 

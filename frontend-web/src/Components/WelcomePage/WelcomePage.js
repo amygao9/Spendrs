@@ -7,6 +7,7 @@ import RegistrationModal from './Registration';
 import { useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import { apiLogin } from '../../axios/home';
+import { login } from '../../reducers/loggedInReducer';
 import { useDispatch } from 'react-redux';
 
 function WelcomePage() {
@@ -26,11 +27,12 @@ function WelcomePage() {
       history.push('/admin');
     }
     try {
-      const result = await apiLogin(data.username, data.password);
-      if (result === 'user') {
-        history.push("/dashboard");
-        dispatch({ type: 'LOGIN'});
-      }
+      // const result = await apiLogin(data.username, data.password);
+      // if (result === 'user') {
+      //   history.push("/dashboard");
+      //   dispatch(login);
+      // }
+      dispatch(login(data.username, data.password));
     } catch(err) {
       setLoginError(err)
     }
