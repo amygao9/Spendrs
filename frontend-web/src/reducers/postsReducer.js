@@ -59,7 +59,34 @@ export const createPost = post => async (dispatch, getState) => {
 }
 
 export const likePost = post => async (dispatch, getState) => {
-  
+  try {
+    const state = getState();
+    const { feedPosts } = state.postsData;
+
+    const result = await client.put(BASE_URL + '/api/posts/like', {
+      post: post
+    });
+    console.log('result.data :>> ', result.data);
+
+    let index = -1;
+    for (let i = 0; i < feedPosts.length; i++) {
+      if (feedPosts[i].id == post) {
+        index = i;
+        break;
+      }
+    }
+
+    if (index == -1) {
+      return;
+    }
+
+    feedPosts.splice(index, 1);
+    feedPosts.splice(index, 0, result.data);
+
+    dispatch({ type: "UPDATE_FEED", payload: { feedPosts: feedPosts } });
+  } catch (err) {
+    console.log('err :>> ', err);
+  }
 }
 
 

@@ -85,7 +85,6 @@ router.post("/", multipartMiddleware, async (req, res) => {
 router.put("/like", async (req, res) => {
   try {
     const user = req.user.id;
-    console.log('req.user :>> ', req.user);
     const post = await Post.findById(req.body.post);
     const likeIndex = post.likes.indexOf(user);
     if (likeIndex > -1) {
@@ -94,7 +93,7 @@ router.put("/like", async (req, res) => {
       post.likes.push(user);
     }
     await post.save();
-    res.send("Success!");
+    res.send(post);
   } catch (err) {
     console.log('err :>> ', err);
     res.status(400).send("Error liking picture");
