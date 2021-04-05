@@ -89,7 +89,7 @@ function Home(props) {
     form.append("file", file)
     form.append("itemName", name)
     form.append("itemLink", link)
-    form.append("itemCategory", "")
+    form.append("itemCategory", "misc") // placeholder
     form.append("description", desc)
     form.append("price", price)
 
