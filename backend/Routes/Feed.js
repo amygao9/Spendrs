@@ -27,9 +27,7 @@ router.get("/newsfeed", async (req, res) => {
       return;
     }
 
-    // console.log(timeStamp.toISOString());
-
-    const limit = req.body.num === undefined ? 50 : req.body.num;
+    const limit = req.query.num ? parseInt(req.query.num) : 50;
 
     const user = await User.findById(req.user.id);
 
@@ -49,6 +47,7 @@ router.get("/newsfeed", async (req, res) => {
 
     res.send({ date: posts[posts.length - 1].createdAt, posts });
   } catch (err) {
+    console.log('err :>> ', err);
     res.status(500).send({ err: err });
   }
 });

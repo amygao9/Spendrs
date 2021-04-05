@@ -13,12 +13,12 @@ import Cookies from 'js-cookie'
 import { useSelector, useDispatch } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { getUserStatus } from "./reducers/userStatusReducer";
+import { getUserData } from "./reducers/userDataReducer";
 
 function App() {
   const loggedIn = useSelector(state => state.loggedIn.loggedIn);
-  const userStatus = useSelector(state => state.userStatus);
-  console.log('userStatus :>> ', userStatus);
+  const userData = useSelector(state => state.userData);
+  console.log('userData :>> ', userData);
   const dispatch = useDispatch();
   
   useEffect(async () => {
@@ -32,7 +32,6 @@ function App() {
     const authenticate = () => {
       let jwt = Cookies.get('jwt');
       if (jwt && jwt !== undefined) {
-        // setJWT(jwt);
         dispatch({ type: 'LOGIN'});
       } else {
         logout();
@@ -40,8 +39,7 @@ function App() {
     }
 
     authenticate();
-    const result = await dispatch(getUserStatus);
-    console.log('result :>> ', result);
+    await dispatch(getUserData);
   }, []);
 
 

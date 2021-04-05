@@ -3,7 +3,7 @@ import { BASE_URL } from "../base_url";
 
 const initialState = {}
 
-export default function userStatusReducer(state = initialState, action) {
+export default function userDataReducer(state = initialState, action) {
   switch (action.type) {
     case 'GET_USER_STATUS': {
       return action.payload;
@@ -16,8 +16,10 @@ export default function userStatusReducer(state = initialState, action) {
   }
 }
 
-export async function getUserStatus(dispatch, getState) {
+export async function getUserData(dispatch, getState) {
   try {
+    const state = getState();
+    console.log('state :>> ', state);
     const result = await client.get(BASE_URL + '/api/users');
     dispatch({ type: "GET_USER_STATUS", payload: result.data });
     return result;

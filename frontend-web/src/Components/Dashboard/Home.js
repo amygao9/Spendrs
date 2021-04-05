@@ -8,25 +8,37 @@ import Feed from "./Feed";
 import { postData, userLinks } from "../../constants";
 import { getUserInfo } from "../../axios/user";
 import {apiPost} from "../../axios/posts";
+import { useSelector, useDispatch } from 'react-redux';
+import { getFeed } from '../../reducers/feedReducer';
 
 function Home(props) {
+  // const [posts, setPosts] = useSelector(state => state.feedData.posts);
   const [posts, setPosts] = useState(postData);
+  // const posts = useSelector(state => state.feedData)
+  // console.log('feed :>> ', feed);
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState(0);
   const [file, setFile] = useState(null);
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useSelector(state => state.userData);
   const [loaded, setLoaded] = useState(false)
+  const user = useSelector(state => state.userData);
+  const dispatch = useDispatch();
+  console.log('posts :>> ', posts);
 
 
   useEffect(() => {  // Changed to non-async func, async gives React warning.
-    getUserInfo().then((data) => {
-      setUser(data)
-      setLoaded(true);
-    }).catch(err => {
-      console.log("err: " + err)
-    })
+    // getUserInfo().then((data) => {
+    //   console.log('data :>> ', data);
+    //   setUser(data)
+    //   setLoaded(true);
+    // }).catch(err => {
+    //   console.log("err: " + err)
+    // });
+    dispatch(getFeed);
+    console.log('posts :>> ', posts);
+    setLoaded(true);
   }, [])
 
   const updateData = (e, type) => {

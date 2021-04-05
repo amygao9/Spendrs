@@ -13,7 +13,7 @@ function Settings() {
   const history = useHistory();
   let user = users["Alex Shih"]
   const [radioValue, setRadioValue] = useState('1');
-  const userStatus = useSelector(state => state.userStatus);
+  const userData = useSelector(state => state.userData);
 
   const radios = [
     { name: 'Private', value: '1' },

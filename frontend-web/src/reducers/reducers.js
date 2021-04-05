@@ -2,11 +2,14 @@
 import { combineReducers } from 'redux';
 
 import loggedInReducer from './loggedInReducer';
-import userStatusReducer from './userStatusReducer';
+import postsReducer from './postsReducer';
+import feedReducer from './feedReducer';
+import userDataReducer from './userDataReducer';
 
 const rootReducer = combineReducers({
     loggedIn: loggedInReducer,
-    userStatus: userStatusReducer
+    userData: userDataReducer,
+    feedData: feedReducer,
 });
 
 export default rootReducer;
