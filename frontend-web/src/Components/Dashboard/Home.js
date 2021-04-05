@@ -37,7 +37,6 @@ function Home(props) {
     //   console.log("err: " + err)
     // });
     dispatch(getFeed);
-    console.log('posts :>> ', posts);
     setLoaded(true);
   }, [])
 

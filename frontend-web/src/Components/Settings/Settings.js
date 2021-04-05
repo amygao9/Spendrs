@@ -25,7 +25,6 @@ function Settings() {
   const logout = () => {
     Cookies.remove('jwt');
     dispatch({ type: 'LOGOUT' });
-    dispatch({ type: "CLEAR_USER_STATUS" });
     history.push("/");
   }
   

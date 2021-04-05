@@ -8,9 +8,7 @@ export default function userDataReducer(state = initialState, action) {
     case 'GET_USER_STATUS': {
       return action.payload;
     }
-    case 'CLEAR_USER_STATUS': {
-      return {};
-    }
+    
     default:
       return state
   }

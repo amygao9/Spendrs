@@ -36,8 +36,9 @@ export async function getFeed(dispatch, getState) {
         date: date
       }
     });
-    const newPosts = feedPosts.concat(result.data.posts);
-    dispatch({ type: "UPDATE_FEED", payload: { feedPosts: newPosts } });
+
+    // const newPosts = feedPosts.concat(result.data.posts);
+    dispatch({ type: "UPDATE_FEED", payload: { feedPosts: result.data.posts } });
     dispatch({ type: "UPDATE_DATE", payload: { date: result.data.date } });
   } catch (err) {
     console.log('err :>> ', err);
