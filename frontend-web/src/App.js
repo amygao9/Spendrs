@@ -21,7 +21,7 @@ function App() {
   console.log('userStatus :>> ', userStatus);
   const dispatch = useDispatch();
   
-  useEffect(() => {
+  useEffect(async () => {
     const logout = () => {
       Cookies.remove('jwt');
       dispatch({ type: 'LOGOUT' });
@@ -40,7 +40,8 @@ function App() {
     }
 
     authenticate();
-    dispatch(getUserStatus);
+    const result = await dispatch(getUserStatus);
+    console.log('result :>> ', result);
   }, []);
 
 

@@ -30,6 +30,12 @@ router.get("/", async (req, res) => {
   res.send(posts);
 });
 
+router.get("/:id", async (req, res) => {
+  const posts = await Post.findById(req.params.id);
+  res.send(posts);
+});
+
+
 // creates a new post for a user.
 // req body must look like this:
 //     itemName: string,
@@ -41,7 +47,8 @@ router.get("/", async (req, res) => {
 router.post("/", multipartMiddleware, async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(req.user.id);
-    const file = req.files.file;
+    console.log('req.files :>> ', req.files);
+    const file = req.files ? req.files.file : null;
     const body = req.body;
     console.log(file, body);
     body.user = user.id;
@@ -57,21 +64,41 @@ router.post("/", multipartMiddleware, async (req, res) => {
             id: result.public_id, // image id on cloudinary server
             url: result.url, // image url on cloudinary server
           };
-          const post = new Post(body);
-          const createdPost = await post.save();
-          user.posts.push(createdPost);
-          await user.save();
-          res.send(createdPost);
         }
       );
-    } else {
-      res.status(400).send("user did not provide a picture");
-    }
+    } 
+    // else {
+    //   res.status(400).send("user did not provide a picture");
+    // }
+    const post = new Post(body);
+    const createdPost = await post.save();
+    user.posts.push(createdPost);
+    await user.save();
+    res.send(createdPost);
   } catch (err) {
     console.log("err :>> ", err);
     res.status(400);
     res.send({ err: err });
   }
 });
+
+router.put("/like", async (req, res) => {
+  try {
+    const user = req.user.id;
+    console.log('req.user :>> ', req.user);
+    const post = await Post.findById(req.body.post);
+    const likeIndex = post.likes.indexOf(user);
+    if (likeIndex > -1) {
+      post.likes.splice(likeIndex, 1);
+    } else {
+      post.likes.push(user);
+    }
+    await post.save();
+    res.send("Success!");
+  } catch (err) {
+    console.log('err :>> ', err);
+    res.status(400).send("Error liking picture");
+  }
+})
 
 module.exports = router;

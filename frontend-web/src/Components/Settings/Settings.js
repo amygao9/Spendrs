@@ -6,13 +6,14 @@ import { userLinks, users } from "../../constants";
 import { Button, ButtonGroup, ToggleButton} from "react-bootstrap";
 import { Link, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function Settings() {
   const dispatch = useDispatch();
   const history = useHistory();
   let user = users["Alex Shih"]
   const [radioValue, setRadioValue] = useState('1');
+  const userStatus = useSelector(state => state.userStatus);
 
   const radios = [
     { name: 'Private', value: '1' },

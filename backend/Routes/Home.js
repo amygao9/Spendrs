@@ -70,7 +70,6 @@ router.post("/signup", async (req, res) => {
     res.json({
       msg: "Account successfully created!",
       jwt: jwt,
-      id: newUser._id,
     });
   } catch (err) {
     console.log("signup err :>> ", err);

@@ -22,21 +22,15 @@ const postSchema = new mongoose.Schema(
     },
     description: String,
     price: {
-      type: Number,
-      get: getPrice,
-      set: setPrice,
+      type: Number
     },
+    likes:[{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    }]
   },
   { timestamps: true }
 );
-
-function getPrice(num) {
-  return (num / 100).toFixed(2);
-}
-
-function setPrice(num) {
-  return num * 100;
-}
 
 const Post = mongoose.model("Post", postSchema);
 
