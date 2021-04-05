@@ -5,8 +5,7 @@ import blob from '../../assets/blob.svg';
 import threeCharacters from '../../assets/3characters.svg'
 import RegistrationModal from './Registration';
 import { useHistory } from 'react-router-dom';
-import { useForm } from "react-hook-form"
-import { apiLogin } from '../../axios/home';
+import { useForm } from "react-hook-form";
 import { login } from '../../reducers/loggedInReducer';
 import { useDispatch } from 'react-redux';
 

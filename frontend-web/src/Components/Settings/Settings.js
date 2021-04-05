@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from "react-redux";
 function Settings() {
   const dispatch = useDispatch();
   const history = useHistory();
-
   const [radioValue, setRadioValue] = useState('1');
   const user = useSelector(state => state.userData);
 
@@ -26,6 +25,9 @@ function Settings() {
     Cookies.remove('jwt');
     dispatch({ type: 'LOGOUT' });
     history.push("/");
+  }
+  if (!user) {
+    return (<div className='home'> <Navbar links={userLinks} /> </div>)
   }
   
 

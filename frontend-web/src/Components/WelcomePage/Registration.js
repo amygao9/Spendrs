@@ -1,7 +1,7 @@
 
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
-import { apiSignup } from "../../axios/home";
+// import { apiSignup } from "../../axios/home";
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { signup } from '../../reducers/loggedInReducer';
@@ -47,8 +47,8 @@ function RegistrationModal(props) {
     resetErrors();
 
     try{
-      const response = await apiSignup(name, email, username, password, passwordStrength);
-      console.log(response);
+      // const response = await apiSignup(name, email, username, password, passwordStrength);
+      // console.log(response);
       history.push("/dashboard");
       dispatch({ type: 'LOGIN' });
     } catch (err) {
