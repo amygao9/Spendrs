@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import '../../styles/settings.css';
 import '../../styles/home.css';
@@ -8,12 +8,13 @@ import { Link, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { useDispatch, useSelector } from "react-redux";
 
+
 function Settings() {
   const dispatch = useDispatch();
   const history = useHistory();
-  let user = users["Alex Shih"]
+
   const [radioValue, setRadioValue] = useState('1');
-  const userData = useSelector(state => state.userData);
+  const user = useSelector(state => state.userData);
 
   const radios = [
     { name: 'Private', value: '1' },
@@ -27,6 +28,7 @@ function Settings() {
     dispatch({ type: "CLEAR_USER_STATUS" });
     history.push("/");
   }
+  
 
   return (
     <div>
@@ -39,7 +41,7 @@ function Settings() {
                   </Link>
                   <p className="mb-1">Username: @{user.username}</p>
                   <p className="mb-1">Email: {user.email}</p>
-                  <p className="mb-1">Date Registered: {user.register_date}</p>
+                  <p className="mb-1">Date Registered: {user.createdAt}</p>
                   {/* <Button onClick={() => props.handleDelete(user.username)} className="btn-default" id = "deleteButton"> Delete user</Button> */}
         </div>
 
@@ -69,12 +71,12 @@ function Settings() {
         <div className="list-group-item shadowSmall">
           <div className="settingsInfoContainer">
             <span> Reset Password </span> 
-            <Button className="settingsButton" variant="outline-info"> Reset </Button>
+            <Button className="settingsButton" variant="outline-info" onClick={() => console.log("Reset")}> Reset </Button>
           </div>
 
           <div className="settingsInfoContainer">
             <span> Delete Account </span> 
-            <Button className="settingsButton" variant="outline-danger">Delete</Button> <br></br>
+            <Button className="settingsButton" variant="outline-danger" onClick={() => console.log("Delete")}>Delete</Button> <br></br>
           </div>
         </div>
         <Button className="settingsButton" variant="outline-info" onClick={() => logout()}>LOGOUT</Button>
