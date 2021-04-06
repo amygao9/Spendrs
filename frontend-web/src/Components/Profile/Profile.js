@@ -4,33 +4,20 @@ import '../../styles/home.css';
 import ProfileDescription from "./ProfileDescription";
 import ProfilePosts from "./ProfilePosts";
 import { userLinks } from "../../constants";
-import { getUserInfo } from "../../axios/user";
+import {useSelector} from "react-redux";
 
 
 function Profile() {
-  const [user, setUser] = useState(null);
   const [editable, setEditable] = useState(true);
   const [loaded, setLoaded] = useState(false)
+  const user = useSelector(state => state.userData);
 
-  useEffect( () => {  // Changed to non-async func, async gives React warning.
-    getUserInfo().then((data) => {
-      setUser(data)
-      setLoaded(true);
-    }).catch(err => {
-      console.log("err: " + err)
-    })
-    // const path = window.location.pathname;
-    // setEditable(path === '/profile');
-    // let usertemp = path.substring(path.lastIndexOf('/') + 1);
-    // if (usertemp !== 'profile' && users[user]) {
-    //   setUser(users[user]);
-    // }
-    // else {
-    //   setUser(users['alexshih2018'])
-    // }
-
-  }, [])
-
+  useEffect( () => {
+    if (Object.keys(user).length > 0) {
+      console.log("useeffect user ", user)
+      setLoaded(true)
+    }
+  }, [user])
 
 
   if (!loaded) {

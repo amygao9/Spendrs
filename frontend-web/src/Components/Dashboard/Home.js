@@ -30,14 +30,7 @@ function Home(props) {
   const dispatch = useDispatch();
 
 
-  useEffect(() => {  // Changed to non-async func, async gives React warning.
-    // getUserInfo().then((data) => {
-    //   console.log('data :>> ', data);
-    //   setUser(data)
-    //   setLoaded(true);
-    // }).catch(err => {
-    //   console.log("err: " + err)
-    // });
+  useEffect(() => {
     dispatch(getInitialFeed);
     setLoaded(true);
   }, [])
