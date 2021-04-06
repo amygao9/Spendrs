@@ -38,7 +38,8 @@ router.get("/newsfeed", async (req, res) => {
       .sort({
         createdAt: -1,
       })
-      .limit(limit);
+      .limit(limit)
+      .populate('user');
 
     if (posts.length == 0) {
       res.send({ date: timeStamp, posts: [] });

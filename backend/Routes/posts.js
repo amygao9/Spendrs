@@ -24,7 +24,6 @@ router.get("/all", async (req, res) => {
 });
 
 // Gets all posts of a user
-// THIS IS NOT SECURE AND SHOULD BE REMOVED AFTER DEBUGGING
 router.get("/", async (req, res) => {
   const posts = await Post.find({ user: req.user.id });
   res.send(posts);

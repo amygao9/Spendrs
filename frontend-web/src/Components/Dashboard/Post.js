@@ -3,8 +3,8 @@ import '../../styles/home.css';
 import '../../styles/graphics.css';
 import { ReactTinyLink } from 'react-tiny-link';
 
-export default function Post({user, post}) {
-
+export default function Post({post}) {
+  const user = post.user
   const defaultAvatar = "https://mystickermania.com/cdn/stickers/memes/shut-up-and-take-my-money-meme.png"
   return (
     <div className="postContainer fadeIn">
@@ -13,7 +13,7 @@ export default function Post({user, post}) {
           className="profileImage"
           style={{position: "absolute"}}
           alt="profile"
-          src={user.image? user.image.url : defaultAvatar}
+          src={post.image? user.image.url : defaultAvatar}
         />
         <div className={"postHeader"}>
           <span className="bold"> {user.username}</span> spent
