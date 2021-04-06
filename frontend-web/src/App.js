@@ -33,12 +33,14 @@ function App() {
       if (jwt && jwt !== undefined) {
         dispatch({ type: 'LOGIN'});
       } else {
+        console.log("LOGGING OUT");
         logout();
       }
     }
 
     authenticate();
-    dispatch(getUserData);
+    await dispatch(getUserData);
+    console.log('userData :>> ', userData);
   }, []);
 
 

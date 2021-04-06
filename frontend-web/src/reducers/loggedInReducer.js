@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie'
 import {BASE_URL} from '../base_url';
+import { getUserData } from './userDataReducer';
 
 
 const initialState = {
@@ -36,7 +37,6 @@ const loggedInReducer = (state = initialState, action) => {
 
 export const login = (username, password) => async (dispatch, getState) => {
   try {
-    console.log('username :>> ', username);
     const user = await axios.post(BASE_URL + '/api/login', {
       username, password
     });
@@ -47,6 +47,7 @@ export const login = (username, password) => async (dispatch, getState) => {
 
     Cookies.set('jwt', user.data.jwt);
     dispatch({ type: 'LOGIN' });
+    dispatch(getUserData);
     return user.data.admin ? "admin" : "user";
   } catch (err) {
     console.log('err :>> ', err.response.data.err);
@@ -70,6 +71,7 @@ export const signup = (name, email, username, password, passwordStrength) => asy
 
     Cookies.set('jwt', user.data.jwt);
     dispatch({ type: 'LOGIN' });
+    dispatch(getUserData);
   } catch (err) {
     console.log(err.response.data.err)
     throw err.response.data.err; // throw the response body

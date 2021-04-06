@@ -25,13 +25,13 @@ function Analytics() {
   let date = new Date();
   let currentMonth = (date.getMonth() + 1).toString().padStart(2,0);
   const user = useSelector(state => state.userData);
+  console.log('user :>> ', user);
 
   useEffect( () => {
-    if (!user) {
-      return
+    if (!user || Object.keys(user).length == 0) {
+      return;
     }
     apiGetAllUserPosts().then((data) => {
-      console.log('data :>> ', data);
       let purchases = [[user.createdAt.slice(0,10), 0]]
       let cat = {}
       let month_spent = 0

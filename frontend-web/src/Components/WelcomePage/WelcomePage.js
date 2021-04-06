@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { login } from '../../reducers/loggedInReducer';
 import { useDispatch } from 'react-redux';
+import { getUserData } from '../../reducers/userDataReducer';
 
 function WelcomePage() {
   const [show, setShow] = useState(false);
@@ -26,11 +27,6 @@ function WelcomePage() {
       history.push('/admin');
     }
     try {
-      // const result = await apiLogin(data.username, data.password);
-      // if (result === 'user') {
-      //   history.push("/dashboard");
-      //   dispatch(login);
-      // }
       dispatch(login(data.username, data.password));
     } catch(err) {
       setLoginError(err)
