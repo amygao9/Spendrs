@@ -38,7 +38,7 @@ function App() {
     }
 
     authenticate();
-    await dispatch(getUserData);
+    dispatch(getUserData);
   }, []);
 
 

@@ -25,11 +25,14 @@ function Analytics() {
   let date = new Date();
   let currentMonth = (date.getMonth() + 1).toString().padStart(2,0);
   const user = useSelector(state => state.userData);
+
   useEffect( () => {
-    // getUserInfo().then((user) => {
-      
+    if (!user) {
+      return
+    }
     apiGetAllUserPosts().then((data) => {
-      console.log('posts :>> ', data);
+      console.log('data :>> ', data);
+      console.log('posts :>> ', posts);
       let purchases = [[user.createdAt.slice(0,10), 0]]
       let cat = {}
       let month_spent = 0
@@ -58,7 +61,7 @@ function Analytics() {
     }).catch(err => {
       console.log("err: " + err)
     })
-  }, [])
+  }, [user, posts])
 
   if (!loaded) {
     return (<div className='home'> <Navbar links={userLinks} /> </div>)
