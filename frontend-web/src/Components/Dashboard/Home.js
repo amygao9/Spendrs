@@ -5,15 +5,11 @@ import ShareForm from "./ShareForm";
 import {Container, Form, Row} from "react-bootstrap";
 import "../../styles/home.css";
 import Feed from "./Feed";
-import { postData, userLinks } from "../../constants";
-import { getUserInfo } from "../../axios/user";
-import {apiPost} from "../../axios/posts";
+import { userLinks } from "../../constants";
 import { useSelector, useDispatch, connect } from 'react-redux';
 import { getInitialFeed, createPost } from '../../reducers/postsReducer';
 
 function Home(props) {
-  // const [posts, setPosts] = useSelector(state => state.feedData.posts);
-  // const [posts, setPosts] = useState(postData);
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
   const [desc, setDesc] = useState("");
@@ -22,8 +18,6 @@ function Home(props) {
   const [loaded, setLoaded] = useState(false);
 
   const user = useSelector(state => state.userData);
-  // const feed = useSelector(state => state.postsData.feedPosts);
-  // console.log('feed :>> ', feed);
   console.log('props :>> ', props);
   const posts = props.posts;
 
@@ -35,6 +29,7 @@ function Home(props) {
     setLoaded(true);
   }, [])
 
+  // Pass this into form component. Used to update our states.
   const updateData = (e, type) => {
     if (type === "name") {
       setName(e.target.value);
@@ -59,26 +54,6 @@ function Home(props) {
       return;
     }
 
-    // below is for hard-coded data phase 1 and can be deleted once we fully transition to API
-    const newPost = {
-      id: Math.floor(Math.random() * 100000000000),
-      timestamp: new Date(),
-      userName: "alexshih2018",
-      price: price,
-      itemName: name,
-      link: link,
-      image: "",
-      caption: desc,
-      likes: [],
-      shares: [],
-      comments: [],
-    };
-
-    setName("");
-    setLink("");
-    setPrice(0);
-    setDesc("");
-
     // Phase 2 api stuff
     const form = new FormData()
     form.append("file", file)
@@ -95,6 +70,7 @@ function Home(props) {
       console.log(err);
     }
   };
+
   if (!loaded) return (<div className="home"> <Navbar links={userLinks} /> </div>)
 
   return (
