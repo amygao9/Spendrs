@@ -34,7 +34,6 @@ router.get("/:id", async (req, res) => {
   res.send(posts);
 });
 
-
 // creates a new post for a user.
 // req body must look like this:
 //     itemName: string,
@@ -46,7 +45,7 @@ router.get("/:id", async (req, res) => {
 router.post("/", multipartMiddleware, async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(req.user.id);
-    console.log('req.files :>> ', req.files);
+    console.log("req.files :>> ", req.files);
     const file = req.files ? req.files.file : null;
     const body = req.body;
     console.log(file, body);
@@ -65,7 +64,7 @@ router.post("/", multipartMiddleware, async (req, res) => {
           };
         }
       );
-    } 
+    }
     // else {
     //   res.status(400).send("user did not provide a picture");
     // }
@@ -84,7 +83,10 @@ router.post("/", multipartMiddleware, async (req, res) => {
 router.put("/like", async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
-    const post = await Post.findById(req.body.post);
+    const post = await Post.findById(req.body.post).populate(
+      "comments.author",
+      "image.url"
+    );
     const likeIndex = post.likes.indexOf(user.username);
     if (likeIndex > -1) {
       post.likes.splice(likeIndex, 1);
@@ -94,10 +96,10 @@ router.put("/like", async (req, res) => {
     await post.save();
     res.send(post);
   } catch (err) {
-    console.log('err :>> ', err);
+    console.log("err :>> ", err);
     res.status(400).send("Error liking picture");
   }
-})
+});
 
 /*
 Add comment to a post. request body looks like
@@ -107,17 +109,17 @@ router.post("/:postId/comment", async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
     const post = await Post.findById(req.params.postId);
-    console.log(req.params.postId, post)
+    console.log(req.params.postId, post);
     post.comments.push({
       author: user,
-      comment: req.body.comment
-    })
+      comment: req.body.comment,
+    });
     await post.save();
     res.send(post);
   } catch (err) {
-    console.log('err :>> ', err);
+    console.log("err :>> ", err);
     res.status(400).send("Error posting comment");
   }
-})
+});
 
 module.exports = router;
