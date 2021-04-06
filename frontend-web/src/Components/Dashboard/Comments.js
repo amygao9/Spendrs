@@ -3,24 +3,24 @@ import "../../styles/comments.css";
 import "../../styles/graphics.css";
 import UseAnimations from 'react-useanimations';
 import heart from 'react-useanimations/lib/heart'
-import {FaShare} from 'react-icons/fa';
 import { useDispatch } from "react-redux";
 import { likePost } from "../../reducers/postsReducer";
+import {apiMakeComment} from "../../axios/posts";
 
 
-function Comment(props) {
+function Comment({comment}) {
   return (
     <div className="commentContainer">
-      {/* <div className="imageContainer">
+      <div className="imageContainer">
         <img
           className="profileImage"
           alt="profile"
-          src={props.image.url}
+          src={comment.author.image.url}
         />
-      </div> */}
+      </div>
       <div className="textContainer">
-        <span className="commentName"> {props.userName} </span>
-        <div className="commentTextContainer">{props.comment}</div>
+        <span className="commentName"> {comment.author.name} </span>
+        <div className="commentTextContainer">{comment.comment}</div>
       </div>
     </div>
   );
@@ -38,24 +38,14 @@ function Comments({post, user}) {
 
   const dispatch = useDispatch();
 
-  // either this should be passed in by parents or this could be an api call
-  const tempComments = post.comments || [
-    {
-      profile: "https://cdn.frankerfacez.com/emoticon/336471/4",
-      userName: "alex shih",
-      comment: `Somebody once told me the world is gonna roll me I ain't the sharpest
-      tool in the shed She was looking kind of dumb with her finger and her
-      thumb In the shape of an "L" on her forehead`,
-    },
-  ];
-
   const defaultAvatar = "https://mystickermania.com/cdn/stickers/memes/shut-up-and-take-my-money-meme.png"
 
-  const userProfile = user.image || defaultAvatar;
+  const userProfile = user.image.url || defaultAvatar;
 
   const [input, setInput] = useState("");
 
-  const [comments, setComments] = useState(tempComments);
+  const comments = post.comments
+  console.log(post)
 
   return (
     <div className="mainContainer fadeIn">
@@ -72,12 +62,11 @@ function Comments({post, user}) {
 
         />
         <button style={{background: "transparent", borderWidth: "0"}}>
-        <FaShare className={"shareIcon"}/>
         </button>
       </div>
       <div className="commentsContainer">
         {comments.map((comment, index) => (
-          <Comment key={index} {...comment} />
+          <Comment key={index} comment={comment} />
         ))}
       </div>
       <div className="commentsInputContainer">
@@ -92,15 +81,8 @@ function Comments({post, user}) {
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter" && input !== "") {
-              setInput("");
-              setComments([
-                ...comments,
-                {
-                  profilePicture: userProfile,
-                  userName: user,
-                  comment: input,
-                },
-              ]);
+              console.log("input " + input)
+              apiMakeComment(post._id, input)
             }
           }}
         />

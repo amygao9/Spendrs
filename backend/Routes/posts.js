@@ -103,10 +103,11 @@ router.put("/like", async (req, res) => {
 Add comment to a post. request body looks like
 {comment: ""}
  */
-router.post("/:postId/comment", multipartMiddleware, async (req, res) => {
+router.post("/:postId/comment", async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
-    const post = await Post.findById(req.params.id);
+    const post = await Post.findById(req.params.postId);
+    console.log(req.params.postId, post)
     post.comments.push({
       author: user,
       comment: req.body.comment

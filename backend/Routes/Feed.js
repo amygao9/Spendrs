@@ -39,7 +39,13 @@ router.get("/newsfeed", async (req, res) => {
         createdAt: -1,
       })
       .limit(limit)
-      .populate('user');
+      .populate({path: 'user', select: 'name image'})
+      .populate({path: 'comments',
+        populate: {
+          path: 'author',
+          select: 'name image'
+        }
+      });
 
     if (posts.length == 0) {
       res.send({ date: timeStamp, posts: [] });
