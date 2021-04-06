@@ -32,7 +32,6 @@ function Analytics() {
     }
     apiGetAllUserPosts().then((data) => {
       console.log('data :>> ', data);
-      console.log('posts :>> ', posts);
       let purchases = [[user.createdAt.slice(0,10), 0]]
       let cat = {}
       let month_spent = 0
@@ -61,7 +60,7 @@ function Analytics() {
     }).catch(err => {
       console.log("err: " + err)
     })
-  }, [user, posts])
+  }, [user])
 
   if (!loaded) {
     return (<div className='home'> <Navbar links={userLinks} /> </div>)
