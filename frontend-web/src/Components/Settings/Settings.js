@@ -8,13 +8,16 @@ import { Link, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { useDispatch, useSelector } from "react-redux";
 import {changeUserPrivacy} from "../../axios/user";
-
+import PasswordModal from "./SettingsModal"
+import DeleteModal from "./DeleteAccountModal"
 function Settings() {
   const dispatch = useDispatch();
   const history = useHistory();
   
   const user = useSelector(state => state.userData);
   const [radioValue, setRadioValue] = useState(user.privacy);
+  const [modalShow, setModalShow] = useState(false);
+  const [deleteModalShow, setDeleteModalShow] = useState(false);
 
   const radios = [
     { name: 'Private', value: 'Private' },
@@ -77,12 +80,20 @@ function Settings() {
         <div className="list-group-item shadowSmall">
           <div className="settingsInfoContainer">
             <span> Reset Password </span> 
-            <Button className="settingsButton" variant="outline-info" onClick={() => console.log("Reset")}> Reset </Button>
+            <Button className="settingsButton" variant="outline-info" onClick={() => setModalShow(true)}> Reset </Button>
+            <PasswordModal
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+            />
           </div>
 
           <div className="settingsInfoContainer">
             <span> Delete Account </span> 
-            <Button className="settingsButton" variant="outline-danger" onClick={() => console.log("Delete")}>Delete</Button> <br></br>
+            <Button className="settingsButton" variant="outline-danger" onClick={() => setDeleteModalShow(true)}>Delete</Button> <br></br>
+            <DeleteModal
+              show={deleteModalShow}
+              onHide={() => setDeleteModalShow(false)}
+            />
           </div>
         </div>
         <Button className="settingsButton" variant="outline-info" onClick={() => logout()}>LOGOUT</Button>
