@@ -85,7 +85,7 @@ router.put("/like", async (req, res) => {
     const user = await User.findById(req.user.id);
     const post = await Post.findById(req.body.post).populate(
       "comments.author",
-      "image.url"
+      "image.url name"
     );
     const likeIndex = post.likes.indexOf(user.username);
     if (likeIndex > -1) {
@@ -108,7 +108,10 @@ Add comment to a post. request body looks like
 router.post("/:postId/comment", async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
-    const post = await Post.findById(req.params.postId);
+    const post = await Post.findById(req.params.postId).populate(
+      "comments.author",
+      "image.url name"
+    );
     console.log(req.params.postId, post);
     post.comments.push({
       author: user,

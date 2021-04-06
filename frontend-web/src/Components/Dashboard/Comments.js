@@ -4,8 +4,8 @@ import "../../styles/graphics.css";
 import UseAnimations from "react-useanimations";
 import heart from "react-useanimations/lib/heart";
 import { useDispatch } from "react-redux";
-import { likePost } from "../../reducers/postsReducer";
-import { apiMakeComment } from "../../axios/posts";
+import { likePost, commentOnPost } from "../../reducers/postsReducer";
+// import { apiMakeComment } from "../../axios/posts";
 
 function Comment({ comment }) {
   return (
@@ -47,7 +47,7 @@ function Comments({ post, user }) {
   const defaultAvatar =
     "https://mystickermania.com/cdn/stickers/memes/shut-up-and-take-my-money-meme.png";
 
-  console.log('user :>> ', user);
+  console.log("user :>> ", user);
   const userProfile = user.image ? user.image.url : defaultAvatar;
 
   const [input, setInput] = useState("");
@@ -91,8 +91,10 @@ function Comments({ post, user }) {
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter" && input !== "") {
-              console.log("input " + input);
-              apiMakeComment(post._id, input);
+              dispatch(commentOnPost(post._id, input));
+              setInput("");
+              // console.log("input " + input);
+              // apiMakeComment(post._id, input);
             }
           }}
         />
