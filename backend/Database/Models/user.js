@@ -49,6 +49,10 @@ const userSchema = new mongoose.Schema(
       },
     ],
     register_date: Date,
+    privacy: {
+      type: String,
+      default: "Private",
+    }, 
   },
   { timestamps: true }
 );

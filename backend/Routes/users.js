@@ -117,4 +117,24 @@ router.get("/findUser", async (req, res) => {
   }
 });
 
+
+/* Route for changing privacy
+Request body expects:
+{
+	"privacy": <string> (one of "Public", "Private", "Friends Only")
+}
+*/
+router.patch('/changePrivacy', async (req, res) => {
+	try {
+    const id = req.user.id
+    const user = await User.findById(id);
+    user.privacy = req.body.privacy
+
+    await user.save();
+    res.send(user);
+  } catch (err) {
+    res.status(500).send({ err: err });
+  }
+});
+
 module.exports = router;

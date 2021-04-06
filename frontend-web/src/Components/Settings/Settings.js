@@ -7,18 +7,19 @@ import { Button, ButtonGroup, ToggleButton} from "react-bootstrap";
 import { Link, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { useDispatch, useSelector } from "react-redux";
-
+import {changeUserPrivacy} from "../../axios/user";
 
 function Settings() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [radioValue, setRadioValue] = useState('1');
+  
   const user = useSelector(state => state.userData);
+  const [radioValue, setRadioValue] = useState(user.privacy);
 
   const radios = [
-    { name: 'Private', value: '1' },
-    { name: 'Friends Only', value: '2' },
-    { name: 'Public', value: '3' },
+    { name: 'Private', value: 'Private' },
+    { name: 'Friends Only', value: 'Friends Only' },
+    { name: 'Public', value: 'Public' },
   ];
 
   const logout = () => {
@@ -26,10 +27,14 @@ function Settings() {
     dispatch({ type: 'LOGOUT' });
     history.push("/");
   }
+
+  const changePrivacy = (e) => {
+    setRadioValue(e.currentTarget.value)
+    changeUserPrivacy(e.currentTarget.value)
+  }
   if (!user) {
     return (<div className='home'> <Navbar links={userLinks} /> </div>)
-  }
-  
+  } 
 
   return (
     <div>
@@ -42,7 +47,7 @@ function Settings() {
                   </Link>
                   <p className="mb-1">Username: @{user.username}</p>
                   <p className="mb-1">Email: {user.email}</p>
-                  <p className="mb-1">Date Registered: {user.createdAt.slice(0,10)}</p>
+                  {/* <p className="mb-1">Date Registered: {user.createdAt.slice(0,10)}</p> */}
                   {/* <Button onClick={() => props.handleDelete(user.username)} className="btn-default" id = "deleteButton"> Delete user</Button> */}
         </div>
 
@@ -59,7 +64,7 @@ function Settings() {
                   name="radio"
                   value={radio.value}
                   checked={radioValue === radio.value}
-                  onChange={(e) => setRadioValue(e.currentTarget.value)}
+                  onChange={e => changePrivacy(e)}
                   id = "selectionButtons"
                 >
                   {radio.name}
