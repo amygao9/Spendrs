@@ -25,7 +25,7 @@ router.get("/all", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const user = await User.findById(req.user.id);
+    const user = await User.findById(req.user.id).populate('posts');
     res.send(user);
   } catch (err) {
     console.log(err);

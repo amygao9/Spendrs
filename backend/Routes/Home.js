@@ -65,7 +65,8 @@ router.post("/signup", async (req, res) => {
 
   try {
     const newUser = await user.save();
-    console.log("newUser :>> ", newUser);
+    newUser.following.push(newUser._id);
+    await user.save();
     const jwt = getJWT(newUser._id);
     res.json({
       msg: "Account successfully created!",
