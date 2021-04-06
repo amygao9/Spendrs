@@ -31,35 +31,32 @@ function Analytics() {
     if (!user || Object.keys(user).length == 0) {
       return;
     }
-    apiGetAllUserPosts().then((data) => {
-      let purchases = [[user.createdAt.slice(0,10), 0]]
-      let cat = {}
-      let month_spent = 0
-      for (var post in data) {
-        purchases.push([data[post].updatedAt.slice(0,10), data[post].price])
-        if (data[post].itemCategory == "") {
-          data[post].itemCategory = "misc"
-        }
-        if (cat[data[post].itemCategory]) {
-          cat[data[post].itemCategory] += data[post].price
-        }
-        else {
-          cat[data[post].itemCategory] = data[post].price
-        }
-        
-        if (data[post].updatedAt.slice(5,7) == currentMonth) {
-          month_spent += data[post].price
-        }
-          
+    
+    let purchases = [[user.createdAt.slice(0,10), 0]]
+    let cat = {}
+    let month_spent = 0
+    for (var post in user.posts) {
+      purchases.push([user.posts[post].updatedAt.slice(0,10), user.posts[post].price])
+      if (user.posts[post].itemCategory == "") {
+        user.posts[post].itemCategory = "misc"
       }
-      setmonthSpending(month_spent)
-      setmonthTimeSeries(purchases)
-      setcategories(cat)
-      setLoaded(true);
+      if (cat[user.posts[post].itemCategory]) {
+        cat[user.posts[post].itemCategory] += user.posts[post].price
+      }
+      else {
+        cat[user.posts[post].itemCategory] = user.posts[post].price
+      }
       
-    }).catch(err => {
-      console.log("err: " + err)
-    })
+      if (user.posts[post].updatedAt.slice(5,7) == currentMonth) {
+        month_spent += user.posts[post].price
+      }
+        
+    }
+    setmonthSpending(month_spent)
+    setmonthTimeSeries(purchases)
+    setcategories(cat)
+    setLoaded(true);
+      
   }, [user])
 
   if (!loaded) {

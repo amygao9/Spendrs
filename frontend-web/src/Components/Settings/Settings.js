@@ -42,7 +42,7 @@ function Settings() {
                   </Link>
                   <p className="mb-1">Username: @{user.username}</p>
                   <p className="mb-1">Email: {user.email}</p>
-                  <p className="mb-1">Date Registered: {user.createdAt}</p>
+                  <p className="mb-1">Date Registered: {user.createdAt.slice(0,10)}</p>
                   {/* <Button onClick={() => props.handleDelete(user.username)} className="btn-default" id = "deleteButton"> Delete user</Button> */}
         </div>
 
