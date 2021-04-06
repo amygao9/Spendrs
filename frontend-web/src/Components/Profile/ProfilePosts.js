@@ -5,7 +5,7 @@ import Post from "../Dashboard/Post";
 import {apiGetAllUserPosts} from "../../axios/posts";
 
 
-function ProfilePosts({ editable, user }) {
+function ProfilePosts({ user }) {
 
   const [posts, setPosts] = useState([])
 
