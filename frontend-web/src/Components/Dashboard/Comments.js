@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import "../../styles/comments.css";
 import "../../styles/graphics.css";
 import UseAnimations from 'react-useanimations';
@@ -15,7 +15,7 @@ function Comment({comment}) {
         <img
           className="profileImage"
           alt="profile"
-          src={comment.author.image.url}
+          src={comment.author?.image?.url || "https://mystickermania.com/cdn/stickers/memes/shut-up-and-take-my-money-meme.png"}
         />
       </div>
       <div className="textContainer">
@@ -55,7 +55,7 @@ function Comments({post, user}) {
           animation={heart}
           size={40}
           // strokeColor={"inherit"}
-          reverse={true}
+          reverse={user.username in post.likes}
           onClick={() => {
             dispatch(likePost(post._id));
           }}
