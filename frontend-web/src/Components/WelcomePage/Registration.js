@@ -47,10 +47,8 @@ function RegistrationModal(props) {
     resetErrors();
 
     try{
-      // const response = await apiSignup(name, email, username, password, passwordStrength);
-      // console.log(response);
+      dispatch(signup(name, email, username, password, passwordStrength));
       history.push("/dashboard");
-      dispatch({ type: 'LOGIN' });
     } catch (err) {
       setErrors(err);
     }

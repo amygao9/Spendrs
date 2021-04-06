@@ -20,6 +20,7 @@ function Home(props) {
   const user = useSelector(state => state.userData);
   console.log('props :>> ', props);
   const posts = props.posts;
+  console.log('posts :>> ', posts);
 
   const dispatch = useDispatch();
 
@@ -100,6 +101,7 @@ function Home(props) {
 
 const mapStateToProps = (state) => {
   console.log('state :>> ', state);
+  console.log('state.postsData.feedPosts :>> ', state.postsData.feedPosts);
   return { posts: state.postsData.feedPosts };
 }
 

@@ -73,7 +73,7 @@ export const createPost = post => async (dispatch, getState) => {
     const result = await client.post(BASE_URL + '/api/posts', post);
     feedPosts.unshift(result.data);
 
-    dispatch({ type: "UPDATE_FEED", payload: { feedPosts: feedPosts } });
+    dispatch({ type: "UPDATE_FEED", payload: { feedPosts: [...feedPosts] } });
   } catch (err) {
     console.log('err :>> ', err);
   }

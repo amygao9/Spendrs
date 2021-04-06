@@ -47,7 +47,8 @@ function Comments({ post, user }) {
   const defaultAvatar =
     "https://mystickermania.com/cdn/stickers/memes/shut-up-and-take-my-money-meme.png";
 
-  const userProfile = user.image.url || defaultAvatar;
+  console.log('user :>> ', user);
+  const userProfile = user.image ? user.image.url : defaultAvatar;
 
   const [input, setInput] = useState("");
 

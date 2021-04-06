@@ -22,5 +22,6 @@ export async function getUserData(dispatch, getState) {
     return result;
   } catch (err) {
     console.log('err :>> ', err);
+    throw err;
   }
 }

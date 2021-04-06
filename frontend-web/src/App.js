@@ -39,8 +39,14 @@ function App() {
     }
 
     authenticate();
-    await dispatch(getUserData);
-    console.log('userData :>> ', userData);
+    try {
+      const result = await dispatch(getUserData);
+      console.log('result :>> ', result);
+      console.log('userData :>> ', userData);
+    } catch (err) {
+      console.log('err :>> ', err);
+      logout();
+    }
   }, []);
 
 
