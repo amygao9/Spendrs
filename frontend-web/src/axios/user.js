@@ -46,3 +46,20 @@ export const changeUserPrivacy = async (privacy) => {
     // throw err;
   }
 }
+
+export const deleteUser = async () => {
+  try {
+    const user = await client.delete(BASE_URL + '/api/users/deleteUser');
+
+    if (!user || user.status !== 200 || typeof(user.data) == "string") {
+      console.log(user)
+      throw Error('Error: User received from API but not correctly formatted');
+    }
+    console.log("User deleted :>>", user.data);
+    return user.data;
+  } catch (err) {
+    console.log(err);
+    alert("Error patching user data!")
+    // throw err;
+  }
+}

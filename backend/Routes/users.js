@@ -137,4 +137,21 @@ router.patch('/changePrivacy', async (req, res) => {
   }
 });
 
+router.delete('/deleteUser', async (req, res) => {
+	try {
+    const id = req.user.id
+    
+    const user = await User.findByIdAndRemove(id)
+		if (!user) {
+			res.status(404).send()
+		} else {   
+			res.send(user)
+		}
+
+  } catch (err) {
+    console.log(error)
+		res.status(500).send() // server error, could not delete.
+  }
+});
+
 module.exports = router;
