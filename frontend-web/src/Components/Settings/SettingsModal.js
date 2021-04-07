@@ -6,6 +6,8 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { signup } from '../../reducers/loggedInReducer';
 import PasswordStrengthBar from 'react-password-strength-bar';
+import {changePassword} from "../../axios/user";
+
 function PasswordModal(props) {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -13,10 +15,16 @@ function PasswordModal(props) {
     const [confirmpass, setConfirmPass] = useState("");
     const [password, setPassword] = useState("");
     const [passwordStrength, setStrength] = useState(0)
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("new password: ", confirmpass)
-    
+        changePassword(oldpass, password, confirmpass, passwordStrength).then((data) => {
+          console.log("change password successful!")
+          
+        }).catch(err => {
+          console.log("err: " + err)
+        })
         // try{
         //   dispatch(signup(name, email, username, password, passwordStrength));
         //   history.push("/dashboard");
