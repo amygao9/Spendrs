@@ -14,7 +14,7 @@ const router = express.Router();
  * date: isoString for the last post
  * posts: array of posts
  */
-router.get("/newsfeed", async (req, res) => {
+router.post("/newsfeed", async (req, res) => {
   try {
     let timeStamp;
     if (req.body.date !== undefined) {
@@ -27,7 +27,7 @@ router.get("/newsfeed", async (req, res) => {
       return;
     }
 
-    const limit = req.query.num ? parseInt(req.query.num) : 50;
+    const limit = req.body.num ? parseInt(req.body.num) : 50;
 
     const user = await User.findById(req.user.id);
 

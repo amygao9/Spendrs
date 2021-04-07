@@ -28,17 +28,10 @@ const postsReducer = (state = initialState, action) => {
 
 export async function getInitialFeed(dispatch, getState) {
   try {
-    const state = getState();
-    const { feedPosts, date } = state.postsData;
-
-    const result = await client.get(BASE_URL + "/api/feed/newsfeed", {
-      params: {
-        num: 5,
-        date: date,
-      },
+    const result = await client.post(BASE_URL + '/api/feed/newsfeed', {
+      num: 5
     });
 
-    // const newPosts = feedPosts.concat(result.data.posts);
     dispatch({
       type: "UPDATE_FEED",
       payload: { feedPosts: result.data.posts },
@@ -49,23 +42,21 @@ export async function getInitialFeed(dispatch, getState) {
   }
 }
 
-export async function fetchFeedContent(dispatch, getState) {
+export async function loadFeedContent(dispatch, getState) {
+  // load 5 additional posts when called
   try {
     const state = getState();
     const { feedPosts, date } = state.postsData;
+    console.log('feedPosts :>> ', feedPosts);
 
-    const result = await client.get(BASE_URL + "/api/feed/newsfeed", {
-      params: {
-        num: 5,
-        date: date,
-      },
+    const result = await client.post(BASE_URL + "/api/feed/newsfeed", {
+      num: 5,
+      date: date,
     });
 
     const newPosts = feedPosts.concat(result.data.posts);
-    dispatch({
-      type: "UPDATE_FEED",
-      payload: { feedPosts: result.data.posts },
-    });
+    console.log('newPosts :>> ', newPosts);
+    dispatch({ type: "UPDATE_FEED", payload: { feedPosts: [...newPosts] } });
     dispatch({ type: "UPDATE_DATE", payload: { date: result.data.date } });
   } catch (err) {
     console.log("err :>> ", err);

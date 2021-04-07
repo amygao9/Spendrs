@@ -4,22 +4,41 @@ import "../../styles/home.css";
 import Post from "./Post";
 import Comments from "./Comments";
 import TimeAgo from "../utils/TimeAgo";
+import InfiniteScroll from 'react-infinite-scroller';
+import { useDispatch } from "react-redux";
+import { loadFeedContent } from "../../reducers/postsReducer";
 
 export default function Feed({ postData, user }) {
-  console.log('postData :>> ', postData);
-  const getFeedPosts = () => {
-    return postData.map((post, index) => {
-      return (
-        <LazyLoad height={200} style={{ marginBottom: "30px" }} key={index}>
-          <TimeAgo timestamp={post.createdAt}/>
-          <div className={"feedItemContainer spendrCard shadowMedium"}>
+  const dispatch = useDispatch();
 
-            <Post post={post} />
-            <Comments post={post} user={user} key={post.id} />
-          </div>
-        </LazyLoad>
-      );
-    });
+  const loadFunc = () => {
+    dispatch(loadFeedContent);
+    console.log('postData :>> ', postData);
+  }
+
+  const getFeedPosts = () => {
+    return (
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={loadFunc}
+        hasMore={true}
+        loader={<h3 className="loader" key={0}>Loading ...</h3>}
+      >
+        {
+          postData.map((post, index) => {
+            return (
+              <LazyLoad height={200} style={{ marginBottom: "30px" }} key={index}>
+                <TimeAgo timestamp={post.createdAt}/>
+                <div className={"feedItemContainer spendrCard shadowMedium"}>
+                  <Post post={post} />
+                  <Comments post={post} user={user} key={post.id} />
+                </div>
+              </LazyLoad>
+            );
+          })
+        }
+      </InfiniteScroll>
+    )
   };
 
   return (

@@ -47,16 +47,14 @@ function Comments({ post, user }) {
   const defaultAvatar =
     "https://mystickermania.com/cdn/stickers/memes/shut-up-and-take-my-money-meme.png";
 
-  console.log("user :>> ", user);
   const userProfile = user.image ? user.image.url : defaultAvatar;
 
   const [input, setInput] = useState("");
 
   const comments = post.comments;
-  console.log(post);
-  if (post.itemName == "tacobell") {
-    console.log(user.username, post.likes);
-  }
+  // if (post.itemName == "tacobell") {
+  //   console.log(user.username, post.likes);
+  // }
   return (
     <div className="mainContainer fadeIn">
       <div className="likesContainer">{status}</div>

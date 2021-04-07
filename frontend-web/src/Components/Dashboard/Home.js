@@ -8,6 +8,7 @@ import Feed from "./Feed";
 import { userLinks } from "../../constants";
 import { useSelector, useDispatch, connect } from 'react-redux';
 import { getInitialFeed, createPost } from '../../reducers/postsReducer';
+import { URLRegex } from "../utils/utils";
 
 function Home(props) {
   const [name, setName] = useState("");
@@ -18,11 +19,10 @@ function Home(props) {
   const [loaded, setLoaded] = useState(false);
 
   const user = useSelector(state => state.userData);
-  console.log('props :>> ', props);
   const posts = props.posts;
-  console.log('posts :>> ', posts);
 
   const dispatch = useDispatch();
+
 
 
   useEffect(() => {
@@ -53,6 +53,14 @@ function Home(props) {
     if (name === "") {
       alert("Name can't be blank.");
       return;
+    }
+
+    console.log('link.match(URLRegex) :>> ', link.match(URLRegex));
+    if (link.length != 0) {
+      if (!link.match(URLRegex)) {
+        alert("Not a valid website URL.");
+        return;
+      }
     }
 
     // Phase 2 api stuff
@@ -100,8 +108,6 @@ function Home(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log('state :>> ', state);
-  console.log('state.postsData.feedPosts :>> ', state.postsData.feedPosts);
   return { posts: state.postsData.feedPosts };
 }
 
