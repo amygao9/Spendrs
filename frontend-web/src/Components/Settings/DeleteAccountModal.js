@@ -2,11 +2,25 @@ import React, { useState } from "react";
 import '../../styles/home.css';
 import '../../styles/profile.css';
 import { Modal, Button } from "react-bootstrap";
-
+import {deleteUser} from "../../axios/user";
+import Cookies from 'js-cookie';
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from 'react-router-dom';
 function DeleteModal(props) {
+  const dispatch = useDispatch();
+  const history = useHistory();
 
     const handleDelete = () => {
-        console.log("confirm delete")
+      
+      deleteUser().then((data) => {
+        Cookies.remove('jwt');
+        dispatch({ type: 'LOGOUT' });
+        history.push("/");
+        
+      }).catch(err => {
+        console.log("err: " + err)
+      })
+        
     }
     return (
       <Modal
