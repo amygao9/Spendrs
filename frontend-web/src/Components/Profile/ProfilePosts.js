@@ -6,23 +6,10 @@ import {apiGetAllUserPosts} from "../../axios/posts";
 
 
 function ProfilePosts({ user }) {
-
-  const [posts, setPosts] = useState([])
-
-  useEffect( () => {
-    apiGetAllUserPosts().then((data) => {
-      console.log('data :>> ', data);
-      setPosts(data)
-    }).catch(err => {
-      console.log("err: " + err)
-    })
-  }, [])
-
   const getFeedPosts = () => {
-    return posts.map((post) => {
-      console.log("post" + post)
-      return <LazyLoad key={user} height={200}>
-          <Post key={post.id} user={user} post={post}/>
+    return user.posts.map((post, index) => {
+      return <LazyLoad key={index} height={200}>
+          <Post key={index} user={user} post={post}/>
       </LazyLoad>
     })
   }
