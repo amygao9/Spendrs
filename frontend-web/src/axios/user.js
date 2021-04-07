@@ -58,7 +58,24 @@ export const deleteUser = async () => {
     return user.data;
   } catch (err) {
     console.log(err);
-    alert("Error patching user data!")
+    alert("Error deleting user!")
+    // throw err;
+  }
+}
+
+
+export const changePassword = async (oldPass, password, confirmPass, passwordStrength) => {
+  try {
+    const user = await client.patch(BASE_URL + '/api/users/changePassword', {"oldPass": oldPass, "password": password, "confirmPass": confirmPass, "passwordStrength": passwordStrength});
+
+    if (!user ||  typeof(user.data) == "string") {
+      console.log(user)
+      throw Error('Error: User received from API but not correctly formatted');
+    }
+    return user.data;
+  } catch (err) {
+    console.log(err);
+    alert("Error changing user password!")
     // throw err;
   }
 }

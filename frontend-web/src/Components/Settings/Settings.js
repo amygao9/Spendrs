@@ -18,12 +18,21 @@ function Settings() {
   const [radioValue, setRadioValue] = useState(user.privacy);
   const [modalShow, setModalShow] = useState(false);
   const [deleteModalShow, setDeleteModalShow] = useState(false);
-
+  const [loaded, setLoaded] = useState(false)
   const radios = [
     { name: 'Private', value: 'Private' },
     { name: 'Friends Only', value: 'Friends Only' },
     { name: 'Public', value: 'Public' },
   ];
+
+  useEffect( () => {
+    if (!user || Object.keys(user).length == 0) {
+      return;
+    }
+    setRadioValue(user.privacy)
+    setLoaded(true);
+      
+  }, [user])
 
   const logout = () => {
     Cookies.remove('jwt');
@@ -35,7 +44,7 @@ function Settings() {
     setRadioValue(e.currentTarget.value)
     changeUserPrivacy(e.currentTarget.value)
   }
-  if (!user) {
+  if (!loaded) {
     return (<div className='home'> <Navbar links={userLinks} /> </div>)
   } 
 
