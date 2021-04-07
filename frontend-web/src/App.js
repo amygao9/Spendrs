@@ -24,14 +24,14 @@ function App() {
   useEffect(async () => {
     const logout = () => {
       Cookies.remove('jwt');
-      dispatch({ type: 'LOGOUT' });
+      dispatch({ type: 'home/logout' });
       history.push("/");
     }
 
     const authenticate = () => {
       let jwt = Cookies.get('jwt');
       if (jwt && jwt !== undefined) {
-        dispatch({ type: 'LOGIN'});
+        dispatch({ type: 'loggedIn/login'});
       } else {
         console.log("LOGGING OUT");
         logout();

@@ -18,8 +18,11 @@ function Home(props) {
   const [file, setFile] = useState(null);
   const [loaded, setLoaded] = useState(false);
 
-  const user = useSelector(state => state.userData);
+  // const user = useSelector(state => state.userData);
+  const user = props.user;
   const posts = props.posts;
+  const finishedLoading = props.finishedLoading;
+  console.log('finishedLoading :>> ', finishedLoading);
 
   const dispatch = useDispatch();
 
@@ -55,7 +58,6 @@ function Home(props) {
       return;
     }
 
-    console.log('link.match(URLRegex) :>> ', link.match(URLRegex));
     if (link.length != 0) {
       if (!link.match(URLRegex)) {
         alert("Not a valid website URL.");
@@ -99,7 +101,7 @@ function Home(props) {
           </div>
           <div id="feedContainer">
             {/* we need to feed in the user we are logged in as */}
-            <Feed postData={posts} user={user} />
+            <Feed postData={posts} user={user} finishedLoading={finishedLoading} />
           </div>
         </Row>
       </Container>
@@ -108,7 +110,11 @@ function Home(props) {
 }
 
 const mapStateToProps = (state) => {
-  return { posts: state.postsData.feedPosts };
+  return { 
+    user: state.userData,
+    posts: state.postsData.feedPosts,
+    finishedLoading: state.postsData.finishedLoading
+   };
 }
 
 export default connect(mapStateToProps)(Home);

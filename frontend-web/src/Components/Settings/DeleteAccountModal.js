@@ -14,7 +14,7 @@ function DeleteModal(props) {
       
       deleteUser().then((data) => {
         Cookies.remove('jwt');
-        dispatch({ type: 'LOGOUT' });
+        dispatch({ type: 'home/logout' });
         history.push("/");
         
       }).catch(err => {

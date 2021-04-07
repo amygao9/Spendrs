@@ -5,15 +5,14 @@ import Post from "./Post";
 import Comments from "./Comments";
 import TimeAgo from "../utils/TimeAgo";
 import InfiniteScroll from 'react-infinite-scroller';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loadFeedContent } from "../../reducers/postsReducer";
 
-export default function Feed({ postData, user }) {
+export default function Feed({ postData, user, finishedLoading }) {
   const dispatch = useDispatch();
 
   const loadFunc = () => {
     dispatch(loadFeedContent);
-    console.log('postData :>> ', postData);
   }
 
   const getFeedPosts = () => {
@@ -21,7 +20,7 @@ export default function Feed({ postData, user }) {
       <InfiniteScroll
         pageStart={0}
         loadMore={loadFunc}
-        hasMore={true}
+        hasMore={!finishedLoading}
         loader={<h3 className="loader" key={0}>Loading ...</h3>}
       >
         {

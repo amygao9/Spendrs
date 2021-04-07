@@ -36,7 +36,7 @@ function Settings() {
 
   const logout = () => {
     Cookies.remove('jwt');
-    dispatch({ type: 'LOGOUT' });
+    dispatch({ type: 'home/logout' });
     history.push("/");
   }
 

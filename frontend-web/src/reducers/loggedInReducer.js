@@ -11,19 +11,13 @@ const initialState = {
 
 const loggedInReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "LOGIN":
+    case "loggedIn/login":
       return {
         ...state,
         loggedIn: true
       }
 
-    // case "LOGOUT":
-    //   return {
-    //     ...state,
-    //     loggedIn: false,
-    //   }
-
-    case "USER_TYPE":
+    case "loggedIn/userType":
       return {
         ...state,
         admin: action.payload.admin
@@ -46,7 +40,7 @@ export const login = (username, password) => async (dispatch, getState) => {
     }
 
     Cookies.set('jwt', user.data.jwt);
-    dispatch({ type: 'LOGIN' });
+    dispatch({ type: 'loggedIn/login' });
     dispatch(getUserData);
     return user.data.admin ? "admin" : "user";
   } catch (err) {
@@ -70,7 +64,7 @@ export const signup = (name, email, username, password, passwordStrength) => asy
     }
 
     Cookies.set('jwt', user.data.jwt);
-    dispatch({ type: 'LOGIN' });
+    dispatch({ type: 'loggedIn/login' });
     dispatch(getUserData);
   } catch (err) {
     console.log(err.response.data.err)

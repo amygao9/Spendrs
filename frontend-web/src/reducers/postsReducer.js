@@ -5,20 +5,27 @@ import { BASE_URL } from "../base_url";
 const initialState = {
   feedPosts: [],
   date: null,
+  finishedLoading: false,
 };
 
 const postsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "UPDATE_FEED":
+    case "posts/updateFeed":
       return {
         ...state,
         feedPosts: action.payload.feedPosts,
       };
 
-    case "UPDATE_DATE":
+    case "posts/updateDate":
       return {
         ...state,
         date: action.payload.date,
+      };
+
+    case "posts/finishedLoading":
+      return {
+        ...state,
+        finishedLoading: true
       };
 
     default:
@@ -33,10 +40,10 @@ export async function getInitialFeed(dispatch, getState) {
     });
 
     dispatch({
-      type: "UPDATE_FEED",
+      type: "posts/updateFeed",
       payload: { feedPosts: result.data.posts },
     });
-    dispatch({ type: "UPDATE_DATE", payload: { date: result.data.date } });
+    dispatch({ type: "posts/updateDate", payload: { date: result.data.date } });
   } catch (err) {
     console.log("err :>> ", err);
   }
@@ -54,10 +61,13 @@ export async function loadFeedContent(dispatch, getState) {
       date: date,
     });
 
+    if (result.data.posts.length === 0) {
+      dispatch({ type: "posts/finishedLoading" });
+    }
+
     const newPosts = feedPosts.concat(result.data.posts);
-    console.log('newPosts :>> ', newPosts);
-    dispatch({ type: "UPDATE_FEED", payload: { feedPosts: [...newPosts] } });
-    dispatch({ type: "UPDATE_DATE", payload: { date: result.data.date } });
+    dispatch({ type: "posts/updateFeed", payload: { feedPosts: [...newPosts] } });
+    dispatch({ type: "posts/updateDate", payload: { date: result.data.date } });
   } catch (err) {
     console.log("err :>> ", err);
   }
@@ -71,7 +81,7 @@ export const createPost = (post) => async (dispatch, getState) => {
     const result = await client.post(BASE_URL + "/api/posts", post);
     feedPosts.unshift(result.data);
 
-    dispatch({ type: "UPDATE_FEED", payload: { feedPosts: [...feedPosts] } });
+    dispatch({ type: "posts/updateFeed", payload: { feedPosts: [...feedPosts] } });
   } catch (err) {
     console.log("err :>> ", err);
   }
@@ -102,7 +112,7 @@ export const likePost = (post) => async (dispatch, getState) => {
     postsArray.splice(index, 1);
     postsArray.splice(index, 0, result.data);
 
-    dispatch({ type: "UPDATE_FEED", payload: { feedPosts: [...postsArray] } });
+    dispatch({ type: "posts/updateFeed", payload: { feedPosts: [...postsArray] } });
   } catch (err) {
     console.log("err :>> ", err);
   }
@@ -131,7 +141,7 @@ export const commentOnPost = (post, message) => async (dispatch, getState) => {
     postsArray.splice(index, 1);
     postsArray.splice(index, 0, result);
 
-    dispatch({ type: "UPDATE_FEED", payload: { feedPosts: [...postsArray] } });
+    dispatch({ type: "posts/updateFeed", payload: { feedPosts: [...postsArray] } });
   } catch (err) {
     console.log("err :>> ", err);
   }
