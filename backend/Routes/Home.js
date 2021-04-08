@@ -78,4 +78,18 @@ router.post("/signup", async (req, res) => {
   }
 });
 
+router.get("/user/:username", async (req, res) => {
+  try {
+    const user = await User.find({username: req.params.username}).populate('posts');
+    console.log('user :>> ', user);
+    if (!user) {
+      res.status(400).send("User not found");
+    }
+    res.send(user[0]);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+
 module.exports = router;

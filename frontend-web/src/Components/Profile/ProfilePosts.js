@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import LazyLoad from 'react-lazyload';
 import '../../styles/profile.css';
 import Post from "../Dashboard/Post";
-import {apiGetAllUserPosts} from "../../axios/posts";
 
 
 function ProfilePosts({ user }) {

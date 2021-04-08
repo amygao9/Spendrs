@@ -14,6 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { getUserData } from "./reducers/userDataReducer";
+import OthersProfile from "./Components/Profile/OthersProfile";
 
 function App() {
   const loggedIn = useSelector(state => state.loggedIn.loggedIn);
@@ -60,7 +61,7 @@ function App() {
           <Switch>
             <Route exact path="/dashboard" component={Home} />
             <Route exact path="/profile" component={Profile} />
-            <Route exact path="/profile/:username" render={() => <Profile key={Math.random()}/>} />
+            <Route exact path="/profile/:username" component={OthersProfile} />
             <Route exact path="/analytics" component={Analytics} />
             <Route exact path="/settings" component={Settings} />
             <Route exact path="/admin" component={Admin} />

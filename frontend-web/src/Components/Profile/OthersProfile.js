@@ -5,18 +5,20 @@ import ProfileDescription from "./ProfileDescription";
 import ProfilePosts from "./ProfilePosts";
 import { userLinks } from "../../constants";
 import {useSelector} from "react-redux";
+import {getUserInfo} from "../../axios/user";
 
 
 function Profile({match:{params:{username}}}) {
   const [loaded, setLoaded] = useState(false);
-  const user = useSelector(state => state.userData);
+  const [user, setUser] = useState(null);
 
   useEffect( () => {
-    if (user && Object.keys(user).length > 0) {
-      console.log("useeffect user ", user)
+    getUserInfo(username).then( data => {
+      setUser(data)
       setLoaded(true)
-    }
-  }, [user])
+    });
+
+  }, [username])
 
 
   if (!loaded) {
@@ -26,7 +28,7 @@ function Profile({match:{params:{username}}}) {
   return (
     <div className='home'>
       <Navbar links={userLinks} />
-      <ProfileDescription user={user}/>
+      <ProfileDescription user={user} loggedIn={false}/>
       <ProfilePosts user={user} />
     </div>
   );
