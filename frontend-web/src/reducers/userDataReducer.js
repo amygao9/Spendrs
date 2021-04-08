@@ -24,3 +24,15 @@ export async function getUserData(dispatch, getState) {
     throw err;
   }
 }
+
+export const updateUser = (data) => async (dispatch, getState) => {
+  try {
+    const result = await client.put(BASE_URL + '/api/users/update', data);
+    console.log('result.data :>> ', result.data);
+    dispatch({ type: "userData/userStatus", payload: result.data });
+    return result.data;
+  } catch (err) {
+    console.log('err.response.data.err :>> ', err.response.data.err);
+    return {err: err.response.data.err};
+  }
+}

@@ -3,8 +3,11 @@ import '../../styles/home.css';
 import '../../styles/profile.css';
 import { Row } from "react-bootstrap";
 import EditModal from "../utils/EditModal";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../reducers/userDataReducer";
 
 function ProfileInfo({ editable, user }) {
+
   const [username, setUsername] = useState(user["username"]);
   const [updatedUsername, setUpdatedUsername] = useState(username);
   const [description, setDescription] = useState(user["description"]);
@@ -12,6 +15,8 @@ function ProfileInfo({ editable, user }) {
 
   const [showEditUsername, setShowEditUsername] = useState(false);
   const [showEditDescription, setShowEditDescription] = useState(false);
+
+  const dispatch = useDispatch();
 
   const handleCloseEditUsername = (update) => {
     setShowEditUsername(false);
@@ -31,6 +36,21 @@ function ProfileInfo({ editable, user }) {
   const changeUpdatedUsername = (event) => { setUpdatedUsername(event.target.value) };
   const changeUpdatedDescription = (event) => { setUpdatedDescription(event.target.value) };
 
+  const handleSubmit = async (e, name) => {
+    e.preventDefault();
+    if (name === "Username") {
+      const result = await dispatch(updateUser({username: updatedUsername}));
+      console.log('result :>> ', result);
+      if (result.err) {
+        alert(result.err);
+      }
+      setUsername(updatedUsername);
+    } else if (name === "Description") {
+      dispatch(updateUser({description: updatedDescription}));
+      setDescription(updatedDescription);
+    } 
+  }
+
   return (
     <div className="infoContainer">
       <Row className="nameContainer">
@@ -41,12 +61,13 @@ function ProfileInfo({ editable, user }) {
         editable && <Row>
           <div className="edit" onClick={handleShowEditUsername}>Edit Username</div>
           <EditModal
-            name="Edit Username"
+            name="Username"
             input="input"
             show={showEditUsername}
             handleClose={handleCloseEditUsername}
             value={updatedUsername}
             onChange={changeUpdatedUsername}
+            handleSubmit={handleSubmit}
           />
         </Row>
       }
@@ -60,7 +81,7 @@ function ProfileInfo({ editable, user }) {
         editable && <Row>
           <div className="edit" onClick={handleShowEditDescription}>Edit Description</div>
           <EditModal
-            name="Edit Description"
+            name="Description"
             input="text"
             show={showEditDescription}
             handleClose={(update) => handleCloseEditDescription(update)}

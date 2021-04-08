@@ -26,7 +26,6 @@ router.get("/all", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const user = await User.findById(req.user.id).populate('posts');
-    console.log('user :>> ', user);
     if (!user) {
       res.status(400).send("User not found");
     }
@@ -117,6 +116,28 @@ router.get("/findUser", async (req, res) => {
     }).limit(3);
     res.send(users);
   } catch (err) {
+    res.status(500).send({ err: err });
+  }
+});
+
+
+router.put("/update", async (req, res) => {
+  try {
+    const username = req.body.username;
+    if (username) {
+      const existingUser = User.findOne({ username: username });
+      if (existingUser && existingUser._id != req.user.id) {
+        res.status(400).send({ err: "Username already in use." });
+      }
+    }
+    const user = await User.findByIdAndUpdate(req.user.id, req.body, {new: true}).populate('posts');
+    if (!user) {
+      res.status(500).send({ err: "Error saving user." });
+    }
+    res.send(user);
+    
+  } catch (err) {
+    console.log('err :>> ', err);
     res.status(500).send({ err: err });
   }
 });

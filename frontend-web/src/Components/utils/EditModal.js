@@ -3,13 +3,18 @@ import '../../styles/home.css';
 import '../../styles/profile.css';
 import { Modal, Button } from "react-bootstrap";
 
-function EditModal({name, input, show, handleClose, value, onChange}) {
+function EditModal({name, input, show, handleClose, value, onChange, handleSubmit}) {
+
+  const submitChanges = (e, name) => {
+    handleClose(true);
+    handleSubmit(e, name);
+  }
 
   return (
     <div>
-      <Modal show={show} onHide={handleClose} animation={true}>
+      <Modal className="modalContainer" show={show} onHide={handleClose} animation={true}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Edit {name}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {name}
@@ -22,7 +27,7 @@ function EditModal({name, input, show, handleClose, value, onChange}) {
           <Button variant="secondary" onClick={() => handleClose(false)}>
             Close
           </Button>
-          <Button variant="primary" onClick={() => handleClose(true)}>
+          <Button variant="primary" onClick={(e) => submitChanges(e, name)}>
             Save Changes
           </Button>
         </Modal.Footer>

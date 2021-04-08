@@ -123,3 +123,7 @@
 .editProfileButton:hover .tooltipBlack {
   visibility: visible;
 }
+
+.modalContainer {
+  margin-top: 10%;
+}

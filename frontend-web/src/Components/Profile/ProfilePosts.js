@@ -6,7 +6,7 @@ import Post from "../Dashboard/Post";
 
 function ProfilePosts({ user }) {
   const getFeedPosts = () => {
-    return user.posts.map((post, index) => {
+    return user.posts.slice(0).map((post, index) => {
       return <LazyLoad key={index} height={200}>
           <Post key={index} user={user} post={post}/>
       </LazyLoad>
