@@ -42,14 +42,11 @@ function Admin() {
         })
     }
     
-    function handleClick(username) {
-        console.log(username);
-    }
     const getUsers = () => {
         console.log("userlist :>> ",userList)
         return userList.map(user => {
             if (!user.admin) {
-                return <User key = {user.userName} user = {user} handleDelete = {handleDelete} handleClick = {handleClick}/>
+                return <User key = {user.username} user = {user} handleDelete = {handleDelete}/>
             }
         })
       }
