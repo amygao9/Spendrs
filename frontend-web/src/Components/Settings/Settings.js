@@ -7,7 +7,6 @@ import { Button, ButtonGroup, ToggleButton} from "react-bootstrap";
 import { Link, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { useDispatch, useSelector } from "react-redux";
-import {changeUserPrivacy} from "../../axios/user";
 import { updateUser } from "../../reducers/userDataReducer";
 import PasswordModal from "./SettingsModal"
 import DeleteModal from "./DeleteAccountModal"
