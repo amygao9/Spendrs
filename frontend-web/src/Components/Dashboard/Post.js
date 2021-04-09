@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deletePost } from "../../reducers/postsReducer";
 import {defaultAvatar} from "../../constants";
 
-export default function Post({post}) {
+export default function Post({ post }) {
   const loggedInUser = useSelector(state => state.userData);
   const user = post.user;
   const dispatch = useDispatch();
