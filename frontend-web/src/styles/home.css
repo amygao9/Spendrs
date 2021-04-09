@@ -75,6 +75,19 @@ html, body, #app, #app>div {
   padding: 10px;
 }
 
+.faTrashContainer {
+  float: right;
+}
+
+.faTrash {
+  cursor: pointer;
+  border-radius: 20%;
+}
+
+.faTrash:hover {
+  background-color: #ccc;
+}
+
 /*Global classes im not sure where to put this*/
 .bold {
   font-weight: bold;

@@ -28,6 +28,10 @@ const postSchema = new mongoose.Schema(
     likes:[{
       type: String
     }],
+    image: {
+      id: String,
+      url: String,
+    },
     comments: [{
       author: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
       comment: String,
@@ -35,6 +39,16 @@ const postSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+postSchema.pre('remove', function (next) {
+  let post = this;
+  post.model('User').update(
+      { posts: { $in: post.user }}, 
+      { $pull: { post: post._id } }, 
+      { multi: true }, 
+      next
+   );
+});
 
 const Post = mongoose.model("Post", postSchema);
 
