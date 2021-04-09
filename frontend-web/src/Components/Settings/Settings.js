@@ -8,6 +8,7 @@ import { Link, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { useDispatch, useSelector } from "react-redux";
 import {changeUserPrivacy} from "../../axios/user";
+import { updateUser } from "../../reducers/userDataReducer";
 import PasswordModal from "./SettingsModal"
 import DeleteModal from "./DeleteAccountModal"
 function Settings() {
@@ -40,8 +41,14 @@ function Settings() {
   }
 
   const changePrivacy = (e) => {
-    setRadioValue(e.currentTarget.value)
-    changeUserPrivacy(e.currentTarget.value)
+    
+    // changeUserPrivacy(e.currentTarget.value)
+    const result = dispatch(updateUser({privacy: e.currentTarget.value}));
+      console.log('result :>> ', result);
+      if (result.err) {
+        alert(result.err);
+      }
+      setRadioValue(e.currentTarget.value)
   }
   if (!loaded) {
     return (<div className='home'> <Navbar links={userLinks} /> </div>)
