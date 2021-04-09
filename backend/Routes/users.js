@@ -64,7 +64,7 @@ router.post("/upload/profile_pic", multipartMiddleware, async (req, res) => {
 
     // Use uploader.upload API to upload image to cloudinary server.
     cloudinary.uploader.upload(
-      req.files.image.path, // req.files contains uploaded files
+      req.files.file.path, // req.files contains uploaded files
       function (result) {
         // If user had a previous image, remove it from the cloudinary server
         if (user.image && user.image.id)
@@ -82,6 +82,7 @@ router.post("/upload/profile_pic", multipartMiddleware, async (req, res) => {
       }
     );
   } catch (err) {
+    console.log(err);
     res.status(500).send({ err: err });
   }
 });

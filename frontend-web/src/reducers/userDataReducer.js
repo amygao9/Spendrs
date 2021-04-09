@@ -59,9 +59,10 @@ export const updateUser = (data) => async (dispatch, getState) => {
   }
 };
 
-export const uploadProfilePic = (form) => async (dispatch, getState) => {
+export const uploadProfilePic = (image) => async (dispatch, getState) => {
   try {
-    const picture = new FormData(form)
+    const picture = new FormData();
+    picture.append("file", image);
     await client.post(BASE_URL + '/api/users/upload/profile_pic', picture);
     dispatch(getUserData);
   } catch (err) {
