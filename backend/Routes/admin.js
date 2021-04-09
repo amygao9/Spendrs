@@ -8,6 +8,9 @@ const router = express.Router();
 const multipart = require("connect-multiparty");
 const multipartMiddleware = multipart();
 
+/* Route for getting all user accounts.
+Returns all user documents.
+*/
 router.get("/allUsers", async (req, res) => {
     try {
       const users = await User.find().populate('posts');
@@ -20,6 +23,9 @@ router.get("/allUsers", async (req, res) => {
     
   });
 
+/* Route for deleting a user by username
+Returns the user document deleted.
+*/
 router.delete("/deleteUser/:username", async (req, res) => {
   try {
     const user = await User.findOneAndDelete({username: req.params.username});
