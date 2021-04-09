@@ -9,3 +9,5 @@ export const adminLinks = {
   "/admin": "Admin",
   "/settings": "Settings",
 };
+
+export const defaultAvatar = "https://i.redd.it/vtzsfo1nh8u41.png"

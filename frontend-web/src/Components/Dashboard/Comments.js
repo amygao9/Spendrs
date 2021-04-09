@@ -5,6 +5,7 @@ import UseAnimations from "react-useanimations";
 import heart from "react-useanimations/lib/heart";
 import { useDispatch } from "react-redux";
 import { likePost, commentOnPost } from "../../reducers/postsReducer";
+import {defaultAvatar} from "../../constants";
 // import { apiMakeComment } from "../../axios/posts";
 
 function Comment({ comment }) {
@@ -15,8 +16,7 @@ function Comment({ comment }) {
           className="profileImage"
           alt="profile"
           src={
-            comment.author?.image?.url ||
-            "https://mystickermania.com/cdn/stickers/memes/shut-up-and-take-my-money-meme.png"
+            comment.author?.image?.url || defaultAvatar
           }
         />
       </div>
@@ -44,9 +44,6 @@ function Comments({ post, user }) {
 
   const dispatch = useDispatch();
 
-  const defaultAvatar =
-    "https://mystickermania.com/cdn/stickers/memes/shut-up-and-take-my-money-meme.png";
-
   const userProfile = user.image ? user.image.url : defaultAvatar;
 
   const [input, setInput] = useState("");
@@ -69,8 +66,8 @@ function Comments({ post, user }) {
           }}
         />
         <button
-          style={{ background: "transparent", borderWidth: "0" }}
-        ></button>
+  style={{background: "transparent", borderWidth: "0"}}
+  />
       </div>
       <div className="commentsContainer">
         {comments.map((comment, index) => (
