@@ -29,13 +29,13 @@ function Admin() {
     function handleDelete(username) {
         deleteUser(username).then((user) => {
             console.log("deleted: ", user)
-            
-          }).catch(err => {
-            console.log("err: " + err)
-        })
-        getAllUsers().then((users) => {
-            console.log("admin users: ", users)
-            setUsers(users)
+            getAllUsers().then((users) => {
+                console.log("admin users: ", users)
+                setUsers(users)
+                
+              }).catch(err => {
+                console.log("err: " + err)
+            })
             
           }).catch(err => {
             console.log("err: " + err)

@@ -12,7 +12,7 @@ function PasswordModal(props) {
     const [confirmpass, setConfirmPass] = useState("");
     const [password, setPassword] = useState("");
     const [passwordStrength, setStrength] = useState(0);
-    const [passError, setPassError] = useState(0);
+    const [passError, setPassError] = useState("");
     const dispatch = useDispatch();
     const alert = useAlert();
 
