@@ -18,9 +18,30 @@ cloudinary.config({
 });
 
 router.get("/all", async (req, res) => {
-  const users = await User.find();
-  res.send(users);
-  return users;
+  try {
+    const users = await User.find().populate('posts');
+    // for (var user in users) {
+    //   user.populate('posts');
+    // }
+    res.send(users);
+    return users;
+  } catch (err) {
+    console.log(err);
+  }
+
+  
+  // User.find().then((users) => {
+  //   const userlist = []
+  //   for (var user in users) {
+  //     user.populate('posts');
+
+  //   }
+	// 	res.send(users) 
+	// }).catch((error) => {
+	// 	log(error)
+	// 	res.status(500).send("Internal Server Error")
+	// })
+  
 });
 
 router.get("/", async (req, res) => {

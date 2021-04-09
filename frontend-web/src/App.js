@@ -57,7 +57,7 @@ function App() {
     <Router history={history}>
       <div className="app">
         {
-          loggedIn ?
+          loggedIn & !userData.admin ? 
           <Switch>
             <Route exact path="/dashboard" component={Home} />
             <Route exact path="/profile" component={Profile} />
@@ -67,6 +67,12 @@ function App() {
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/" component={Home} />
           </Switch> :
+          loggedIn & userData.admin ?
+          <Switch>
+            <Route exact path="/" component={Admin} />
+            <Route exact path="/admin" component={Admin} />
+          </Switch>
+          :
           <Switch>
             <Route path="/" component={WelcomePage} />
           </Switch>
