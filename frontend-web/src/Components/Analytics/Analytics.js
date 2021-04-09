@@ -12,14 +12,7 @@ function Analytics(props) {
   const [monthTimeSeries, setmonthTimeSeries] = useState([])
   const [categories, setcategories] = useState([])
   const [monthSpending, setmonthSpending] = useState(0)
-  const [loaded, setLoaded] = useState(false)
-  // const stats = {
-  //   "budget": 300,
-  //   "daySpending": 21.5,
-  //   "monthSpending": 465.49,
-  //   "spendingCategories": {"food": 245.49, "misc": 28, "tech": 104, "games": 33, "valorant skins": 55},
-  //   "monthTimeSeries": [["2021-04-05", 50], ["2021-04-05", 37]]
-  // }
+  const [loaded, setLoaded] = useState(false);
   let date = new Date();
   let currentMonth = (date.getMonth() + 1).toString().padStart(2,0);
   const user = props.user;
@@ -64,7 +57,7 @@ function Analytics(props) {
       <Container>
         <div className={"flexContainer"}>  {/*this class will allow mobile responsiveness*/}
           <div className={"flexCol"}>
-            <Summary stats={monthSpending} />
+            <Summary stats={monthSpending} numItems={monthTimeSeries.length} />
             <TimeSeriesGraph stats={monthTimeSeries} />
           </div>
           <div className={"flexCol"}>
