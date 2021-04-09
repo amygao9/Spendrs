@@ -16,4 +16,16 @@
 
 .settingsButton {
     font-size: smaller !important;
+    background: #00AF91 !important;
+    border-color: #00947c !important;
+    border-radius: 5px !important;
+    font-weight: bold !important;
+    color: #FFFFFF;
+    
+}
+.settingsButton:hover{
+    opacity: 80%;
+}
+#deleteButton:hover {
+    background: #af1a00 !important;
 }

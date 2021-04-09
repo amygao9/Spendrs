@@ -37,7 +37,7 @@ function DeleteModal(props) {
         <Modal.Body>
           <h5>Please confirm to delete this account. This action cannot be undone.</h5>
           
-          <Button className="settingsButton" variant="outline-danger" onClick={() => handleDelete()}>Delete</Button>
+          <Button className="settingsButton" onClick={() => handleDelete()}>Delete</Button>
         </Modal.Body>
       </Modal>
     );

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import '../../styles/admin.css';
-import { adminLinks, users } from "../../constants";
+import { adminLinks } from "../../constants";
 import Navbar from "../Navbar/Navbar";
 import User from "./User";
-import { Button} from "react-bootstrap";
 import { ListGroup } from "react-bootstrap";
-import { Link, useHistory } from 'react-router-dom';
-import Cookies from 'js-cookie';
-import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from "react-redux";
 import {getAllUsers, deleteUser} from "../../axios/admin";
 
 function Admin() {
