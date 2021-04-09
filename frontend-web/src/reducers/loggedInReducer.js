@@ -51,7 +51,7 @@ export const login = (username, password) => async (dispatch, getState) => {
     return user.data.admin ? "admin" : "user";
   } catch (err) {
     console.log('err :>> ', err.response.data.err);
-    throw err.response.data.err;
+    return { err: err.response.data.err };
   }
 }
 
@@ -73,8 +73,8 @@ export const signup = (name, email, username, password, passwordStrength) => asy
     dispatch({ type: 'loggedIn/login' });
     dispatch(getUserData);
   } catch (err) {
-    console.log(err.response.data.err)
-    throw err.response.data.err; // throw the response body
+    console.log(err.response.data.err);
+    return {err: err.response.data.err };
   }
 }
 

@@ -1,6 +1,7 @@
 import client from "../axios/auth";
 import { apiMakeComment } from "../axios/posts";
 import { BASE_URL } from "../base_url";
+import { getUserData } from "./userDataReducer";
 
 const initialState = {
   feedPosts: [],
@@ -81,6 +82,7 @@ export const createPost = (post) => async (dispatch, getState) => {
     feedPosts.unshift(result.data);
 
     dispatch({ type: "posts/updateFeed", payload: { feedPosts: [...feedPosts] } });
+    dispatch(getUserData);
   } catch (err) {
     console.log("err :>> ", err);
   }

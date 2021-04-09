@@ -52,7 +52,7 @@ export default function SearchBar(props) {
     <div ref={ref}>
       <label className="searchBar">
         <input
-          autocomplete="off"
+          autoComplete="off"
           id="navText"
           type="text"
           placeholder="Search"
