@@ -1,20 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
-import { CSSTransitionGroup } from "react-transition-group";
-import { NavLink } from "react-router-dom";
 import "../../styles/Navbar.css";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getSearchResult } from "../../reducers/searchReducer";
 
-// switch to redux later
-import client from "../../axios/auth";
-import { BASE_URL } from "../../base_url";
-
 function StatusString(props) {
   let statusString;
-  if (props.search == "") {
+  if (props.search === "") {
     statusString = "Start typing to search";
-  } else if (props.results.length == 0) {
+  } else if (props.results.length === 0) {
     statusString = "No results found";
   } else {
     return null;

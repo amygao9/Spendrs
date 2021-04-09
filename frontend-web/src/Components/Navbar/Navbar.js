@@ -1,22 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { CSSTransitionGroup } from "react-transition-group";
 import { NavLink } from "react-router-dom";
 import "../../styles/Navbar.css";
 import SearchBar from "./searchBar";
 
 import { FaBars } from "react-icons/fa";
-
-function StatusString(props) {
-  let statusString;
-  if (props.search == "") {
-    statusString = "please search something";
-  } else if (props.results.length == 0) {
-    statusString = "No results found";
-  } else {
-    return null;
-  }
-  return <p className="searchText">{statusString}</p>;
-}
 
 export default function Navbar(props) {
   const links = props.links;
