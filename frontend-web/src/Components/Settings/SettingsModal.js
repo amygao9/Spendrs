@@ -11,16 +11,18 @@ function PasswordModal(props) {
     const [confirmpass, setConfirmPass] = useState("");
     const [password, setPassword] = useState("");
     const [passwordStrength, setStrength] = useState(0)
-
+    const [passError, setError] = useState("");
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("new password: ", confirmpass)
-        const result = dispatch(changePassword(oldpass, password, confirmpass, passwordStrength));
+        const result = await dispatch(changePassword(oldpass, password, confirmpass, passwordStrength));
         console.log('result :>> ', result);
         if (result.err) {
-          alert(result.err);
+          setError(result.err);
+        } else {
+          alert("change password successful!")
         }
-        alert("change password successful!")
+        
     }
     return (
       <Modal
@@ -41,6 +43,7 @@ function PasswordModal(props) {
             <input className={"inputBox " } type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder={"New Password"}/>
             <input className={"inputBox " } type="password" name="password" value={confirmpass} onChange={e => setConfirmPass(e.target.value)} placeholder={"Confirm New Password"}/>
             <PasswordStrengthBar password={password} style={{width: '300px', margin: 'auto'}} onChangeScore={setStrength}/>
+            <p className={"redErrorText"}>{passError}</p>
             <input type="submit" id="createAccBtn" value="Reset Password" />
             </form>
           

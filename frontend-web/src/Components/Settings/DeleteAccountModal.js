@@ -15,6 +15,7 @@ function DeleteModal(props) {
       const result = await dispatch(deleteUser());
       console.log('result :>> ', result);
       if (result.err) {
+
         alert(result.err);
       } else {
         alert("Delete Successful");

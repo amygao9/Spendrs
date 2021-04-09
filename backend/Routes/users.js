@@ -213,8 +213,8 @@ router.patch("/changePassword", async (req, res) => {
   if (req.body.password.length < 1)
     errors += "Password field cannot be empty.\n";
   // // password strength
-  // if (req.body.password.length > 0 && req.body.passwordStrength < 2)
-  //   errors += "Password cannot be too short or weak.\n";
+  if (req.body.password.length > 0 && req.body.passwordStrength < 2)
+    errors += "Password cannot be too short or weak.\n";
 
   // report the error, without the trailing \n
   if (errors) return res.status(400).json({ err: errors });

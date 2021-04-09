@@ -66,8 +66,7 @@ export const changePassword = (oldPass, password, confirmPass, passwordStrength)
     dispatch({ type: "userData/userStatus", payload: user.data });
     return user.data;
   } catch (err) {
-    console.log("err :>> ", err);
-    throw err;
+    return { err: err.response.data.err };
   }
 }
 

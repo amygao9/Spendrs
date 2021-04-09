@@ -22,9 +22,6 @@ function WelcomePage() {
   const history = useHistory();
 
   async function onSubmit (data) {
-    if (data["username"] === "admin" & data["password"] === "admin") {
-      history.push('/admin');
-    }
     const result = await dispatch(login(data.username, data.password));
     if (result.err) {
       setLoginError(result.err);
