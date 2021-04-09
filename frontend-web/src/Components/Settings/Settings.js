@@ -24,7 +24,6 @@ function Settings() {
     { name: 'Friends Only', value: 'Friends Only' },
     { name: 'Public', value: 'Public' },
   ];
-  let links = ""
   useEffect( () => {
     if (!user || Object.keys(user).length === 0) {
       return;
@@ -73,8 +72,11 @@ function Settings() {
               onHide={() => setModalShow(false)}
             />
             <br/>
-            <Button className="settingsButton" variant="outline-info" onClick={() => logout()}>Logout</Button>
+            
           </div>
+        </div>
+        <div className="list-group-item">
+          <Button className="settingsButton" onClick={() => logout()}>Logout</Button>
         </div>
         
       </div>
@@ -124,7 +126,7 @@ function Settings() {
         <div className="list-group-item shadowSmall">
           <div className="settingsInfoContainer">
             <span> Reset Password </span> 
-            <Button className="settingsButton" variant="outline-info" onClick={() => setModalShow(true)}> Reset </Button>
+            <Button className="settingsButton"  onClick={() => setModalShow(true)}> Reset </Button>
             <PasswordModal
               show={modalShow}
               onHide={() => setModalShow(false)}
@@ -133,14 +135,17 @@ function Settings() {
 
           <div className="settingsInfoContainer">
             <span> Delete Account </span> 
-            <Button className="settingsButton" variant="outline-danger" onClick={() => setDeleteModalShow(true)}>Delete</Button> <br></br>
+            <Button className="settingsButton" id = "deleteButton" onClick={() => setDeleteModalShow(true)}>Delete</Button> <br></br>
             <DeleteModal
               show={deleteModalShow}
               onHide={() => setDeleteModalShow(false)}
             />
           </div>
+          
         </div>
-        <Button className="settingsButton" variant="outline-info" onClick={() => logout()}>LOGOUT</Button>
+        <div className="list-group-item shadowSmall">
+          <Button className="settingsButton btn-default" onClick={() => logout()}>Logout</Button>
+        </div>
       </div>
     </div>
     
