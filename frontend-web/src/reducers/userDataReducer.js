@@ -18,6 +18,7 @@ export const getUserData = async (dispatch, getState) => {
   try {
     const user = await client.get(BASE_URL + "/api/users");
     dispatch({ type: "userData/userStatus", payload: user.data });
+    console.log('user.data :>> ', user.data);
     return user.data;
   } catch (err) {
     console.log("err :>> ", err);
