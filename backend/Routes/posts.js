@@ -29,9 +29,34 @@ router.get("/", async (req, res) => {
   res.send(posts);
 });
 
+
 router.get("/:id", async (req, res) => {
   const posts = await Post.findById(req.params.id);
   res.send(posts);
+});
+
+router.delete("/", async (req, res) => {
+  try {
+    console.log('req.params.post :>> ', req.body.post);
+    console.log('req.user.id :>> ', req.user.id);
+    Post.findOne({ _id: req.body.post, user: req.user.id }, function(err, post){
+      if (err || post === null) {
+        console.log('post :>> ', post);
+        return res.status(404).send({ err: "Post unaccessible." });
+      }
+      return post.remove(function(err, post){
+        if (post.image && post.image.id) {
+          cloudinary.uploader.destroy(user.image.id);
+        }
+        if(!err) {
+          return res.send(post);
+        }
+        res.status(404).send({ err: "Post unaccessible." });
+      });                
+    });
+  } catch (err) {
+    res.status(400).send({ err: err });
+  }
 });
 
 // creates a new post for a user.

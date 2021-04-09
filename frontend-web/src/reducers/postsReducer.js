@@ -88,6 +88,31 @@ export const createPost = (post) => async (dispatch, getState) => {
   }
 };
 
+export const deletePost = (post) => async (dispatch, getState) => {
+  try {
+    const state = getState();
+    const { feedPosts } = state.postsData;
+    console.log('post :>> ', post);
+
+    await client.delete(BASE_URL + "/api/posts/" , {
+      data: {
+        post: post
+      }
+    });
+
+    const postIndex = feedPosts.findIndex(p => p._id === post);
+    feedPosts.splice(postIndex, 1);
+    console.log('feedPosts :>> ', feedPosts);
+
+    dispatch({ type: "posts/updateFeed", payload: { feedPosts: [...feedPosts] } });
+    dispatch(getUserData);
+    return "Post successfully deleted!";
+  } catch (err) {
+    console.log("err :>> ", err);
+    return "Error deleting post.";
+  }
+};
+
 export const likePost = (post) => async (dispatch, getState) => {
   try {
     const state = getState();

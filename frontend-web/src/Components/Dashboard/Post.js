@@ -2,10 +2,21 @@ import React from "react";
 import '../../styles/home.css';
 import '../../styles/graphics.css';
 import { ReactTinyLink } from 'react-tiny-link';
+import { FaTrash } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { deletePost } from "../../reducers/postsReducer";
 
 export default function Post({post}) {
+  const loggedInUser = useSelector(state => state.userData);
   const user = post.user;
+  const dispatch = useDispatch();
   const defaultAvatar = "https://mystickermania.com/cdn/stickers/memes/shut-up-and-take-my-money-meme.png"
+  
+  const deleteSelectedPost = async () => {
+    const result = await dispatch(deletePost(post._id));
+    alert(result);
+  }
+  
   return (
     <div className="postContainer fadeIn">
       <div>
@@ -18,7 +29,19 @@ export default function Post({post}) {
         <div className={"postHeader"}>
           <span className="bold"> {user.name}</span> spent
           <span className="bold"> ${post.price}</span> on a
-          <span className="bold"> {post.itemName}</span> <br/>
+          <span className="bold"> {post.itemName}</span> 
+          {
+            loggedInUser._id === post.user._id && 
+            <span className="faTrashContainer">
+              <FaTrash
+              className="faTrash"
+              onClick={() => {
+                deleteSelectedPost();
+              }}
+              />
+            </span>
+          }
+          <br/>
         </div>
       </div>
       {post.attachedImage ?
