@@ -14,14 +14,24 @@ export default function userDataReducer(state = initialState, action) {
   }
 }
 
-export async function getUserData(dispatch, getState) {
+export const getUserData = async (dispatch, getState) => {
   try {
-    const result = await client.get(BASE_URL + '/api/users');
-    dispatch({ type: "userData/userStatus", payload: result.data });
-    return result;
+    const user = await client.get(BASE_URL + '/api/users');
+    dispatch({ type: "userData/userStatus", payload: user.data });
+    return user.data;
   } catch (err) {
     console.log('err :>> ', err);
     throw err;
+  }
+}
+export const getOtherUserData = (username) => async (dispatch, getState) => {
+  try {
+    const user = await client.get(BASE_URL + `/api/users/${username}`);
+    console.log('user :>> ', user);
+    return user.data;
+  } catch (err) {
+    console.log('err :>> ', err);
+    return {err: err.response.data.err};
   }
 }
 
