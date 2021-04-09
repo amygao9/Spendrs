@@ -40,7 +40,7 @@ function Profile({match:{params:{username}}}) {
 
   const loadProfileContent = () => {
     let publicProfile = true;
-    if (currUser.admin) {
+    if (currUser.admin || currUser._id === user._id) {
       publicProfile = true;
     }
     else if (user.privacy === "Private") {
@@ -51,7 +51,7 @@ function Profile({match:{params:{username}}}) {
 
     return (
       <>
-        <ProfileDescription user={user} loggedIn={false}/>
+        <ProfileDescription user={user} loggedIn={false} canFollow={currUser._id !== user._id}/>
         {
           publicProfile ?
           <ProfilePosts user={user} /> :

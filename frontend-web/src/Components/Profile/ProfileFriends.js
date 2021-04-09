@@ -3,7 +3,6 @@ import { Modal, ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function ProfileFriends(props) {
-    console.log(props.data)
     const getList = () => {
         return props.data.map((user, index) => {
           if (props.isAdmin) {

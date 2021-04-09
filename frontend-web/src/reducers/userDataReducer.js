@@ -77,7 +77,6 @@ export const changePassword = (oldPass, password, confirmPass, passwordStrength)
       console.log(user)
       throw Error('Error: User received from API but not correctly formatted');
     }
-    console.log('user.data :>> ', user.data);
     return user.data;
   } catch (err) {
     return { err: err.response.data.err };
@@ -93,6 +92,28 @@ export const deleteUser = async (dispatch, useState) => {
       throw Error('Error: User received from API but not correctly formatted');
     }
     return user.data;
+  } catch (err) {
+    console.log(err);
+    return { err: err };
+  }
+}
+
+export const followUser = (user) => async (dispatch, useState) => {
+  try {
+    const result = await client.post(BASE_URL + '/api/users/follow', { id: user });
+    dispatch(getUserData);
+    return user.data;
+  } catch (err) {
+    console.log(err);
+    return { err: err };
+  }
+}
+
+
+export const unfollowUser = (user) => async (dispatch, useState) => {
+  try {
+    const result = await client.post(BASE_URL + '/api/users/unfollow', { id: user });
+    dispatch(getUserData);
   } catch (err) {
     console.log(err);
     return { err: err };
