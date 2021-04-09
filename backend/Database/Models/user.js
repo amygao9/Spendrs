@@ -48,11 +48,10 @@ const userSchema = new mongoose.Schema(
         ref: "User",
       },
     ],
-    register_date: Date,
     privacy: {
       type: String,
       default: "Private",
-    }, 
+    },
     admin: {
       type: Boolean,
       default: false,
