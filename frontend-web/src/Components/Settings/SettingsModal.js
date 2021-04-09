@@ -11,6 +11,7 @@ function PasswordModal(props) {
     const [confirmpass, setConfirmPass] = useState("");
     const [password, setPassword] = useState("");
     const [passwordStrength, setStrength] = useState(0);
+    const [passError, setPassError] = useState(0);
     const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
@@ -18,7 +19,7 @@ function PasswordModal(props) {
       console.log('password :>> ', password);
       const result = await dispatch(changePassword(oldpass, password, confirmpass, passwordStrength));
       if (result && result.err) {
-        alert("Error changing user password!");
+        setPassError(result.err);
       } else {
         alert("Change password successful!")
       }
