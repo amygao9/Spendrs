@@ -40,7 +40,13 @@ export const login = (username, password) => async (dispatch, getState) => {
     }
 
     Cookies.set('jwt', user.data.jwt);
-    dispatch({ type: 'loggedIn/login' });
+    if (!user.admin) {
+      dispatch({ type: 'loggedIn/login' });
+    }
+    else {
+      dispatch({ type: 'loggedIn/admin' });
+    }
+    
     dispatch(getUserData);
     return user.data.admin ? "admin" : "user";
   } catch (err) {

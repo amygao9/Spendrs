@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import '../../styles/settings.css';
 import '../../styles/home.css';
-import { userLinks } from "../../constants";
+import { userLinks, adminLinks, users } from "../../constants";
 import { Button, ButtonGroup, ToggleButton} from "react-bootstrap";
 import { Link, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
@@ -24,7 +24,7 @@ function Settings() {
     { name: 'Friends Only', value: 'Friends Only' },
     { name: 'Public', value: 'Public' },
   ];
-
+  let links = ""
   useEffect( () => {
     if (!user || Object.keys(user).length === 0) {
       return;
@@ -47,6 +47,41 @@ function Settings() {
   if (!loaded) {
     return (<div className='home'> <Navbar links={userLinks} /> </div>)
   } 
+  if (user.admin) {
+    return (
+      <div>
+      <div className='settingsContainer'>
+        <Navbar links={adminLinks} />
+        <h3 className = "headers"> Profile Information</h3>
+        <div id = "users" className="list-group-item shadowSmall">
+                  <Link to={`/profile`}>
+                      <h5 className="mb-">{user.name}</h5>
+                  </Link>
+                  <p className="mb-1">Username: @{user.username}</p>
+                  <p className="mb-1">Email: {user.email}</p>
+                  <p className="mb-1">Date Registered: {user.createdAt.slice(0,10)}</p>
+                  {/* <Button onClick={() => props.handleDelete(user.username)} className="btn-default" id = "deleteButton"> Delete user</Button> */}
+        </div>
+
+        <h3 className = "headers">Account</h3>
+        <div className="list-group-item shadowSmall">
+          <div className="settingsInfoContainer">
+            <span> Reset Password </span> 
+            <Button className="settingsButton" variant="outline-info" onClick={() => setModalShow(true)}> Reset </Button>
+            <PasswordModal
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+            />
+            <br/>
+            <Button className="settingsButton" variant="outline-info" onClick={() => logout()}>Logout</Button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    )
+
+  }
 
   return (
     <div>

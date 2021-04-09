@@ -15,9 +15,9 @@ function User(props) {
             <div id = "users" className="list-group-item d-flex  align-items-center" >
                 <div id = "userInfo" onClick={handleShow} >
                     <h5  className="mb-1">{user.name}</h5>
-                    <p className="mb-1">{user.username}</p>
-                    <p className="mb-1">{user.email}</p>
-                    <p className="mb-1">{user.register_date}</p>
+                    <p className="mb-1">Username: {user.username}</p>
+                    <p className="mb-1">Email: {user.email}</p>
+                    <p className="mb-1">Register Date:{user.register_date}</p>
                 </div>
                 <div>
                     <Button onClick={handleShow} className="btn-default" id = "deleteButton"> View Profile</Button>
@@ -28,8 +28,6 @@ function User(props) {
             <UserModal handleClose = {handleClose} show = {show} user = {user}/>
 
         </Container>
-            
-        
         
     );
 }

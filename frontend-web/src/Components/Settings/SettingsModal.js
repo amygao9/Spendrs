@@ -10,27 +10,18 @@ function PasswordModal(props) {
     const [confirmpass, setConfirmPass] = useState("");
     const [password, setPassword] = useState("");
     const [passwordStrength, setStrength] = useState(0)
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("new password: ", confirmpass)
         changePassword(oldpass, password, confirmpass, passwordStrength).then((data) => {
-          console.log("change password successful!")
+          alert("change password successful!")
           
-        }).catch(err => {
-          console.log("err: " + err)
         })
-        // try{
-        //   dispatch(signup(name, email, username, password, passwordStrength));
-        //   history.push("/dashboard");
-        // } catch (err) {
-        //   setErrors(err);
-        // }
     }
     return (
       <Modal
-        {...props}
-
+        {... props}
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >

@@ -53,6 +53,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "Private",
     }, 
+    admin: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

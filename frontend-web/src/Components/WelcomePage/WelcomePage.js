@@ -21,7 +21,7 @@ function WelcomePage() {
   const { register, handleSubmit } = useForm();
   const history = useHistory();
 
-  async function onSubmit(data) {
+  function onSubmit(data) {
     if (data["username"] === "admin" & data["password"] === "admin") {
       history.push('/admin');
     }

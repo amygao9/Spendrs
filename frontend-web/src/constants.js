@@ -6,7 +6,8 @@ export const userLinks = {
 };
 
 export const adminLinks = {
-  admin: "Admin",
+  "/admin": "Admin",
+  "/settings": "Settings",
 };
 
 export const postData = [
