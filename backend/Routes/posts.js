@@ -85,18 +85,22 @@ router.post("/", multipartMiddleware, async (req, res) => {
           body.attachedImage = {
             id: result.public_id, // image id on cloudinary server
             url: result.url, // image url on cloudinary server
-          };
+          }
+          const post = new Post(body);
+          const createdPost = await post.save();
+          user.posts.push(createdPost);
+          await user.save();
+          res.send(createdPost);
         }
       );
     }
-    // else {
-    //   res.status(400).send("user did not provide a picture");
-    // }
-    const post = new Post(body);
-    const createdPost = await post.save();
-    user.posts.push(createdPost);
-    await user.save();
-    res.send(createdPost);
+    else {
+      const post = new Post(body);
+      const createdPost = await post.save();
+      user.posts.push(createdPost);
+      await user.save();
+      res.send(createdPost);
+    }
   } catch (err) {
     console.log("err :>> ", err);
     res.status(400);
