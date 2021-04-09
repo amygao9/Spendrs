@@ -73,7 +73,7 @@ export default function SearchBar(props) {
           <StatusString results={results} search={search} />
           {results.map((val, key) => {
             return (
-              <a className="searchUser" key={key} href={"profile/" + val}>
+              <a className="searchUser" key={key} href={"/profile/" + val}>
                 {val}
               </a>
             );
