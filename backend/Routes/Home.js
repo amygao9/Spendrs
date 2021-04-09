@@ -78,11 +78,11 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-router.get("/user/:username", async (req, res) => {
+router.get("/users/:username", async (req, res) => {
   try {
-    const user = await User.find({username: req.params.username}).populate('posts');
+    const user = await User.findOne({username: req.params.username}).populate('posts');
     if (!user) {
-      res.status(400).send("User not found");
+      res.status(400).send({err: "User not found"});
     }
     res.send(user[0]);
   } catch (err) {
