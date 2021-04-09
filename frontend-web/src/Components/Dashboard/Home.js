@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import "../../styles/home.css";
 import ShareForm from "./ShareForm";
-import {Container, Form, Row} from "react-bootstrap";
+import {Container, Row} from "react-bootstrap";
 import "../../styles/home.css";
 import Feed from "./Feed";
 import { userLinks } from "../../constants";
-import { useSelector, useDispatch, connect } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 import { getInitialFeed, createPost } from '../../reducers/postsReducer';
 import { URLRegex } from "../utils/utils";
 
@@ -31,7 +31,7 @@ function Home(props) {
   useEffect(() => {
     dispatch(getInitialFeed);
     setLoaded(true);
-  }, [])
+  }, [dispatch])
 
   // Pass this into form component. Used to update our states.
   const updateData = (e, type) => {
@@ -58,7 +58,7 @@ function Home(props) {
       return;
     }
 
-    if (link.length != 0) {
+    if (link.length !== 0) {
       if (!link.match(URLRegex)) {
         alert("Not a valid website URL.");
         return;

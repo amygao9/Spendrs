@@ -1,16 +1,11 @@
 import React, { useState } from "react";
 import '../../styles/home.css';
 import '../../styles/profile.css';
-import { Modal, Button } from "react-bootstrap";
-import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { signup } from '../../reducers/loggedInReducer';
+import { Modal } from "react-bootstrap";
 import PasswordStrengthBar from 'react-password-strength-bar';
 import {changePassword} from "../../axios/user";
 
 function PasswordModal(props) {
-    const dispatch = useDispatch();
-    const history = useHistory();
     const [oldpass, setOldPass] = useState("");
     const [confirmpass, setConfirmPass] = useState("");
     const [password, setPassword] = useState("");

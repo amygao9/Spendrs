@@ -5,7 +5,7 @@ import Post from "./Post";
 import Comments from "./Comments";
 import TimeAgo from "../utils/TimeAgo";
 import InfiniteScroll from 'react-infinite-scroller';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loadFeedContent } from "../../reducers/postsReducer";
 
 export default function Feed({ postData, user, finishedLoading }) {

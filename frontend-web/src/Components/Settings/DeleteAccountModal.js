@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import '../../styles/home.css';
 import '../../styles/profile.css';
 import { Modal, Button } from "react-bootstrap";
 import {deleteUser} from "../../axios/user";
 import Cookies from 'js-cookie';
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { useHistory } from 'react-router-dom';
 function DeleteModal(props) {
   const dispatch = useDispatch();
   const history = useHistory();

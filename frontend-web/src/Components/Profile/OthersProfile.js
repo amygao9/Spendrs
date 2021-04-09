@@ -15,17 +15,20 @@ function Profile({match:{params:{username}}}) {
   const [following, setFollowing] = useState(false);
   const dispatch = useDispatch();
 
-  useEffect(async () => {
-    const data = await dispatch(getOtherUserData(username));
-    if (data.err) {
-      setError(true);
-    } else{
-      setUser(data)
-      const isFollowing = await dispatch(checkFollowing(data.username));
-      setFollowing(isFollowing);
+  useEffect(() => {
+    const loadData = async () => {
+      const data = await dispatch(getOtherUserData(username));
+      if (data.err) {
+        setError(true);
+      } else{
+        setUser(data)
+        const isFollowing = await dispatch(checkFollowing(data.username));
+        setFollowing(isFollowing);
+      }
+      setLoaded(true);
     }
-    setLoaded(true)
-  }, [username])
+    loadData();
+  }, [username, dispatch])
 
   const loadProfileContent = () => {
     let publicProfile = true;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../../styles/comments.css";
 import "../../styles/graphics.css";
 import UseAnimations from "react-useanimations";

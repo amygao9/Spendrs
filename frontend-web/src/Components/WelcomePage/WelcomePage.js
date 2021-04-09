@@ -8,7 +8,6 @@ import { useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { login } from '../../reducers/loggedInReducer';
 import { useDispatch } from 'react-redux';
-import { getUserData } from '../../reducers/userDataReducer';
 
 function WelcomePage() {
   const [show, setShow] = useState(false);

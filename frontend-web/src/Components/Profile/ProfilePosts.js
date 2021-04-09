@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import LazyLoad from 'react-lazyload';
 import '../../styles/profile.css';
 import Post from "../Dashboard/Post";

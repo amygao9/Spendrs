@@ -15,7 +15,7 @@ function ProfilePicture({ editable, user }) {
   if (editable) return (
     <div>
       <img src={user.image? user.image.url : defaultAvatar}
-           alt="Profile"
+           alt="User's profile avatar"
            className="profilePicture shadowSmall"
       />
       <div onClick={handleShow} className={"profilePictureHover"}>Change Photo</div>
@@ -24,7 +24,7 @@ function ProfilePicture({ editable, user }) {
     );
 
   if (!editable) return (
-    <img src={user.image? user.image.url : defaultAvatar} alt="Profile Picture" className="profilePicture shadowSmall"/>
+    <img src={user.image? user.image.url : defaultAvatar} alt="User" className="profilePicture shadowSmall"/>
   );
 }
 

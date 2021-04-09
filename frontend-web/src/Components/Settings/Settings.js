@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import '../../styles/settings.css';
 import '../../styles/home.css';
-import { userLinks, users } from "../../constants";
+import { userLinks } from "../../constants";
 import { Button, ButtonGroup, ToggleButton} from "react-bootstrap";
 import { Link, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
@@ -26,7 +26,7 @@ function Settings() {
   ];
 
   useEffect( () => {
-    if (!user || Object.keys(user).length == 0) {
+    if (!user || Object.keys(user).length === 0) {
       return;
     }
     setRadioValue(user.privacy)

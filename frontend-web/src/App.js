@@ -18,10 +18,9 @@ import OthersProfile from "./Components/Profile/OthersProfile";
 
 function App() {
   const loggedIn = useSelector(state => state.loggedIn.loggedIn);
-  const userData = useSelector(state => state.userData);
   const dispatch = useDispatch();
   
-  useEffect(async () => {
+  useEffect(() => {
     const logout = () => {
       Cookies.remove('jwt');
       dispatch({ type: 'home/logout' });
@@ -38,14 +37,18 @@ function App() {
       }
     }
 
+    const getData = async () => {
+      await dispatch(getUserData);
+    }
+
     authenticate();
     try {
-      const result = await dispatch(getUserData);
+      getData();
     } catch (err) {
       console.log('err :>> ', err);
       logout();
     }
-  }, []);
+  }, [dispatch]);
 
 
 
