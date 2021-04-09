@@ -25,7 +25,7 @@ router.get("/", async (req, res) => {
         path: "posts",
         populate: {
           path: "user",
-          select: "name username",
+          select: "name username image",
         },
       })
       .populate("followers", "name username")
