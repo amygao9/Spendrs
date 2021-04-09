@@ -51,7 +51,7 @@ function Profile({match:{params:{username}}}) {
 
     return (
       <>
-        <ProfileDescription user={user} loggedIn={false} canFollow={currUser._id !== user._id}/>
+        <ProfileDescription user={user} loggedIn={false} canFollow={currUser._id !== user._id & !currUser.admin}/>
         {
           publicProfile ?
           <ProfilePosts user={user} /> :
