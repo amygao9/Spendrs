@@ -69,7 +69,7 @@ export default function SearchBar(props) {
         />
       </label>
       {focused && (
-        <div className="searchResults">
+        <div className="searchResults shadowSmall">
           <StatusString results={results} search={search} />
           {results.map((val, key) => {
             return (

@@ -122,7 +122,7 @@ input[type=submit] {
     color: #FFFFFF;
 }
 
-input[type=text], input[type=password] {
+#loginForm input[type=text], input[type=password] {
     background: #F9F9F9;
     box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
