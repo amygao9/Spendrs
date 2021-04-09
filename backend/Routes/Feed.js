@@ -32,19 +32,20 @@ router.post("/newsfeed", async (req, res) => {
     const user = await User.findById(req.user.id);
 
     const posts = await Post.find({
-      user: { $in: user.following },
+      user: { $in: user.following.concat([req.user.id]) },
       createdAt: { $lt: timeStamp.toISOString() },
     })
       .sort({
         createdAt: -1,
       })
       .limit(limit)
-      .populate({path: 'user', select: 'name image'})
-      .populate({path: 'comments',
+      .populate({ path: "user", select: "name image" })
+      .populate({
+        path: "comments",
         populate: {
-          path: 'author',
-          select: 'name image'
-        }
+          path: "author",
+          select: "name image",
+        },
       });
 
     if (posts.length == 0) {
@@ -54,7 +55,7 @@ router.post("/newsfeed", async (req, res) => {
 
     res.send({ date: posts[posts.length - 1].createdAt, posts });
   } catch (err) {
-    console.log('err :>> ', err);
+    console.log("err :>> ", err);
     res.status(500).send({ err: err });
   }
 });
