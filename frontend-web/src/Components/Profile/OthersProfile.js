@@ -3,8 +3,8 @@ import Navbar from "../Navbar/Navbar";
 import '../../styles/home.css';
 import ProfileDescription from "./ProfileDescription";
 import ProfilePosts from "./ProfilePosts";
-import { userLinks } from "../../constants";
-import {useDispatch} from "react-redux";
+import { userLinks, adminLinks } from "../../constants";
+import {useDispatch, useSelector} from "react-redux";
 import { checkFollowing, getOtherUserData } from "../../reducers/userDataReducer";
 
 
@@ -14,6 +14,8 @@ function Profile({match:{params:{username}}}) {
   const [error, setError] = useState(false);
   const [following, setFollowing] = useState(false);
   const dispatch = useDispatch();
+  const [navBarlinks, setNavBarlinks] = useState(userLinks);
+  const currUser = useSelector(state => state.userData);
 
   useEffect(() => {
     const loadData = async () => {
@@ -27,13 +29,21 @@ function Profile({match:{params:{username}}}) {
       }
       setLoaded(true);
     }
-    loadData();
-  }, [username, dispatch])
+    if (currUser && Object.keys(currUser).length > 0) {
+      loadData();
+      if (currUser.admin) {
+        setNavBarlinks(adminLinks)
+      }
+    }
+
+  }, [username, dispatch, currUser])
 
   const loadProfileContent = () => {
     let publicProfile = true;
-
-    if (user.privacy === "Private") {
+    if (currUser.admin) {
+      publicProfile = true;
+    }
+    else if (user.privacy === "Private") {
       publicProfile = false;
     } else if (user.privacy === "Friends Only") {
       publicProfile = following;
@@ -53,12 +63,12 @@ function Profile({match:{params:{username}}}) {
 
 
   if (!loaded) {
-    return (<div className='home'> <Navbar links={userLinks} /> </div>)
+    return (<div className='home'> <Navbar links={navBarlinks} /> </div>)
   }
 
   return (
     <div className='home'>
-      <Navbar links={userLinks} />
+      <Navbar links={navBarlinks} />
       {
         error ?
         <h1> Profile does not exist. </h1> :
