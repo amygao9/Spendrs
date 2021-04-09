@@ -43,9 +43,11 @@ function App() {
       await dispatch(getUserData);
     }
 
-    authenticate();
     try {
-      getData();
+      authenticate();
+      getData().catch(err => {
+        logout();
+      });
     } catch (err) {
       console.log('err :>> ', err);
       logout();
