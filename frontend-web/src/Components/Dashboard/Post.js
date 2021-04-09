@@ -37,6 +37,8 @@ export default function Post({ post }) {
             <span className="faTrashContainer">
               <FaTrash
               className="faTrash"
+              color={"grey"}
+              title={"Delete Post"}
               onClick={() => {
                 deleteSelectedPost();
               }}

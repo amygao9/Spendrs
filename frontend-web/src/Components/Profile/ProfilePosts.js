@@ -8,7 +8,9 @@ function ProfilePosts({ user }) {
   const getFeedPosts = () => {
     return user.posts.slice(0).reverse().map((post, index) => {
       return <LazyLoad key={index} height={200}>
+        <div style={{borderBottom:"1px solid lightgrey", paddingTop:"5px"}}>
           <Post key={index} user={user} post={post}/>
+        </div>
       </LazyLoad>
     })
   }

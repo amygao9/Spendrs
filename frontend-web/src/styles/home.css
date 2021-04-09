@@ -29,7 +29,7 @@ html, body, #app, #app>div {
 .feedItemContainer {
   width: 30rem;
   padding: 10px;
-  borderRadius: 10px;
+  border-radius: 10px;
 }
 
 .postContainer {
@@ -82,10 +82,12 @@ html, body, #app, #app>div {
 .faTrash {
   cursor: pointer;
   border-radius: 20%;
+  -webkit-filter: drop-shadow( 0px 0px 2px rgba(0, 0, 0, .05));
+  filter: drop-shadow( 0px 0px 2px rgba(0, 0, 0, .05));
 }
 
 .faTrash:hover {
-  background-color: #ccc;
+  transform: scale(0.9);
 }
 
 /*Global classes im not sure where to put this*/

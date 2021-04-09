@@ -41,7 +41,7 @@ function ProfileDescription({ user, isAdmin, loggedIn = true, canFollow}) {
       <ProfilePicture editable={loggedIn} user={user}/>
       {loggedIn?
         <div className={"editProfileButton"} onClick={() => setEditable(!editable)}>
-          <AiFillEdit size={"1.5em"} color={"lightgrey"} title={"Toggle Edit Profile"}/>
+          <AiFillEdit size={"1.5em"} color={"grey"} title={"Toggle Edit Profile"}/>
           {/*<span className="tooltipBlack">Toggle Edit Profile Mode</span>*/}
         </div> : <></>}
 
