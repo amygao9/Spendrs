@@ -54,6 +54,11 @@ function Home(props) {
       return;
     }
 
+    if (price < 0) {
+      alert("Price cannot be less than 0.");
+      return;
+    }
+
     if (link.length !== 0) {
       if (!link.match(URLRegex)) {
         alert("Not a valid website URL.");

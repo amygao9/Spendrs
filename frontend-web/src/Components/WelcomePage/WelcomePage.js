@@ -21,14 +21,13 @@ function WelcomePage() {
   const { register, handleSubmit } = useForm();
   const history = useHistory();
 
-  function onSubmit(data) {
+  async function onSubmit (data) {
     if (data["username"] === "admin" & data["password"] === "admin") {
       history.push('/admin');
     }
-    try {
-      dispatch(login(data.username, data.password));
-    } catch(err) {
-      setLoginError(err)
+    const result = await dispatch(login(data.username, data.password));
+    if (result.err) {
+      setLoginError(result.err);
     }
   }
 

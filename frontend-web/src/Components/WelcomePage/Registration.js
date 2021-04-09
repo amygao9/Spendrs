@@ -46,12 +46,13 @@ function RegistrationModal(props) {
     e.preventDefault();
     resetErrors();
 
-    try{
-      dispatch(signup(name, email, username, password, passwordStrength));
-      history.push("/dashboard");
-    } catch (err) {
-      setErrors(err);
+    const result = await dispatch(signup(name, email, username, password, passwordStrength));
+    console.log('result :>> ', result);
+    if (result.err) {
+      setErrors(result.err);
+      return;
     }
+    history.push("/dashboard");
   }
 
   return (

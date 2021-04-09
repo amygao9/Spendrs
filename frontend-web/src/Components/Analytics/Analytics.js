@@ -13,6 +13,13 @@ function Analytics(props) {
   const [categories, setcategories] = useState([])
   const [monthSpending, setmonthSpending] = useState(0)
   const [loaded, setLoaded] = useState(false)
+  // const stats = {
+  //   "budget": 300,
+  //   "daySpending": 21.5,
+  //   "monthSpending": 465.49,
+  //   "spendingCategories": {"food": 245.49, "misc": 28, "tech": 104, "games": 33, "valorant skins": 55},
+  //   "monthTimeSeries": [["2021-04-05", 50], ["2021-04-05", 37]]
+  // }
   let date = new Date();
   let currentMonth = (date.getMonth() + 1).toString().padStart(2,0);
   const user = props.user;
@@ -21,12 +28,11 @@ function Analytics(props) {
     if (!user || Object.keys(user).length === 0) {
       return;
     }
-    
-    let purchases = [[user.createdAt.slice(0,10), 0]]
+    let purchases = [[user.createdAt, 0]]
     let cat = {}
     let month_spent = 0
     for (let post in user.posts) {
-      purchases.push([user.posts[post].updatedAt.slice(0,10), user.posts[post].price])
+      purchases.push([user.posts[post].updatedAt, user.posts[post].price])
       if (user.posts[post].itemCategory === "") {
         user.posts[post].itemCategory = "misc"
       }

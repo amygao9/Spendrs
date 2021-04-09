@@ -46,12 +46,16 @@ router.post("/signup", async (req, res) => {
   if (sameEmail) errors += "Email already exists.\n";
 
   // username uniqueness
+  console.log('req.body.username :>> ', req.body.username);
   const sameUsername = await User.findOne({ username: req.body.username });
+  console.log('sameUsername :>> ', sameUsername);
   if (sameUsername) errors += "Username already exists.\n";
 
   // password strength
   if (req.body.password.length > 0 && req.body.passwordStrength < 2)
     errors += "Password cannot be too short or weak.\n";
+
+  console.log('errors :>> ', errors);
 
   // report the error, without the trailing \n
   if (errors) return res.status(400).json({ err: errors });
@@ -73,7 +77,9 @@ router.post("/signup", async (req, res) => {
       jwt: jwt,
     });
   } catch (err) {
-    console.log("signup err :>> ", err);
+    if (err.errors.email) {
+      res.status(400).json({ err: "Invalid email." });
+    }
     res.status(400).json({ err: "Error creating account." });
   }
 });

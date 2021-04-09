@@ -31,7 +31,11 @@ const convertToTimeSeries = (data) => {
 
 function TimeSeriesGraph(props) {
   const stats = props.stats;
+  // console.log('stats :>> ', stats);
   const series = convertToTimeSeries(stats);
+  // console.log('series :>> ', series);
+  // console.log('series.range() :>> ', series.range());
+  // console.log('series.max() :>> ', series.max());
   const parentRef = useRef(null);
   const [graphWidth, setGraphWidth] = useState(500);
 
