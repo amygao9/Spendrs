@@ -55,7 +55,14 @@ function Profile({match:{params:{username}}}) {
         {
           publicProfile ?
           <ProfilePosts user={user} /> :
-          <h1> Private profile </h1>
+          <div className='center' id = 'centerHeader'> 
+            <h3> Private Profile </h3> 
+            { (user.privacy === "Private") ? 
+            <p> User in private mode. </p> :
+            <p> Please follow to view posts. </p> 
+            }
+            
+          </div>
         }
       </>
     )
@@ -71,7 +78,8 @@ function Profile({match:{params:{username}}}) {
       <Navbar links={navBarlinks} />
       {
         error ?
-        <h1> Profile does not exist. </h1> :
+        <div className='center' id = 'centerHeader'> <h1> Profile does not exist. </h1> </div>
+         :
         loadProfileContent()
       }
     </div>
