@@ -240,9 +240,10 @@ router.patch("/changePassword", async (req, res) => {
 
 router.get("/profile/:username", async (req, res) => {
   try {
-    const user = await User.findOne({ username: req.params.username }).populate(
-      "posts"
-    );
+    const user = await User.findOne({ username: req.params.username })
+      .populate("posts")
+      .populate('followers', 'name username')
+      .populate('following', 'name username');
     if (!user) {
       res.status(400).send({ err: "User not found" });
     }
