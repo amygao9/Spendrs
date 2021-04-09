@@ -211,7 +211,7 @@ example: (note: this is not an actual token)
 
 ## Admin
 
-The admin routes used to do admin activity.
+The admin routes used to do admin activity. These routes are only accessible by admin accounts.
 
 ### Get all users
 <span style="
@@ -484,7 +484,33 @@ matches the username in the database and it will return an array of most 3 usern
   "asdfasdfadsf"
 ]
 ```
+## Delete User
+<span style="
+    font-size: 20px;
+    color: #faa61a;
+    font-family: Menlo,Consolas,Monaco,monospace;
+    text-transform: uppercase;
+    margin-right: 10px;"> delete </span> /api/users/deleteUser. 
+deletes the current user account that calls this, and returns the user document that was deleted.
 
+## Change Password
+<span style="
+    font-size: 20px;
+    color: #faa61a;
+    font-family: Menlo,Consolas,Monaco,monospace;
+    text-transform: uppercase;
+    margin-right: 10px;"> patch </span> /api/users/changePassword. changes the current user account password and returns the user document that was changed.
+    
+## example request body
+
+```
+{
+  "oldPass": "password",
+  "password": "newpass",
+  "confirmPass": "newpass",
+  "passwordStrength: 5
+}
+```
 <br/>
 <br/>
 <br/>
