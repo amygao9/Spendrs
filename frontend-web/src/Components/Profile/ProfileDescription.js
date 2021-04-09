@@ -9,7 +9,7 @@ import {AiFillEdit} from "react-icons/all";
 import { useDispatch, useSelector } from "react-redux";
 import { followUser, unfollowUser } from "../../reducers/userDataReducer";
 
-function ProfileDescription({ user, isAdmin, loggedIn = true, canFollow}) {
+function ProfileDescription({ user, loggedIn = true, canFollow}) {
 
   const [editable, setEditable] = useState(false);
   const currUser = useSelector(state => state.userData);
@@ -46,9 +46,9 @@ function ProfileDescription({ user, isAdmin, loggedIn = true, canFollow}) {
         </div> : <></>}
 
       <Container>
-        <ProfileStats user={user} isAdmin = {isAdmin}/>
+        <ProfileStats user={user}/>
         <ProfileInfo editable={editable} user={user} />
-        { canFollow && renderButton() }
+        { canFollow ? renderButton() :<></> }
       </Container>
     </div>
   );
