@@ -8,6 +8,7 @@ import { Link, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { useDispatch, useSelector } from "react-redux";
 import {changeUserPrivacy} from "../../axios/user";
+import { updateUser } from "../../reducers/userDataReducer";
 import PasswordModal from "./SettingsModal"
 import DeleteModal from "./DeleteAccountModal"
 function Settings() {
@@ -40,8 +41,14 @@ function Settings() {
   }
 
   const changePrivacy = (e) => {
-    setRadioValue(e.currentTarget.value)
-    changeUserPrivacy(e.currentTarget.value)
+    
+    // changeUserPrivacy(e.currentTarget.value)
+    const result = dispatch(updateUser({privacy: e.currentTarget.value}));
+      console.log('result :>> ', result);
+      if (result.err) {
+        alert(result.err);
+      }
+      setRadioValue(e.currentTarget.value)
   }
   if (!loaded) {
     return (<div className='home'> <Navbar links={userLinks} /> </div>)
@@ -51,15 +58,14 @@ function Settings() {
       <div>
       <div className='settingsContainer'>
         <Navbar links={adminLinks} />
-        <h3 className = "headers"> Profile Information</h3>
+        <h3 className = "headers"> Admin Account</h3>
         <div id = "users" className="list-group-item shadowSmall">
-                  <Link to={`/profile`}>
-                      <h5 className="mb-">{user.name}</h5>
-                  </Link>
+                
+                  <h5 className="mb-">{user.name}</h5>
                   <p className="mb-1">Username: @{user.username}</p>
                   <p className="mb-1">Email: {user.email}</p>
                   <p className="mb-1">Date Registered: {user.createdAt.slice(0,10)}</p>
-                  {/* <Button onClick={() => props.handleDelete(user.username)} className="btn-default" id = "deleteButton"> Delete user</Button> */}
+                  
         </div>
 
         <h3 className = "headers">Account</h3>

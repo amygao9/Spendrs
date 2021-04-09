@@ -8,6 +8,32 @@ nav.main {
   z-index: 10;
 }
 
+.searchResults {
+  background-color: rgb(244, 244, 244);
+  position: relative;
+  top: -30px;
+  left: 15px;
+  /* padding: 30px 20px 10px 20px; */
+  padding-top: 20px;
+  z-index: 1;
+  flex-direction: column;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.searchUser {
+  display: block;
+  text-decoration: none !important;
+  color: green;
+  padding: 10px;
+  margin: 0px 10px 0px 10px;
+}
+
+.searchText {
+  padding: 10px;
+  margin: 0px 10px 0px 10px;
+}
+
 .title {
   margin-top: 15px;
   color: black;
@@ -71,6 +97,9 @@ nav.main {
   }
 
   label:before {
+    display: none;
+  }
+  .searchResults {
     display: none;
   }
 }
