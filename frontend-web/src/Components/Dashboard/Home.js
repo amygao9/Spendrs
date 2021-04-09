@@ -10,6 +10,7 @@ import { useDispatch, connect } from 'react-redux';
 import { getInitialFeed, createPost } from '../../reducers/postsReducer';
 import { URLRegex } from "../utils/utils";
 import { useAlert } from 'react-alert'
+import {compressPostPicture} from "../../util/imageCompression";
 
 function Home(props) {
   const [name, setName] = useState("");
@@ -69,7 +70,8 @@ function Home(props) {
 
     // Phase 2 api stuff
     const form = new FormData()
-    form.append("file", file)
+    const compressedImage = await compressPostPicture(file);
+    form.append("file", compressedImage)
     form.append("itemName", name)
     form.append("itemLink", link)
     form.append("itemCategory", category)

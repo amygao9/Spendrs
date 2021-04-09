@@ -5,7 +5,6 @@ import { uploadProfilePic } from "../../reducers/userDataReducer";
 import {Modal} from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import {defaultAvatar} from "../../constants";
-import imageCompression from "browser-image-compression";
 
 function ProfilePicture({ editable, user }) {
   const [show, setShow] = useState(false);
@@ -34,22 +33,9 @@ function UploadPicture ({show, handleClose}) {
 
   async function uploadPicture(event) {
     event.preventDefault();
-    console.log(event.target.image.files)
     const imageFile = event.target.image.files[0];
-
-    const options = {
-      maxSizeMB: 0.05,
-      maxWidthOrHeight: 400,
-      useWebWorker: true,
-      fileType: "image/jpeg",
-    }
-    try {
-      const compressedFile = await imageCompression(imageFile, options);
-      dispatch(uploadProfilePic(compressedFile));
-      handleClose();
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(uploadProfilePic(imageFile));
+    handleClose();
   }
 
   return (

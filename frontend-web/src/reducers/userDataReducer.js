@@ -1,5 +1,6 @@
 import client from "../axios/auth";
 import { BASE_URL } from "../base_url";
+import {compressProfilePicture} from "../util/imageCompression";
 
 const initialState = {};
 
@@ -61,8 +62,11 @@ export const updateUser = (data) => async (dispatch, getState) => {
 
 export const uploadProfilePic = (image) => async (dispatch, getState) => {
   try {
+    // Compress Image
+    const compressedImage = await compressProfilePicture(image);
+
     const picture = new FormData();
-    picture.append("file", image);
+    picture.append("file", compressedImage);
     await client.post(BASE_URL + '/api/users/upload/profile_pic', picture);
     dispatch(getUserData);
   } catch (err) {
