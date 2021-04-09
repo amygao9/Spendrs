@@ -23,9 +23,6 @@ app.use("/api/posts", authenticateToken, posts);
 const feed = require("./routes/Feed");
 app.use("/api/feed", authenticateToken, feed);
 
-const helloWorld = require("./routes/helloWorld");
-app.use("/helloWorld", helloWorld);
-
 const admin = require("./routes/admin");
 app.use("/api/admin", authenticateToken, admin);
 

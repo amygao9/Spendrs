@@ -48,6 +48,7 @@ export const login = (username, password) => async (dispatch, getState) => {
     }
     
     dispatch(getUserData);
+    
     return user.data.admin ? "admin" : "user";
   } catch (err) {
     console.log('err :>> ', err.response.data.err);

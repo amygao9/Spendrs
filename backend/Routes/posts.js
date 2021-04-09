@@ -17,12 +17,6 @@ cloudinary.config({
   api_secret: "YlJpmHXZvRod6wYSf6pt39Cep8A",
 });
 
-router.get("/all", async (req, res) => {
-  const users = await Post.find();
-  res.send(users);
-  return users;
-});
-
 // Gets all posts of a user
 router.get("/", async (req, res) => {
   const posts = await Post.find({ user: req.user.id });

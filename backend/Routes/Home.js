@@ -18,7 +18,7 @@ router.post("/login", async (req, res) => {
     const valid = await user.isValidPassword(req.body.password);
     if (valid) {
       const jwt = getJWT(user._id);
-      res.json({ msg: "Login successful!", jwt: jwt, id: user._id });
+      res.json({ jwt: jwt });
     } else {
       res.status(404);
       res.json({ err: "Invalid password." });
@@ -46,14 +46,12 @@ router.post("/signup", async (req, res) => {
   if (sameEmail) errors += "Email already exists.\n";
 
   // username uniqueness
-  console.log('req.body.username :>> ', req.body.username);
   const sameUsername = await User.findOne({ username: req.body.username });
-  console.log('sameUsername :>> ', sameUsername);
   if (sameUsername) errors += "Username already exists.\n";
 
   // password strength
-  if (req.body.password.length > 0 && req.body.passwordStrength < 2)
-    errors += "Password cannot be too short or weak.\n";
+  // if (req.body.password.length > 0 && req.body.passwordStrength < 2)
+  //   errors += "Password cannot be too short or weak.\n";
 
   console.log('errors :>> ', errors);
 
@@ -73,7 +71,6 @@ router.post("/signup", async (req, res) => {
     await user.save();
     const jwt = getJWT(newUser._id);
     res.json({
-      msg: "Account successfully created!",
       jwt: jwt,
     });
   } catch (err) {

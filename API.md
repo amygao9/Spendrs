@@ -187,13 +187,69 @@ Represents a comment in on the post.
 ## Home
 
 The routes used when a user isn't logged in.
+
+### Login
+<span style="
+    font-size: 20px;
+    color: #faa61a;
+    font-family: Menlo,Consolas,Monaco,monospace;
+    text-transform: uppercase;
+    margin-right: 10px;"> post </span> /api/login.
+Requires a body with username and password fields.
+Returns a JWT on success which should be used for protected routes.
+
+### example body
+```
+{
+  username: "user",
+  password: "password123"
+}
+```
+
+### example response
+```
+{
+    "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNmM5NTFhNDlmMTdjN2ViNGI0NDBhYyIsImlhdCI6MTYxODAwOTI3NSwiZXhwIjoxNjE4MDk1Njc1fQ.tRwoIg7zt070d50rMc-h7zjfzGoFBixzKWV0hM_WP1A"
+}
+```
+
+### Signup
+
+<span style="
+    font-size: 20px;
+    color: #faa61a;
+    font-family: Menlo,Consolas,Monaco,monospace;
+    text-transform: uppercase;
+    margin-right: 10px;"> post </span> /api/signup.
+Requires a body with name, email, username, password, and passwordStrength fields.
+Returns a JWT on success which should be used for protected routes.
+Errors with appropriate error messages as a json with the err key.
+Note: password strength needs to be >= 2 for a user to be created.
+
+### example body
+```
+{
+  "name": "newuser",
+  "email": "newuser123@gmail.com",
+  "username": "newuser1",
+  "password": "iamanewuser1234",
+  "passwordStrength": 4
+}
+```
+
+### example response
+```
+{
+    "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNmM5NTFhNDlmMTdjN2ViNGI0NDBhYyIsImlhdCI6MTYxODAwOTI3NSwiZXhwIjoxNjE4MDk1Njc1fQ.tRwoIg7zt070d50rMc-h7zjfzGoFBixzKWV0hM_WP1A"
+}
+```
 <br/>
 <br/>
 <br/>
 
 # Protected API Routes
 
-the following apis require you to set the header as following
+The following apis require you to set the header as following
 
 | FIELD         | TYPE   | DESCRIPTION                        |
 | ------------- | ------ | ---------------------------------- |
@@ -204,6 +260,8 @@ example: (note: this is not an actual token)
 | FIELD         | value                                       |
 | ------------- | ------------------------------------------- |
 | authorization | bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9 |
+
+With the token stored in the header, the `authenticateToken` middleware will extract the user's ID from the token and pass it into the protected routes as req.user.
 
 <br/>
 <br/>
@@ -426,7 +484,199 @@ The routes to generate and create posts.
 
 ## Users
 
-The routes to preform user operations.
+The routes to preform user operations. 
+
+### Get User's Data
+<span style="
+    font-size: 20px;
+    color: #faa61a;
+    font-family: Menlo,Consolas,Monaco,monospace;
+    text-transform: uppercase;
+    margin-right: 10px;"> get </span> /api/users/.  
+Get's the user's data with populated fields.
+
+### Example response
+```
+{
+    "posts": [
+        {
+            "attachedImage": {
+                "id": "exli3gs74838jqiyaiih",
+                "url": "http://res.cloudinary.com/dikl8liky/image/upload/v1618010903/exli3gs74838jqiyaiih.jpg"
+            },
+            "itemCategory": "food",
+            "price": 14.48,
+            "likes": [],
+            "_id": "6070e3183cadfb32cce397c8",
+            "itemName": "Spaghetti",
+            "itemLink": "https://www.amazon.com/Campbells-Spaghetti-Canned-Pasta-15-8/dp/B01KQ9F10S/ref=sr_1_4?dchild=1&keywords=spaghetti&qid=1618010785&rdc=1&sr=8-4",
+            "description": "I love spaget",
+            "user": {
+                "_id": "6070e26f3cadfb32cce397c5",
+                "name": "Alex Shih",
+                "username": "alex123"
+            },
+            "comments": [],
+            "createdAt": "2021-04-09T23:28:24.458Z",
+            "updatedAt": "2021-04-09T23:28:24.458Z",
+            "__v": 0
+        },
+        {
+            "attachedImage": {
+                "id": "lc5k1oqwoew6vmxbp9va",
+                "url": "http://res.cloudinary.com/dikl8liky/image/upload/v1618011020/lc5k1oqwoew6vmxbp9va.jpg"
+            },
+            "itemCategory": "misc",
+            "price": 18.99,
+            "likes": [],
+            "_id": "6070e38d3cadfb32cce397ca",
+            "itemName": "Blackpink poster",
+            "itemLink": "https://www.amazon.com/IDOLPARK-K-POP-Poster-Sticker-Blackpink/dp/B08HTZF2Z7/ref=sr_1_2?dchild=1&keywords=blackpink+poster&qid=1618010995&sr=8-2",
+            "description": "BP IN UR AREA",
+            "user": {
+                "_id": "6070e26f3cadfb32cce397c5",
+                "name": "Alex Shih",
+                "username": "alex123"
+            },
+            "comments": [
+                {
+                    "_id": "6070e3c43cadfb32cce397cc",
+                    "author": "6070e3af3cadfb32cce397cb",
+                    "comment": "DUDUDUDU"
+                }
+            ],
+            "createdAt": "2021-04-09T23:30:21.510Z",
+            "updatedAt": "2021-04-09T23:31:16.750Z",
+            "__v": 1
+        }
+    ],
+    "followers": [
+        {
+            "_id": "6070e27f3cadfb32cce397c7",
+            "name": "jacky yang",
+            "username": "jacky123"
+        },
+        {
+            "_id": "6070e3af3cadfb32cce397cb",
+            "name": "Test User",
+            "username": "user"
+        }
+    ],
+    "following": [
+        {
+            "_id": "6070e26f3cadfb32cce397c5",
+            "name": "Alex Shih",
+            "username": "alex123"
+        }
+    ],
+    "privacy": "Public",
+    "admin": false,
+    "_id": "6070e26f3cadfb32cce397c5",
+    "name": "Alex Shih",
+    "username": "alex123",
+    "password": "$2b$10$CahYDWguRoo1eWb3C7JEX.tNK1Utxj.HLnAKTN.YGxksZeP8w0lXC",
+    "email": "alex@gmail.com",
+    "createdAt": "2021-04-09T23:25:35.803Z",
+    "updatedAt": "2021-04-09T23:31:06.514Z",
+    "__v": 5
+}
+```
+
+### Get If User Is Following
+<span style="
+    font-size: 20px;
+    color: #faa61a;
+    font-family: Menlo,Consolas,Monaco,monospace;
+    text-transform: uppercase;
+    margin-right: 10px;"> get </span> /api/users/following/:username.  
+Returns whether the current user is following the user in req.params.username.
+ as a JSON body with the key "following".
+
+
+### Example response
+```
+{
+  "following": false
+}
+```
+
+### Update User Data
+<span style="
+    font-size: 20px;
+    color: #faa61a;
+    font-family: Menlo,Consolas,Monaco,monospace;
+    text-transform: uppercase;
+    margin-right: 10px;"> put </span> /api/users/update.  
+Updates fields passed in by the body of update user data.
+Optional fields include name, email, username, description.
+Returns the updated user.
+
+### Example body
+{
+  "name": "John Smith",
+  "email": "johnsmith42@hotmail.com"
+}
+
+### Get User Profile
+<span style="
+    font-size: 20px;
+    color: #faa61a;
+    font-family: Menlo,Consolas,Monaco,monospace;
+    text-transform: uppercase;
+    margin-right: 10px;"> get </span> /api/users/profile/:username.  
+Returns the populated profile of the user given by req.params.username.
+
+### Example response
+```
+{
+    "posts": [],
+    "followers": [
+        {
+            "_id": "6070e4013cadfb32cce397cd",
+            "name": "Second User",
+            "username": "user2"
+        }
+    ],
+    "following": [
+        {
+            "_id": "6070e3af3cadfb32cce397cb",
+            "name": "Test User",
+            "username": "user"
+        },
+        {
+            "_id": "6070e26f3cadfb32cce397c5",
+            "name": "Alex Shih",
+            "username": "alex123"
+        }
+    ],
+    "privacy": "Friends Only",
+    "admin": false,
+    "_id": "6070e3af3cadfb32cce397cb",
+    "name": "Test User",
+    "username": "user",
+    "password": "$2b$10$K5yr8L5pUqmfuSkr/ppxMO9Wpw8i4JVdUXPBFgyMn/tIRZcgyvyQa",
+    "email": "testuser@gmail.com",
+    "createdAt": "2021-04-09T23:30:55.392Z",
+    "updatedAt": "2021-04-09T23:32:42.139Z",
+    "__v": 3
+}
+```
+
+### Upload Profile Picture
+<span style="
+    font-size: 20px;
+    color: #faa61a;
+    font-family: Menlo,Consolas,Monaco,monospace;
+    text-transform: uppercase;
+    margin-right: 10px;"> post </span> /api/users/upload/profile_pic.  
+Uploads a new profile picture for the user.
+Requires a file to be passed in as req.files.
+
+### Example response
+```
+
+```
+
 
 ### Follows User
 
@@ -438,7 +688,7 @@ The routes to preform user operations.
     margin-right: 10px;"> post </span> /api/users/unfollow.  
 follows the user with user.\_id that matches the body.id field
 
-## example
+### example
 
 ```
 {
@@ -456,7 +706,7 @@ follows the user with user.\_id that matches the body.id field
     margin-right: 10px;"> post </span> /api/users/follow.  
 unfollows the user with user.\_id that matches the body.id field
 
-## example
+### example
 
 ```
 {
@@ -475,7 +725,7 @@ unfollows the user with user.\_id that matches the body.id field
 queries the database of users with username like searchQuery. ie the regex ".\*_{searchQuery}.\*_"
 matches the username in the database and it will return an array of most 3 username results.
 
-## possible sample response
+### possible sample response
 
 ```
 [
@@ -484,7 +734,7 @@ matches the username in the database and it will return an array of most 3 usern
   "asdfasdfadsf"
 ]
 ```
-## Delete User
+### Delete User
 <span style="
     font-size: 20px;
     color: #faa61a;
@@ -493,7 +743,7 @@ matches the username in the database and it will return an array of most 3 usern
     margin-right: 10px;"> delete </span> /api/users/deleteUser. 
 deletes the current user account that calls this, and returns the user document that was deleted.
 
-## Change Password
+### Change Password
 <span style="
     font-size: 20px;
     color: #faa61a;
@@ -501,7 +751,7 @@ deletes the current user account that calls this, and returns the user document 
     text-transform: uppercase;
     margin-right: 10px;"> patch </span> /api/users/changePassword. changes the current user account password and returns the user document that was changed.
     
-## example request body
+### example request body
 
 ```
 {
