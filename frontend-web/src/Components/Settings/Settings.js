@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import '../../styles/settings.css';
 import '../../styles/home.css';
-import { userLinks, adminLinks, users } from "../../constants";
+import { userLinks, adminLinks } from "../../constants";
 import { Button, ButtonGroup, ToggleButton} from "react-bootstrap";
 import { Link, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
