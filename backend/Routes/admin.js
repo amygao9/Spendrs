@@ -22,4 +22,17 @@ router.get("/allUsers", async (req, res) => {
     
   });
 
+router.delete("/deleteUser/:username", async (req, res) => {
+  try {
+    const user = await User.findOne({username: req.params.username});
+    if (!user) {
+      res.status(400).send({err: "User not found"});
+    }
+    res.send(user[0]);
+  } catch (err) {
+    console.log(err);
+  }
+  
+});
+
   module.exports = router;

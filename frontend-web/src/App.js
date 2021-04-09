@@ -71,6 +71,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Admin} />
             <Route exact path="/admin" component={Admin} />
+            <Route exact path="/settings" component={Settings} />
           </Switch>
           :
           <Switch>

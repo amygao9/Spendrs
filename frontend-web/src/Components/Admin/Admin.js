@@ -58,10 +58,8 @@ function Admin() {
                 <ListGroup>
                     {getUsers()}
                 </ListGroup>
-            <Button className="settingsButton" variant="outline-info" onClick={() => logout()}>LOGOUT</Button>
             </div>
-            
-        
+
         </div>
     );
 }
