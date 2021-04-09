@@ -3,18 +3,18 @@ import { Modal, ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function ProfileFriends(props) {
-    
+    console.log(props.data)
     const getList = () => {
         return props.data.map((user, index) => {
           if (props.isAdmin) {
             return  <ListGroup.Item key={index}>
-                      {user}
+                      {user.name}
                   </ListGroup.Item>
           }
           else {
             return  <ListGroup.Item key={index}>
-                    <Link to={`/profile/${user}`}>
-                      {user}
+                    <Link to={`/profile/${user.username}`}>
+                      {user.name}
                     </Link>
                   </ListGroup.Item>
           }

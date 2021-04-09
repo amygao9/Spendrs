@@ -20,7 +20,10 @@ cloudinary.config({
 
 router.get("/", async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).populate('posts');
+    const user = await User.findById(req.user.id)
+      .populate('posts')
+      .populate('followers', 'name username')
+      .populate('following', 'name username');
     if (!user) {
       res.status(400).send("User not found");
     }
