@@ -213,6 +213,113 @@ example: (note: this is not an actual token)
 
 The admin routes used to do admin activity.
 
+### Get all users
+<span style="
+    font-size: 20px;
+    color: #faa61a;
+    font-family: Menlo,Consolas,Monaco,monospace;
+    text-transform: uppercase;
+    margin-right: 10px;"> get </span> /api/admin/allUsers.
+gets all user accounts and their individual posts.
+
+### example response
+
+```
+[
+    {
+        "posts": [],
+        "followers": [
+            "6064f9d74681fd1760a6d7b0"
+        ],
+        "following": [],
+        "privacy": "Private",
+        "admin": false,
+        "_id": "6063708b7e81c57b408aa90f",
+        "name": "jacky",
+        "username": "notjacky",
+        "password": "$2b$10$x6VGSHtXfcyRw0Lu7y84IuN/9.vmc0l4aotjdPN/cZtehoJBv/8I6",
+        "email": "jacky",
+        "__v": 5,
+        "createdAt": "2021-04-05T00:40:09.902Z",
+        "updatedAt": "2021-04-05T00:40:09.902Z"
+    },
+    {
+        "posts": [
+            {
+                "itemCategory": "misc",
+                "price": 20,
+                "likes": [],
+                "_id": "606a5da1181d705c38398e33",
+                "itemName": "rice",
+                "user": "6064d632ae584c5aa08462ac",
+                "createdAt": "2021-04-05T00:45:21.267Z",
+                "updatedAt": "2021-04-05T00:45:21.267Z",
+                "__v": 0,
+                "comments": []
+            },
+            {
+                "itemCategory": "misc",
+                "price": 17,
+                "likes": [],
+                "_id": "606a5daa181d705c38398e35",
+                "itemName": "water bottle",
+                "user": "6064d632ae584c5aa08462ac",
+                "createdAt": "2021-04-05T00:45:30.390Z",
+                "updatedAt": "2021-04-05T00:45:30.390Z",
+                "__v": 0,
+                "comments": []
+            }
+        ],
+        "followers": [
+            "6064f9d74681fd1760a6d7b0"
+        ],
+        "following": [
+            "6064f9d74681fd1760a6d7b0"
+        ],
+        "privacy": "Private",
+        "admin": false,
+        "_id": "6064d632ae584c5aa08462ac",
+        "name": "Alexander Shih",
+        "username": "asdf",
+        "password": "$2b$10$AcHYbjofPKy8ydUM2oHwoeCUsl4qnnVz2Y/qOvWTiYaxKUYRR3ogi",
+        "email": "alex.alex.shih@gmail.com",
+        "__v": 4,
+        "createdAt": "2021-04-05T00:44:51.681Z",
+        "updatedAt": "2021-04-05T00:46:42.010Z"
+    }
+]
+```
+### Delete user
+<span style="
+    font-size: 20px;
+    color: #faa61a;
+    font-family: Menlo,Consolas,Monaco,monospace;
+    text-transform: uppercase;
+    margin-right: 10px;"> delete </span> /api/admin/deleteUser/:username.
+deletes a user account by username and returns the deleted user.
+
+### example response
+``` /api/admin/deleteUser/example ```
+
+```
+{
+    "posts": [],
+    "followers": [],
+    "following": [
+        "6070c93dcd0536a37266be6d"
+    ],
+    "privacy": "Private",
+    "admin": false,
+    "_id": "6070c93dcd0536a37266be6d",
+    "name": "example",
+    "username": "example",
+    "password": "$2b$10$tX0/llOdUl36r1UOCBmkt.0xEujBmYXyVerJnjQy3H4VjVNMPeHoa",
+    "email": "example@uoft.com",
+    "createdAt": "2021-04-09T21:38:05.948Z",
+    "updatedAt": "2021-04-09T21:38:06.097Z",
+    "__v": 1
+}
+```
 <br/>
 <br/>
 <br/>
