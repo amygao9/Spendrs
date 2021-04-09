@@ -77,7 +77,7 @@ export default function Navbar(props) {
   return (
     <>
       <nav className="main"></nav>
-      <div className="fixed">
+      <div className="fixed shadowSmall">
         <nav className="main">
           <NavLink to="" className="title">
             <h1>SpendR</h1>

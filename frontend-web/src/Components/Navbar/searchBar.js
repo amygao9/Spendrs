@@ -13,7 +13,7 @@ import { BASE_URL } from "../../base_url";
 function StatusString(props) {
   let statusString;
   if (props.search == "") {
-    statusString = "please search something";
+    statusString = "Start typing to search";
   } else if (props.results.length == 0) {
     statusString = "No results found";
   } else {
@@ -55,7 +55,7 @@ export default function SearchBar(props) {
           autoComplete="off"
           id="navText"
           type="text"
-          placeholder="Search"
+          placeholder="Find Users"
           value={search}
           onChange={(e) => {
             if (e.target.value !== "") {
