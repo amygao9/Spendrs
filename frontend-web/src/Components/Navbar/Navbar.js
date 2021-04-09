@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { CSSTransitionGroup } from "react-transition-group";
 import { NavLink } from "react-router-dom";
 import "../../styles/Navbar.css";
@@ -20,8 +20,22 @@ export default function Navbar(props) {
 
   const [search, setSearch] = useState("");
 
+  const ref = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setFocused(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
+
   const onFocus = () => setFocused(true);
-  const onBlur = () => setFocused(false);
 
   const getSlide = () => {
     const navLinks = Object.entries(links).map((link) => {
@@ -90,7 +104,7 @@ export default function Navbar(props) {
               }}
             />
           )}
-          <div>
+          <div ref={ref}>
             <label className="searchBar">
               <input
                 autocomplete="off"
@@ -99,10 +113,6 @@ export default function Navbar(props) {
                 placeholder="Search"
                 value={search}
                 onChange={(e) => {
-                  console.log(e.target.value);
-                  console.log(
-                    BASE_URL + "/api/users/findUser/" + e.target.value
-                  );
                   if (e.target.value !== "") {
                     client
                       .get(BASE_URL + "/api/users/findUser/" + e.target.value)
@@ -115,7 +125,6 @@ export default function Navbar(props) {
                   setSearch(e.target.value);
                 }}
                 onFocus={onFocus}
-                onBlur={onBlur}
               />
             </label>
             {focused && (
@@ -132,15 +141,19 @@ export default function Navbar(props) {
                   borderBottomLeftRadius: "1rem",
                 }}
               >
-                {results.map((val, key) => (
-                  <a
-                    key={key}
-                    style={{ display: "block" }}
-                    href={"/profile/" + val}
-                  >
-                    {val}
-                  </a>
-                ))}
+                {results.map((val, key) => {
+                  console.log("/profile/" + val);
+                  return (
+                    <a
+                      key={key}
+                      style={{ display: "block" }}
+                      href={"profile/" + val}
+                    >
+                      {val}
+                    </a>
+                  );
+                })}
+                <a href="/profile/a"> test</a>
               </div>
             )}
           </div>
