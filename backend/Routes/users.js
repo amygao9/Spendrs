@@ -165,25 +165,8 @@ router.put("/update", async (req, res) => {
   }
 });
 
-/* Route for changing privacy
-Request body expects:
-{
-	"privacy": <string> (one of "Public", "Private", "Friends Only")
-}
+/* Route for deleting current account. Returns the user that was deleted.
 */
-router.patch("/changePrivacy", async (req, res) => {
-  try {
-    const id = req.user.id;
-    const user = await User.findById(id);
-    user.privacy = req.body.privacy;
-
-    await user.save();
-    res.send(user);
-  } catch (err) {
-    res.status(500).send({ err: err });
-  }
-});
-
 router.delete("/deleteUser", async (req, res) => {
   try {
     const id = req.user.id;
@@ -205,6 +188,7 @@ Request body expects:
 {
 	{oldPass: "", password: "", confirmPass: "", passwordStrength: ""}
 }
+Returns user document that was changed, or errors if any.
 */
 router.patch("/changePassword", async (req, res) => {
   let errors = "";
