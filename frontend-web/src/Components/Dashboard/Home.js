@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import "../../styles/home.css";
 import ShareForm from "./ShareForm";
-import {Container, Row} from "react-bootstrap";
+import {Alert, Container, Row} from "react-bootstrap";
 import "../../styles/home.css";
 import Feed from "./Feed";
 import { userLinks } from "../../constants";
 import { useDispatch, connect } from 'react-redux';
 import { getInitialFeed, createPost } from '../../reducers/postsReducer';
 import { URLRegex } from "../utils/utils";
+import { useAlert } from 'react-alert'
 
 function Home(props) {
   const [name, setName] = useState("");
@@ -23,6 +24,7 @@ function Home(props) {
   const posts = props.posts;
   const finishedLoading = props.finishedLoading;
   const dispatch = useDispatch();
+  const alert = useAlert();
 
   useEffect(() => {
     dispatch(getInitialFeed);
@@ -50,18 +52,18 @@ function Home(props) {
     e.preventDefault();
 
     if (name === "") {
-      alert("Name can't be blank.");
+      alert.error("Name can't be blank.");
       return;
     }
 
     if (price < 0) {
-      alert("Price cannot be less than 0.");
+      alert.error("Price cannot be less than 0.");
       return;
     }
 
     if (link.length !== 0) {
       if (!link.match(URLRegex)) {
-        alert("Not a valid website URL.");
+        alert.error("Not a valid website URL.");
         return;
       }
     }
@@ -77,7 +79,7 @@ function Home(props) {
 
     try{
       await dispatch(createPost(form));
-      alert("Post created!");
+      alert.success("Post created!");
     } catch (err) {
       console.log(err);
     }

@@ -5,6 +5,7 @@ import { Row } from "react-bootstrap";
 import EditModal from "../utils/EditModal";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../reducers/userDataReducer";
+import { useAlert } from "react-alert";
 
 function ProfileInfo({ editable, user }) {
 
@@ -17,6 +18,7 @@ function ProfileInfo({ editable, user }) {
   const [showEditDescription, setShowEditDescription] = useState(false);
 
   const dispatch = useDispatch();
+  const alert = useAlert();
 
   const handleCloseEditUsername = (update) => {
     setShowEditUsername(false);
@@ -40,9 +42,8 @@ function ProfileInfo({ editable, user }) {
     e.preventDefault();
     if (name === "Username") {
       const result = await dispatch(updateUser({username: updatedUsername}));
-      console.log('result :>> ', result);
       if (result.err) {
-        alert(result.err);
+        alert.error(result.err);
       }
       setUsername(updatedUsername);
     } else if (name === "Description") {

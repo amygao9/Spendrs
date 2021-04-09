@@ -5,6 +5,7 @@ import { Modal } from "react-bootstrap";
 import PasswordStrengthBar from 'react-password-strength-bar';
 import { changePassword } from '../../reducers/userDataReducer';
 import { useDispatch } from "react-redux";
+import { useAlert } from "react-alert";
 
 function PasswordModal(props) {
     const [oldpass, setOldPass] = useState("");
@@ -13,6 +14,7 @@ function PasswordModal(props) {
     const [passwordStrength, setStrength] = useState(0);
     const [passError, setPassError] = useState(0);
     const dispatch = useDispatch();
+    const alert = useAlert();
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -21,7 +23,7 @@ function PasswordModal(props) {
       if (result && result.err) {
         setPassError(result.err);
       } else {
-        alert("Change password successful!")
+        alert.success("Change password successful!");
       }
     }
     return (

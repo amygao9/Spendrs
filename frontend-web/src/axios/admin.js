@@ -20,7 +20,6 @@ export const getAllUsers = async () => {
 
 export const deleteUser = async (username) => {
   try {
-    
     const user = await client.delete(BASE_URL + `/api/admin/deleteUser/${username}`);
     if (!user) {
       console.log(user)

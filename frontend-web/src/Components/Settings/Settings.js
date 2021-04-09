@@ -10,10 +10,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../reducers/userDataReducer";
 import PasswordModal from "./SettingsModal"
 import DeleteModal from "./DeleteAccountModal"
+import { useAlert } from "react-alert";
 
 function Settings() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const alert = useAlert();
   
   const user = useSelector(state => state.userData);
   const [radioValue, setRadioValue] = useState(user.privacy);
@@ -43,9 +45,8 @@ function Settings() {
 
   const changePrivacy = (e) => {
     const result = dispatch(updateUser({privacy: e.currentTarget.value}));
-      console.log('result :>> ', result);
       if (result.err) {
-        alert(result.err);
+        alert.error(result.err);
       }
       setRadioValue(e.currentTarget.value)
   }

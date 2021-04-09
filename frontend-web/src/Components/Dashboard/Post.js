@@ -6,15 +6,17 @@ import { FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { deletePost } from "../../reducers/postsReducer";
 import {defaultAvatar} from "../../constants";
+import { useAlert } from "react-alert";
 
 export default function Post({ post }) {
   const loggedInUser = useSelector(state => state.userData);
   const user = post.user;
   const dispatch = useDispatch();
+  const alert = useAlert();
 
   const deleteSelectedPost = async () => {
     const result = await dispatch(deletePost(post._id));
-    alert(result);
+    alert.success(result);
   }
   
   return (
