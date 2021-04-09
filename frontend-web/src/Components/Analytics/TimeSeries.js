@@ -31,11 +31,12 @@ const convertToTimeSeries = (data) => {
 
 function TimeSeriesGraph(props) {
   const stats = props.stats;
-  // console.log('stats :>> ', stats);
-  const series = convertToTimeSeries(stats);
-  // console.log('series :>> ', series);
-  // console.log('series.range() :>> ', series.range());
-  // console.log('series.max() :>> ', series.max());
+  const sortedStats = stats.sort(function(a, b) {
+    const date1 = Date.parse(a[0]);
+    const date2 = Date.parse(b[0]);
+    return date1 - date2;
+  })
+  const series = convertToTimeSeries(sortedStats);
   const parentRef = useRef(null);
   const [graphWidth, setGraphWidth] = useState(500);
 
