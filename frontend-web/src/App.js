@@ -76,6 +76,7 @@ function App() {
             <Route exact path="/" component={Admin} />
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/settings" component={Settings} />
+            <Route exact path="/profile/:username" component={OthersProfile} />
           </Switch>
           :
           <Switch>

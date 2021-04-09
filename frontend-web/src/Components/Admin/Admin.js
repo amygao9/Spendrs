@@ -8,7 +8,7 @@ import { ListGroup } from "react-bootstrap";
 import { Link, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { useDispatch, useSelector } from "react-redux";
-import {getAllUsers} from "../../axios/admin";
+import {getAllUsers, deleteUser} from "../../axios/admin";
 
 function Admin() {
     const dispatch = useDispatch();
@@ -29,22 +29,30 @@ function Admin() {
 
     
     function handleDelete(username) {
-        const newList = userList.filter((user) => user.username !== username);
- 
-        setUsers(newList);
+        deleteUser(username).then((user) => {
+            console.log("deleted: ", user)
+            
+          }).catch(err => {
+            console.log("err: " + err)
+        })
+        getAllUsers().then((users) => {
+            console.log("admin users: ", users)
+            setUsers(users)
+            
+          }).catch(err => {
+            console.log("err: " + err)
+        })
     }
-    const logout = () => {
-        Cookies.remove('jwt');
-        dispatch({ type: 'home/logout' });
-        history.push("/");
-      }
+    
     function handleClick(username) {
         console.log(username);
     }
     const getUsers = () => {
         console.log("userlist :>> ",userList)
         return userList.map(user => {
-          return <User key = {user.userName} user = {user} handleDelete = {handleDelete} handleClick = {handleClick}/>
+            if (!user.admin) {
+                return <User key = {user.userName} user = {user} handleDelete = {handleDelete} handleClick = {handleClick}/>
+            }
         })
       }
     if (!loaded) {

@@ -11,26 +11,27 @@ const multipartMiddleware = multipart();
 router.get("/allUsers", async (req, res) => {
     try {
       const users = await User.find().populate('posts');
-      // for (var user in users) {
-      //   user.populate('posts');
-      // }
       res.send(users);
       return users;
     } catch (err) {
       console.log(err);
+      res.status(500).send("Internal Server Error")
     }
     
   });
 
 router.delete("/deleteUser/:username", async (req, res) => {
   try {
-    const user = await User.findOne({username: req.params.username});
+    const user = await User.findOneAndDelete({username: req.params.username});
     if (!user) {
       res.status(400).send({err: "User not found"});
+    } else {
+      res.send(user);
     }
-    res.send(user[0]);
+    
   } catch (err) {
     console.log(err);
+    res.status(500).send()
   }
   
 });

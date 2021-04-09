@@ -4,7 +4,7 @@ import '../../styles/graphics.css';
 import { ReactTinyLink } from 'react-tiny-link';
 
 export default function Post({post}) {
-  const user = post.user
+  const user = post.user;
   const defaultAvatar = "https://mystickermania.com/cdn/stickers/memes/shut-up-and-take-my-money-meme.png"
   return (
     <div className="postContainer fadeIn">
