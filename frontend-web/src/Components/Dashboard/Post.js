@@ -24,7 +24,7 @@ export default function Post({post}) {
           className="profileImage"
           style={{position: "absolute"}}
           alt="profile"
-          src={post.image? user.image.url : defaultAvatar}
+          src={post.user.image? user.image.url : defaultAvatar}
         />
         <div className={"postHeader"}>
           <span className="bold"> {user.name}</span> spent

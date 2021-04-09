@@ -6,13 +6,14 @@ import {deleteUser} from "../../reducers/userDataReducer";
 import Cookies from 'js-cookie';
 import { useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom';
+
 function DeleteModal(props) {
   const dispatch = useDispatch();
   const history = useHistory();
 
     const handleDelete = async () => {
       const result = await dispatch(deleteUser);
-      if (result.err) {
+      if (result && result.err) {
         alert("Error deleting user!");
         return;
       }

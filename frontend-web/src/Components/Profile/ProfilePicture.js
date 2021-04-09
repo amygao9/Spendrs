@@ -33,7 +33,8 @@ function UploadPicture ({show, handleClose}) {
   const dispatch = useDispatch();
 
   return (
-    <Modal show={show} onHide={handleClose} style={{margin:"200px"}}>
+    <Modal show={show} onHide={handleClose} className={"modalContainer"}>
+      <div id={"uploadPhotoModal"}>
       <form className="image-form" onSubmit={(e) => {
         e.preventDefault();
         dispatch(uploadProfilePic(e.target));
@@ -49,6 +50,7 @@ function UploadPicture ({show, handleClose}) {
           Upload
         </button>
       </form>
+      </div>
     </Modal>
   )
 }

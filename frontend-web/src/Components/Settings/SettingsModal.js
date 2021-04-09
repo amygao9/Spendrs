@@ -14,10 +14,14 @@ function PasswordModal(props) {
     const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log('password :>> ', password);
-        await dispatch(changePassword(oldpass, password, confirmpass, passwordStrength));
+      e.preventDefault();
+      console.log('password :>> ', password);
+      const result = await dispatch(changePassword(oldpass, password, confirmpass, passwordStrength));
+      if (result && result.err) {
+        alert("Error changing user password!");
+      } else {
         alert("Change password successful!")
+      }
     }
     return (
       <Modal
