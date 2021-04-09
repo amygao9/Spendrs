@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Form, Button } from "react-bootstrap";
 import '../../styles/home.css';
 
-export default function ShareForm({ addPost, updateData, name, link, price, desc }) {
+export default function ShareForm({ addPost, updateData, name, link, price, desc, category }) {
 
   return (
     <Card>
@@ -33,12 +33,12 @@ export default function ShareForm({ addPost, updateData, name, link, price, desc
 
           <Form.Group>
             <Form.Label>Category</Form.Label>
-            <Form.Control as="select">
+            <Form.Control as="select" onChange={(e) => updateData(e, "category")} value={category}>
               <option>food</option>
-              <option>misc</option>
+              <option>clothing</option>
               <option>tech</option>
               <option>games</option>
-              <option>valorant skins</option>
+              <option>misc</option>
             </Form.Control>
           </Form.Group>
 

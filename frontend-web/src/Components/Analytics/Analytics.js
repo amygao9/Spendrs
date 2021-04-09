@@ -25,7 +25,7 @@ function Analytics(props) {
     let purchases = [[user.createdAt.slice(0,10), 0]]
     let cat = {}
     let month_spent = 0
-    for (var post in user.posts) {
+    for (let post in user.posts) {
       purchases.push([user.posts[post].updatedAt.slice(0,10), user.posts[post].price])
       if (user.posts[post].itemCategory === "") {
         user.posts[post].itemCategory = "misc"

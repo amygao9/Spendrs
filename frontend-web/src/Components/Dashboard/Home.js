@@ -14,6 +14,7 @@ function Home(props) {
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
   const [desc, setDesc] = useState("");
+  const [category, setCategory] = useState("misc");
   const [price, setPrice] = useState(0);
   const [file, setFile] = useState(null);
   const [loaded, setLoaded] = useState(false);
@@ -38,10 +39,10 @@ function Home(props) {
       setPrice(e.target.value);
     } else if (type === "desc") {
       setDesc(e.target.value);
+    } else if (type === "category") {
+      setCategory(e.target.value);
     } else if (type === "file") {
-      console.log(e.target.files[0])
       setFile(e.target.files[0])
-      console.log(file)
     }
   };
 
@@ -65,7 +66,7 @@ function Home(props) {
     form.append("file", file)
     form.append("itemName", name)
     form.append("itemLink", link)
-    form.append("itemCategory", "misc") // placeholder
+    form.append("itemCategory", category)
     form.append("description", desc)
     form.append("price", price)
 
@@ -91,6 +92,7 @@ function Home(props) {
               name={name}
               link={link}
               price={price}
+              category={category}
               desc={desc}
             />
           </div>
