@@ -20,7 +20,7 @@ function User(props) {
                     <p className="mb-1">Register Date:{user.register_date}</p>
                 </div>
                 <div>
-                    <Button onClick={handleShow} className="btn-default" id = "deleteButton"> View Profile</Button>
+                    <Button onClick={handleShow} className="btn-default" id = "profileButton"> View Profile</Button>
                     <Button onClick={() => props.handleDelete(user.username)} className="btn-default" id = "deleteButton"> Delete user</Button>
                 </div>
                 
