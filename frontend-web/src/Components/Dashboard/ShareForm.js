@@ -46,8 +46,9 @@ export default function ShareForm({ addPost, updateData, name, link, price, desc
             <Form.File
               className="position-relative"
               name="file"
-              label="File"
+              label="Attach a Photo"
               onChange={(e) => updateData(e, "file")}
+              accept="image/*"
               feedbackTooltip
             />
           </Form.Group>

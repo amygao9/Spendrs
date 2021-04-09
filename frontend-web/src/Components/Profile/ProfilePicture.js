@@ -41,7 +41,7 @@ function UploadPicture ({show, handleClose}) {
       }}>
         <div className="image-form__field">
           <label>Image:</label>
-          <input name="image" type="file" accept="image/png, image/jpeg"/>
+          <input name="image" type="file" accept="image/*"/>
         </div>
         <button
           type="submit"
