@@ -2,40 +2,26 @@ import React, { useState, useRef, useEffect } from "react";
 import { CSSTransitionGroup } from "react-transition-group";
 import { NavLink } from "react-router-dom";
 import "../../styles/Navbar.css";
-
-// switch to redux later
-import client from "../../axios/auth";
-import { BASE_URL } from "../../base_url";
+import SearchBar from "./searchBar";
 
 import { FaBars } from "react-icons/fa";
+
+function StatusString(props) {
+  let statusString;
+  if (props.search == "") {
+    statusString = "please search something";
+  } else if (props.results.length == 0) {
+    statusString = "No results found";
+  } else {
+    return null;
+  }
+  return <p className="searchText">{statusString}</p>;
+}
 
 export default function Navbar(props) {
   const links = props.links;
 
   const [open, setOpen] = useState(false);
-
-  const [focused, setFocused] = useState(false);
-
-  const [results, setResults] = useState([]);
-
-  const [search, setSearch] = useState("");
-
-  const ref = useRef(null);
-
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (ref.current && !ref.current.contains(event.target)) {
-        setFocused(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [ref]);
-
-  const onFocus = () => setFocused(true);
 
   const getSlide = () => {
     const navLinks = Object.entries(links).map((link) => {
@@ -104,59 +90,7 @@ export default function Navbar(props) {
               }}
             />
           )}
-          <div ref={ref}>
-            <label className="searchBar">
-              <input
-                autocomplete="off"
-                id="navText"
-                type="text"
-                placeholder="Search"
-                value={search}
-                onChange={(e) => {
-                  if (e.target.value !== "") {
-                    client
-                      .get(BASE_URL + "/api/users/findUser/" + e.target.value)
-                      .then((res) => {
-                        setResults(res.data);
-                      });
-                  } else {
-                    setResults([]);
-                  }
-                  setSearch(e.target.value);
-                }}
-                onFocus={onFocus}
-              />
-            </label>
-            {focused && (
-              <div
-                style={{
-                  backgroundColor: "grey",
-                  position: "relative",
-                  top: "-30px",
-                  left: "15px",
-                  padding: "30px 20px 10px 20px",
-                  zIndex: 1,
-                  flexDirection: "column",
-                  borderBottomRightRadius: "1rem",
-                  borderBottomLeftRadius: "1rem",
-                }}
-              >
-                {results.map((val, key) => {
-                  console.log("/profile/" + val);
-                  return (
-                    <a
-                      key={key}
-                      style={{ display: "block" }}
-                      href={"profile/" + val}
-                    >
-                      {val}
-                    </a>
-                  );
-                })}
-                <a href="/profile/a"> test</a>
-              </div>
-            )}
-          </div>
+          <SearchBar />
           {getLinks()}
           {getSlide()}
         </nav>
