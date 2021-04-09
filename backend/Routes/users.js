@@ -213,16 +213,18 @@ router.patch("/changePassword", async (req, res) => {
   if (req.body.password.length < 1)
     errors += "Password field cannot be empty.\n";
   // // password strength
-  // if (req.body.password.length > 0 && req.body.passwordStrength < 2)
-  //   errors += "Password cannot be too short or weak.\n";
+  if (req.body.password.length > 0 && req.body.passwordStrength < 2)
+    errors += "Password cannot be too short or weak.\n";
 
   // report the error, without the trailing \n
+  console.log('errors :>> ', errors);
   if (errors) return res.status(400).json({ err: errors });
 
   try {
     const id = req.user.id;
     const user = await User.findById(id);
     const valid = await user.isValidPassword(req.body.oldPass);
+    console.log('valid :>> ', valid);
     if (!valid) {
       res.status(404);
       res.json({ err: "Invalid password." });
@@ -233,7 +235,7 @@ router.patch("/changePassword", async (req, res) => {
       res.send(user);
     }
   } catch (err) {
-    console.log(error);
+    console.log(err);
     res.status(500).send(); // server error, could not delete.
   }
 });

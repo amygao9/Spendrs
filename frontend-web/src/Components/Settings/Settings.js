@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import '../../styles/settings.css';
 import '../../styles/home.css';
-import { userLinks, adminLinks, users } from "../../constants";
+import { userLinks, adminLinks } from "../../constants";
 import { Button, ButtonGroup, ToggleButton} from "react-bootstrap";
 import { Link, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { useDispatch, useSelector } from "react-redux";
-import {changeUserPrivacy} from "../../axios/user";
 import { updateUser } from "../../reducers/userDataReducer";
 import PasswordModal from "./SettingsModal"
 import DeleteModal from "./DeleteAccountModal"
+
 function Settings() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -25,6 +25,7 @@ function Settings() {
     { name: 'Friends Only', value: 'Friends Only' },
     { name: 'Public', value: 'Public' },
   ];
+
   useEffect( () => {
     if (!user || Object.keys(user).length === 0) {
       return;
@@ -41,8 +42,6 @@ function Settings() {
   }
 
   const changePrivacy = (e) => {
-    
-    // changeUserPrivacy(e.currentTarget.value)
     const result = dispatch(updateUser({privacy: e.currentTarget.value}));
       console.log('result :>> ', result);
       if (result.err) {

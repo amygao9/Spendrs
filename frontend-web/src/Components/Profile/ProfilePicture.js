@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import '../../styles/home.css';
 import '../../styles/profile.css';
-import {uploadProfilePic} from "../../axios/user";
+import { uploadProfilePic } from "../../reducers/userDataReducer";
 import {Modal} from "react-bootstrap";
+import { useDispatch } from "react-redux";
 
 function ProfilePicture({ editable, user }) {
   const [show, setShow] = useState(false);
@@ -29,11 +30,13 @@ function ProfilePicture({ editable, user }) {
 }
 
 function UploadPicture ({show, handleClose}) {
+  const dispatch = useDispatch();
+
   return (
     <Modal show={show} onHide={handleClose} style={{margin:"200px"}}>
       <form className="image-form" onSubmit={(e) => {
         e.preventDefault();
-        uploadProfilePic(e.target);
+        dispatch(uploadProfilePic(e.target));
         handleClose();
       }}>
         <div className="image-form__field">

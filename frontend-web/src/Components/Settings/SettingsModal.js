@@ -3,21 +3,21 @@ import '../../styles/home.css';
 import '../../styles/profile.css';
 import { Modal } from "react-bootstrap";
 import PasswordStrengthBar from 'react-password-strength-bar';
-import {changePassword} from "../../axios/user";
+import { changePassword } from '../../reducers/userDataReducer';
+import { useDispatch } from "react-redux";
 
 function PasswordModal(props) {
     const [oldpass, setOldPass] = useState("");
     const [confirmpass, setConfirmPass] = useState("");
     const [password, setPassword] = useState("");
-    const [passwordStrength, setStrength] = useState(0)
+    const [passwordStrength, setStrength] = useState(0);
+    const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("new password: ", confirmpass)
-        changePassword(oldpass, password, confirmpass, passwordStrength).then((data) => {
-          alert("change password successful!")
-          
-        })
+        console.log('password :>> ', password);
+        await dispatch(changePassword(oldpass, password, confirmpass, passwordStrength));
+        alert("Change password successful!")
     }
     return (
       <Modal
