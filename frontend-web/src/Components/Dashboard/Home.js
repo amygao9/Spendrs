@@ -18,15 +18,12 @@ function Home(props) {
   const [file, setFile] = useState(null);
   const [loaded, setLoaded] = useState(false);
 
-  // const user = useSelector(state => state.userData);
   const user = props.user;
   const posts = props.posts;
   const finishedLoading = props.finishedLoading;
   console.log('finishedLoading :>> ', finishedLoading);
 
   const dispatch = useDispatch();
-
-
 
   useEffect(() => {
     dispatch(getInitialFeed);
