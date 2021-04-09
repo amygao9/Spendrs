@@ -4,14 +4,13 @@ import '../../styles/profile.css';
 import { uploadProfilePic } from "../../reducers/userDataReducer";
 import {Modal} from "react-bootstrap";
 import { useDispatch } from "react-redux";
+import {defaultAvatar} from "../../constants";
 
 function ProfilePicture({ editable, user }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const defaultAvatar = "https://mystickermania.com/cdn/stickers/memes/shut-up-and-take-my-money-meme.png"
 
   if (editable) return (
     <div>

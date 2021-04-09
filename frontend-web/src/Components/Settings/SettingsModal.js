@@ -42,6 +42,7 @@ function PasswordModal(props) {
             <input className={"inputBox " } type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder={"New Password"}/>
             <input className={"inputBox " } type="password" name="password" value={confirmpass} onChange={e => setConfirmPass(e.target.value)} placeholder={"Confirm New Password"}/>
             <PasswordStrengthBar password={password} style={{width: '300px', margin: 'auto'}} onChangeScore={setStrength}/>
+            <p className={"redErrorText"}>{passError}</p>
             <input type="submit" id="createAccBtn" value="Reset Password" />
             </form>
           

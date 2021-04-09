@@ -80,8 +80,7 @@ export const changePassword = (oldPass, password, confirmPass, passwordStrength)
     console.log('user.data :>> ', user.data);
     return user.data;
   } catch (err) {
-    console.log(err);
-    return { err: err };
+    return { err: err.response.data.err };
   }
 }
 
