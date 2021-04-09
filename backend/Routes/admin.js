@@ -12,34 +12,41 @@ const multipartMiddleware = multipart();
 Returns all user documents.
 */
 router.get("/allUsers", async (req, res) => {
-    try {
-      const users = await User.find().populate('posts');
-      res.send(users);
-      return users;
-    } catch (err) {
-      console.log(err);
-      res.status(500).send("Internal Server Error")
+  try {
+    const adminUser = await User.findById(req.user.id);
+    if (!adminUser.admin) {
+      res.sendStatus(403);
+      return;
     }
-    
-  });
+    const users = await User.find().populate("posts");
+    res.send(users);
+    return users;
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
 /* Route for deleting a user by username
 Returns the user document deleted.
 */
 router.delete("/deleteUser/:username", async (req, res) => {
   try {
-    const user = await User.findOneAndDelete({username: req.params.username});
+    const adminUser = await User.findById(req.user.id);
+    if (!adminUser.admin) {
+      res.sendStatus(403);
+      return;
+    }
+    const user = await User.findOneAndDelete({ username: req.params.username });
     if (!user) {
-      res.status(400).send({err: "User not found"});
+      res.status(400).send({ err: "User not found" });
     } else {
       res.send(user);
     }
-    
   } catch (err) {
     console.log(err);
-    res.status(500).send()
+    res.status(500).send();
   }
-  
 });
 
-  module.exports = router;
+module.exports = router;
