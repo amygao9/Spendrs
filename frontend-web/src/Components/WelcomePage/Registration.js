@@ -48,7 +48,7 @@ function RegistrationModal(props) {
 
     const result = await dispatch(signup(name, email, username, password, passwordStrength));
     console.log('result :>> ', result);
-    if (result.err) {
+    if (result && result.err) {
       setErrors(result.err);
       return;
     }

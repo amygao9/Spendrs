@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../reducers/userDataReducer";
 import PasswordModal from "./SettingsModal"
 import DeleteModal from "./DeleteAccountModal"
+
 function Settings() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -24,6 +25,7 @@ function Settings() {
     { name: 'Friends Only', value: 'Friends Only' },
     { name: 'Public', value: 'Public' },
   ];
+
   useEffect( () => {
     if (!user || Object.keys(user).length === 0) {
       return;
@@ -40,8 +42,6 @@ function Settings() {
   }
 
   const changePrivacy = (e) => {
-    
-    // changeUserPrivacy(e.currentTarget.value)
     const result = dispatch(updateUser({privacy: e.currentTarget.value}));
       console.log('result :>> ', result);
       if (result.err) {

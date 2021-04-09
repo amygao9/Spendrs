@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Email can't be blank"],
       unique: true,
-      match: [/\S+@\S+\.\S+/, 'Email invalid']
+      // match: [/\S+@\S+\.\S+/, 'Email invalid']
     },
     username: {
       type: String,
@@ -48,11 +48,10 @@ const userSchema = new mongoose.Schema(
         ref: "User",
       },
     ],
-    register_date: Date,
     privacy: {
       type: String,
       default: "Private",
-    }, 
+    },
     admin: {
       type: Boolean,
       default: false,

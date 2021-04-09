@@ -18,7 +18,6 @@ export const getUserData = async (dispatch, getState) => {
   try {
     const user = await client.get(BASE_URL + "/api/users");
     dispatch({ type: "userData/userStatus", payload: user.data });
-    console.log('user.data :>> ', user.data);
     return user.data;
   } catch (err) {
     console.log("err :>> ", err);
@@ -60,29 +59,43 @@ export const updateUser = (data) => async (dispatch, getState) => {
   }
 };
 
+export const uploadProfilePic = (form) => async (dispatch, getState) => {
+  try {
+    const picture = new FormData(form)
+    await client.post(BASE_URL + '/api/users/upload/profile_pic', picture);
+    dispatch(getUserData);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 export const changePassword = (oldPass, password, confirmPass, passwordStrength) => async (dispatch, getState) => {
   try {
     const user = await client.patch(BASE_URL + '/api/users/changePassword', {"oldPass": oldPass, "password": password, "confirmPass": confirmPass, "passwordStrength": passwordStrength});
-    dispatch({ type: "userData/userStatus", payload: user.data });
+
+    if (!user ||  typeof(user.data) == "string") {
+      console.log(user)
+      throw Error('Error: User received from API but not correctly formatted');
+    }
+    console.log('user.data :>> ', user.data);
     return user.data;
   } catch (err) {
     return { err: err.response.data.err };
   }
 }
 
-export const deleteUser = () => async (dispatch, getState) => {
+export const deleteUser = async (dispatch, useState) => {
   try {
     const user = await client.delete(BASE_URL + '/api/users/deleteUser');
+
     if (!user || user.status !== 200 || typeof(user.data) == "string") {
       console.log(user)
       throw Error('Error: User received from API but not correctly formatted');
     }
-    dispatch({ type: "userData/userStatus", payload: user.data });
     return user.data;
   } catch (err) {
-    console.log("err :>> ", err);
-    throw err;
+    console.log(err);
+    return { err: err };
   }
 }
-
 

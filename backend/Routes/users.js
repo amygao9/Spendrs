@@ -135,6 +135,7 @@ router.get("/findUser/:search", async (req, res) => {
   try {
     const users = await User.find({
       username: { $regex: `.*${req.params.search}.*` },
+      admin: false,
     }).limit(3);
     res.send(users.map((val) => val.username));
   } catch (err) {
@@ -217,12 +218,14 @@ router.patch("/changePassword", async (req, res) => {
     errors += "Password cannot be too short or weak.\n";
 
   // report the error, without the trailing \n
+  console.log('errors :>> ', errors);
   if (errors) return res.status(400).json({ err: errors });
 
   try {
     const id = req.user.id;
     const user = await User.findById(id);
     const valid = await user.isValidPassword(req.body.oldPass);
+    console.log('valid :>> ', valid);
     if (!valid) {
       res.status(404);
       res.json({ err: "Invalid password." });
@@ -233,7 +236,7 @@ router.patch("/changePassword", async (req, res) => {
       res.send(user);
     }
   } catch (err) {
-    console.log(error);
+    console.log(err);
     res.status(500).send(); // server error, could not delete.
   }
 });
@@ -242,8 +245,8 @@ router.get("/profile/:username", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.params.username })
       .populate("posts")
-      .populate('followers', 'name username')
-      .populate('following', 'name username');
+      .populate("followers", "name username")
+      .populate("following", "name username");
     if (!user) {
       res.status(400).send({ err: "User not found" });
     }

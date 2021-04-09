@@ -3,26 +3,26 @@ import '../../styles/home.css';
 import '../../styles/profile.css';
 import { Modal } from "react-bootstrap";
 import PasswordStrengthBar from 'react-password-strength-bar';
-import { changePassword } from "../../reducers/userDataReducer";
+import { changePassword } from '../../reducers/userDataReducer';
 import { useDispatch } from "react-redux";
+
 function PasswordModal(props) {
-    const dispatch = useDispatch();
     const [oldpass, setOldPass] = useState("");
     const [confirmpass, setConfirmPass] = useState("");
     const [password, setPassword] = useState("");
-    const [passwordStrength, setStrength] = useState(0)
-    const [passError, setError] = useState("");
+    const [passwordStrength, setStrength] = useState(0);
+    const [passError, setPassError] = useState(0);
+    const dispatch = useDispatch();
+
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log("new password: ", confirmpass)
-        const result = await dispatch(changePassword(oldpass, password, confirmpass, passwordStrength));
-        console.log('result :>> ', result);
-        if (result.err) {
-          setError(result.err);
-        } else {
-          alert("change password successful!")
-        }
-        
+      e.preventDefault();
+      console.log('password :>> ', password);
+      const result = await dispatch(changePassword(oldpass, password, confirmpass, passwordStrength));
+      if (result && result.err) {
+        setPassError(result.err);
+      } else {
+        alert("Change password successful!")
+      }
     }
     return (
       <Modal

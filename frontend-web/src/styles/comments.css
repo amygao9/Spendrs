@@ -33,6 +33,8 @@
 .likesButtonContainer path {
   stroke: grey;
   fill: grey;
+  cursor: pointer;
+
 }
 
 /* both css below are different one is comments one is comment */

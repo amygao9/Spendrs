@@ -74,7 +74,7 @@ export const signup = (name, email, username, password, passwordStrength) => asy
     dispatch(getUserData);
   } catch (err) {
     console.log(err.response.data.err);
-    return {err: err.response.data.err };
+    return { err: err.response.data.err };
   }
 }
 
