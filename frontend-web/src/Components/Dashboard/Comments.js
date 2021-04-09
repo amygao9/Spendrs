@@ -6,7 +6,6 @@ import heart from "react-useanimations/lib/heart";
 import { useDispatch } from "react-redux";
 import { likePost, commentOnPost } from "../../reducers/postsReducer";
 import {defaultAvatar} from "../../constants";
-// import { apiMakeComment } from "../../axios/posts";
 
 function Comment({ comment }) {
   return (
