@@ -77,11 +77,14 @@ function Comments({ post, user }) {
         <div className="imageContainer">
           <img className="profileImage" alt="profile" src={userProfile} />
         </div>
-        <input
+        <textarea
           placeholder="write your comment"
           value={input}
+          maxlength="150"
           onChange={(e) => {
             setInput(e.target.value);
+            e.target.style.height = '42px';
+            e.target.style.height = `${Math.min(e.target.scrollHeight, 100)}px`;
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter" && input !== "") {
