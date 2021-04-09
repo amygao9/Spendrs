@@ -3,12 +3,25 @@ import { CSSTransitionGroup } from "react-transition-group";
 import { NavLink } from "react-router-dom";
 import "../../styles/Navbar.css";
 
+// switch to redux later
+import client from "../../axios/auth";
+import { BASE_URL } from "../../base_url";
+
 import { FaBars } from "react-icons/fa";
 
 export default function Navbar(props) {
   const links = props.links;
 
   const [open, setOpen] = useState(false);
+
+  const [focused, setFocused] = useState(false);
+
+  const [results, setResults] = useState([]);
+
+  const [search, setSearch] = useState("");
+
+  const onFocus = () => setFocused(true);
+  const onBlur = () => setFocused(false);
 
   const getSlide = () => {
     const navLinks = Object.entries(links).map((link) => {
@@ -77,9 +90,60 @@ export default function Navbar(props) {
               }}
             />
           )}
-          <label className = "searchBar">
-            <input id="navText" type="text" placeholder="Search" />
-          </label>
+          <div>
+            <label className="searchBar">
+              <input
+                autocomplete="off"
+                id="navText"
+                type="text"
+                placeholder="Search"
+                value={search}
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  console.log(
+                    BASE_URL + "/api/users/findUser/" + e.target.value
+                  );
+                  if (e.target.value !== "") {
+                    client
+                      .get(BASE_URL + "/api/users/findUser/" + e.target.value)
+                      .then((res) => {
+                        setResults(res.data);
+                      });
+                  } else {
+                    setResults([]);
+                  }
+                  setSearch(e.target.value);
+                }}
+                onFocus={onFocus}
+                onBlur={onBlur}
+              />
+            </label>
+            {focused && (
+              <div
+                style={{
+                  backgroundColor: "grey",
+                  position: "relative",
+                  top: "-30px",
+                  left: "15px",
+                  padding: "30px 20px 10px 20px",
+                  zIndex: 1,
+                  flexDirection: "column",
+                  borderBottomRightRadius: "1rem",
+                  borderBottomLeftRadius: "1rem",
+                }}
+              >
+                {results.map((val, key) => (
+                  <a
+                    key={key}
+                    style={{ display: "block" }}
+                    href={"/profile/" + val}
+                  >
+                    {val}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
           {getLinks()}
           {getSlide()}
         </nav>

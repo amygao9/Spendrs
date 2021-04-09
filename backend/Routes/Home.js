@@ -78,17 +78,4 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-router.get("/users/:username", async (req, res) => {
-  try {
-    const user = await User.findOne({username: req.params.username}).populate('posts');
-    if (!user) {
-      res.status(400).send({err: "User not found"});
-    }
-    res.send(user);
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-
 module.exports = router;

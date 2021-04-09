@@ -17,10 +17,9 @@ cloudinary.config({
   api_secret: "YlJpmHXZvRod6wYSf6pt39Cep8A",
 });
 
-
 router.get("/", async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).populate('posts');
+    const user = await User.findById(req.user.id).populate("posts");
     if (!user) {
       res.status(400).send("User not found");
     }
@@ -122,17 +121,16 @@ router.post("/unfollow", async (req, res) => {
   }
 });
 
-router.get("/findUser", async (req, res) => {
+router.get("/findUser/:search", async (req, res) => {
   try {
     const users = await User.find({
-      username: { $regex: `.*${req.body.username}.*` },
+      username: { $regex: `.*${req.params.search}.*` },
     }).limit(3);
-    res.send(users);
+    res.send(users.map((val) => val.username));
   } catch (err) {
     res.status(500).send({ err: err });
   }
 });
-
 
 router.put("/update", async (req, res) => {
   try {
@@ -143,18 +141,18 @@ router.put("/update", async (req, res) => {
         res.status(400).send({ err: "Username already in use." });
       }
     }
-    const user = await User.findByIdAndUpdate(req.user.id, req.body, {new: true}).populate('posts');
+    const user = await User.findByIdAndUpdate(req.user.id, req.body, {
+      new: true,
+    }).populate("posts");
     if (!user) {
       res.status(500).send({ err: "Error saving user." });
     }
     res.send(user);
-    
   } catch (err) {
-    console.log('err :>> ', err);
+    console.log("err :>> ", err);
     res.status(500).send({ err: err });
   }
 });
-
 
 /* Route for changing privacy
 Request body expects:
@@ -162,11 +160,11 @@ Request body expects:
 	"privacy": <string> (one of "Public", "Private", "Friends Only")
 }
 */
-router.patch('/changePrivacy', async (req, res) => {
-	try {
-    const id = req.user.id
+router.patch("/changePrivacy", async (req, res) => {
+  try {
+    const id = req.user.id;
     const user = await User.findById(id);
-    user.privacy = req.body.privacy
+    user.privacy = req.body.privacy;
 
     await user.save();
     res.send(user);
@@ -175,20 +173,19 @@ router.patch('/changePrivacy', async (req, res) => {
   }
 });
 
-router.delete('/deleteUser', async (req, res) => {
-	try {
-    const id = req.user.id
-    
-    const user = await User.findByIdAndRemove(id)
-		if (!user) {
-			res.status(404).send()
-		} else {   
-			res.send(user)
-		}
+router.delete("/deleteUser", async (req, res) => {
+  try {
+    const id = req.user.id;
 
+    const user = await User.findByIdAndRemove(id);
+    if (!user) {
+      res.status(404).send();
+    } else {
+      res.send(user);
+    }
   } catch (err) {
-    console.log(error)
-		res.status(500).send() // server error, could not delete.
+    console.log(error);
+    res.status(500).send(); // server error, could not delete.
   }
 });
 
@@ -198,7 +195,7 @@ Request body expects:
 	{oldPass: "", password: "", confirmPass: "", passwordStrength: ""}
 }
 */
-router.patch('/changePassword', async (req, res) => {
+router.patch("/changePassword", async (req, res) => {
   let errors = "";
   if (req.body.password != req.body.confirmPass)
     errors += "Password confirmation must match Password.\n";
@@ -212,24 +209,36 @@ router.patch('/changePassword', async (req, res) => {
   // report the error, without the trailing \n
   if (errors) return res.status(400).json({ err: errors });
 
-	try {
-    const id = req.user.id
+  try {
+    const id = req.user.id;
     const user = await User.findById(id);
     const valid = await user.isValidPassword(req.body.oldPass);
     if (!valid) {
       res.status(404);
       res.json({ err: "Invalid password." });
-    }
-    else {
-        // set new password
+    } else {
+      // set new password
       user.password = await user.encryptPassword(req.body.password);
       await user.save();
       res.send(user);
     }
-
   } catch (err) {
-    console.log(error)
-		res.status(500).send() // server error, could not delete.
+    console.log(error);
+    res.status(500).send(); // server error, could not delete.
+  }
+});
+
+router.get("/profile/:username", async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.params.username }).populate(
+      "posts"
+    );
+    if (!user) {
+      res.status(400).send({ err: "User not found" });
+    }
+    res.send(user);
+  } catch (err) {
+    console.log(err);
   }
 });
 
