@@ -21,8 +21,6 @@ function Home(props) {
   const user = props.user;
   const posts = props.posts;
   const finishedLoading = props.finishedLoading;
-  console.log('finishedLoading :>> ', finishedLoading);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
