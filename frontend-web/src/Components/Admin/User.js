@@ -8,14 +8,14 @@ function User(props) {
     return (
         <Container>
             <div id = "users" className="list-group-item d-flex  align-items-center" >
-                <div id = "userInfo"  href = {"profile/"+ user.username}>
+                <div id = "userInfo"  href = {"/profile/"+ user.username}>
                     <h5  className="mb-1">{user.name}</h5>
                     <p className="mb-1">Username: {user.username}</p>
                     <p className="mb-1">Email: {user.email}</p>
                     <p className="mb-1">Register Date:{user.register_date}</p>
                 </div>
                 <div>
-                    <Button className="btn-default" id = "profileButton" href = {"profile/"+ user.username}> View Profile</Button>
+                    <Button className="btn-default" id = "profileButton" href = {"/profile/"+ user.username}> View Profile</Button>
                     <Button onClick={() => props.handleDelete(user.username)} className="btn-default" id = "deleteButton"> Delete user</Button>
                 </div>
                 
