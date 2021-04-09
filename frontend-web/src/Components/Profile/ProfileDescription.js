@@ -14,7 +14,7 @@ function ProfileDescription({ user, isAdmin, loggedIn = true}) {
 
   return (
     <div className="profileContainer shadowMedium">
-      <ProfilePicture editable={editable} user={user}/>
+      <ProfilePicture editable={loggedIn} user={user}/>
       {loggedIn?
         <div className={"editProfileButton"} onClick={() => setEditable(!editable)}>
           <AiFillEdit size={"1.5em"} color={"lightgrey"} title={"Toggle Edit Profile"}/>

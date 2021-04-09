@@ -3,14 +3,13 @@ import '../../styles/home.css';
 import '../../styles/profile.css';
 import {uploadProfilePic} from "../../axios/user";
 import {Modal} from "react-bootstrap";
+import {defaultAvatar} from "../../constants";
 
 function ProfilePicture({ editable, user }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const defaultAvatar = "https://mystickermania.com/cdn/stickers/memes/shut-up-and-take-my-money-meme.png"
 
   if (editable) return (
     <div>
@@ -30,7 +29,8 @@ function ProfilePicture({ editable, user }) {
 
 function UploadPicture ({show, handleClose}) {
   return (
-    <Modal show={show} onHide={handleClose} style={{margin:"200px"}}>
+    <Modal show={show} onHide={handleClose} className={"modalContainer"}>
+      <div id={"uploadPhotoModal"}>
       <form className="image-form" onSubmit={(e) => {
         e.preventDefault();
         uploadProfilePic(e.target);
@@ -46,6 +46,7 @@ function UploadPicture ({show, handleClose}) {
           Upload
         </button>
       </form>
+      </div>
     </Modal>
   )
 }

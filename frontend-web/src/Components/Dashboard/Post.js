@@ -5,13 +5,13 @@ import { ReactTinyLink } from 'react-tiny-link';
 import { FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { deletePost } from "../../reducers/postsReducer";
+import {defaultAvatar} from "../../constants";
 
 export default function Post({post}) {
   const loggedInUser = useSelector(state => state.userData);
   const user = post.user;
   const dispatch = useDispatch();
-  const defaultAvatar = "https://mystickermania.com/cdn/stickers/memes/shut-up-and-take-my-money-meme.png"
-  
+
   const deleteSelectedPost = async () => {
     const result = await dispatch(deletePost(post._id));
     alert(result);
@@ -24,7 +24,7 @@ export default function Post({post}) {
           className="profileImage"
           style={{position: "absolute"}}
           alt="profile"
-          src={post.image? user.image.url : defaultAvatar}
+          src={post.user.image? user.image.url : defaultAvatar}
         />
         <div className={"postHeader"}>
           <span className="bold"> {user.name}</span> spent

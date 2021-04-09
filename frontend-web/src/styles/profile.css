@@ -127,3 +127,7 @@
 .modalContainer {
   margin-top: 10%;
 }
+
+#uploadPhotoModal {
+  padding: 20px;
+}
