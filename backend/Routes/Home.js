@@ -84,7 +84,7 @@ router.get("/users/:username", async (req, res) => {
     if (!user) {
       res.status(400).send({err: "User not found"});
     }
-    res.send(user[0]);
+    res.send(user);
   } catch (err) {
     console.log(err);
   }

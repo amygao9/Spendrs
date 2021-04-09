@@ -24,14 +24,24 @@ export const getUserData = async (dispatch, getState) => {
     throw err;
   }
 }
+
 export const getOtherUserData = (username) => async (dispatch, getState) => {
   try {
     const user = await client.get(BASE_URL + `/api/users/${username}`);
-    console.log('user :>> ', user);
     return user.data;
   } catch (err) {
     console.log('err :>> ', err);
     return {err: err.response.data.err};
+  }
+}
+
+export const checkFollowing = (username) => async (dispatch, getState) => {
+  try {
+    const result = await client.get(BASE_URL + `/api/users/following/${username}`);
+    return result.data.following;
+  } catch (err) {
+    console.log('err :>> ', err);
+    return false;
   }
 }
 

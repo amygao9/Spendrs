@@ -5,25 +5,48 @@ import ProfileDescription from "./ProfileDescription";
 import ProfilePosts from "./ProfilePosts";
 import { userLinks } from "../../constants";
 import {useDispatch} from "react-redux";
-import { getOtherUserData } from "../../reducers/userDataReducer";
+import { checkFollowing, getOtherUserData } from "../../reducers/userDataReducer";
 
 
 function Profile({match:{params:{username}}}) {
   const [loaded, setLoaded] = useState(false);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(false);
+  const [following, setFollowing] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(async () => {
     const data = await dispatch(getOtherUserData(username));
-    console.log('data :>> ', data);
     if (data.err) {
       setError(true);
     } else{
       setUser(data)
+      const isFollowing = await dispatch(checkFollowing(data.username));
+      setFollowing(isFollowing);
     }
     setLoaded(true)
   }, [username])
+
+  const loadProfileContent = () => {
+    let publicProfile = true;
+
+    if (user.privacy === "Private") {
+      publicProfile = false;
+    } else if (user.privacy === "Friends Only") {
+      publicProfile = following;
+    }
+
+    return (
+      <>
+        <ProfileDescription user={user} loggedIn={false}/>
+        {
+          publicProfile ?
+          <ProfilePosts user={user} /> :
+          <h1> Private profile </h1>
+        }
+      </>
+    )
+  }
 
 
   if (!loaded) {
@@ -36,12 +59,7 @@ function Profile({match:{params:{username}}}) {
       {
         error ?
         <h1> Profile does not exist. </h1> :
-        (
-          <>
-            <ProfileDescription user={user} loggedIn={false}/>
-            <ProfilePosts user={user} />
-          </>
-        ) 
+        loadProfileContent()
       }
     </div>
   );

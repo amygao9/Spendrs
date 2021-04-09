@@ -54,7 +54,6 @@ export async function loadFeedContent(dispatch, getState) {
   try {
     const state = getState();
     const { feedPosts, date } = state.postsData;
-    console.log('feedPosts :>> ', feedPosts);
 
     const result = await client.post(BASE_URL + "/api/feed/newsfeed", {
       num: 5,
@@ -99,13 +98,13 @@ export const likePost = (post) => async (dispatch, getState) => {
 
     let index = -1;
     for (let i = 0; i < feedPosts.length; i++) {
-      if (feedPosts[i]._id == post) {
+      if (feedPosts[i]._id === post) {
         index = i;
         break;
       }
     }
 
-    if (index == -1) {
+    if (index === -1) {
       return;
     }
 
@@ -128,13 +127,13 @@ export const commentOnPost = (post, message) => async (dispatch, getState) => {
 
     let index = -1;
     for (let i = 0; i < feedPosts.length; i++) {
-      if (feedPosts[i]._id == post) {
+      if (feedPosts[i]._id === post) {
         index = i;
         break;
       }
     }
 
-    if (index == -1) {
+    if (index === -1) {
       return;
     }
 

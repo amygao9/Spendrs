@@ -19,7 +19,6 @@ import OthersProfile from "./Components/Profile/OthersProfile";
 function App() {
   const loggedIn = useSelector(state => state.loggedIn.loggedIn);
   const userData = useSelector(state => state.userData);
-  console.log('userData :>> ', userData);
   const dispatch = useDispatch();
   
   useEffect(async () => {
@@ -42,8 +41,6 @@ function App() {
     authenticate();
     try {
       const result = await dispatch(getUserData);
-      console.log('result :>> ', result);
-      console.log('userData :>> ', userData);
     } catch (err) {
       console.log('err :>> ', err);
       logout();

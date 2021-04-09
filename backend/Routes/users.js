@@ -32,6 +32,24 @@ router.get("/", async (req, res) => {
     res.send(user);
   } catch (err) {
     console.log(err);
+    res.status(500).send({ err: err });
+  }
+});
+
+router.get("/following/:username", async (req, res) => {
+  try {
+    const followedUser = await User.findOne({ username: req.params.username });
+    if (!followedUser) {
+      res.status(400).send("User not found");
+    }
+    let following = false;
+    if (followedUser.followers.indexOf(req.user.id) > -1) {
+      following = true;
+    }
+    res.send({ following: following });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ err: err });
   }
 });
 
