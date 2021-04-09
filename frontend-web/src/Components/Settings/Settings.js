@@ -66,7 +66,7 @@ function Settings() {
         <div className="list-group-item shadowSmall">
           <div className="settingsInfoContainer">
             <span> Reset Password </span> 
-            <Button className="settingsButton" variant="outline-info" onClick={() => setModalShow(true)}> Reset </Button>
+            <Button className="settingsButton" onClick={() => setModalShow(true)}> Reset </Button>
             <PasswordModal
               show={modalShow}
               onHide={() => setModalShow(false)}
