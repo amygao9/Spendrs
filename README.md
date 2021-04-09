@@ -1,23 +1,29 @@
 # Spendr - team31
 
-## Instructions on Localhost
+## Server route home
 
-## Frontend-web
+https://spendrs.herokuapp.com/
 
-- navigate to the frontend-web folder 
+## User credentials
 
-- run `npm install` to install packages and dependencies 
+### admin user
 
-- run `npm start` to get the development server going 
+username: admin
+password: admin
 
-- navigate to http://localhost:8000/ to checkout Spndr!
+### regular user
 
-- You have the option to create a fresh account or login with the credentials username: user, password: user for a prepopulated user view and username: admin, password: admin for the admin view.
+user 1)
+username: user
+password: user
 
-## Backend
+# use case
 
- - In another terminal, navigate to the backend folder.
+## regular user
 
-- run `npm install` to install packages and dependencies 
+## admin user
 
-- run `npm start` to get the development server going 
+1. as an admin user logging will provide us with the list of registered users and basic information
+2. as the admin user you will be able to view all peoples profiles regardless of privacy setting
+3. the admin also has permission to delete any user they want
+4.
