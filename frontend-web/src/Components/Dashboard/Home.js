@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import "../../styles/home.css";
 import ShareForm from "./ShareForm";
-import {Alert, Container, Row} from "react-bootstrap";
+import {Container, Row} from "react-bootstrap";
 import "../../styles/home.css";
 import Feed from "./Feed";
 import { userLinks } from "../../constants";
@@ -19,7 +19,6 @@ function Home(props) {
   const [price, setPrice] = useState(0);
   const [file, setFile] = useState(null);
   const [loaded, setLoaded] = useState(false);
-
   const user = props.user;
   const posts = props.posts;
   const finishedLoading = props.finishedLoading;
