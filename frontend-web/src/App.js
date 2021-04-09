@@ -18,6 +18,8 @@ import OthersProfile from "./Components/Profile/OthersProfile";
 
 function App() {
   const loggedIn = useSelector(state => state.loggedIn.loggedIn);
+  const userData = useSelector(state => state.userData);
+  console.log('userData :>> ', userData);
   const dispatch = useDispatch();
   
   useEffect(() => {
