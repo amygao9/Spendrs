@@ -3,9 +3,11 @@ import "../../styles/comments.css";
 import "../../styles/graphics.css";
 import UseAnimations from "react-useanimations";
 import heart from "react-useanimations/lib/heart";
+import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { likePost, commentOnPost } from "../../reducers/postsReducer";
 import {defaultAvatar} from "../../constants";
+import { BASE_URL } from "../../base_url";
 
 function Comment({ comment }) {
   return (
@@ -20,7 +22,10 @@ function Comment({ comment }) {
         />
       </div>
       <div className="textContainer">
-        <span className="commentName"> {comment.author.username} </span>
+        <NavLink
+          to={"profile/" + comment.author.username}>
+          <span className="commentName"> {comment.author.username} </span>
+        </NavLink>
         <div className="commentTextContainer">{comment.comment}</div>
       </div>
     </div>

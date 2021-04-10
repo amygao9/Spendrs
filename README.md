@@ -72,7 +72,7 @@ password: user
 - By clicking on the followers/following, there are direct links to other member's profiles. 
 
 **Search Users**
- - Users can search for other user profiles based on username 
+ - Users can search for other user profiles based on username with an autocomplete feature.
  - This will bring you to other user profiles where you will have the option to view their posts and follow/ unfollow them.
  - Other users profiles will be rendered depending on their privacy status. Public profiles will be available to all users, Friends Only profiles will only be viewable by followers, and private profiles are only viewable by the owner.
 
@@ -102,23 +102,23 @@ password: user
 - axios: For making promise based api requests 
 - browser-image-compression: For compressing uploaded images
 - js-cookie: For handling browser cookies
-- lodash:
-- moment:
-- pondjs:
+- lodash: Used for miscellaneous utility functions.
+- moment: Used for formatting. 
+- pondjs: Used as a dependency for react-timeseries-chart
 - react-alert: For making custom react alert pop ups
 - react-icons: For icons in our UI
-- react-infinite-scroller:
+- react-infinite-scroller: To load new posts in the dashboard feed
 - react-lazyload: For lazy loading dashboard posts and profiles
 - react-minimal-pie-chart: For rendering our analytics data
 - react-password-strength-bar: For registration and creating new passwords
-- react-redux
+- react-redux: For global state management
 - react-scripts
 - react-timeseries-charts: For rendering our analytics data
-- react-tiny-link
+- react-tiny-link: For displaying links in the post with a preview.
 - react-tooltip
 - react-transition-group
 - react-useanimations
-- redux
-- redux-devtools-extension
-- redux-thunk
-- web-vitals
+- redux: For global state management.
+- redux-devtools-extension: For debugging redux in the browser.
+- redux-thunk: For middleware functions that use axios.
+- web-vitals: Used as a dependency for react-timeseries-chart.
