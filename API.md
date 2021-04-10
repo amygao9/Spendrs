@@ -506,6 +506,36 @@ form-data({
 })
 ```
 
+### Create new Post
+
+<span style="
+font-size: 20px;
+color: #faa61a;
+font-family: Menlo,Consolas,Monaco,monospace;
+text-transform: uppercase;
+margin-right: 10px;"> post </span> /api/posts/.  
+The routes creates a post for a user. Must make a request with form-data with the template below:
+```
+form-data({
+    itemName: string,
+    itemLink: string [optional],
+    itemCategory: string [optional],
+    attachedImage: file [optional],
+    description: string [optional],
+    price: int [optional],
+    file: javascript image file Object, or just {path: "path/to/image.jpg"}
+})
+```
+## example
+
+```
+form-data({
+    itemName: "Poster",
+    file (file-type): "path/to/image.jpg" (use select image in postman)
+})
+```
+
+
 <br/>
 <br/>
 <br/>
