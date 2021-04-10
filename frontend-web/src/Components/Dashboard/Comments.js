@@ -4,12 +4,23 @@ import "../../styles/graphics.css";
 import UseAnimations from "react-useanimations";
 import heart from "react-useanimations/lib/heart";
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { likePost, commentOnPost } from "../../reducers/postsReducer";
+import { FaTrash } from "react-icons/fa";
+import {useDispatch, useSelector} from "react-redux";
+import {likePost, commentOnPost, deleteComment} from "../../reducers/postsReducer";
 import {defaultAvatar} from "../../constants";
-import { BASE_URL } from "../../base_url";
+import { useAlert } from "react-alert";
 
-function Comment({ comment }) {
+
+function Comment({ post, comment }) {
+  const loggedInUser = useSelector(state => state.userData);
+  const dispatch = useDispatch();
+  const alert = useAlert();
+
+  const deleteSelectedComment = async () => {
+    const result = await dispatch(deleteComment(post._id, comment._id));
+    alert.success(result);
+  }
+
   return (
     <div className="commentContainer">
       <div className="imageContainer">
@@ -28,6 +39,17 @@ function Comment({ comment }) {
         </NavLink>
         <div className="commentTextContainer">{comment.comment}</div>
       </div>
+      {
+        loggedInUser._id === comment.author._id &&
+        <span className="faTrashContainer commentIcon">
+              <FaTrash
+                className="faTrash"
+                color={"grey"}
+                title={"Delete Comment"}
+                onClick={deleteSelectedComment}
+              />
+            </span>
+      }
     </div>
   );
 }
@@ -74,7 +96,7 @@ function Comments({ post, user }) {
       </div>
       <div className="commentsContainer">
         {comments.map((comment, index) => (
-          <Comment key={index} comment={comment} />
+          <Comment key={index} post={post} comment={comment} />
         ))}
       </div>
       <div className="commentsInputContainer">

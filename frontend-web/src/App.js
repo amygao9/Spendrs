@@ -66,6 +66,8 @@ function App() {
           <Switch>
             <Route exact path="/dashboard" component={Home} />
             <Route exact path="/profile" component={Profile} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path={"/profile/" + userData.username} component={Profile} />
             <Route exact path="/profile/:username" component={OthersProfile} />
             <Route exact path="/analytics" component={Analytics} />
             <Route exact path="/settings" component={Settings} />

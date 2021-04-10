@@ -142,4 +142,29 @@ router.post("/:postId/comment", async (req, res) => {
   }
 });
 
+/*
+Delete comment to a post by commentId
+ */
+router.delete("/:postId/comment/:commentId", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.postId).populate(
+      "comments.author",
+      "image.url name username"
+    );
+    const comment = await post.comments.id(req.params.commentId);
+
+    // If not the comment owner, forbidden.
+    if (comment.author._id != req.user.id) {
+      res.send(403);
+      return
+    }
+    await comment.remove();
+    await post.save().then(p => p.populate('user').execPopulate());
+    res.send(post);
+  } catch (err) {
+    console.log("err :>> ", err);
+    res.status(400).send("Error deleting comment");
+  }
+});
+
 module.exports = router;

@@ -61,6 +61,12 @@
 
 .commentName {
   color: grey;
+  padding-right: 15px;
+  text-decoration: none !important;
+}
+
+.textContainer>a:hover {
+  text-decoration: none !important;
 }
 
 .commentsInputContainer {
@@ -110,6 +116,11 @@
   height: 20px;
   color:red;
   opacity: 10;
+}
+
+.commentIcon {
+  margin-left: -20px;
+  margin-top: 2px;
 }
 
 .shareIcon {

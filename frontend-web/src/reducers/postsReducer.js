@@ -171,4 +171,35 @@ export const commentOnPost = (post, message) => async (dispatch, getState) => {
   }
 };
 
+export const deleteComment = (postId, commentId) => async (dispatch, getState) => {
+  try {
+    const state = getState();
+    const { feedPosts } = state.postsData;
+    const postsArray = feedPosts;
+
+    const result = await client.delete(BASE_URL + `/api/posts/${postId}/comment/${commentId}`);
+
+    let index = -1;
+    for (let i = 0; i < feedPosts.length; i++) {
+      if (feedPosts[i]._id === postId) {
+        index = i;
+        break;
+      }
+    }
+
+    if (index === -1) {
+      return;
+    }
+
+    postsArray.splice(index, 1);
+    postsArray.splice(index, 0, result.data);
+
+    dispatch({ type: "posts/updateFeed", payload: { feedPosts: [...postsArray] } });
+    return "Successfully deleted comment!"
+  } catch (err) {
+    console.log("err :>> ", err);
+    return "Error deleting comment.";
+  }
+};
+
 export default postsReducer;
