@@ -80,7 +80,7 @@ function Comments({ post, user }) {
         <textarea
           placeholder="write your comment"
           value={input}
-          maxlength="150"
+          maxLength="150"
           onChange={(e) => {
             setInput(e.target.value);
             e.target.style.height = '42px';
@@ -90,8 +90,6 @@ function Comments({ post, user }) {
             if (e.key === "Enter" && input !== "") {
               dispatch(commentOnPost(post._id, input));
               setInput("");
-              // console.log("input " + input);
-              // apiMakeComment(post._id, input);
             }
           }}
         />

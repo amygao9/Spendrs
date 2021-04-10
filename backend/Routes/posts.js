@@ -31,11 +31,8 @@ router.get("/:id", async (req, res) => {
 
 router.delete("/", async (req, res) => {
   try {
-    console.log('req.params.post :>> ', req.body.post);
-    console.log('req.user.id :>> ', req.user.id);
     Post.findOne({ _id: req.body.post, user: req.user.id }, function(err, post){
       if (err || post === null) {
-        console.log('post :>> ', post);
         return res.status(404).send({ err: "Post unaccessible." });
       }
       return post.remove(function(err, post){

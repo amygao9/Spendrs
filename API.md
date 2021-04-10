@@ -476,8 +476,132 @@ return the date of the last post.
 
 ## Posts
 
+### Get User's Posts
+<span style="
+font-size: 20px;
+color: #faa61a;
+font-family: Menlo,Consolas,Monaco,monospace;
+text-transform: uppercase;
+margin-right: 10px;"> get </span> /api/posts/. 
+Gets an array of all of the user's posts populated with data.
 
-### Create new Post
+### Example response
+```
+[
+    {
+        "attachedImage": {
+            "id": "exli3gs74838jqiyaiih",
+            "url": "http://res.cloudinary.com/dikl8liky/image/upload/v1618010903/exli3gs74838jqiyaiih.jpg"
+        },
+        "itemCategory": "food",
+        "price": 14.48,
+        "likes": [],
+        "_id": "6070e3183cadfb32cce397c8",
+        "itemName": "Spaghetti",
+        "itemLink": "https://www.amazon.com/Campbells-Spaghetti-Canned-Pasta-15-8/dp/B01KQ9F10S/ref=sr_1_4?dchild=1&keywords=spaghetti&qid=1618010785&rdc=1&sr=8-4",
+        "description": "I love spaget",
+        "user": "6070e26f3cadfb32cce397c5",
+        "comments": [],
+        "createdAt": "2021-04-09T23:28:24.458Z",
+        "updatedAt": "2021-04-09T23:28:24.458Z",
+        "__v": 0
+    },
+    {
+        "attachedImage": {
+            "id": "lc5k1oqwoew6vmxbp9va",
+            "url": "http://res.cloudinary.com/dikl8liky/image/upload/v1618011020/lc5k1oqwoew6vmxbp9va.jpg"
+        },
+        "itemCategory": "misc",
+        "price": 18.99,
+        "likes": [],
+        "_id": "6070e38d3cadfb32cce397ca",
+        "itemName": "Blackpink poster",
+        "itemLink": "https://www.amazon.com/IDOLPARK-K-POP-Poster-Sticker-Blackpink/dp/B08HTZF2Z7/ref=sr_1_2?dchild=1&keywords=blackpink+poster&qid=1618010995&sr=8-2",
+        "description": "BP IN UR AREA",
+        "user": "6070e26f3cadfb32cce397c5",
+        "comments": [
+            {
+                "_id": "6070e3c43cadfb32cce397cc",
+                "author": "6070e3af3cadfb32cce397cb",
+                "comment": "DUDUDUDU"
+            }
+        ],
+        "createdAt": "2021-04-09T23:30:21.510Z",
+        "updatedAt": "2021-04-09T23:31:16.750Z",
+        "__v": 1
+    }
+]
+```
+
+### Get Individual Post
+<span style="
+font-size: 20px;
+color: #faa61a;
+font-family: Menlo,Consolas,Monaco,monospace;
+text-transform: uppercase;
+margin-right: 10px;"> get </span> /api/posts/:id. 
+Gets the post specified by req.params.id.
+
+### Example Response
+```
+{
+    "attachedImage": {
+        "id": "exli3gs74838jqiyaiih",
+        "url": "http://res.cloudinary.com/dikl8liky/image/upload/v1618010903/exli3gs74838jqiyaiih.jpg"
+    },
+    "itemCategory": "food",
+    "price": 14.48,
+    "likes": [],
+    "_id": "6070e3183cadfb32cce397c8",
+    "itemName": "Spaghetti",
+    "itemLink": "https://www.amazon.com/Campbells-Spaghetti-Canned-Pasta-15-8/dp/B01KQ9F10S/ref=sr_1_4?dchild=1&keywords=spaghetti&qid=1618010785&rdc=1&sr=8-4",
+    "description": "I love spaget",
+    "user": "6070e26f3cadfb32cce397c5",
+    "comments": [],
+    "createdAt": "2021-04-09T23:28:24.458Z",
+    "updatedAt": "2021-04-09T23:28:24.458Z",
+    "__v": 0
+}
+```
+
+### Delete Post
+<span style="
+font-size: 20px;
+color: #faa61a;
+font-family: Menlo,Consolas,Monaco,monospace;
+text-transform: uppercase;
+margin-right: 10px;"> delete </span> /api/posts/. 
+Deletes the post specified in the body with the key post.
+Returns the deleted post on success.
+
+### Example Body
+```
+{
+  "post": "6070edb809ac1a4ba41e8982"
+}
+```
+
+### Example Response
+```
+{
+    "itemCategory": "food",
+    "price": 5.99,
+    "likes": [
+        "jacky123"
+    ],
+    "_id": "6070edb809ac1a4ba41e8982",
+    "itemName": "Chocolate",
+    "itemLink": "https://www.amazon.com/Fannie-May-Chocolate-Covered-Caramel/dp/B087HLTGJP/ref=sr_1_1_sspa?dchild=1&keywords=chocolate&qid=1618013608&rdc=1&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExUE9VV1JNNEdKUlgmZW5jcnlwdGVkSWQ9QTA4MDExMDdCVUhZSlJIMTlPR1YmZW5jcnlwdGVkQWRJZD1BMDI2OTc4MjdXSjI0VjlKQk1OWiZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=",
+    "description": "yum",
+    "user": "6070e26f3cadfb32cce397c5",
+    "comments": [],
+    "createdAt": "2021-04-10T00:13:44.140Z",
+    "updatedAt": "2021-04-10T00:15:10.168Z",
+    "__v": 5
+}
+```
+
+### Create New Post
 
 <span style="
 font-size: 20px;
@@ -497,6 +621,7 @@ form-data({
     file: javascript image file Object, or just {path: "path/to/image.jpg"}
 })
 ```
+
 ## example
 
 ```
