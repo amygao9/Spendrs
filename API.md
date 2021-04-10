@@ -814,6 +814,23 @@ Returns the updated post.
 <br/>
 <br/>
 
+
+
+### Delete a Comment
+<span style="
+font-size: 20px;
+color: #faa61a;
+font-family: Menlo,Consolas,Monaco,monospace;
+text-transform: uppercase;
+margin-right: 10px;"> delete </span> /api/posts/:postId/comment/:commentId.  
+Delete a comment on a Post. Returns 403:forbidden if your user (jwt token) is not the author of that comment
+Returns the updated post. Same response example as above.
+
+## Example Call
+```
+DELETE /api/98SD0SO345S/comment/8SDG8D7402
+```
+
 ## Users
 
 The routes to preform user operations. 
