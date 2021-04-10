@@ -6,7 +6,7 @@ import ProfileStats from "./ProfileStats";
 import ProfileInfo from "./ProfileInfo";
 import ProfilePicture from "./ProfilePicture";
 import {AiFillEdit} from "react-icons/all";
-import { useDispatch, useSelector, connect } from "react-redux";
+import { useDispatch, connect } from "react-redux";
 import { followUser, unfollowUser } from "../../reducers/userDataReducer";
 
 function ProfileDescription({ loggedInUser, user, loggedIn = true, canFollow}) {
