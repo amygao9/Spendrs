@@ -48,9 +48,7 @@ function Comments({ post, user }) {
   const [input, setInput] = useState("");
 
   const comments = post.comments;
-  // if (post.itemName == "tacobell") {
-  //   console.log(user.username, post.likes);
-  // }
+
   return (
     <div className="mainContainer fadeIn">
       <div className="likesContainer">{status}</div>

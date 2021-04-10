@@ -18,12 +18,12 @@ function PasswordModal(props) {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log('password :>> ', password);
       const result = await dispatch(changePassword(oldpass, password, confirmpass, passwordStrength));
       if (result && result.err) {
         setPassError(result.err);
       } else {
         alert.success("Change password successful!");
+        props.onHide();
       }
     }
     return (

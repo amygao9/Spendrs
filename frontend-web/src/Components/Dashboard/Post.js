@@ -11,7 +11,6 @@ import { useAlert } from "react-alert";
 export default function Post({ post }) {
   const loggedInUser = useSelector(state => state.userData);
   const user = post.user;
-  console.log('user :>> ', user);
   const dispatch = useDispatch();
   const alert = useAlert();
 

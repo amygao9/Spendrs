@@ -4,7 +4,6 @@ import '../../styles/welcome.css';
 import blob from '../../assets/blob.svg';
 import threeCharacters from '../../assets/3characters.svg'
 import RegistrationModal from './Registration';
-import { useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { login } from '../../reducers/loggedInReducer';
 import { useDispatch } from 'react-redux';
@@ -19,7 +18,6 @@ function WelcomePage() {
   const handleShow = () => setShow(true);
 
   const { register, handleSubmit } = useForm();
-  const history = useHistory();
 
   async function onSubmit (data) {
     const result = await dispatch(login(data.username, data.password));

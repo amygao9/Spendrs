@@ -57,7 +57,7 @@ function Analytics(props) {
       <Container>
         <div className={"flexContainer"}>  {/*this class will allow mobile responsiveness*/}
           <div className={"flexCol"}>
-            <Summary stats={monthSpending} numItems={monthTimeSeries.length} />
+            <Summary stats={monthSpending} numItems={monthTimeSeries.length - 1} />
             <TimeSeriesGraph stats={monthTimeSeries} />
           </div>
           <div className={"flexCol"}>
@@ -70,7 +70,6 @@ function Analytics(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log('state.userData :>> ', state.userData);
   return { 
     user: state.userData
    };

@@ -102,7 +102,6 @@ export const deletePost = (post) => async (dispatch, getState) => {
 
     const postIndex = feedPosts.findIndex(p => p._id === post);
     feedPosts.splice(postIndex, 1);
-    console.log('feedPosts :>> ', feedPosts);
 
     dispatch({ type: "posts/updateFeed", payload: { feedPosts: [...feedPosts] } });
     dispatch(getUserData);
