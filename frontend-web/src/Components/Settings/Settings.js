@@ -24,7 +24,7 @@ function Settings() {
   const [loaded, setLoaded] = useState(false)
   const radios = [
     { name: 'Private', value: 'Private' },
-    { name: 'Friends Only', value: 'Friends Only' },
+    { name: 'Followers Only', value: 'Friends Only' },
     { name: 'Public', value: 'Public' },
   ];
 
