@@ -1,4 +1,4 @@
-const app = require("./app.js");
+const app = require("./App.js");
 const db = require("./database/database.js");
 
 if (process.env.NODE_ENV !== "production") {

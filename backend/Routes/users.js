@@ -1,5 +1,5 @@
 const express = require("express");
-const { authenticateToken } = require("../middlewares/auth");
+const { authenticateToken } = require("../Middlewares/auth");
 const { User } = require("../Database/Models/user");
 
 const router = express.Router();
@@ -167,7 +167,7 @@ router.put("/update", async (req, res) => {
 });
 
 /* Route for deleting current account. Returns the user that was deleted.
-*/
+ */
 router.delete("/deleteUser", async (req, res) => {
   try {
     const id = req.user.id;
@@ -203,14 +203,14 @@ router.patch("/changePassword", async (req, res) => {
     errors += "Password cannot be too short or weak.\n";
 
   // report the error, without the trailing \n
-  console.log('errors :>> ', errors);
+  console.log("errors :>> ", errors);
   if (errors) return res.status(400).json({ err: errors });
 
   try {
     const id = req.user.id;
     const user = await User.findById(id);
     const valid = await user.isValidPassword(req.body.oldPass);
-    console.log('valid :>> ', valid);
+    console.log("valid :>> ", valid);
     if (!valid) {
       res.status(404);
       res.json({ err: "Invalid password." });
