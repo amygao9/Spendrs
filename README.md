@@ -10,13 +10,14 @@ https://spendrs.herokuapp.com/
 
 - navigate to the frontend-web folder 
 - run `npm install` to install packages and dependencies 
-- run `npm start` to get the development server going 
+- run `npm start` to get the development server going
+- navigate to http://localhost:8000/ to run the server on localhost!
 
 ## Backend
 
  - navigate to the backend folder
  - run `npm install` to install packages and dependencies 
- - run `npm start` to get the server going 
+ - run `npm start` to get the server going on http://localhost:3000/
 
 ## API Routes
  - Please view our API.md for an overview of the routes in our server and instructions about usage with Postman.
