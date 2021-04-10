@@ -4,16 +4,15 @@ import '../../styles/home.css';
 import ProfileDescription from "./ProfileDescription";
 import ProfilePosts from "./ProfilePosts";
 import { userLinks } from "../../constants";
-import {useSelector} from "react-redux";
+import { connect } from "react-redux";
 
 
-function Profile({match:{params:{username}}}) {
+function Profile(props) {
   const [loaded, setLoaded] = useState(false);
-  const user = useSelector(state => state.userData);
+  const user = props.user;
 
   useEffect( () => {
     if (user && Object.keys(user).length > 0) {
-      console.log("useeffect user ", user)
       setLoaded(true)
     }
   }, [user])
@@ -32,4 +31,11 @@ function Profile({match:{params:{username}}}) {
   );
 }
 
-export default Profile;
+
+const mapStateToProps = (state) => {
+  return { 
+    user: state.userData,
+   };
+}
+
+export default connect(mapStateToProps)(Profile);

@@ -5,9 +5,6 @@ import { Col, Row } from "react-bootstrap";
 import ProfileFriends from './ProfileFriends';
 
 function ProfileStats({ user }) {
-  const [followers] = useState(user.followers)
-  const [following] = useState(user.following)
-  const [posts] = useState(user.posts)
   const [showFollowers, setShowFollowers] = useState(false);
   const closeFollowers = () => setShowFollowers(false);
   const openFollowers = () => setShowFollowers(true);
@@ -19,19 +16,19 @@ function ProfileStats({ user }) {
   return (
       <Row className="profileStatsContainer">
         <Col>
-          <div className="profileStatsNumber">{posts.length}</div>
+          <div className="profileStatsNumber">{user.posts.length}</div>
           <div>Posts</div>
         </Col>
         <Col onClick={openFollowers} className="clickable">
-          <div className="profileStatsNumber">{followers ? followers.length : 0}</div>
+          <div className="profileStatsNumber">{user.followers ? user.followers.length : 0}</div>
           <div>Followers</div>
         </Col>
         <Col onClick={openFollowings} className="clickable">
-          <div className="profileStatsNumber">{following ? following.length : 0}</div>
+          <div className="profileStatsNumber">{user.following ? user.following.length : 0}</div>
           <div>Following</div>
         </Col>
-        <ProfileFriends data = {followers} handleclose = {closeFollowers} show = {showFollowers}/>
-        <ProfileFriends data = {following} handleclose = {closeFollowings} show = {showFollowings}/>
+        <ProfileFriends data = {user.followers} handleclose = {closeFollowers} show = {showFollowers}/>
+        <ProfileFriends data = {user.following} handleclose = {closeFollowings} show = {showFollowings}/>
       </Row>
   );
 }

@@ -6,13 +6,13 @@ import ProfileStats from "./ProfileStats";
 import ProfileInfo from "./ProfileInfo";
 import ProfilePicture from "./ProfilePicture";
 import {AiFillEdit} from "react-icons/all";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, connect } from "react-redux";
 import { followUser, unfollowUser } from "../../reducers/userDataReducer";
 
-function ProfileDescription({ user, loggedIn = true, canFollow}) {
+function ProfileDescription({ loggedInUser, user, loggedIn = true, canFollow}) {
 
   const [editable, setEditable] = useState(false);
-  const currUser = useSelector(state => state.userData);
+  const currUser = loggedInUser;
   const dispatch = useDispatch();
 
   const triggerFollow = (isFollowing) => {
@@ -42,7 +42,6 @@ function ProfileDescription({ user, loggedIn = true, canFollow}) {
       {loggedIn?
         <div className={"editProfileButton"} onClick={() => setEditable(!editable)}>
           <AiFillEdit size={"1.5em"} color={"grey"} title={"Toggle Edit Profile"}/>
-          {/*<span className="tooltipBlack">Toggle Edit Profile Mode</span>*/}
         </div> : <></>}
 
       <Container>
@@ -54,4 +53,11 @@ function ProfileDescription({ user, loggedIn = true, canFollow}) {
   );
 }
 
-export default ProfileDescription;
+
+const mapStateToProps = (state) => {
+  return { 
+    loggedInUser: state.userData,
+   };
+}
+
+export default connect(mapStateToProps)(ProfileDescription);
