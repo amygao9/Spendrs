@@ -15,6 +15,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { getUserData } from "./reducers/userDataReducer";
 import OthersProfile from "./Components/Profile/OthersProfile";
+import DoesNotExist from "./Components/DoesNotExist";
 
 function App() {
   const loggedIn = useSelector(state => state.loggedIn.loggedIn);
@@ -70,6 +71,7 @@ function App() {
             <Route exact path="/settings" component={Settings} />
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/" component={Home} />
+            <Route path="/" component={DoesNotExist} />
           </Switch> :
           loggedIn & userData.admin ?
           <Switch>
