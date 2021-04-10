@@ -11,6 +11,22 @@ app.use(express.static(path.join(__dirname, "build")));
 
 const { authenticateToken } = require("./middlewares/auth");
 // to simply display home page could be used to deploy react web page later
+
+app.get(
+  [
+    "/",
+    "/profile",
+    "/profile/*",
+    "/analytics",
+    "/admin",
+    "/settings",
+    "/dashboard",
+  ],
+  async (req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+  }
+);
+
 const home = require("./routes/home");
 app.use("/api", home);
 
