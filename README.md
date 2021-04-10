@@ -130,12 +130,12 @@ password: user
 - react-minimal-pie-chart: For rendering our analytics data
 - react-password-strength-bar: For registration and creating new passwords
 - react-redux: For global state management
-- react-scripts
+- react-scripts: Used for React app setup.
 - react-timeseries-charts: For rendering our analytics data
 - react-tiny-link: For displaying links in the post with a preview.
-- react-tooltip
-- react-transition-group
-- react-useanimations
+- react-tooltip: Used alongside react-minimal-pie-chart
+- react-transition-group: For navbar animations
+- react-useanimations: For animations in the website.
 - redux: For global state management.
 - redux-devtools-extension: For debugging redux in the browser.
 - redux-thunk: For middleware functions that use axios.
