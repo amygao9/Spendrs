@@ -40,7 +40,7 @@ function Comments({ post, user }) {
         " others liked this. ";
     }
   }
-
+  const [errorMessage, setError] = useState("")
   const dispatch = useDispatch();
 
   const userProfile = user.image ? user.image.url : defaultAvatar;
@@ -85,13 +85,20 @@ function Comments({ post, user }) {
             e.target.style.height = `${Math.min(e.target.scrollHeight, 100)}px`;
           }}
           onKeyDown={(e) => {
-            if (e.key === "Enter" && input !== "") {
+            setError("");
+            if (e.key === "Enter" && input.trim() !== "") {
+              e.preventDefault();
               dispatch(commentOnPost(post._id, input));
               setInput("");
+            }
+            if (input.length >= 500) {
+              e.preventDefault();
+              setError("Max 500 Characters limit");
             }
           }}
         />
       </div>
+      <p className={"redErrorText"}> {errorMessage} </p>
     </div>
   );
 }
