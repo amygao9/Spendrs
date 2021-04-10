@@ -1,5 +1,5 @@
 const app = require("./App.js");
-const db = require("./database/database.js");
+const db = require("./Database/database.js");
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
