@@ -2,7 +2,13 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const path = require("path");
-app.use(cors());
+app.UseCors((x) =>
+  x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed((origin) => true) // allow any origin
+    .AllowCredentials()
+); // allow credentials
 
 // so we can read json
 const bodyParser = require("body-parser");
