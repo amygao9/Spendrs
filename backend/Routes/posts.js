@@ -111,7 +111,7 @@ router.put("/like", async (req, res) => {
     } else {
       post.likes.push(user.username);
     }
-    await post.save();
+    await post.save().then(p => p.populate('user').execPopulate());
     res.send(post);
   } catch (err) {
     console.log("err :>> ", err);
@@ -134,7 +134,7 @@ router.post("/:postId/comment", async (req, res) => {
       author: user,
       comment: req.body.comment,
     });
-    await post.save();
+    await post.save().then(p => p.populate('user').execPopulate());;
     res.send(post);
   } catch (err) {
     console.log("err :>> ", err);
