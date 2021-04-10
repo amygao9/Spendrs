@@ -1,9 +1,8 @@
-import { BASE_URL } from '../base_url';
-import client from './auth';
+import client from "../axios/auth";
+import {BASE_URL} from '../base_url';
 
 export const getAllUsers = async () => {
   try {
-    
     const users = await client.get(BASE_URL + '/api/admin/allUsers');
     if (!users) {
       console.log(users)

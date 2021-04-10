@@ -6,15 +6,14 @@ import User from "./User";
 import { ListGroup } from "react-bootstrap";
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from "react-redux";
-import {getAllUsers, deleteUser} from "../../axios/admin";
+import { getAllUsers, deleteUser } from "../../reducers/adminReducer";
 
 function Admin() {
     const dispatch = useDispatch();
-    const history = useHistory();
     const [loaded, setLoaded] = useState(false)
     const [userList, setUsers] = useState([])
     useEffect( () => {
-        getAllUsers().then((users) => {
+        dispatch(getAllUsers).then((users) => {
             console.log("admin users: ", users)
             setUsers(users)
             
@@ -29,7 +28,7 @@ function Admin() {
     function handleDelete(username) {
         deleteUser(username).then((user) => {
             console.log("deleted: ", user)
-            getAllUsers().then((users) => {
+            dispatch(getAllUsers).then((users) => {
                 console.log("admin users: ", users)
                 setUsers(users)
                 
