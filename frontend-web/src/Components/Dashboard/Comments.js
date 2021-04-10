@@ -4,13 +4,10 @@ import "../../styles/graphics.css";
 import UseAnimations from "react-useanimations";
 import heart from "react-useanimations/lib/heart";
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { likePost, commentOnPost } from "../../reducers/postsReducer";
 import { FaTrash } from "react-icons/fa";
 import {useDispatch, useSelector} from "react-redux";
 import {likePost, commentOnPost, deleteComment} from "../../reducers/postsReducer";
 import {defaultAvatar} from "../../constants";
-import { BASE_URL } from "../../base_url";
 import { useAlert } from "react-alert";
 
 
@@ -40,7 +37,6 @@ function Comment({ post, comment }) {
           to={"profile/" + comment.author.username}>
           <span className="commentName"> {comment.author.username} </span>
         </NavLink>
-        <span className="commentName"> {comment.author.username + ""} </span>
         <div className="commentTextContainer">{comment.comment}</div>
       </div>
       {
