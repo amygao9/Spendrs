@@ -130,7 +130,6 @@ router.post("/:postId/comment", async (req, res) => {
       "comments.author",
       "image.url name"
     );
-    console.log(req.params.postId, post);
     post.comments.push({
       author: user,
       comment: req.body.comment,

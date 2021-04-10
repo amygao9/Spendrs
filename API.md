@@ -609,58 +609,207 @@ color: #faa61a;
 font-family: Menlo,Consolas,Monaco,monospace;
 text-transform: uppercase;
 margin-right: 10px;"> post </span> /api/posts/.  
-The routes creates a post for a user. Must make a request with form-data with the template below:
+The routes creates a post for a user with the following body.
+Returns the newly created post with the populated user.
+```
+  itemName: string,
+  itemLink: string [optional],
+  itemCategory: string [optional],
+  attachedImage: file [optional],
+  description: string [optional],
+  price: int [optional],
+  file: javascript image file Object, or just {path: "path/to/image.jpg"}
+```
+
+## Example Body
 ```
 form-data({
-    itemName: string,
-    itemLink: string [optional],
-    itemCategory: string [optional],
-    attachedImage: file [optional],
-    description: string [optional],
-    price: int [optional],
-    file: javascript image file Object, or just {path: "path/to/image.jpg"}
+  "itemName": "Poster",
+  "price": 14.99,
+  "file" (file-type): "path/to/image.jpg" (use select image in postman)
 })
 ```
 
-## example
-
+### Example Response
 ```
-form-data({
-    itemName: "Poster",
-    file (file-type): "path/to/image.jpg" (use select image in postman)
-})
+{
+    "itemCategory": "misc",
+    "price": 14.99,
+    "likes": [],
+    "_id": "6070ef386c53270990b89073",
+    "itemName": "Poster",
+    "user": {
+        "image": {
+            "id": "s1x1cohdrgtsk7ddc5ne",
+            "url": "http://res.cloudinary.com/dikl8liky/image/upload/v1618013322/s1x1cohdrgtsk7ddc5ne.jpg"
+        },
+        "posts": [
+            "6070e3183cadfb32cce397c8",
+            "6070e38d3cadfb32cce397ca",
+            "6070e5f23cadfb32cce397ce",
+            "6070e6293cadfb32cce397cf",
+            "6070e6733cadfb32cce397d0",
+            "6070e67c3cadfb32cce397d1",
+            "6070e6933cadfb32cce397d2",
+            "6070e6e99cc48d385cfcf0f1",
+            "6070e7679cc48d385cfcf0f2",
+            "6070e7709cc48d385cfcf0f3",
+            "6070ea6f9cc48d385cfcf0f4",
+            "6070ea719cc48d385cfcf0f5",
+            "6070ea739cc48d385cfcf0f6",
+            "6070edb809ac1a4ba41e8982"
+        ],
+        "followers": [
+            "6070e27f3cadfb32cce397c7",
+            "6070e3af3cadfb32cce397cb"
+        ],
+        "following": [
+            "6070e26f3cadfb32cce397c5"
+        ],
+        "privacy": "Public",
+        "admin": false,
+        "_id": "6070e26f3cadfb32cce397c5",
+        "name": "Alex Shih",
+        "username": "alexs123",
+        "password": "$2b$10$CahYDWguRoo1eWb3C7JEX.tNK1Utxj.HLnAKTN.YGxksZeP8w0lXC",
+        "email": "alex@gmail.com",
+        "createdAt": "2021-04-09T23:25:35.803Z",
+        "updatedAt": "2021-04-10T00:13:44.211Z",
+        "__v": 17,
+        "description": "badabing badaboom"
+    },
+    "comments": [],
+    "createdAt": "2021-04-10T00:20:08.634Z",
+    "updatedAt": "2021-04-10T00:20:08.634Z",
+    "__v": 0
+}
 ```
 
-### Create new Post
+### Like Post
 
 <span style="
 font-size: 20px;
 color: #faa61a;
 font-family: Menlo,Consolas,Monaco,monospace;
 text-transform: uppercase;
-margin-right: 10px;"> post </span> /api/posts/.  
-The routes creates a post for a user. Must make a request with form-data with the template below:
+margin-right: 10px;"> put </span> /api/posts/like.  
+This route likes the post specified by the body and adds the user under the likes array of the post. If the user has already liked the post, they will unlike the post.
+Returns the newly updated post.
 ```
-form-data({
-    itemName: string,
-    itemLink: string [optional],
-    itemCategory: string [optional],
-    attachedImage: file [optional],
-    description: string [optional],
-    price: int [optional],
-    file: javascript image file Object, or just {path: "path/to/image.jpg"}
-})
-```
-## example
-
-```
-form-data({
-    itemName: "Poster",
-    file (file-type): "path/to/image.jpg" (use select image in postman)
-})
+  post: string
 ```
 
+## Example Body
+```
+{
+  post: "6070ef386c53270990b89073"
+}
+```
 
+### Example Response
+```
+{
+    "itemCategory": "misc",
+    "price": 14.99,
+    "likes": [
+        "alexs123"
+    ],
+    "_id": "6070ef386c53270990b89073",
+    "itemName": "Poster",
+    "user": "6070e26f3cadfb32cce397c5",
+    "comments": [],
+    "createdAt": "2021-04-10T00:20:08.634Z",
+    "updatedAt": "2021-04-10T00:23:47.918Z",
+    "__v": 1
+}
+```
+
+
+### Comment on a Post
+<span style="
+font-size: 20px;
+color: #faa61a;
+font-family: Menlo,Consolas,Monaco,monospace;
+text-transform: uppercase;
+margin-right: 10px;"> put </span> /api/posts/:postId/comment.  
+Allows the user to comment on a post given by the postId in req.params.postId with the comment provided in the body.
+Returns the updated post.
+```
+  comment: string
+```
+
+
+## Example Body
+```
+{
+  comment: "I love this poster!"
+}
+```
+
+### Example Response
+```
+{
+    "itemCategory": "misc",
+    "price": 14.99,
+    "likes": [
+        "alexs123",
+        "jacky123"
+    ],
+    "_id": "6070ef386c53270990b89073",
+    "itemName": "Poster",
+    "user": "6070e26f3cadfb32cce397c5",
+    "comments": [
+        {
+            "_id": "6070f0a8a1e96d685480aa92",
+            "author": {
+                "image": {
+                    "id": "s1x1cohdrgtsk7ddc5ne",
+                    "url": "http://res.cloudinary.com/dikl8liky/image/upload/v1618013322/s1x1cohdrgtsk7ddc5ne.jpg"
+                },
+                "posts": [
+                    "6070e3183cadfb32cce397c8",
+                    "6070e38d3cadfb32cce397ca",
+                    "6070e5f23cadfb32cce397ce",
+                    "6070e6293cadfb32cce397cf",
+                    "6070e6733cadfb32cce397d0",
+                    "6070e67c3cadfb32cce397d1",
+                    "6070e6933cadfb32cce397d2",
+                    "6070e6e99cc48d385cfcf0f1",
+                    "6070e7679cc48d385cfcf0f2",
+                    "6070e7709cc48d385cfcf0f3",
+                    "6070ea6f9cc48d385cfcf0f4",
+                    "6070ea719cc48d385cfcf0f5",
+                    "6070ea739cc48d385cfcf0f6",
+                    "6070edb809ac1a4ba41e8982",
+                    "6070ef386c53270990b89073"
+                ],
+                "followers": [
+                    "6070e27f3cadfb32cce397c7",
+                    "6070e3af3cadfb32cce397cb"
+                ],
+                "following": [
+                    "6070e26f3cadfb32cce397c5"
+                ],
+                "privacy": "Public",
+                "admin": false,
+                "_id": "6070e26f3cadfb32cce397c5",
+                "name": "Alex Shih",
+                "username": "alexs123",
+                "password": "$2b$10$CahYDWguRoo1eWb3C7JEX.tNK1Utxj.HLnAKTN.YGxksZeP8w0lXC",
+                "email": "alex@gmail.com",
+                "createdAt": "2021-04-09T23:25:35.803Z",
+                "updatedAt": "2021-04-10T00:20:08.711Z",
+                "__v": 18,
+                "description": "badabing badaboom"
+            },
+            "comment": "I love this poster!"
+        }
+    ],
+    "createdAt": "2021-04-10T00:20:08.634Z",
+    "updatedAt": "2021-04-10T00:26:16.101Z",
+    "__v": 7
+}
+```
 <br/>
 <br/>
 <br/>
