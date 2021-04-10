@@ -124,7 +124,15 @@ input[type=submit] {
 
 #loginForm input[type=text], input[type=password] {
     background: #F9F9F9;
-    box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0px 4px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+#registrationModal input[type=text], input[type=password] {
+    background: #F9F9F9;
+    box-shadow: inset 0px 4px 5px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     font-size: 20px;
     line-height: 20px;

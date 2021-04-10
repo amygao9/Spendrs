@@ -70,7 +70,7 @@ function Home(props) {
 
     // Phase 2 api stuff
     const form = new FormData()
-    const compressedImage = await compressPostPicture(file);
+    const compressedImage = file ? await compressPostPicture(file) : null;
     form.append("file", compressedImage)
     form.append("itemName", name)
     form.append("itemLink", link)
@@ -81,6 +81,12 @@ function Home(props) {
     try{
       await dispatch(createPost(form));
       alert.success("Post created!");
+      setName("");
+      setLink("");
+      setDesc("");
+      setCategory("misc");
+      setPrice(0);
+      setFile(null);
     } catch (err) {
       console.log(err);
     }

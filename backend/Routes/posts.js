@@ -80,7 +80,7 @@ router.post("/", multipartMiddleware, async (req, res) => {
             url: result.url, // image url on cloudinary server
           }
           const post = new Post(body);
-          const createdPost = await post.save();
+          const createdPost = await post.save().then(p => p.populate('user').execPopulate());
           user.posts.push(createdPost);
           await user.save();
           res.send(createdPost);

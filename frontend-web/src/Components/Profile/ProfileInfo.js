@@ -88,6 +88,7 @@ function ProfileInfo({ editable, user }) {
             handleClose={(update) => handleCloseEditDescription(update)}
             value={updatedDescription}
             onChange={changeUpdatedDescription}
+            handleSubmit={handleSubmit}
           />
         </Row>
       }
