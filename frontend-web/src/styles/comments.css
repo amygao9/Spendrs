@@ -61,6 +61,7 @@
 
 .commentName {
   color: grey;
+  padding-right: 15px;
 }
 
 .commentsInputContainer {
@@ -110,6 +111,11 @@
   height: 20px;
   color:red;
   opacity: 10;
+}
+
+.commentIcon {
+  margin-left: -20px;
+  margin-top: 2px;
 }
 
 .shareIcon {
