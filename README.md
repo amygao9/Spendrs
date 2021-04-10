@@ -140,3 +140,21 @@ password: user
 - redux-devtools-extension: For debugging redux in the browser.
 - redux-thunk: For middleware functions that use axios.
 - web-vitals: Used as a dependency for react-timeseries-chart.
+- testing-library/jest-dom
+- testing-library/react
+- testing-library/user-event
+- body-parser
+- chai
+- cloudinary
+- connect-multiparty
+- cors
+- dotenv
+- jsonwebtoken
+- mocha
+- mockgoose
+- multer
+- node-gyp
+- node-pre-gyp
+- nodemailer
+- nodemon
+- supertest
