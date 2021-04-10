@@ -470,13 +470,37 @@ return the date of the last post.
 }
 ```
 
+```
+form-data({
+    itemName: "Poster",
+    file (file-type): "path/to/image.jpg" (use select image in postman)
+})
+```
 <br/>
 <br/>
 <br/>
 
 ## Posts
 
-The routes to generate and create posts.
+<span style="
+font-size: 20px;
+color: #faa61a;
+font-family: Menlo,Consolas,Monaco,monospace;
+text-transform: uppercase;
+margin-right: 10px;"> post </span> /api/posts/.  
+The routes creates a post for a user. Must make a request with form-data
+```
+form-data({
+    itemName: string,
+    itemLink: string [optional],
+    itemCategory: string [optional],
+    attachedImage: file [optional],
+    description: string [optional],
+    price: int [optional],
+    file: javascript image file Object, or just {path: "path/to/image.jpg"}
+})
+```
+## example
 
 <br/>
 <br/>
@@ -761,6 +785,38 @@ deletes the current user account that calls this, and returns the user document 
   "passwordStrength: 5
 }
 ```
+
+### Upload Profile Photo
+<span style="
+font-size: 20px;
+color: #faa61a;
+font-family: Menlo,Consolas,Monaco,monospace;
+text-transform: uppercase;
+margin-right: 10px;"> post </span> /upload/profile_pic/.  
+Set user.image (Profile Picture) for the logged-in user.
+You must make a post request using form-data.
+
+```
+form-data({
+    file: javascript image file Object, or just {path: "path/to/image.jpg"}
+})
+```
+## example
+
+```
+form-data ({
+    file: {
+        path: 'path/to/file.jpg' (click Select Files on Postman and select an image)
+    }
+})
+```
+Alternatively, in javascript like so:
+```
+const form = new FormData();
+form.append("file", yourImageObject);
+await client.post(BASE_URL + '/api/users/upload/profile_pic', form);
+```
+
 <br/>
 <br/>
 <br/>
