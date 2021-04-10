@@ -91,7 +91,6 @@ export const deletePost = (post) => async (dispatch, getState) => {
   try {
     const state = getState();
     const { feedPosts } = state.postsData;
-    console.log('post :>> ', post);
 
     await client.delete(BASE_URL + "/api/posts/" , {
       data: {

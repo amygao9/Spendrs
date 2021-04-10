@@ -60,7 +60,6 @@ router.get("/following/:username", async (req, res) => {
 router.post("/upload/profile_pic", multipartMiddleware, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
-    console.log(req.files);
 
     // Use uploader.upload API to upload image to cloudinary server.
     cloudinary.uploader.upload(
@@ -210,7 +209,6 @@ router.patch("/changePassword", async (req, res) => {
     const id = req.user.id;
     const user = await User.findById(id);
     const valid = await user.isValidPassword(req.body.oldPass);
-    console.log("valid :>> ", valid);
     if (!valid) {
       res.status(404);
       res.json({ err: "Invalid password." });

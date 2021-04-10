@@ -61,7 +61,6 @@ router.delete("/", async (req, res) => {
 router.post("/", multipartMiddleware, async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(req.user.id);
-    console.log("req.files :>> ", req.files);
     const file = req.files ? req.files.file : null;
     const body = req.body;
     body.user = user.id;
