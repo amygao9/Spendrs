@@ -148,7 +148,7 @@ router.put("/update", async (req, res) => {
   try {
     const username = req.body.username;
     if (username) {
-      const existingUser = User.findOne({ username: username });
+      const existingUser = await User.findOne({ username: username });
       if (existingUser && existingUser._id != req.user.id) {
         res.status(400).send({ err: "Username already in use." });
       }

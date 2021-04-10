@@ -50,6 +50,7 @@ export const checkFollowing = (username) => async (dispatch, getState) => {
 
 export const updateUser = (data) => async (dispatch, getState) => {
   try {
+    console.log('data :>> ', data);
     const result = await client.put(BASE_URL + "/api/users/update", data);
     console.log("result.data :>> ", result.data);
     dispatch({ type: "userData/userStatus", payload: result.data });
