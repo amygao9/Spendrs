@@ -6,7 +6,6 @@ import heart from "react-useanimations/lib/heart";
 import { useDispatch } from "react-redux";
 import { likePost, commentOnPost } from "../../reducers/postsReducer";
 import {defaultAvatar} from "../../constants";
-// import { apiMakeComment } from "../../axios/posts";
 
 function Comment({ comment }) {
   return (
@@ -78,11 +77,14 @@ function Comments({ post, user }) {
         <div className="imageContainer">
           <img className="profileImage" alt="profile" src={userProfile} />
         </div>
-        <input
+        <textarea
           placeholder="write your comment"
           value={input}
+          maxlength="150"
           onChange={(e) => {
             setInput(e.target.value);
+            e.target.style.height = '42px';
+            e.target.style.height = `${Math.min(e.target.scrollHeight, 100)}px`;
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter" && input !== "") {
