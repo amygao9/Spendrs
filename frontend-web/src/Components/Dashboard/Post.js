@@ -11,6 +11,7 @@ import { useAlert } from "react-alert";
 export default function Post({ post }) {
   const loggedInUser = useSelector(state => state.userData);
   const user = post.user;
+  console.log('user :>> ', user);
   const dispatch = useDispatch();
   const alert = useAlert();
 
@@ -29,7 +30,7 @@ export default function Post({ post }) {
           src={post.user.image? user.image.url : defaultAvatar}
         />
         <div className={"postHeader"}>
-          <span className="bold"> {user.name}</span> spent
+          <span className="bold"> {user.username}</span> spent
           <span className="bold"> ${post.price}</span> on a
           <span className="bold"> {post.itemName}</span> 
           {

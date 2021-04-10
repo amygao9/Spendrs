@@ -20,7 +20,7 @@ function Comment({ comment }) {
         />
       </div>
       <div className="textContainer">
-        <span className="commentName"> {comment.author.name} </span>
+        <span className="commentName"> {comment.author.username} </span>
         <div className="commentTextContainer">{comment.comment}</div>
       </div>
     </div>
