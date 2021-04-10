@@ -134,7 +134,7 @@ router.post("/:postId/comment", async (req, res) => {
       author: user,
       comment: req.body.comment,
     });
-    await post.save().then(p => p.populate('user').execPopulate());;
+    await post.save().then(p => p.populate('user').execPopulate());
     res.send(post);
   } catch (err) {
     console.log("err :>> ", err);

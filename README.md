@@ -47,6 +47,8 @@ password: user
 
 # Key Features
 
+## Views
+
 **Home Page**
  - https://spendrs.herokuapp.com/
  - Users can use the homepage to login to their account, as well as register to create a new account.
@@ -84,6 +86,22 @@ password: user
 **Admin View**
 - https://spendrs.herokuapp.com/admin
  - The admin view allows the admin to view user profiles, their account information as well as delete users accounts from the site.
+
+ ## User Authentication
+ **JWT**
+ - We are currently using JWTs to provide user authentication. These JWTs are generated from the backend and returned when the user logs in or signs up. We use a custom axios client with interceptors that provide the JWT to protected routes in the header. This JWT is checked on every page to make sure it is valid. If it is invalid or expired, the user is logged out.
+ **Cookies**
+ - We are using cookies to store the JWTs. The cookies are initially stored on log in and removed on log out or when the JWT is invalid and expires.
+
+ ## Usage
+ The user with the username, password user is already prepopulated with data. This user can be used to demonstrate the a normal user for the application. The user is also following some other users to demonstrate the different features and views above.
+
+ The admin user with the username and password admin is set up. When logging in, you have a view of all of the users as well as specific data about each user. The admin can also choose to view profile or delete the user.
+
+ You can also create a new account to see what a new account looks with no data. Click create a new account on the login screen to do so.
+
+ ## API
+ API documentation can be found in API.md in the same level as this README.md
 
 
 ## Notable Third Party Libraries Used in Phase 1
