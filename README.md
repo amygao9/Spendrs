@@ -99,33 +99,26 @@ password: user
     - Used for login credential validation
 
 ## Notable Third Party Libraries Used in Phase 2
-    "axios": "^0.21.1",
-    "bootstrap": "^4.6.0",
-    "browser-image-compression": "^1.0.14",
-    "js-cookie": "^2.2.1",
-    "lodash": "^4.17.21",
-    "moment": "^2.29.1",
-    "pondjs": "^0.9.0",
-    "react": "^17.0.1",
-    "react-alert": "^7.0.2",
-    "react-alert-template-basic": "^1.0.0",
-    "react-bootstrap": "^1.5.0",
-    "react-dom": "^17.0.1",
-    "react-hook-form": "^6.15.4",
-    "react-icons": "^4.2.0",
-    "react-infinite-scroller": "^1.2.4",
-    "react-lazyload": "^3.2.0",
-    "react-minimal-pie-chart": "^8.1.0",
-    "react-password-strength-bar": "^0.3.3",
-    "react-redux": "^7.2.3",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
-    "react-timeseries-charts": "^0.16.1",
-    "react-tiny-link": "^3.6.1",
-    "react-tooltip": "^4.2.15",
-    "react-transition-group": "^1.2.1",
-    "react-useanimations": "^2.0.6",
-    "redux": "^4.0.5",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.3.0",
-    "web-vitals": "^1.0.1"
+- axios: For making promise based api requests 
+- browser-image-compression: For compressing uploaded images
+- js-cookie: For handling browser cookies
+- lodash:
+- moment:
+- pondjs:
+- react-alert: For making custom react alert pop ups
+- react-icons: For icons in our UI
+- react-infinite-scroller:
+- react-lazyload: For lazy loading dashboard posts and profiles
+- react-minimal-pie-chart: For rendering our analytics data
+- react-password-strength-bar: For registration and creating new passwords
+- react-redux
+- react-scripts
+- react-timeseries-charts: For rendering our analytics data
+- react-tiny-link
+- react-tooltip
+- react-transition-group
+- react-useanimations
+- redux
+- redux-devtools-extension
+- redux-thunk
+- web-vitals
