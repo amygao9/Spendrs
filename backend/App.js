@@ -21,6 +21,7 @@ app.get(
     "/admin",
     "/settings",
     "/dashboard",
+    "/src/*",
   ],
   async (req, res) => {
     res.sendFile(path.join(__dirname, "build", "index.html"));
