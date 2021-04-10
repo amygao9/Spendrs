@@ -154,7 +154,14 @@ router.put("/update", async (req, res) => {
     }
     const user = await User.findByIdAndUpdate(req.user.id, req.body, {
       new: true,
-    }).populate("posts");
+    }).populate("posts")
+      .populate({
+        path: "posts",
+        populate: {
+          path: "user",
+          select: "name username image",
+        },
+      });
     if (!user) {
       res.status(500).send({ err: "Error saving user." });
     }
