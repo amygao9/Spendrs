@@ -40,6 +40,7 @@ function Comments({ post, user }) {
         " others liked this. ";
     }
   }
+
   const [errorMessage, setError] = useState("")
   const dispatch = useDispatch();
 
@@ -63,8 +64,8 @@ function Comments({ post, user }) {
           }}
         />
         <button
-  style={{background: "transparent", borderWidth: "0"}}
-  />
+          style={{background: "transparent", borderWidth: "0"}}
+        />
       </div>
       <div className="commentsContainer">
         {comments.map((comment, index) => (
