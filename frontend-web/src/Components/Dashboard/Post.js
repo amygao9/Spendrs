@@ -1,7 +1,6 @@
 import React from "react";
 import '../../styles/home.css';
 import '../../styles/graphics.css';
-import { ReactTinyLink } from 'react-tiny-link';
 import { FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { deletePost } from "../../reducers/postsReducer";
@@ -57,14 +56,8 @@ export default function Post({ post }) {
         </div> : <></>
       }
 
-      { post.itemLink && <ReactTinyLink
-        cardSize="medium"
-        showGraphic={true}
-        maxLine={2}
-        minLine={1}
-        url={post.itemLink}
-        proxyUrl={"https://thingproxy.freeboard.io/fetch"}  // This proxy may break in the future.
-      />}
+      { post.itemLink && <a href={post.itemLink}>Link</a>}
+      
       <div className={"postCaption"}>{post.description}</div>
     </div>
   )
