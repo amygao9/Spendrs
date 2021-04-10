@@ -19,13 +19,14 @@ password: user
 
 # Use cases
 
-## Regular user
-
 ## Admin user
 
 1. as an admin user logging will provide us with the list of registered users and basic information
 2. as the admin user you will be able to view all peoples profiles regardless of privacy setting
 3. the admin also has permission to delete any user they want
+
+## Regular user
+1. regular users can create accounts and login/log out to enjoy all the key features.
 
 # Key Features
 
@@ -35,9 +36,11 @@ password: user
 
 **Dashboard/Feed**
  - https://spendrs.herokuapp.com/dashboard
- - Users can see their own posts about their spendings, as well as posts made by people they follow. Currently, they can comment on each others posts and like/share posts as well. 
- - We have also included the UI to input data to create a new post. This currently works if you try to create a post.
- - We also have a comment system where you can see the comments made by other users as well as make comments yourself. 
+ - Users can see their own posts about their spendings, as well as posts made by people they follow. Additionally, they can comment on and like each others posts, as well as view other peoples comments/likes. 
+
+**Create/Delete Posts**
+ - Users can create a post about their purchases, with names, links prices, captions, categories as well as optional photos. 
+ - In either feed or profile, users can delete their past posts. 
 
 **Analytics**
  - https://spendrs.herokuapp.com/analytics
@@ -48,10 +51,15 @@ password: user
  - Spndr users can view have their own user profile with all of the user's posts, with the option to add a display photo. They can edit their bio and username through the profile tab. In addition, users can view their followers/following and access their friends' profiles as well.
 - By clicking on the followers/following, there are direct links to other member's profiles. 
 
+**Search Users**
+ - Users can search for other user profiles based on username 
+ - This will bring you to other user profiles where you will have the option to view their posts and follow/ unfollow them.
+ - Other users profiles will be rendered depending on their privacy status. Public profiles will be available to all users, Friends Only profiles will only be viewable by followers, and private profiles are only viewable by the owner.
+
 **Settings**
  - https://spendrs.herokuapp.com/settings
  - The settings page displays account information and allows the user to make their profile public/private/friends only.
- - The user also has the option to delete their account or request a forgotten password.
+ - The user also has the option to delete their account or change their password
 
 **Admin View**
 - https://spendrs.herokuapp.com/admin
