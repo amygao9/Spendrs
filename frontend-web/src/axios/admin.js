@@ -13,8 +13,7 @@ export const getAllUsers = async () => {
     return users.data;
   } catch (err) {
     console.log(err);
-    alert("Error loading user data!")
-    // throw err;
+    throw err;
   }
 };
 
@@ -29,7 +28,6 @@ export const deleteUser = async (username) => {
     return user.data;
   } catch (err) {
     console.log(err);
-    alert("Error loading user data!")
-    // throw err;
+    throw err;
   }
 };

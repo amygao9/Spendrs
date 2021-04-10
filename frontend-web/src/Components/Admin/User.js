@@ -13,6 +13,7 @@ function User(props) {
                     <p className="mb-1">Username: {user.username}</p>
                     <p className="mb-1">Email: {user.email}</p>
                     <p className="mb-1">Register Date: {user.createdAt.slice(0,10)}</p>
+                    <p className="mb-1">Privacy: {user.privacy}</p>
                 </div>
                 <div>
                     <Button className="btn-default" id = "profileButton" href = {"/profile/"+ user.username}> View Profile</Button>
