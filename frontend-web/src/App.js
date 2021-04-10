@@ -20,7 +20,6 @@ import DoesNotExist from "./Components/DoesNotExist";
 function App() {
   const loggedIn = useSelector(state => state.loggedIn.loggedIn);
   const userData = useSelector(state => state.userData);
-  console.log('userData :>> ', userData);
   const dispatch = useDispatch();
   
   useEffect(() => {
@@ -35,7 +34,6 @@ function App() {
       if (jwt && jwt !== undefined) {
         dispatch({ type: 'loggedIn/login'});
       } else {
-        console.log("LOGGING OUT");
         logout();
       }
     }

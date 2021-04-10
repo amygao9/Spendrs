@@ -14,7 +14,6 @@ function Admin() {
     const [userList, setUsers] = useState([])
     useEffect( () => {
         dispatch(getAllUsers).then((users) => {
-            console.log("admin users: ", users)
             setUsers(users)
             
           }).catch(err => {
@@ -27,9 +26,7 @@ function Admin() {
     
     function handleDelete(username) {
         deleteUser(username).then((user) => {
-            console.log("deleted: ", user)
             dispatch(getAllUsers).then((users) => {
-                console.log("admin users: ", users)
                 setUsers(users)
                 
               }).catch(err => {
@@ -42,7 +39,6 @@ function Admin() {
     }
     
     const getUsers = () => {
-        console.log("userlist :>> ",userList)
         return userList.map(user => {
             if (!user.admin) {
                 return <User key = {user.username} user = {user} handleDelete = {handleDelete}/>
