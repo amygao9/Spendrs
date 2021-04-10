@@ -115,6 +115,12 @@ password: user
     - Used for the graphs displayed on the analytics page.
 - React-Hook-Form
     - Used for login credential validation
+- Cloudinary
+    - Used for image uploads
+- nodemon
+    - Used for hot refreshes when updating code
+- jsonwebtoken
+    - Used for using making webtokens so we dont send username and password
 
 ## Notable Third Party Libraries Used in Phase 2
 - axios: For making promise based api requests 
