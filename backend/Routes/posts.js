@@ -128,13 +128,13 @@ router.post("/:postId/comment", async (req, res) => {
     const user = await User.findById(req.user.id);
     const post = await Post.findById(req.params.postId).populate(
       "comments.author",
-      "image.url name"
+      "image.url name username"
     );
     post.comments.push({
       author: user,
       comment: req.body.comment,
     });
-    await post.save().then(p => p.populate('user').execPopulate());;
+    await post.save().then(p => p.populate('user').execPopulate());
     res.send(post);
   } catch (err) {
     console.log("err :>> ", err);

@@ -57,7 +57,7 @@ function Admin() {
         <div className =  "admin">
             <Navbar links={adminLinks} />
             <div className = "userContainer">
-                <h3>Registered Users</h3>
+                <h3 className="registered">Registered Users</h3>
                 <ListGroup>
                     {getUsers()}
                 </ListGroup>

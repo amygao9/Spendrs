@@ -3,9 +3,11 @@ import "../../styles/comments.css";
 import "../../styles/graphics.css";
 import UseAnimations from "react-useanimations";
 import heart from "react-useanimations/lib/heart";
+import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { likePost, commentOnPost } from "../../reducers/postsReducer";
 import {defaultAvatar} from "../../constants";
+import { BASE_URL } from "../../base_url";
 
 function Comment({ comment }) {
   return (
@@ -20,7 +22,10 @@ function Comment({ comment }) {
         />
       </div>
       <div className="textContainer">
-        <span className="commentName"> {comment.author.name} </span>
+        <NavLink
+          to={"profile/" + comment.author.username}>
+          <span className="commentName"> {comment.author.username} </span>
+        </NavLink>
         <div className="commentTextContainer">{comment.comment}</div>
       </div>
     </div>
@@ -41,6 +46,7 @@ function Comments({ post, user }) {
     }
   }
 
+  const [errorMessage, setError] = useState("")
   const dispatch = useDispatch();
 
   const userProfile = user.image ? user.image.url : defaultAvatar;
@@ -48,9 +54,7 @@ function Comments({ post, user }) {
   const [input, setInput] = useState("");
 
   const comments = post.comments;
-  // if (post.itemName == "tacobell") {
-  //   console.log(user.username, post.likes);
-  // }
+
   return (
     <div className="mainContainer fadeIn">
       <div className="likesContainer">{status}</div>
@@ -65,8 +69,8 @@ function Comments({ post, user }) {
           }}
         />
         <button
-  style={{background: "transparent", borderWidth: "0"}}
-  />
+          style={{background: "transparent", borderWidth: "0"}}
+        />
       </div>
       <div className="commentsContainer">
         {comments.map((comment, index) => (
@@ -80,20 +84,27 @@ function Comments({ post, user }) {
         <textarea
           placeholder="write your comment"
           value={input}
-          maxLength="150"
+          maxLength="500"
           onChange={(e) => {
             setInput(e.target.value);
             e.target.style.height = '42px';
             e.target.style.height = `${Math.min(e.target.scrollHeight, 100)}px`;
           }}
           onKeyDown={(e) => {
-            if (e.key === "Enter" && input !== "") {
+            setError("");
+            if (e.key === "Enter" && input.trim() !== "") {
+              e.preventDefault();
               dispatch(commentOnPost(post._id, input));
               setInput("");
+            }
+            if (input.length >= 500) {
+              e.preventDefault();
+              setError("Max 500 Characters limit");
             }
           }}
         />
       </div>
+      <p className={"redErrorText"}> {errorMessage} </p>
     </div>
   );
 }

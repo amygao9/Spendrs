@@ -29,7 +29,7 @@ export default function Post({ post }) {
           src={post.user.image? user.image.url : defaultAvatar}
         />
         <div className={"postHeader"}>
-          <span className="bold"> {user.name}</span> spent
+          <span className="bold"> {user.username}</span> spent
           <span className="bold"> ${post.price}</span> on a
           <span className="bold"> {post.itemName}</span> 
           {

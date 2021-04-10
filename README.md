@@ -47,6 +47,8 @@ password: user
 
 # Key Features
 
+## Views
+
 **Home Page**
  - https://spendrs.herokuapp.com/
  - Users can use the homepage to login to their account, as well as register to create a new account.
@@ -72,7 +74,7 @@ password: user
 - By clicking on the followers/following, there are direct links to other member's profiles. 
 
 **Search Users**
- - Users can search for other user profiles based on username 
+ - Users can search for other user profiles based on username with an autocomplete feature.
  - This will bring you to other user profiles where you will have the option to view their posts and follow/ unfollow them.
  - Other users profiles will be rendered depending on their privacy status. Public profiles will be available to all users, Friends Only profiles will only be viewable by followers, and private profiles are only viewable by the owner.
 
@@ -84,6 +86,22 @@ password: user
 **Admin View**
 - https://spendrs.herokuapp.com/admin
  - The admin view allows the admin to view user profiles, their account information as well as delete users accounts from the site.
+
+ ## User Authentication
+ **JWT**
+ - We are currently using JWTs to provide user authentication. These JWTs are generated from the backend and returned when the user logs in or signs up. We use a custom axios client with interceptors that provide the JWT to protected routes in the header. This JWT is checked on every page to make sure it is valid. If it is invalid or expired, the user is logged out.
+ **Cookies**
+ - We are using cookies to store the JWTs. The cookies are initially stored on log in and removed on log out or when the JWT is invalid and expires.
+
+ ## Usage
+ The user with the username, password user is already prepopulated with data. This user can be used to demonstrate the a normal user for the application. The user is also following some other users to demonstrate the different features and views above.
+
+ The admin user with the username and password admin is set up. When logging in, you have a view of all of the users as well as specific data about each user. The admin can also choose to view profile or delete the user.
+
+ You can also create a new account to see what a new account looks with no data. Click create a new account on the login screen to do so.
+
+ ## API
+ API documentation can be found in API.md in the same level as this README.md
 
 
 ## Notable Third Party Libraries Used in Phase 1
@@ -99,33 +117,44 @@ password: user
     - Used for login credential validation
 
 ## Notable Third Party Libraries Used in Phase 2
-    "axios": "^0.21.1",
-    "bootstrap": "^4.6.0",
-    "browser-image-compression": "^1.0.14",
-    "js-cookie": "^2.2.1",
-    "lodash": "^4.17.21",
-    "moment": "^2.29.1",
-    "pondjs": "^0.9.0",
-    "react": "^17.0.1",
-    "react-alert": "^7.0.2",
-    "react-alert-template-basic": "^1.0.0",
-    "react-bootstrap": "^1.5.0",
-    "react-dom": "^17.0.1",
-    "react-hook-form": "^6.15.4",
-    "react-icons": "^4.2.0",
-    "react-infinite-scroller": "^1.2.4",
-    "react-lazyload": "^3.2.0",
-    "react-minimal-pie-chart": "^8.1.0",
-    "react-password-strength-bar": "^0.3.3",
-    "react-redux": "^7.2.3",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
-    "react-timeseries-charts": "^0.16.1",
-    "react-tiny-link": "^3.6.1",
-    "react-tooltip": "^4.2.15",
-    "react-transition-group": "^1.2.1",
-    "react-useanimations": "^2.0.6",
-    "redux": "^4.0.5",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.3.0",
-    "web-vitals": "^1.0.1"
+- axios: For making promise based api requests 
+- browser-image-compression: For compressing uploaded images
+- js-cookie: For handling browser cookies
+- lodash: Used for miscellaneous utility functions.
+- moment: Used for formatting. 
+- pondjs: Used as a dependency for react-timeseries-chart
+- react-alert: For making custom react alert pop ups
+- react-icons: For icons in our UI
+- react-infinite-scroller: To load new posts in the dashboard feed
+- react-lazyload: For lazy loading dashboard posts and profiles
+- react-minimal-pie-chart: For rendering our analytics data
+- react-password-strength-bar: For registration and creating new passwords
+- react-redux: For global state management
+- react-scripts
+- react-timeseries-charts: For rendering our analytics data
+- react-tiny-link: For displaying links in the post with a preview.
+- react-tooltip
+- react-transition-group
+- react-useanimations
+- redux: For global state management.
+- redux-devtools-extension: For debugging redux in the browser.
+- redux-thunk: For middleware functions that use axios.
+- web-vitals: Used as a dependency for react-timeseries-chart.
+- testing-library/jest-dom
+- testing-library/react
+- testing-library/user-event
+- body-parser
+- chai
+- cloudinary
+- connect-multiparty
+- cors
+- dotenv
+- jsonwebtoken
+- mocha
+- mockgoose
+- multer
+- node-gyp
+- node-pre-gyp
+- nodemailer
+- nodemon
+- supertest

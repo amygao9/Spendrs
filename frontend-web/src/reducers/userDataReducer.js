@@ -80,7 +80,6 @@ export const changePassword = (oldPass, password, confirmPass, passwordStrength)
     const user = await client.patch(BASE_URL + '/api/users/changePassword', {"oldPass": oldPass, "password": password, "confirmPass": confirmPass, "passwordStrength": passwordStrength});
 
     if (!user ||  typeof(user.data) == "string") {
-      console.log(user)
       throw Error('Error: User received from API but not correctly formatted');
     }
     return user.data;
@@ -94,7 +93,6 @@ export const deleteUser = async (dispatch, useState) => {
     const user = await client.delete(BASE_URL + '/api/users/deleteUser');
 
     if (!user || user.status !== 200 || typeof(user.data) == "string") {
-      console.log(user)
       throw Error('Error: User received from API but not correctly formatted');
     }
     return user.data;
@@ -106,7 +104,7 @@ export const deleteUser = async (dispatch, useState) => {
 
 export const followUser = (user) => async (dispatch, useState) => {
   try {
-    const result = await client.post(BASE_URL + '/api/users/follow', { id: user });
+    await client.post(BASE_URL + '/api/users/follow', { id: user });
     dispatch(getUserData);
     return user.data;
   } catch (err) {
@@ -118,7 +116,7 @@ export const followUser = (user) => async (dispatch, useState) => {
 
 export const unfollowUser = (user) => async (dispatch, useState) => {
   try {
-    const result = await client.post(BASE_URL + '/api/users/unfollow', { id: user });
+    await client.post(BASE_URL + '/api/users/unfollow', { id: user });
     dispatch(getUserData);
   } catch (err) {
     console.log(err);

@@ -1,5 +1,4 @@
 import client from "../axios/auth";
-import { apiMakeComment } from "../axios/posts";
 import { BASE_URL } from "../base_url";
 import { getUserData } from "./userDataReducer";
 
@@ -102,7 +101,6 @@ export const deletePost = (post) => async (dispatch, getState) => {
 
     const postIndex = feedPosts.findIndex(p => p._id === post);
     feedPosts.splice(postIndex, 1);
-    console.log('feedPosts :>> ', feedPosts);
 
     dispatch({ type: "posts/updateFeed", payload: { feedPosts: [...feedPosts] } });
     dispatch(getUserData);
@@ -150,7 +148,7 @@ export const commentOnPost = (post, message) => async (dispatch, getState) => {
     const { feedPosts } = state.postsData;
     const postsArray = feedPosts;
 
-    const result = await apiMakeComment(post, message);
+    const result = await client.post(BASE_URL + `/api/posts/${post}/comment`, {comment: message});
 
     let index = -1;
     for (let i = 0; i < feedPosts.length; i++) {
@@ -165,7 +163,7 @@ export const commentOnPost = (post, message) => async (dispatch, getState) => {
     }
 
     postsArray.splice(index, 1);
-    postsArray.splice(index, 0, result);
+    postsArray.splice(index, 0, result.data);
 
     dispatch({ type: "posts/updateFeed", payload: { feedPosts: [...postsArray] } });
   } catch (err) {

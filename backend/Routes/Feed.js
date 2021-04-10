@@ -39,12 +39,12 @@ router.post("/newsfeed", async (req, res) => {
         createdAt: -1,
       })
       .limit(limit)
-      .populate({ path: "user", select: "name image" })
+      .populate({ path: "user", select: "name image username" })
       .populate({
         path: "comments",
         populate: {
           path: "author",
-          select: "name image",
+          select: "name image username",
         },
       });
 
