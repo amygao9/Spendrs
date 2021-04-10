@@ -470,17 +470,14 @@ return the date of the last post.
 }
 ```
 
-```
-form-data({
-    itemName: "Poster",
-    file (file-type): "path/to/image.jpg" (use select image in postman)
-})
-```
 <br/>
 <br/>
 <br/>
 
 ## Posts
+
+
+### Create new Post
 
 <span style="
 font-size: 20px;
@@ -488,7 +485,7 @@ color: #faa61a;
 font-family: Menlo,Consolas,Monaco,monospace;
 text-transform: uppercase;
 margin-right: 10px;"> post </span> /api/posts/.  
-The routes creates a post for a user. Must make a request with form-data
+The routes creates a post for a user. Must make a request with form-data with the template below:
 ```
 form-data({
     itemName: string,
@@ -501,6 +498,13 @@ form-data({
 })
 ```
 ## example
+
+```
+form-data({
+    itemName: "Poster",
+    file (file-type): "path/to/image.jpg" (use select image in postman)
+})
+```
 
 <br/>
 <br/>
@@ -684,21 +688,6 @@ Returns the populated profile of the user given by req.params.username.
     "updatedAt": "2021-04-09T23:32:42.139Z",
     "__v": 3
 }
-```
-
-### Upload Profile Picture
-<span style="
-    font-size: 20px;
-    color: #faa61a;
-    font-family: Menlo,Consolas,Monaco,monospace;
-    text-transform: uppercase;
-    margin-right: 10px;"> post </span> /api/users/upload/profile_pic.  
-Uploads a new profile picture for the user.
-Requires a file to be passed in as req.files.
-
-### Example response
-```
-
 ```
 
 
