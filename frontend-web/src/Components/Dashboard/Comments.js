@@ -78,7 +78,7 @@ function Comments({ post, user }) {
         <textarea
           placeholder="write your comment"
           value={input}
-          maxLength="150"
+          maxLength="500"
           onChange={(e) => {
             setInput(e.target.value);
             e.target.style.height = '42px';
